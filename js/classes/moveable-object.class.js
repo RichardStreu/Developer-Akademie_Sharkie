@@ -9,12 +9,13 @@ export class MoveableObject {
     if (img) this.img = img;
   }
 
+  // ergänzung im feature branch
   // hallo welt
   moveRight() {
     // move to right
-    console.log("Moving Right");
+    console.log("Moving RightNow");
   }
-
+  // testesttest
   moveLeft() {
     // move to left
     console.log("Moving Left");
