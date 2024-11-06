@@ -9,6 +9,7 @@ export class MoveableObject {
     if (img) this.img = img;
   }
 
+    // hallo welt
   moveRight() {
     console.log("Moving Right");
   }
