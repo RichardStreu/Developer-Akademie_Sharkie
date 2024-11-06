@@ -3,10 +3,9 @@ export class MoveableObject {
   y = 100;
   img;
 
-  constructor(x, y, img) {
-    if (x) this.x = x;
-    if (y) this.y = y;
-    if (img) this.img = img;
+  loadImage(path) {
+    this.img = new Image();
+    this.img.src = path;
   }
 
   moveRight() {
