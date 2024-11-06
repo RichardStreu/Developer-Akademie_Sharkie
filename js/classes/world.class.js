@@ -12,5 +12,21 @@ export class World {
   sharky = new Sharky();
   enemies = [new PufferFishGreen(), new PufferFishOrange(), new PufferFishRed(), new JellyFishLilaRD(), new JellyFishYellowRD(), new JellyFishGreenSD(), new JellyFishPinkSD()];
 
-  draw() {}
+  canvas;
+  ctx;
+
+  constructor(canvas) {
+    this.ctx = canvas.getContext("2d");
+    this.canvas = canvas;
+    this.draw();
+  }
+
+  draw() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.ctx.drawImage(this.sharky.img, this.sharky.x, this.sharky.y, this.sharky.width, this.sharky.height);
+
+    let self = this;
+    requestAnimationFrame(() => self.draw());
+  }
 }
