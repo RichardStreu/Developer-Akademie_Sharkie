@@ -9,20 +9,24 @@ export class MoveableObject {
     if (img) this.img = img;
   }
 
-    // hallo welt
+  // hallo welt
   moveRight() {
+    // move to right
     console.log("Moving Right");
   }
 
   moveLeft() {
+    // move to left
     console.log("Moving Left");
   }
 
   moveUp() {
+    // move to up
     console.log("Moving Up");
   }
 
   moveDown() {
+    // move to down
     console.log("Moving Down");
   }
 }
