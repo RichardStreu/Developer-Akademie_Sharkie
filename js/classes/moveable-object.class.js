@@ -15,6 +15,7 @@ export class MoveableObject {
     // move to right
     console.log("Moving Right");
   }
+  // testesttest
   moveLeft() {
     // move to left
     console.log("Moving Left");
