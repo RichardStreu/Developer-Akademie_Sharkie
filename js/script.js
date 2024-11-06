@@ -1,11 +1,9 @@
-import { MoveableObject } from "./classes/moveable-object.class.js";
-window.MoveableObject = MoveableObject;
+import { World } from "./classes/world.class.js";
 
 let canvas;
 let ctx;
-let character = new MoveableObject(200, null, "hallo Welt");
-window.character = character;
 window.ctx = ctx;
+let world = new World;
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -14,8 +12,10 @@ function init() {
   canvas.height = canvas.clientHeight * dpr;
   ctx = canvas.getContext("2d");
   ctx.scale(dpr, dpr);
-
-  console.log(character);
-  
 }
 window.init = init;
+
+console.log(world);
+
+
+
