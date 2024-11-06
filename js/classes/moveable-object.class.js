@@ -9,6 +9,8 @@ export class MoveableObject {
     if (img) this.img = img;
   }
 
+  // ergänzung im feature branch
+
   // hallo welt
   moveRight() {
     // move to right
