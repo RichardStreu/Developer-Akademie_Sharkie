@@ -1,3 +1,13 @@
 @import "./fonts.scss";
 @import "./var.scss";
 @import "./default.scss";
+@import "./canvas.scss";
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 64px;
+  gap: 64px;
+}

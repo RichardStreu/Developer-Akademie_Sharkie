@@ -18,4 +18,17 @@
 
 .d_flex {
   display: flex;
+}
+
+.canvas {
+  background-color: black;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 64px;
+  gap: 64px;
 }/*# sourceMappingURL=style.css.map */
