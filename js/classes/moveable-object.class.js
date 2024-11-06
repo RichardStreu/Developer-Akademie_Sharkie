@@ -10,13 +10,11 @@ export class MoveableObject {
   }
 
   // ergänzung im feature branch
-
   // hallo welt
   moveRight() {
     // move to right
     console.log("Moving Right");
   }
-
   moveLeft() {
     // move to left
     console.log("Moving Left");
