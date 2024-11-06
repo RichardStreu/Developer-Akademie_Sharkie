@@ -13,7 +13,7 @@ export class MoveableObject {
   // hallo welt
   moveRight() {
     // move to right
-    console.log("Moving Right");
+    console.log("Moving RightNow");
   }
   // testesttest
   moveLeft() {
