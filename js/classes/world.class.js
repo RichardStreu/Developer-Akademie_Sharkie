@@ -41,22 +41,22 @@ export class World {
     this.draw();
   }
 
+  addToMap(object) {
+    this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+  }
+
+  addObjectsToMap(arry) {
+    arry.forEach((element) => {
+      this.addToMap(element);
+    });
+  }
+
   draw() {
-    // clear the canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.addObjectsToMap(this.landscape);
+    this.addObjectsToMap(this.enemies);
+    this.addToMap(this.sharky);
 
-    // draw landscape
-    this.landscape.forEach((elment) => {
-      this.ctx.drawImage(elment.img, elment.x, elment.y, elment.width, elment.height);
-    });
-
-    // draw Sharky and Enemys for first time
-    this.ctx.drawImage(this.sharky.img, this.sharky.x, this.sharky.y, this.sharky.width, this.sharky.height);
-    this.enemies.forEach((elment) => {
-      this.ctx.drawImage(elment.img, elment.x, elment.y, elment.width, elment.height);
-    });
-
-    // let self = this;
     requestAnimationFrame(() => this.draw());
   }
 }
