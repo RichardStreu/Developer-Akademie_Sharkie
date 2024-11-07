@@ -2,6 +2,11 @@ import { JellyFish } from "./jellyFish.class.js";
 import { moveObjRatio, enemyStartX, enemyStartDistX, enemyStartY, enemyEndY } from "../script.js";
 
 export class JellyFishGreenSD extends JellyFish {
+
+  minY;
+  maxY;
+  moveUpDownFactor;
+
   constructor(moveUpDownFactor) {
     super().loadImage("../../assets/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png");
     this.moveUpDownFactor = moveUpDownFactor;
@@ -10,15 +15,25 @@ export class JellyFishGreenSD extends JellyFish {
     console.log("StartY = " + this.y);
     this.width = 84 * moveObjRatio;
     this.height = 126 * moveObjRatio;
-    this.minY = this.y - ((this.y - enemyStartY) * moveUpDownFactor);
-    console.log("MinY = " + this.minY);
-    this.maxY = this.y + (((enemyEndY - this.height) - this.y) * moveUpDownFactor);
-    console.log("MaxY = " + this.maxY);
+    this.calculateMoveUpDownFactor();
+    this.calculateMinMaxY();
     this.upDownJellyFish(this.minY, this.maxY);
   }
 
+  calculateMoveUpDownFactor() {
+    let factor = Math.random();
+    if (factor < 0.2) {
+      this.moveUpDownFactor = 0.2;
+    }else {
+      this.moveUpDownFactor = factor;
+    }
+  }
+
   calculateMinMaxY() {
-    
+    this.minY = this.y - ((this.y - enemyStartY) * this.moveUpDownFactor);
+    console.log("MinY = " + this.minY);
+    this.maxY = this.y + (((enemyEndY - this.height) - this.y) * this.moveUpDownFactor);
+    console.log("MaxY = " + this.maxY);
   }
 
   upDownJellyFish(minY, maxY) {
