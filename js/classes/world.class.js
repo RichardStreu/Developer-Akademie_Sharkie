@@ -13,13 +13,13 @@ export class World {
   sharky = new Sharky();
   enemies = [
     new PufferFishGreen(),
-    new PufferFishOrange(),
-    new PufferFishRed(),
-    new JellyFishLilaRD(),
     new JellyFishYellowRD(),
+    new PufferFishOrange(),
+    new JellyFishLilaRD(),
     new JellyFishGreenSD(),
     new JellyFishPinkSD(),
-    new EndBoss(),
+    new PufferFishRed(),
+    // new EndBoss(),
   ];
 
   canvas;

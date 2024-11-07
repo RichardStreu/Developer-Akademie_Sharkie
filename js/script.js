@@ -2,6 +2,10 @@ import { World } from "./classes/world.class.js";
 
 export let moveObjRatio = 1;
 export let fixObjRatio = 1;
+export let enemyStartX = 200;
+export let enemyStartDistX = 400;
+export let enemyStartY = 0;
+export let enemyEndY = 460;
 let canvas;
 let world;
 
