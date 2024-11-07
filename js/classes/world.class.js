@@ -18,13 +18,31 @@ import { Barrier2 } from "./staticBarrier2.class.js";
 import { Barrier3 } from "./staticBarrier3.class.js";
 
 export class World {
+  // !assign moveUpDownFactor as first parameter to new JellyFish...() --> it has to be smaller than 1 !
+  constructor(canvas) {
+    this.ctx = canvas.getContext("2d");
+    this.canvas = canvas;
+    this.draw();
+  }
+
+  moveUpDownFactor = 0;
+
+  calculateMoveUpDownFactor() {
+    let factor = Math.random();
+    if (factor < 0.2) {
+      this.moveUpDownFactor = 0.2;
+    }else {
+      this.moveUpDownFactor = factor;
+    }
+  }
+
   sharky = new Sharky();
   enemies = [
     new PufferFishGreen(),
     new JellyFishYellowRD(),
     new PufferFishOrange(),
     new JellyFishLilaRD(),
-    new JellyFishGreenSD(),
+    new JellyFishGreenSD(0.1),
     new JellyFishPinkSD(),
     new PufferFishRed(),
     // new EndBoss(),
@@ -35,11 +53,6 @@ export class World {
   canvas;
   ctx;
 
-  constructor(canvas) {
-    this.ctx = canvas.getContext("2d");
-    this.canvas = canvas;
-    this.draw();
-  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
