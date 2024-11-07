@@ -1,3 +1,5 @@
+import { ratio } from "../script.js"
+
 export class MoveableObject {
   img;
   x = 100;

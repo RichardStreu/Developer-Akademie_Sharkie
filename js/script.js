@@ -1,5 +1,6 @@
 import { World } from "./classes/world.class.js";
 
+export let ratio = 1;
 let canvas;
 let world;
 
