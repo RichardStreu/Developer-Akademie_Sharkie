@@ -1,5 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { ratio } from "../script.js"
+import { moveObjRatio } from "../script.js";
 
 export class Sharky extends MoveableObject {
   constructor() {
@@ -7,8 +7,8 @@ export class Sharky extends MoveableObject {
     // this.img;
     this.x = 50;
     this.y = 200;
-    this.width = 180 * ratio;
-    this.height = 221 * ratio;
+    this.width = 180 * moveObjRatio;
+    this.height = 221 * moveObjRatio;
   }
 
   attackBubble() {}

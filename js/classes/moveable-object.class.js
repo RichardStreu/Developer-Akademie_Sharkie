@@ -1,4 +1,4 @@
-import { ratio } from "../script.js"
+import { moveObjRatio } from "../script.js";
 
 export class MoveableObject {
   img;

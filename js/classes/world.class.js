@@ -7,11 +7,20 @@ import { JellyFishYellowRD } from "./jellyFishYellowRD.class.js";
 import { JellyFishGreenSD } from "./jellyFishGreenSD.class.js";
 import { JellyFishPinkSD } from "./jellyFishPinkSD.class.js";
 import { EndBoss } from "./endboss.class.js";
-import { ratio } from "../script.js"
+import { moveObjRatio } from "../script.js";
 
 export class World {
   sharky = new Sharky();
-  enemies = [new PufferFishGreen(), new PufferFishOrange(), new PufferFishRed(), new JellyFishLilaRD(), new JellyFishYellowRD(), new JellyFishGreenSD(), new JellyFishPinkSD(), new EndBoss()];
+  enemies = [
+    new PufferFishGreen(),
+    new PufferFishOrange(),
+    new PufferFishRed(),
+    new JellyFishLilaRD(),
+    new JellyFishYellowRD(),
+    new JellyFishGreenSD(),
+    new JellyFishPinkSD(),
+    new EndBoss(),
+  ];
 
   canvas;
   ctx;
