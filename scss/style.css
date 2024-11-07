@@ -4,8 +4,8 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 .d_none {
@@ -31,4 +31,4 @@ main {
   align-items: center;
   padding-top: 64px;
   gap: 64px;
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */
