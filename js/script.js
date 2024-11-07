@@ -1,7 +1,9 @@
 import { World } from "./classes/world.class.js";
 
-export let moveObjRatio = 1;
-export let fixObjRatio = 1;
+export let moveObjRatio = 1.2;
+export let staticObjRatio = 1;
+export let canvasWidth = 720;
+export let canvasHeight = 480;
 export let enemyStartX = 200;
 export let enemyStartDistX = 400;
 export let enemyStartY = 0;
