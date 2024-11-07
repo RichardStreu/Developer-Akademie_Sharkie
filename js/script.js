@@ -2,7 +2,6 @@ import { World } from "./classes/world.class.js";
 
 let canvas;
 let world;
-window.world = world;
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -11,13 +10,12 @@ function init() {
   canvas.height = canvas.clientHeight * dpr;
 
   world = new World(canvas);
+  window.world = world;
 }
-window.init = init;
+
 init();
 
-console.log(world);
-
 function LOG() {
-  console.log(world.draw());
+  console.log(world);
 }
 window.LOG = LOG;
