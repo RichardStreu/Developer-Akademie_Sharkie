@@ -25,8 +25,11 @@ export class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.drawImage(this.sharky.img, this.sharky.x, this.sharky.y, this.sharky.width, this.sharky.height);
+    this.enemies.forEach((elment) => {
+      this.ctx.drawImage(elment.img, elment.x, elment.y, elment.width, elment.height);
+    });
 
-    let self = this;
-    requestAnimationFrame(() => self.draw());
+    // let self = this;
+    requestAnimationFrame(() => this.draw());
   }
 }
