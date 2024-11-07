@@ -41,6 +41,15 @@ export class World {
     this.draw();
   }
 
+  draw() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.addObjectsToMap(this.landscape);
+    this.addObjectsToMap(this.enemies);
+    this.addToMap(this.sharky);
+
+    requestAnimationFrame(() => this.draw());
+  }
+
   addToMap(object) {
     this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
   }
@@ -49,14 +58,5 @@ export class World {
     arry.forEach((element) => {
       this.addToMap(element);
     });
-  }
-
-  draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.addObjectsToMap(this.landscape);
-    this.addObjectsToMap(this.enemies);
-    this.addToMap(this.sharky);
-
-    requestAnimationFrame(() => this.draw());
   }
 }
