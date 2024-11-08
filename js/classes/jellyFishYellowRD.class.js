@@ -15,6 +15,8 @@ export class JellyFishYellowRD extends JellyFish {
     "../../assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y4.png",
   ];
 
+  currentAnimation = "swim";
+
   constructor() {
     super().loadImage("../../assets/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png");
     this.width = 60 * moveObjRatio;
