@@ -1,33 +1,27 @@
 export class MoveableObject {
+  img;
   x = 100;
   y = 100;
-  img;
+  width = 100;
+  height = 100;
 
-  constructor(x, y, img) {
-    if (x) this.x = x;
-    if (y) this.y = y;
-    if (img) this.img = img;
+  loadImage(path) {
+    this.img = new Image();
+    this.img.src = path;
   }
 
-  // ergänzung im feature branch
-  // hallo welt
   moveRight() {
-    // move to right
     console.log("Moving RightNow");
   }
-  // testesttest
   moveLeft() {
-    // move to left
     console.log("Moving Left");
   }
 
   moveUp() {
-    // move to up
     console.log("Moving Up");
   }
 
   moveDown() {
-    // move to down
     console.log("Moving Down");
   }
 }

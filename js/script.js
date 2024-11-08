@@ -1,21 +1,29 @@
-import { MoveableObject } from "./classes/moveable-object.class.js";
-window.MoveableObject = MoveableObject;
+import { World } from "./classes/world.class.js";
 
+export let moveObjRatio = 1.2;
+export let staticObjRatio = 1;
+export let canvasWidth = 720;
+export let canvasHeight = 480;
+export let enemyStartX = 200;
+export let enemyStartDistX = 400;
+export let enemyStartY = 0;
+export let enemyEndY = 460;
 let canvas;
-let ctx;
-let character = new MoveableObject(200, null, "hallo Welt");
-window.character = character;
-window.ctx = ctx;
+let world;
 
 function init() {
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
   canvas.width = canvas.clientWidth * dpr;
   canvas.height = canvas.clientHeight * dpr;
-  ctx = canvas.getContext("2d");
-  ctx.scale(dpr, dpr);
 
-  console.log(character);
-  
+  world = new World(canvas);
+  window.world = world;
 }
-window.init = init;
+
+init();
+
+function LOG() {
+  console.log(world);
+}
+window.LOG = LOG;
