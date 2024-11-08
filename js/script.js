@@ -21,7 +21,7 @@ export function checkImgChachStatus() {
       areImgCachesReady = true;
       setTimeout(() => {
         document.getElementById("loadingScreen").classList.add("d_none");
-      }, 0); // minimum time of loading screen visibility
+      }, 200); // minimum time of loading screen visibility
     }
   } else {
     throw new Error("Images cant be loaded");

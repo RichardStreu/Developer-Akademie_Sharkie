@@ -48,4 +48,8 @@ export class JellyFish extends MoveableObject {
     }, 100);
   }
 
+  loadAllImagesCacheJellyFish() {
+    this.loadImageCache(this.imagesSwim, this.constructor.name);
+    this.loadImageCache(this.imagesDead, this.constructor.name);
+  }
 }

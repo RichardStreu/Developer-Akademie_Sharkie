@@ -33,9 +33,7 @@ export class PufferFishRed extends PufferFish {
     this.enemieIndex = index;
     this.width = 120 * moveObjRatio;
     this.height = 96 * moveObjRatio;
-    this.loadImageCache(this.imagesSwim, this.constructor.name);
-    this.loadImageCache(this.imagesTransition, this.constructor.name);
-    this.loadImageCache(this.imagesBubbleSwim, this.constructor.name);
+    this.loadAllImagesCachePuffer();
     this.checkImagesCacheLoaded();
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {

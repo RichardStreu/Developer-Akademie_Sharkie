@@ -22,11 +22,11 @@ export class MoveableObject {
   }
 
   changeCacheStatusToFalse(className) {
-    imgCachesObject[`${className}`] = false;
+    imgCachesObject[className] = false;
   }
 
   changeCachStatusToTrue(className) {
-    imgCachesObject[`${className}`] = true;
+    imgCachesObject[className] = true;
   }
 
   async loadImageCache(arr, className) {

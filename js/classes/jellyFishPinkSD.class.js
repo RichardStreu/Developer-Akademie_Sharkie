@@ -26,8 +26,7 @@ export class JellyFishPinkSD extends JellyFish {
     this.enemieIndex = index;
     this.width = 84 * moveObjRatio;
     this.height = 126 * moveObjRatio;
-    this.loadImageCache(this.imagesSwim, this.constructor.name);
-    this.loadImageCache(this.imagesDead, this.constructor.name);
+    this.loadAllImagesCacheJellyFish();
     this.checkImagesCacheLoaded();
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
