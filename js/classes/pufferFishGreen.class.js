@@ -35,8 +35,8 @@ export class PufferFishGreen extends PufferFish {
     this.height = 45 * moveObjRatio;
   }
 
-  checkAndLoadCurrentAnimation() {
-    if ((this.currentAnimation = "swim")) {
+  doCurrentAnimationAndMovement() {
+    if (this.currentAnimation == "swim") {
       this.checkImagesForSwimAnimation(this.imagesSwim, this.img, 650);
       this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
     }

@@ -6,6 +6,7 @@ export class JellyFish extends MoveableObject {
   maxY;
   moveUpDownFactor = 0;
   upDownSpeed = 0;
+  isImageCacheLoaded = false;
 
   currentAnimationIntervall;
 
@@ -37,9 +38,18 @@ export class JellyFish extends MoveableObject {
     this.maxY = this.y + (enemyEndY - this.height - this.y) * this.moveUpDownFactor;
   }
 
+  checkImagesCacheLoaded() {
+    let checkInterval = setInterval(() => {
+      if (areImgCachesReady) {
+        this.isImageCacheLoaded = true;
+        clearInterval(checkInterval);
+      }
+    }, 100);
+  }
+
   upDownJellyFish(minY, maxY, speed) {
     this.moveUp = true;
-    setInterval(() => {
+    this.currentMovement = setInterval(() => {
       if (this.moveUp && this.y > minY) this.y -= speed;
       if (this.moveUp && this.y < minY) this.moveUp = false;
       if (!this.moveUp && this.y < maxY) this.y += speed;
@@ -47,19 +57,10 @@ export class JellyFish extends MoveableObject {
     }, 100);
   }
 
-  checkImagesForSwimAnimation(imagesSwim, imgRef, intervall) {
-    let checkInterval = setInterval(() => {
-      if (areImgCachesReady) {
-        this.animateSwim(imagesSwim, imgRef, intervall);
-        clearInterval(checkInterval);
-      }
-    }, 100);
-  }
-
-  animateSwim(imagesSwim, imgRef, intervall) {
-    let imagesArray = imagesSwim;
+  doJellyFishAnimation(imageArray, imgRef, intervall) {
+    let imagesArray = imageArray;
     let currentIndex = 0;
-    setInterval(() => {
+    this.currentAnimationIntervall = setInterval(() => {
       imgRef.src = imagesArray[currentIndex];
       currentIndex = (currentIndex + 1) % imagesArray.length;
     }, intervall);
