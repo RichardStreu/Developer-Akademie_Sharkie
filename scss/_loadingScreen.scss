@@ -1,0 +1,15 @@
+.loadingScreen {
+  width: 720px;
+  height: 480px;
+  background-color: black;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  p {
+    color: white;
+    font-size: 700;
+  }
+}
