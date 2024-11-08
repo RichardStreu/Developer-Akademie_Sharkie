@@ -38,14 +38,6 @@ export class JellyFish extends MoveableObject {
     this.maxY = this.y + (enemyEndY - this.height - this.y) * this.moveUpDownFactor;
   }
 
-  checkImagesCacheLoaded() {
-    let checkInterval = setInterval(() => {
-      if (areImgCachesReady) {
-        this.isImageCacheLoaded = true;
-        clearInterval(checkInterval);
-      }
-    }, 100);
-  }
 
   upDownJellyFish(minY, maxY, speed) {
     this.moveUp = true;

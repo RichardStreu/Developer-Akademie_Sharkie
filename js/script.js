@@ -17,7 +17,6 @@ export let areImgCachesReady = false;
 export function checkImgChachStatus() {
   if (imgCachesObject) {
     let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
-    console.log(imgCachesObject);
     if (imagesReady) {
       areImgCachesReady = true;
       setTimeout(() => {

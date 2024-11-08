@@ -35,4 +35,13 @@ export class MoveableObject {
     this.changeCachStatusToTrue(className);
     checkImgChachStatus();
   }
+
+  checkImagesCacheLoaded() {
+    let checkInterval = setInterval(() => {
+      if (areImgCachesReady) {
+        this.isImageCacheLoaded = true;
+        clearInterval(checkInterval);
+      }
+    }, 100);
+  }
 }

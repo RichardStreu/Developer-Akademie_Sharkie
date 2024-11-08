@@ -36,12 +36,19 @@ export class PufferFishGreen extends PufferFish {
     this.loadImageCache(this.imagesSwim, this.constructor.name);
     this.loadImageCache(this.imagesTransition, this.constructor.name);
     this.loadImageCache(this.imagesBubbleSwim, this.constructor.name);
+    this.checkImagesCacheLoaded();
+    this.firstInterval = setInterval(() => {
+      if (this.isImageCacheLoaded) {
+        // this.doCurrentAnimationAndMovement();
+        clearInterval(this.firstInterval);
+      }
+    }, 100);
   }
 
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       this.checkImagesForSwimAnimation(this.imagesSwim, this.img, 650);
-      this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
+      // this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
     }
     if (this.currentAnimation == "transition") {
     }
