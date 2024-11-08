@@ -11,12 +11,15 @@ export let enemyEndY = 460;
 let canvas;
 let world;
 
-export let imgCachesReady = {};
+export let imgCachesObject = {};
+export let areImgCachesReady = false;
 
 export function checkImgChachStatus() {
-  if (imgCachesReady) {
-    let imagesReady = Object.values(imgCachesReady).every(value => value === true);
+  if (imgCachesObject) {
+    let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
     if (imagesReady) document.getElementById("loadingScreen").classList.add("d_none");
+    areImgCachesReady = true;
+    console.log(imgCachesObject);
   } else {
     throw new Error("Images cant be loaded");
   }
