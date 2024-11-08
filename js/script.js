@@ -11,6 +11,8 @@ export let enemyEndY = 460;
 let canvas;
 let world;
 
+export let imgCachesReady = {};
+
 function init() {
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;

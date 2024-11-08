@@ -10,3 +10,4 @@ export class JellyFishLilaRD extends JellyFish {
     this.height = 99 * moveObjRatio;
   }
 }
+
