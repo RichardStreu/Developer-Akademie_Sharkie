@@ -1,4 +1,4 @@
-import { imgCachesReady, checkImgChachStatus } from "../script.js";
+import { imgCachesObject, checkImgChachStatus, areImgCachesReady } from "../script.js";
 
 export class MoveableObject {
   img;
@@ -21,14 +21,18 @@ export class MoveableObject {
     });
   }
 
-  changeCachStatus(className) {
-    imgCachesReady[`${className}`] = true;
+  changeCacheStatusToFalse(className) {
+    imgCachesObject[`${className}`] = false;
+  }
+
+  changeCachStatusToTrue(className) {
+    imgCachesObject[`${className}`] = true;
   }
 
   async loadImageCache(arr, className) {
+    this.changeCacheStatusToFalse(className);
     await this.getImages(arr);
-    this.changeCachStatus(className)
+    this.changeCachStatusToTrue(className);
     checkImgChachStatus();
   }
-
 }
