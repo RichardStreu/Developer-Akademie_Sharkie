@@ -33,6 +33,9 @@ export class PufferFishOrange extends PufferFish {
     this.enemieIndex = index;
     this.width = 86 * moveObjRatio;
     this.height = 69 * moveObjRatio;
+    this.loadImageCache(this.imagesSwim, this.constructor.name);
+    this.loadImageCache(this.imagesTransition, this.constructor.name);
+    this.loadImageCache(this.imagesBubbleSwim, this.constructor.name);
   }
 
   doCurrentAnimationAndMovement() {

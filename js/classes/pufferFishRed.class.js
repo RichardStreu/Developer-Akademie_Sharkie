@@ -3,11 +3,11 @@ import { moveObjRatio, enemyStartX, enemyStartDistX, enemyStartY, enemyEndY } fr
 
 export class PufferFishRed extends PufferFish {
   imagesSwim = [
-    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Swim/3.swim1.png",
-    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Swim/3.swim2.png",
-    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Swim/3.swim3.png",
-    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Swim/3.swim4.png",
-    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Swim/3.swim5.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim2.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim3.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim4.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim5.png",
   ];
 
   imagesTransition = [
@@ -33,6 +33,9 @@ export class PufferFishRed extends PufferFish {
     this.enemieIndex = index;
     this.width = 120 * moveObjRatio;
     this.height = 96 * moveObjRatio;
+    this.loadImageCache(this.imagesSwim, this.constructor.name);
+    this.loadImageCache(this.imagesTransition, this.constructor.name);
+    this.loadImageCache(this.imagesBubbleSwim, this.constructor.name);
   }
 
   doCurrentAnimationAndMovement() {
