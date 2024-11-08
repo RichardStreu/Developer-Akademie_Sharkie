@@ -28,8 +28,9 @@ export class PufferFishRed extends PufferFish {
 
   currentAnimation = "swim";
 
-  constructor() {
+  constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png");
+    this.enemieIndex = index;
     this.width = 120 * moveObjRatio;
     this.height = 96 * moveObjRatio;
   }

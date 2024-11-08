@@ -17,8 +17,9 @@ export class JellyFishPinkSD extends JellyFish {
 
   currentAnimation = "swim";
 
-  constructor() {
+  constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 1.png");
+    this.enemieIndex = index;
     this.width = 84 * moveObjRatio;
     this.height = 126 * moveObjRatio;
     this.loadImageCache(this.imagesSwim, this.constructor.name);

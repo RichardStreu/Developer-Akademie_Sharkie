@@ -14,7 +14,6 @@ export class JellyFish extends MoveableObject {
     this.calculateMoveUpDownFactor();
     this.calculateUpDownSpeed();
     this.calculateMinMaxY();
-    this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
   }
 
   calculateMoveUpDownFactor() {

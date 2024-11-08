@@ -16,20 +16,28 @@ export class JellyFishGreenSD extends JellyFish {
     "../../assets/img/2.Enemy/2 Jelly fish/Dead/green/g4.png",
   ];
 
-  currentAnimation = "swim"; // "dead"
+  currentAnimation = "stop"; // "dead" // "stop"
 
-  constructor() {
+  constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png");
+    this.enemieIndex = index;
     this.width = 90 * moveObjRatio;
     this.height = 135 * moveObjRatio;
     this.loadImageCache(this.imagesSwim, this.constructor.name);
     this.loadImageCache(this.imagesDead, this.constructor.name);
-    this.checkImagesForSwimAnimation(this.imagesSwim, this.img, 650);
+    this.checkAndLoadCurrentAnimation();
   }
 
   checkAndLoadCurrentAnimation() {
-    setInterval(() => {
-      if (this.currentAnimation = "swim") ;
-    }, 100);
+      if (this.currentAnimation = "swim") {
+        this.checkImagesForSwimAnimation(this.imagesSwim, this.img, 650);
+        this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
+      };
+      if (this.currentAnimation == "dead") {
+
+      }
+      if (this.currentAnimation == "stop") {
+        return;
+      }
   }
 }

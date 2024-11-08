@@ -17,8 +17,9 @@ export class JellyFishLilaRD extends JellyFish {
 
   currentAnimation = "swim";
 
-  constructor() {
+  constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png");
+    this.enemieIndex = index;
     this.width = 66 * moveObjRatio;
     this.height = 99 * moveObjRatio;
     this.loadImageCache(this.imagesSwim, this.constructor.name);
