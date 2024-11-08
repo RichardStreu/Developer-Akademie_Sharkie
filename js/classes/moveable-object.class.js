@@ -44,4 +44,13 @@ export class MoveableObject {
       }
     }, 100);
   }
+
+  doImageAnimation(imageArray, imgRef, intervall) {
+    let imagesArray = imageArray;
+    let currentIndex = 0;
+    this.currentAnimationIntervall = setInterval(() => {
+      imgRef.src = imagesArray[currentIndex];
+      currentIndex = (currentIndex + 1) % imagesArray.length;
+    }, intervall);
+  }
 }

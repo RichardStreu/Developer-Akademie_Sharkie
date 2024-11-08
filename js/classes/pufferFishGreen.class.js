@@ -45,6 +45,7 @@ export class PufferFishGreen extends PufferFish {
     }, 100);
   }
 
+  // doImageAnimation(imageArray, imgRef, intervall)
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       this.checkImagesForSwimAnimation(this.imagesSwim, this.img, 650);

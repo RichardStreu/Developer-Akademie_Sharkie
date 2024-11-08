@@ -11,15 +11,6 @@ export class Sharky extends MoveableObject {
     this.height = 221 * moveObjRatio;
   }
 
-  attackBubble() {}
 
-  attackFinSlap() {}
-
-  attackPoisonBubble() {}
-
-  sleep() {}
-
-  goHurt() {}
-
-  goDefeated() {}
+  
 }

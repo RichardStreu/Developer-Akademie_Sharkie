@@ -37,6 +37,7 @@ export class JellyFishLilaRD extends JellyFish {
     }, 100);
   }
 
+  // doImageAnimation(imageArray, imgRef, intervall)
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       clearInterval(this.currentMovement);
