@@ -26,6 +26,9 @@ export class World {
   }
 
   sharky = new Sharky();
+
+  landscape = [new Water(), new Fondo1(), new Fondo2(), new Floor(), new Light()];
+
   enemies = [
     new PufferFishGreen(0),
     new JellyFishYellowRD(1),
@@ -37,11 +40,8 @@ export class World {
     // new EndBoss(),
   ];
 
-  landscape = [new Water(), new Fondo1(), new Fondo2(), new Floor(), new Light()];
-
   canvas;
   ctx;
-
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

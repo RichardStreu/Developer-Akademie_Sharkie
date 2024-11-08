@@ -1,5 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { moveObjRatio } from "../script.js";
+import { moveObjRatio, loadedCachsArray } from "../script.js";
 import {
   imagesStand,
   imagesFallAsleep,
@@ -39,19 +39,19 @@ export class Sharky extends MoveableObject {
     }, 100);
   }
 
-  loadAllImagesCacheSharky() {
-    this.loadImageCache(imagesStand, this.constructor.name);
-    this.loadImageCache(imagesFallAsleep, this.constructor.name);
-    this.loadImageCache(imagesSleep, this.constructor.name);
-    this.loadImageCache(imagesSwim, this.constructor.name);
-    this.loadImageCache(imagesAttackBubbleWithout, this.constructor.name);
-    this.loadImageCache(imagesAttackBubbleRegular, this.constructor.name);
-    this.loadImageCache(imagesAttackBubblePoison, this.constructor.name);
-    this.loadImageCache(imagesAttackFinSlap, this.constructor.name);
-    this.loadImageCache(imagesHurtRegular, this.constructor.name);
-    this.loadImageCache(imagesHurtShock, this.constructor.name);
-    this.loadImageCache(imagesDeadRegular, this.constructor.name);
-    this.loadImageCache(imagesDeadShock, this.constructor.name);
+  async loadAllImagesCacheSharky() {
+    await this.loadImageCache(imagesStand, this.constructor.name);
+    await this.loadImageCache(imagesFallAsleep, this.constructor.name);
+    await this.loadImageCache(imagesSleep, this.constructor.name);
+    await this.loadImageCache(imagesSwim, this.constructor.name);
+    await this.loadImageCache(imagesAttackBubbleWithout, this.constructor.name);
+    await this.loadImageCache(imagesAttackBubbleRegular, this.constructor.name);
+    await this.loadImageCache(imagesAttackBubblePoison, this.constructor.name);
+    await this.loadImageCache(imagesAttackFinSlap, this.constructor.name);
+    await this.loadImageCache(imagesHurtRegular, this.constructor.name);
+    await this.loadImageCache(imagesHurtShock, this.constructor.name);
+    await this.loadImageCache(imagesDeadRegular, this.constructor.name);
+    await this.loadImageCache(imagesDeadShock, this.constructor.name);
   }
 
   doCurrentAnimationAndMovement() {

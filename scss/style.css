@@ -35,6 +35,10 @@
   display: flex;
 }
 
+.visibility_hidden {
+  visibility: hidden;
+}
+
 .canvas {
   background-color: black;
   position: absolute;

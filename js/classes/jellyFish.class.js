@@ -1,5 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { enemyStartX, enemyStartDistX, enemyStartY, enemyEndY, areImgCachesReady } from "../script.js";
+import { enemyStartX, enemyStartDistX, enemyStartY, enemyEndY, areImgCachesReady, loadedCachsArray } from "../script.js";
 
 export class JellyFish extends MoveableObject {
   minY;
@@ -48,8 +48,8 @@ export class JellyFish extends MoveableObject {
     }, 100);
   }
 
-  loadAllImagesCacheJellyFish() {
-    this.loadImageCache(this.imagesSwim, this.constructor.name);
-    this.loadImageCache(this.imagesDead, this.constructor.name);
+  async loadAllImagesCacheJellyFish() {
+    await this.loadImageCache(this.imagesSwim, this.constructor.name);
+    await this.loadImageCache(this.imagesDead, this.constructor.name);
   }
 }

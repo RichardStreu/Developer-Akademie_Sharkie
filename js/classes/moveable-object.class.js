@@ -1,4 +1,4 @@
-import { imgCachesObject, checkImgChachStatus, areImgCachesReady } from "../script.js";
+import { imgCachesObject, areImgCachesReady, loadedCachsArray } from "../script.js";
 
 export class MoveableObject {
   img;
@@ -33,7 +33,6 @@ export class MoveableObject {
     this.changeCacheStatusToFalse(className);
     await this.getImages(arr);
     this.changeCachStatusToTrue(className);
-    checkImgChachStatus();
   }
 
   checkImagesCacheLoaded() {
