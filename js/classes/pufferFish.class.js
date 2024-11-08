@@ -13,4 +13,9 @@ export class PufferFish extends MoveableObject {
     await this.loadImageCache(this.imagesTransition, this.constructor.name);
     await this.loadImageCache(this.imagesBubbleSwim, this.constructor.name);
   }
+
+  clearIntervalsAnimationMove() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+  }
 }

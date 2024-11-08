@@ -28,6 +28,10 @@ export class PufferFishGreen extends PufferFish {
 
   currentAnimation = "swim"; // "swim" "transition" "bubbleSwim" "stop"
 
+  currentAnimationIntervall;
+
+  currentMovement;
+
   constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png");
     this.enemieIndex = index;
@@ -37,7 +41,7 @@ export class PufferFishGreen extends PufferFish {
     this.checkImagesCacheLoaded();
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
-        // this.doCurrentAnimationAndMovement();
+        this.doCurrentAnimationAndMovement();
         clearInterval(this.firstInterval);
       }
     }, 100);
@@ -46,14 +50,20 @@ export class PufferFishGreen extends PufferFish {
   // doImageAnimation(imageArray, imgRef, intervall)
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
-      this.checkImagesForSwimAnimation(this.imagesSwim, this.img, 650);
-      // this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
+      this.clearIntervalsAnimationMove();
+      this.doImageAnimation(this.imagesSwim, this.img, 120);
     }
     if (this.currentAnimation == "transition") {
+      this.clearIntervalsAnimationMove();
+      this.doImageAnimation(this.imagesTransition, this.img, 200);
     }
     if (this.currentAnimation == "bubbleSwim") {
+      this.clearIntervalsAnimationMove();
+      this.doImageAnimation(this.imagesBubbleSwim, this.img, 200);
     }
     if (this.currentAnimation == "stop") {
+      this.clearIntervalsAnimationMove();
     }
   }
 }
+
