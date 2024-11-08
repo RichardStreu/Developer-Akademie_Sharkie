@@ -17,12 +17,12 @@ export let areImgCachesReady = false;
 export function checkImgChachStatus() {
   if (imgCachesObject) {
     let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
+    console.log(imgCachesObject);
     if (imagesReady) {
       areImgCachesReady = true;
-      console.log(imgCachesObject);
       setTimeout(() => {
         document.getElementById("loadingScreen").classList.add("d_none");
-      }, 1500);
+      }, 0); // minimum time of loading screen visibility
     }
   } else {
     throw new Error("Images cant be loaded");
