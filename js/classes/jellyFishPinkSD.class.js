@@ -42,7 +42,7 @@ export class JellyFishPinkSD extends JellyFish {
       clearInterval(this.currentMovement);
       clearInterval(this.currentAnimationIntervall);
       this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
-      this.doJellyFishAnimation(this.imagesSwim, this.img, 550);
+      this.doImageAnimation(this.imagesSwim, this.img, 550);
     }
     if (this.currentAnimation == "dead") {
     }

@@ -38,7 +38,6 @@ export class JellyFish extends MoveableObject {
     this.maxY = this.y + (enemyEndY - this.height - this.y) * this.moveUpDownFactor;
   }
 
-
   upDownJellyFish(minY, maxY, speed) {
     this.moveUp = true;
     this.currentMovement = setInterval(() => {
@@ -49,7 +48,7 @@ export class JellyFish extends MoveableObject {
     }, 100);
   }
 
-  doJellyFishAnimation(imageArray, imgRef, intervall) {
+  doImageAnimation(imageArray, imgRef, intervall) {
     let imagesArray = imageArray;
     let currentIndex = 0;
     this.currentAnimationIntervall = setInterval(() => {
