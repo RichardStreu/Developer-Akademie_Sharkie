@@ -26,13 +26,26 @@ export class PufferFishOrange extends PufferFish {
     "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim5.png",
   ];
 
-  currentAnimation = "swim";
+  currentAnimation = "swim"; // "swim" "transition" "bubbleSwim" "stop"
 
   constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png");
     this.enemieIndex = index;
     this.width = 86 * moveObjRatio;
     this.height = 69 * moveObjRatio;
+  }
+
+  checkAndLoadCurrentAnimation() {
+    if ((this.currentAnimation = "swim")) {
+      this.checkImagesForSwimAnimation(this.imagesSwim, this.img, 650);
+      this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
+    }
+    if (this.currentAnimation == "transition") {
+    }
+    if (this.currentAnimation == "bubbleSwim") {
+    }
+    if (this.currentAnimation == "stop") {
+    }
   }
 }
 

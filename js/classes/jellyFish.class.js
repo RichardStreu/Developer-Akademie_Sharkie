@@ -7,6 +7,8 @@ export class JellyFish extends MoveableObject {
   moveUpDownFactor = 0;
   upDownSpeed = 0;
 
+  currentAnimationIntervall;
+
   constructor() {
     super();
     this.x = enemyStartX + Math.random() * enemyStartDistX;

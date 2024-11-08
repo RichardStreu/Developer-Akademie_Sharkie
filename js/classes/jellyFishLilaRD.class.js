@@ -15,7 +15,7 @@ export class JellyFishLilaRD extends JellyFish {
     "../../assets/img/2.Enemy/2 Jelly fish/Dead/Lila/L4.png",
   ];
 
-  currentAnimation = "swim";
+  currentAnimation = "swim"; //"swim" "dead" // "stop"
 
   constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png");
@@ -24,6 +24,19 @@ export class JellyFishLilaRD extends JellyFish {
     this.height = 99 * moveObjRatio;
     this.loadImageCache(this.imagesSwim, this.constructor.name);
     this.loadImageCache(this.imagesDead, this.constructor.name);
-    this.checkImagesForSwimAnimation(this.imagesSwim, this.img, 350);
+    this.checkAndLoadCurrentAnimation();
   }
+
+  checkAndLoadCurrentAnimation() {
+    if (this.currentAnimation = "swim") {
+      this.checkImagesForSwimAnimation(this.imagesSwim, this.img, 350);
+      this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
+    };
+    if (this.currentAnimation == "dead") {
+
+    }
+    if (this.currentAnimation == "stop") {
+      return;
+    }
+}
 }
