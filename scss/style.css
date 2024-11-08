@@ -1,11 +1,26 @@
+.loadingScreen {
+  width: 720px;
+  height: 480px;
+  background-color: black;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+.loadingScreen p {
+  color: white;
+  font-size: 700;
+}
+
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   scroll-behavior: smooth;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .d_none {
@@ -22,13 +37,19 @@
 
 .canvas {
   background-color: black;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 64px;
-  gap: 64px;
-} /*# sourceMappingURL=style.css.map */
+  position: relative;
+  height: 100dvh;
+}
+main h1 {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}/*# sourceMappingURL=style.css.map */
