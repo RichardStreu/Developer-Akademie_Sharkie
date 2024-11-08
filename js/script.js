@@ -14,7 +14,12 @@ let world;
 export let imgCachesReady = {};
 
 export function checkImgChachStatus() {
-  console.log(imgCachesReady);
+  if (imgCachesReady) {
+    let imagesReady = Object.values(imgCachesReady).every(value => value === true);
+    if (imagesReady) document.getElementById("loadingScreen").classList.add("d_none");
+  } else {
+    throw new Error("Images cant be loaded");
+  }
 }
 
 function init() {
