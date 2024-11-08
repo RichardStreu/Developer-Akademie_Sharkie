@@ -13,6 +13,10 @@ let world;
 
 export let imgCachesReady = {};
 
+export function checkImgChachStatus() {
+  console.log(imgCachesReady);
+}
+
 function init() {
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;

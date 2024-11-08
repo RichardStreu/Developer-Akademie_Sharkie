@@ -18,7 +18,7 @@ export class JellyFishLilaRD extends JellyFish {
     imgCachesReady[this.constructor.name] = false;
     this.width = 66 * moveObjRatio;
     this.height = 99 * moveObjRatio;
-    this.loadImageCache(this.imgPathArr);
+    this.loadImageCache(this.imgPathArr, this.constructor.name);
   }
 }
 

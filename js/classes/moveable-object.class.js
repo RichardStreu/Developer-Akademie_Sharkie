@@ -1,4 +1,4 @@
-import { imgCachesReady } from "../script.js";
+import { imgCachesReady, checkImgChachStatus } from "../script.js";
 
 export class MoveableObject {
   img;
@@ -13,26 +13,22 @@ export class MoveableObject {
     this.img.src = path;
   }
 
-  loadImageCache(arr) {
-    arr.forEach((path) => {
+  async getImages(pathArray) {
+    pathArray.forEach((path) => {
       let img = new Image();
       img.src = path;
       this.imageCache[path] = img;
     });
   }
 
-  moveRight() {
-    console.log("Moving RightNow");
-  }
-  moveLeft() {
-    console.log("Moving Left");
+  changeCachStatus(className) {
+    imgCachesReady[`${className}`] = true;
   }
 
-  moveUp() {
-    console.log("Moving Up");
+  async loadImageCache(arr, className) {
+    await this.getImages(arr);
+    this.changeCachStatus(className)
+    checkImgChachStatus();
   }
 
-  moveDown() {
-    console.log("Moving Down");
-  }
 }

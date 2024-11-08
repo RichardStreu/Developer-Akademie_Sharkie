@@ -18,8 +18,6 @@ export class JellyFishGreenSD extends JellyFish {
     imgCachesReady[this.constructor.name] = false;
     this.width = 84 * moveObjRatio;
     this.height = 126 * moveObjRatio;
-    this.loadImageCache(this.imgPathArr);
-    console.log(imgCachesReady);
-    
+    this.loadImageCache(this.imgPathArr, this.constructor.name);
   }
 }
