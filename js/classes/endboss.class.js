@@ -26,11 +26,12 @@ export class EndBoss extends MoveableObject {
   }
 
   doCurrentBossAnimation() {
-    if (this.currentAnimation == "introduce") this.sharkyStand();
-    if (this.currentAnimation == "swim") this.sharkyFallAsleep();
-    if (this.currentAnimation == "attack") this.sharkySleep();
-    if (this.currentAnimation == "dead") this.sharkySwim();
-    if (this.currentAnimation == "hurt") this.sharkyBubbleWithout();
+    if (this.currentAnimation == "introduce") this.bossIntroduce();
+    if (this.currentAnimation == "swim") this.bossSwim();
+    if (this.currentAnimation == "attack") this.bossAttack();
+    if (this.currentAnimation == "dead") this.bossDead();
+    if (this.currentAnimation == "hurt") this.bossHurt();
+    if (this.currentAnimation == "stop") this.bossStop();
   }
 
   clearIntervalsAnimationMove() {
@@ -63,7 +64,7 @@ export class EndBoss extends MoveableObject {
     this.doImageAnimation(imagesBossHurt, this.img, 180);
   }
 
-  sharkyStop() {
+  bossStop() {
     this.clearIntervalsAnimationMove();
   }
 }

@@ -51,6 +51,7 @@ export class PufferFishRed extends PufferFish {
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       this.clearIntervalsAnimationMove();
+      this.forBackMovePufferFish(this.minX, this.maxX, this.forBackSpeed);
       this.doImageAnimation(this.imagesSwim, this.img, 220);
     }
     if (this.currentAnimation == "transition") {
