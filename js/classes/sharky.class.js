@@ -16,7 +16,7 @@ import {
 } from "./sharky.class.images.js";
 
 export class Sharky extends MoveableObject {
-  currentAnimation = "stand"; //"stand""fallAsleep""sleep""swim""bubbleWithout""bubbleRegular""bubblePoison""finSlap""hurtRegular""hurtShock""deadRegular""deadShock" // "stop"
+  currentAnimation = "stand"; //"stand""fallAsleep""sleep""swim""bubbleWithout""bubbleRegular""bubblePoison""finSlap""hurtRegular""hurtShock""deadRegular""deadShock" / "stop"
 
   currentAnimationIntervall;
 
