@@ -18,17 +18,23 @@ import { Barrier2 } from "./staticBarrier2.class.js";
 import { Barrier3 } from "./staticBarrier3.class.js";
 
 export class World {
-  // !assign moveUpDownFactor as first parameter to new JellyFish...() --> it has to be smaller than 1 !
-  constructor(canvas) {
+  constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
+    this.keyboard = keyboard;
     this.draw();
+    this.setWorld();
+  }
+
+  setWorld() {
+    this.sharky.world = this;
   }
 
   sharky = new Sharky();
 
   landscape = [new Water(), new Fondo1(), new Fondo2(), new Floor(), new Light()];
 
+  // give each enemy its index of enemies as parameter
   enemies = [
     new PufferFishGreen(0),
     new JellyFishYellowRD(1),

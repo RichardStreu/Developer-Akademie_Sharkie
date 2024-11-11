@@ -15,12 +15,15 @@ import {
   imagesDeadShock,
 } from "./sharky.class.images.js";
 
+//
 export class Sharky extends MoveableObject {
   currentAnimation = "stand"; //"stand""fallAsleep""sleep""swim""bubbleWithout""bubbleRegular""bubblePoison""finSlap""hurtRegular""hurtShock""deadRegular""deadShock" / "stop"
 
   currentAnimationIntervall;
 
   currentMovement;
+
+  world;
 
   constructor() {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");

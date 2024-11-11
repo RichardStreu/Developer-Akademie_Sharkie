@@ -7,7 +7,6 @@ export class MoveableObject {
   width = 100;
   height = 100;
   imageCache = {};
-
   otherDirection = false;
 
   loadImage(path) {
