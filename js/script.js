@@ -1,12 +1,18 @@
 import { World } from "./classes/world.class.js";
 
+// with this ratio you can scale all moveable objects in one step
 export let moveObjRatio = 1.2;
+// with this ratio you can scale all static objects in one step
 export let staticObjRatio = 1;
 export let canvasWidth = 720;
 export let canvasHeight = 480;
+// minimum x position where an object respawns
 export let enemyStartX = 200;
+// maximum x position (+ enemyStartX) where an object respawns
 export let enemyStartDistX = 400;
+// minimum y position where an object respawns
 export let enemyStartY = 0;
+// maximum y position where an object respawns
 export let enemyEndY = 460;
 let canvas;
 let world;

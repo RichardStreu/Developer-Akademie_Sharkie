@@ -8,6 +8,8 @@ export class MoveableObject {
   height = 100;
   imageCache = {};
 
+  otherDirection = false;
+
   loadImage(path) {
     this.img = new Image();
     this.img.src = path;

@@ -45,19 +45,25 @@ export class PufferFish extends MoveableObject {
   }
 
   calculateMinMaxX() {
-    this.minX = this.x - 400 * this.moveForBackFactor;
+    this.minX = this.x - (400 * this.moveForBackFactor);
     if (this.minX < enemyStartX) this.minX = enemyStartX;
-    this.maxX = this.x + 400 * this.moveForBackFactor;
-    if (this.maxX > enemyStartX + enemyStartDistX) this.maxX = enemyStartX + enemyStartDistX;
+    this.maxX = this.x + (400 * this.moveForBackFactor);
+    if (this.maxX > (enemyStartX + enemyStartDistX + this.width)) this.maxX = (enemyStartX + enemyStartDistX - this.width);
   }
 
   forBackMovePufferFish(minX, maxX, speed) {
     this.moveFor = true;
     this.currentMovement = setInterval(() => {
       if (this.moveFor && this.x > minX) this.x -= speed;
-      if (this.moveFor && this.x < minX) this.moveFor = false;
+      if (this.moveFor && this.x < minX) {
+        this.moveFor = false;
+        this.otherDirection = true;
+      }
       if (!this.moveFor && this.x < maxX) this.x += speed;
-      if (!this.moveFor && this.x > maxX) this.moveFor = true;
+      if (!this.moveFor && this.x > maxX) {
+        this.moveFor = true;
+        this.otherDirection = false;
+      }
     }, 100);
   }
 }
