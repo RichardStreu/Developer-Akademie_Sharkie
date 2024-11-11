@@ -34,12 +34,75 @@ export class Sharky extends MoveableObject {
     this.height = 221 * moveObjRatio;
     this.loadAllImagesCacheSharky();
     this.checkImagesCacheLoaded();
+    window.addEventListener("keydown", (event) => {
+      this.handleKeyDown(event);
+    });
+    window.addEventListener("keyup", (event) => {
+      this.handleKeyUp(event);
+    });
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
         this.doCurrentSharkyAnimation();
         clearInterval(this.firstInterval);
       }
     }, 100);
+  }
+
+  handleKeyDown(event) {
+    if (event.key == "ArrowLeft") this.world.keyboard.LEFT = true;
+    if (event.key == "ArrowRight") this.world.keyboard.RIGHT = true;
+    if (event.key == "ArrowUp") this.world.keyboard.UP = true;
+    if (event.key == "ArrowDown") this.world.keyboard.DOWN = true;
+    if (event.key == " ") this.world.keyboard.SPACE = true;
+    if (event.key == "d") this.world.keyboard.DKey = true;
+    this.startMovingSharky();
+  }
+
+  handleKeyUp(event) {
+    if (event.key == "ArrowLeft") this.world.keyboard.LEFT = false;
+    if (event.key == "ArrowRight") this.world.keyboard.RIGHT = false;
+    if (event.key == "ArrowUp") this.world.keyboard.UP = false;
+    if (event.key == "ArrowDown") this.world.keyboard.DOWN = false;
+    if (event.key == " ") this.world.keyboard.SPACE = false;
+    if (event.key == "d") this.world.keyboard.DKey = false;
+    this.stopMovingSharky();
+  }
+
+  startMovingSharky() {
+    if (this.world.keyboard.LEFT == true) this.moveSharkyLeft();
+    if (this.world.keyboard.RIGHT == true) this.moveSharkyRight();
+    if (this.world.keyboard.UP == true) this.moveSharkyUp();
+    if (this.world.keyboard.DOWN == true) this.moveSharkyDown();
+    if (this.world.keyboard.SPACE == true) this.sharkyAttackSpace();
+    if (this.world.keyboard.DKey == true) this.sharkyAttackDKey();
+  }
+
+  stopMovingSharky() {
+    console.log("Moving stopped");
+  }
+
+  moveSharkyLeft() {
+    console.log("Left");
+  }
+
+  moveSharkyRight() {
+    console.log("Right");
+  }
+
+  moveSharkyUp() {
+    console.log("UP");
+  }
+
+  moveSharkyDown() {
+    console.log("DOWN");
+  }
+
+  sharkyAttackSpace() {
+    console.log("Bubble Attack");
+  }
+
+  sharkyAttackDKey() {
+    console.log("Fin Slap Attack");
   }
 
   async loadAllImagesCacheSharky() {
