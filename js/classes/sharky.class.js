@@ -33,7 +33,7 @@ export class Sharky extends MoveableObject {
     this.checkImagesCacheLoaded();
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
-        this.doCurrentAnimationAndMovement();
+        this.doCurrentSharkyAnimation();
         clearInterval(this.firstInterval);
       }
     }, 100);
@@ -54,7 +54,7 @@ export class Sharky extends MoveableObject {
     await this.loadImageCache(imagesDeadShock, this.constructor.name);
   }
 
-  doCurrentAnimationAndMovement() {
+  doCurrentSharkyAnimation() {
     if (this.currentAnimation == "stand") this.sharkyStand();
     if (this.currentAnimation == "fallAsleep") this.sharkyFallAsleep();
     if (this.currentAnimation == "sleep") this.sharkySleep();
@@ -77,51 +77,51 @@ export class Sharky extends MoveableObject {
 
   sharkyStand() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesStand, this.img, 200);
+    this.doImageAnimation(imagesStand, this.img, 180);
   }
   sharkyFallAsleep() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesFallAsleep, this.img, 650);
+    this.doImageAnimation(imagesFallAsleep, this.img, 150);
   }
   sharkySleep() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesSleep, this.img, 650);
+    this.doImageAnimation(imagesSleep, this.img, 200);
   }
   sharkySwim() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesSwim, this.img, 650);
+    this.doImageAnimation(imagesSwim, this.img, 130);
   }
   sharkyBubbleWithout() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesAttackBubbleWithout, this.img, 650);
+    this.doImageAnimation(imagesAttackBubbleWithout, this.img, 110);
   }
   sharkyBubbleRegular() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesAttackBubbleRegular, this.img, 650);
+    this.doImageAnimation(imagesAttackBubbleRegular, this.img, 110);
   }
   sharkyBubblePoison() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesAttackBubblePoison, this.img, 650);
+    this.doImageAnimation(imagesAttackBubblePoison, this.img, 110);
   }
   sharkyFinSlap() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesAttackFinSlap, this.img, 650);
+    this.doImageAnimation(imagesAttackFinSlap, this.img, 100);
   }
   sharkyHurtRegular() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesHurtRegular, this.img, 650);
+    this.doImageAnimation(imagesHurtRegular, this.img, 110);
   }
   sharkyHurtShock() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesHurtShock, this.img, 650);
+    this.doImageAnimation(imagesHurtShock, this.img, 110);
   }
   sharkyDeadRegular() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesDeadRegular, this.img, 650);
+    this.doImageAnimation(imagesDeadRegular, this.img, 130);
   }
   sharkyDeadShock() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesDeadShock, this.img, 650);
+    this.doImageAnimation(imagesDeadShock, this.img, 130);
   }
   sharkyStop() {
     this.clearIntervalsAnimationMove();
