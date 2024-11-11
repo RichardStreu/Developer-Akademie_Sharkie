@@ -69,6 +69,7 @@ export class Sharky extends MoveableObject {
   }
 
   startMovingSharky() {
+    this.clearIntervalsAnimationMove()
     if (this.world.keyboard.LEFT == true) this.moveSharkyLeft();
     if (this.world.keyboard.RIGHT == true) this.moveSharkyRight();
     if (this.world.keyboard.UP == true) this.moveSharkyUp();
@@ -78,23 +79,39 @@ export class Sharky extends MoveableObject {
   }
 
   stopMovingSharky() {
-    console.log("Moving stopped");
+    this.sharkyStand();
   }
 
   moveSharkyLeft() {
-    console.log("Left");
+    this.currentAnimation = "swim";
+    this.doCurrentSharkyAnimation();
+    this.currentMovement = setInterval(() => {
+      this.x -= 1.2;
+    }, 1);
   }
 
   moveSharkyRight() {
-    console.log("Right");
+    this.currentAnimation = "swim";
+    this.doCurrentSharkyAnimation();
+    this.currentMovement = setInterval(() => {
+      this.x += 1.2;
+    }, 1);
   }
 
   moveSharkyUp() {
-    console.log("UP");
+    this.currentAnimation = "swim";
+    this.doCurrentSharkyAnimation();
+    this.currentMovement = setInterval(() => {
+      this.y -= 1.2;
+    }, 1);
   }
 
   moveSharkyDown() {
-    console.log("DOWN");
+    this.currentAnimation = "swim";
+    this.doCurrentSharkyAnimation();
+    this.currentMovement = setInterval(() => {
+      this.y += 1.2;
+    }, 1);
   }
 
   sharkyAttackSpace() {
