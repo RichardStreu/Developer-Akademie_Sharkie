@@ -189,6 +189,8 @@ export class Sharky extends MoveableObject {
 
   moveSharkyRight() {
     if (!this.world.keyboard.RIGHT) {
+      console.log(this.x);
+      
       this.clearIntervalsAnimationMove();
       this.world.keyboard.RIGHT = true;
       this.otherDirection = false;
