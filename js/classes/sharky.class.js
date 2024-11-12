@@ -101,8 +101,8 @@ export class Sharky extends MoveableObject {
   }
 
   clearIntervalsAnimationMove() {
-      clearInterval(this.currentMovement);
-      clearInterval(this.currentAnimationIntervall);
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
   }
 
   handleKeyUp(event) {
@@ -112,8 +112,10 @@ export class Sharky extends MoveableObject {
     if (event.key == "ArrowDown") this.world.keyboard.DOWN = false;
     if (event.key == " ") this.world.keyboard.SPACE = false;
     if (event.key == "d") this.world.keyboard.DKey = false;
-    this.clearIntervalsAnimationMove();
-    this.sharkyStandAnimation();
+    if (Object.values(world.keyboard).every((value) => value === false)) {
+      this.clearIntervalsAnimationMove();
+      this.sharkyStandAnimation();
+    }
   }
 
   handleKeyDown(event) {
