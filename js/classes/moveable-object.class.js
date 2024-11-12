@@ -46,10 +46,13 @@ export class MoveableObject {
   }
 
   doImageAnimation(imageArray, imgRef, intervall) {
-    let imagesArray = imageArray;
+    let imagesArray = [];
+    imageArray.forEach((imgPath) => {
+      imagesArray.push(this.imageCache[imgPath]);
+    });
     let currentIndex = 0;
     this.currentAnimationIntervall = setInterval(() => {
-      imgRef.src = imagesArray[currentIndex];
+      this.img = imagesArray[currentIndex];
       currentIndex = (currentIndex + 1) % imagesArray.length;
     }, intervall);
   }
