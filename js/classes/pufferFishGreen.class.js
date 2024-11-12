@@ -51,6 +51,8 @@ export class PufferFishGreen extends PufferFish {
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       this.clearIntervalsAnimationMove();
+      // debugger;
+      this.forBackMovePufferFish(this.minX, this.maxX, this.forBackSpeed);
       this.doImageAnimation(this.imagesSwim, this.img, 120);
     }
     if (this.currentAnimation == "transition") {
@@ -66,4 +68,3 @@ export class PufferFishGreen extends PufferFish {
     }
   }
 }
-

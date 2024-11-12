@@ -39,17 +39,27 @@ export class JellyFishGreenSD extends JellyFish {
 
   // doImageAnimation(imageArray, imgRef, intervall)
   doCurrentAnimationAndMovement() {
-    if (this.currentAnimation == "swim") {
-      clearInterval(this.currentMovement);
-      clearInterval(this.currentAnimationIntervall);
-      this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
-      this.doImageAnimation(this.imagesSwim, this.img, 650);
-    }
-    if (this.currentAnimation == "dead") {
-    }
-    if (this.currentAnimation == "stop") {
-      clearInterval(this.currentMovement);
-      clearInterval(this.currentAnimationIntervall);
-    }
+    if (this.currentAnimation == "swim") this.jellySwim();
+    if (this.currentAnimation == "dead") this.jellyDead();
+    if (this.currentAnimation == "stop") this.jellyStop();
+  }
+
+  jellySwim() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+    this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
+    this.doImageAnimation(this.imagesSwim, this.img, 650);
+  }
+
+  jellyDead() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+    // this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
+    this.doImageAnimation(this.imagesDead, this.img, 250);
+  }
+
+  jellyStop() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
   }
 }

@@ -18,17 +18,23 @@ import { Barrier2 } from "./staticBarrier2.class.js";
 import { Barrier3 } from "./staticBarrier3.class.js";
 
 export class World {
-  // !assign moveUpDownFactor as first parameter to new JellyFish...() --> it has to be smaller than 1 !
-  constructor(canvas) {
+  constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
+    this.keyboard = keyboard;
     this.draw();
+    this.setWorld();
+  }
+
+  setWorld() {
+    this.sharky.world = this;
   }
 
   sharky = new Sharky();
 
   landscape = [new Water(), new Fondo1(), new Fondo2(), new Floor(), new Light()];
 
+  // give each enemy its index of enemies as parameter
   enemies = [
     new PufferFishGreen(0),
     new JellyFishYellowRD(1),
@@ -42,18 +48,38 @@ export class World {
 
   canvas;
   ctx;
+  camera_x = 0;
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.ctx.translate(this.camera_x, 0);
+
     this.addObjectsToMap(this.landscape);
-    this.addObjectsToMap(this.enemies);
     this.addToMap(this.sharky);
+    this.addObjectsToMap(this.enemies);
+
+    this.ctx.translate(-this.camera_x, 0);
 
     requestAnimationFrame(() => this.draw());
   }
 
   addToMap(object) {
+    if (object.otherDirection) this.flipImage(object);
     this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+    if (object.otherDirection) this.flipImageBack(object);
+  }
+
+  flipImage(object) {
+    this.ctx.save();
+    this.ctx.translate(object.width, 0);
+    this.ctx.scale(-1, 1);
+    object.x = object.x * -1;
+  }
+
+  flipImageBack(object) {
+    object.x = object.x * -1;
+    this.ctx.restore();
   }
 
   addObjectsToMap(arry) {

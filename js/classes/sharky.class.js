@@ -1,5 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { moveObjRatio, loadedCachsArray } from "../script.js";
+import { moveObjRatio, loadedCachsArray, canvasHeight, canvasWidth } from "../script.js";
 import {
   imagesStand,
   imagesFallAsleep,
@@ -15,25 +15,35 @@ import {
   imagesDeadShock,
 } from "./sharky.class.images.js";
 
+//
 export class Sharky extends MoveableObject {
-  currentAnimation = "stand"; //"stand""fallAsleep""sleep""swim""bubbleWithout""bubbleRegular""bubblePoison""finSlap""hurtRegular""hurtShock""deadRegular""deadShock" // "stop"
-
   currentAnimationIntervall;
 
   currentMovement;
+  isSwimLeft;
+  isSwimRight;
+  isSwimUp;
+  isSwimDown;
+
+  world;
 
   constructor() {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
-    // this.img;
     this.x = 0;
     this.y = 200;
     this.width = 180 * moveObjRatio;
     this.height = 221 * moveObjRatio;
     this.loadAllImagesCacheSharky();
     this.checkImagesCacheLoaded();
+    window.addEventListener("keydown", (event) => {
+      this.handleKeyDown(event);
+    });
+    window.addEventListener("keyup", (event) => {
+      this.handleKeyUp(event);
+    });
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
-        this.doCurrentAnimationAndMovement();
+        this.sharkyStandAnimation();
         clearInterval(this.firstInterval);
       }
     }, 100);
@@ -54,20 +64,41 @@ export class Sharky extends MoveableObject {
     await this.loadImageCache(imagesDeadShock, this.constructor.name);
   }
 
-  doCurrentAnimationAndMovement() {
-    if (this.currentAnimation == "stand") this.sharkyStand();
-    if (this.currentAnimation == "fallAsleep") this.sharkyFallAsleep();
-    if (this.currentAnimation == "sleep") this.sharkySleep();
-    if (this.currentAnimation == "swim") this.sharkySwim();
-    if (this.currentAnimation == "bubbleWithout") this.sharkyBubbleWithout();
-    if (this.currentAnimation == "bubbleRegular") this.sharkyBubbleRegular();
-    if (this.currentAnimation == "bubblePoison") this.sharkyBubblePoison();
-    if (this.currentAnimation == "finSlap") this.sharkyFinSlap();
-    if (this.currentAnimation == "hurtRegular") this.sharkyHurtRegular();
-    if (this.currentAnimation == "hurtShock") this.sharkyHurtShock();
-    if (this.currentAnimation == "deadRegular") this.sharkyDeadRegular();
-    if (this.currentAnimation == "deadShock") this.sharkyDeadShock();
-    if (this.currentAnimation == "stop") this.sharkyStop();
+  sharkyStandAnimation() {
+    this.doImageAnimation(imagesStand, this.img, 180);
+  }
+  sharkyFallAsleepAnimation() {
+    this.doImageAnimation(imagesFallAsleep, this.img, 150);
+  }
+  sharkySleepAnimation() {
+    this.doImageAnimation(imagesSleep, this.img, 200);
+  }
+  sharkySwimAnimation() {
+    this.doImageAnimation(imagesSwim, this.img, 80);
+  }
+  sharkyBubbleWithoutAnimation() {
+    this.doImageAnimation(imagesAttackBubbleWithout, this.img, 110);
+  }
+  sharkyBubbleRegularAnimation() {
+    this.doImageAnimation(imagesAttackBubbleRegular, this.img, 110);
+  }
+  sharkyBubblePoisonAnimation() {
+    this.doImageAnimation(imagesAttackBubblePoison, this.img, 110);
+  }
+  sharkyFinSlapAnimation() {
+    this.doImageAnimation(imagesAttackFinSlap, this.img, 100);
+  }
+  sharkyHurtRegularAnimation() {
+    this.doImageAnimation(imagesHurtRegular, this.img, 110);
+  }
+  sharkyHurtShockAnimation() {
+    this.doImageAnimation(imagesHurtShock, this.img, 110);
+  }
+  sharkyDeadRegularAnimation() {
+    this.doImageAnimation(imagesDeadRegular, this.img, 130);
+  }
+  sharkyDeadShockAnimation() {
+    this.doImageAnimation(imagesDeadShock, this.img, 130);
   }
 
   clearIntervalsAnimationMove() {
@@ -75,55 +106,111 @@ export class Sharky extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
   }
 
-  sharkyStand() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesStand, this.img, 200);
+  handleKeyUp(event) {
+    if (event.key == "ArrowLeft") {
+      this.world.keyboard.LEFT = false;
+      clearInterval(this.isSwimLeft);
+    }
+    if (event.key == "ArrowRight") {
+      this.world.keyboard.RIGHT = false;
+      clearInterval(this.isSwimRight);
+    }
+    if (event.key == "ArrowUp") {
+      this.world.keyboard.UP = false;
+      clearInterval(this.isSwimUp);
+    }
+    if (event.key == "ArrowDown") {
+      this.world.keyboard.DOWN = false;
+      clearInterval(this.isSwimDown);
+    }
+    if (event.key == " ") this.world.keyboard.SPACE = false;
+    if (event.key == "d") this.world.keyboard.DKey = false;
+    if (Object.values(world.keyboard).every((value) => value === false)) {
+      this.clearIntervalsAnimationMove();
+      this.sharkyStandAnimation();
+    }
   }
-  sharkyFallAsleep() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesFallAsleep, this.img, 650);
+
+  handleKeyDown(event) {
+    if (event.key == "ArrowLeft") this.moveSharkyLeft();
+    if (event.key == "ArrowRight") this.moveSharkyRight();
+    if (event.key == "ArrowUp") this.moveSharkyUp();
+    if (event.key == "ArrowDown") this.moveSharkyDown();
+    if (event.key == " ") this.sharkyAttackSpace();
+    if (event.key == "d") this.sharkyAttackDKey();
   }
-  sharkySleep() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesSleep, this.img, 650);
+
+  moveSharkyLeft() {
+    if (!this.world.keyboard.LEFT) {
+      this.clearIntervalsAnimationMove();
+      this.world.keyboard.LEFT = true;
+      this.otherDirection = true;
+      this.sharkySwimAnimation();
+      this.isSwimLeft = setInterval(() => {
+        if (this.x > -30) {
+          this.x -= 4;
+          const sharkyMidPoint = canvasWidth / 2 - this.width / 2;
+          if (this.x > sharkyMidPoint && this.x > 0) {
+            this.world.camera_x = sharkyMidPoint - this.x;
+          } else if (this.x <= 0) {
+            this.world.camera_x = 0;
+          }
+        }
+      }, 10);
+    }
   }
-  sharkySwim() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesSwim, this.img, 650);
+
+  moveSharkyRight() {
+    if (!this.world.keyboard.RIGHT) {
+      this.clearIntervalsAnimationMove();
+      this.world.keyboard.RIGHT = true;
+      this.otherDirection = false;
+      this.sharkySwimAnimation();
+      this.isSwimRight = setInterval(() => {
+        this.x += 4;
+        let sharkyMidPoint = canvasWidth / 2 - this.width / 2;
+        if (this.x >= sharkyMidPoint) this.world.camera_x = this.world.camera_x = sharkyMidPoint - this.x;
+      }, 10);
+    }
   }
-  sharkyBubbleWithout() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesAttackBubbleWithout, this.img, 650);
+
+  moveSharkyUp() {
+    if (!this.world.keyboard.UP) {
+      this.clearIntervalsAnimationMove();
+      this.world.keyboard.UP = true;
+      this.sharkySwimAnimation();
+      this.isSwimUp = setInterval(() => {
+        if (this.y > -120) this.y -= 4;
+      }, 10);
+    }
   }
-  sharkyBubbleRegular() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesAttackBubbleRegular, this.img, 650);
+
+  moveSharkyDown() {
+    if (!this.world.keyboard.DOWN) {
+      this.clearIntervalsAnimationMove();
+      this.world.keyboard.DOWN = true;
+      this.sharkySwimAnimation();
+      this.isSwimDown = setInterval(() => {
+        if (this.y < canvasHeight - 262) {
+          this.y += 4;
+        }
+      }, 10);
+    }
   }
-  sharkyBubblePoison() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesAttackBubblePoison, this.img, 650);
+
+  sharkyAttackSpace() {
+    if (!this.world.keyboard.SPACE) {
+      this.world.keyboard.SPACE = true;
+      this.clearIntervalsAnimationMove();
+      console.log("Bubble Attack");
+    }
   }
-  sharkyFinSlap() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesAttackFinSlap, this.img, 650);
-  }
-  sharkyHurtRegular() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesHurtRegular, this.img, 650);
-  }
-  sharkyHurtShock() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesHurtShock, this.img, 650);
-  }
-  sharkyDeadRegular() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesDeadRegular, this.img, 650);
-  }
-  sharkyDeadShock() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesDeadShock, this.img, 650);
-  }
-  sharkyStop() {
-    this.clearIntervalsAnimationMove();
+
+  sharkyAttackDKey() {
+    if (!this.world.keyboard.DKey) {
+      this.world.keyboard.DKey = true;
+      this.clearIntervalsAnimationMove();
+      console.log("Fin Slap Attack");
+    }
   }
 }
