@@ -20,6 +20,10 @@ export class Sharky extends MoveableObject {
   currentAnimationIntervall;
 
   currentMovement;
+  isSwimLeft;
+  isSwimRight;
+  isSwimUp;
+  isSwimDown;
 
   world;
 
@@ -106,10 +110,22 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyUp(event) {
-    if (event.key == "ArrowLeft") this.world.keyboard.LEFT = false;
-    if (event.key == "ArrowRight") this.world.keyboard.RIGHT = false;
-    if (event.key == "ArrowUp") this.world.keyboard.UP = false;
-    if (event.key == "ArrowDown") this.world.keyboard.DOWN = false;
+    if (event.key == "ArrowLeft") {
+      this.world.keyboard.LEFT = false;
+      clearInterval(this.isSwimLeft);
+    }
+    if (event.key == "ArrowRight") {
+      this.world.keyboard.RIGHT = false;
+      clearInterval(this.isSwimRight);
+    }
+    if (event.key == "ArrowUp") {
+      this.world.keyboard.UP = false;
+      clearInterval(this.isSwimUp);
+    }
+    if (event.key == "ArrowDown") {
+      this.world.keyboard.DOWN = false;
+      clearInterval(this.isSwimDown);
+    }
     if (event.key == " ") this.world.keyboard.SPACE = false;
     if (event.key == "d") this.world.keyboard.DKey = false;
     if (Object.values(world.keyboard).every((value) => value === false)) {
@@ -133,7 +149,7 @@ export class Sharky extends MoveableObject {
       this.world.keyboard.LEFT = true;
       this.otherDirection = true;
       this.sharkySwimAnimation();
-      this.currentMovement = setInterval(() => {
+      this.isSwimLeft = setInterval(() => {
         this.x -= 4;
       }, 10);
     }
@@ -145,7 +161,7 @@ export class Sharky extends MoveableObject {
       this.world.keyboard.RIGHT = true;
       this.otherDirection = false;
       this.sharkySwimAnimation();
-      this.currentMovement = setInterval(() => {
+      this.isSwimRight = setInterval(() => {
         this.x += 4;
       }, 10);
     }
@@ -156,7 +172,7 @@ export class Sharky extends MoveableObject {
       this.clearIntervalsAnimationMove();
       this.world.keyboard.UP = true;
       this.sharkySwimAnimation();
-      this.currentMovement = setInterval(() => {
+      this.isSwimUp = setInterval(() => {
         this.y -= 4;
       }, 10);
     }
@@ -167,7 +183,7 @@ export class Sharky extends MoveableObject {
       this.clearIntervalsAnimationMove();
       this.world.keyboard.DOWN = true;
       this.sharkySwimAnimation();
-      this.currentMovement = setInterval(() => {
+      this.isSwimDown = setInterval(() => {
         this.y += 4;
       }, 10);
     }
