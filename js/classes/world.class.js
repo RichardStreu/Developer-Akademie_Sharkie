@@ -36,12 +36,12 @@ export class World {
 
   landscape = [
     new Water(), 
+    new Water((canvasWidth * 2), 0), 
     new Fondo1(), 
     new Fondo2(), 
-    new Floor(), 
-    new Water((canvasWidth * 2), 0), 
     new Fondo1((canvasWidth * 2), 0), 
-    new Fondo2((canvasWidth * 2), 0), 
+    new Fondo2((canvasWidth * 2), 0),
+    new Floor(), 
     new Floor((canvasWidth * 2), 0), 
     new Light(),
   ];
