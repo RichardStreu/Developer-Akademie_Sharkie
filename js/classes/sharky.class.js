@@ -17,8 +17,6 @@ import {
 
 //
 export class Sharky extends MoveableObject {
-  currentAnimation = "stand"; //"stand""fallAsleep""sleep""swim""bubbleWithout""bubbleRegular""bubblePoison""finSlap""hurtRegular""hurtShock""deadRegular""deadShock" / "stop"
-
   currentAnimationIntervall;
 
   currentMovement;
@@ -27,7 +25,6 @@ export class Sharky extends MoveableObject {
 
   constructor() {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
-    // this.img;
     this.x = 0;
     this.y = 200;
     this.width = 180 * moveObjRatio;
@@ -42,106 +39,10 @@ export class Sharky extends MoveableObject {
     });
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
-        this.doCurrentSharkyAnimation();
+        this.sharkyStandAnimation();
         clearInterval(this.firstInterval);
       }
     }, 100);
-  }
-
-  handleKeyDown(event) {
-    this.clearIntervalsAnimationMove();
-    if (event.key == "ArrowLeft") {
-      this.moveSharkyLeft();
-      this.world.keyboard.LEFT = true;
-    }
-    if (event.key == "ArrowRight") {
-      this.moveSharkyRight();
-      this.world.keyboard.RIGHT = true;
-    }
-    if (event.key == "ArrowUp") {
-      this.moveSharkyUp();
-      this.world.keyboard.UP = true;
-    }
-    if (event.key == "ArrowDown") {
-      this.moveSharkyDown();
-      this.world.keyboard.DOWN = true;
-    }
-    if (event.key == " ") {
-      this.sharkyAttackSpace();
-      this.world.keyboard.SPACE = true;
-    }
-    if (event.key == "d") {
-      this.sharkyAttackDKey();
-      this.world.keyboard.DKey = true;
-    }
-  }
-
-  handleKeyUp(event) {
-    this.stopMovingSharky();
-    this.currentAnimation = "stand";
-    this.doCurrentSharkyAnimation();
-    if (event.key == "ArrowLeft") this.world.keyboard.LEFT = false;
-    if (event.key == "ArrowRight") this.world.keyboard.RIGHT = false;
-    if (event.key == "ArrowUp") this.world.keyboard.UP = false;
-    if (event.key == "ArrowDown") this.world.keyboard.DOWN = false;
-    if (event.key == " ") this.world.keyboard.SPACE = false;
-    if (event.key == "d") this.world.keyboard.DKey = false;
-  }
-
-  startMovingSharky() {
-    this.clearIntervalsAnimationMove();
-    if (this.world.keyboard.LEFT == true) this.moveSharkyLeft();
-    if (this.world.keyboard.RIGHT == true) this.moveSharkyRight();
-    if (this.world.keyboard.UP == true) this.moveSharkyUp();
-    if (this.world.keyboard.DOWN == true) this.moveSharkyDown();
-    if (this.world.keyboard.SPACE == true) this.sharkyAttackSpace();
-    if (this.world.keyboard.DKey == true) this.sharkyAttackDKey();
-  }
-
-  stopMovingSharky() {
-    this.sharkyStand();
-  }
-
-  moveSharkyLeft() {
-    this.currentAnimation = "swim";
-    this.doCurrentSharkyAnimation();
-    this.otherDirection = true;
-    this.currentMovement = setInterval(() => {
-      this.x -= 1.2;
-    }, 1);
-  }
-
-  moveSharkyRight() {
-    this.currentAnimation = "swim";
-    this.doCurrentSharkyAnimation();
-    this.otherDirection = false;
-    this.currentMovement = setInterval(() => {
-      this.x += 1.2;
-    }, 1);
-  }
-
-  moveSharkyUp() {
-    this.currentAnimation = "swim";
-    this.doCurrentSharkyAnimation();
-    this.currentMovement = setInterval(() => {
-      this.y -= 1.2;
-    }, 1);
-  }
-
-  moveSharkyDown() {
-    this.currentAnimation = "swim";
-    this.doCurrentSharkyAnimation();
-    this.currentMovement = setInterval(() => {
-      this.y += 1.2;
-    }, 1);
-  }
-
-  sharkyAttackSpace() {
-    console.log("Bubble Attack");
-  }
-
-  sharkyAttackDKey() {
-    console.log("Fin Slap Attack");
   }
 
   async loadAllImagesCacheSharky() {
@@ -159,77 +60,153 @@ export class Sharky extends MoveableObject {
     await this.loadImageCache(imagesDeadShock, this.constructor.name);
   }
 
-  doCurrentSharkyAnimation() {
-    if (this.currentAnimation == "stand") this.sharkyStand();
-    if (this.currentAnimation == "fallAsleep") this.sharkyFallAsleep();
-    if (this.currentAnimation == "sleep") this.sharkySleep();
-    if (this.currentAnimation == "swim") this.sharkySwim();
-    if (this.currentAnimation == "bubbleWithout") this.sharkyBubbleWithout();
-    if (this.currentAnimation == "bubbleRegular") this.sharkyBubbleRegular();
-    if (this.currentAnimation == "bubblePoison") this.sharkyBubblePoison();
-    if (this.currentAnimation == "finSlap") this.sharkyFinSlap();
-    if (this.currentAnimation == "hurtRegular") this.sharkyHurtRegular();
-    if (this.currentAnimation == "hurtShock") this.sharkyHurtShock();
-    if (this.currentAnimation == "deadRegular") this.sharkyDeadRegular();
-    if (this.currentAnimation == "deadShock") this.sharkyDeadShock();
-    if (this.currentAnimation == "stop") this.sharkyStop();
-  }
-
   clearIntervalsAnimationMove() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
   }
 
-  sharkyStand() {
-    this.currentAnimation = "stand";
+  handleKeyDown(event) {
+    if (event.key == "ArrowLeft") {
+      if (!this.world.keyboard.LEFT) {
+        this.clearIntervalsAnimationMove();
+        this.world.keyboard.LEFT = true;
+        this.moveSharkyLeft();
+      }
+    }
+    if (event.key == "ArrowRight") {
+      if (!this.world.keyboard.RIGHT) {
+        this.clearIntervalsAnimationMove();
+        this.world.keyboard.RIGHT = true;
+        this.moveSharkyRight();
+        console.log("right");
+      }
+    }
+    if (event.key == "ArrowUp") {
+      if (!this.world.keyboard.UP) {
+        this.clearIntervalsAnimationMove();
+        this.world.keyboard.UP = true;
+        this.moveSharkyUp();
+      }
+    }
+    if (event.key == "ArrowDown") {
+      if (!this.world.keyboard.DOWN) {
+        this.clearIntervalsAnimationMove();
+        this.world.keyboard.DOWN = true;
+        this.moveSharkyDown();
+      }
+    }
+    if (event.key == " ") {
+      if (!this.world.keyboard.SPACE) {
+        this.clearIntervalsAnimationMove();
+        this.world.keyboard.SPACE = true;
+        this.sharkyAttackSpace();
+      }
+    }
+    if (event.key == "d") {
+      if (!this.world.keyboard.DKey) {
+        this.clearIntervalsAnimationMove();
+        this.world.keyboard.DKey = true;
+        this.sharkyAttackDKey();
+      }
+    }
+  }
+
+  handleKeyUp(event) {
     this.clearIntervalsAnimationMove();
+    this.sharkyStandAnimation();
+    if (event.key == "ArrowLeft") this.world.keyboard.LEFT = false;
+    if (event.key == "ArrowRight") this.world.keyboard.RIGHT = false;
+    if (event.key == "ArrowUp") this.world.keyboard.UP = false;
+    if (event.key == "ArrowDown") this.world.keyboard.DOWN = false;
+    if (event.key == " ") this.world.keyboard.SPACE = false;
+    if (event.key == "d") this.world.keyboard.DKey = false;
+  }
+
+  moveSharkyLeft() {
+    this.sharkySwimAnimation();
+    this.otherDirection = true;
+    this.currentMovement = setInterval(() => {
+      this.x -= 1.2;
+    }, 1);
+  }
+
+  moveSharkyRight() {
+    this.sharkySwimAnimation();
+    this.otherDirection = false;
+    this.currentMovement = setInterval(() => {
+      this.x += 1.2;
+    }, 1);
+  }
+
+  moveSharkyUp() {
+    this.sharkySwimAnimation();
+    this.currentMovement = setInterval(() => {
+      this.y -= 1.2;
+    }, 1);
+  }
+
+  moveSharkyDown() {
+    this.sharkySwimAnimation();
+    this.currentMovement = setInterval(() => {
+      this.y += 1.2;
+    }, 1);
+  }
+
+  sharkyAttackSpace() {
+    console.log("Bubble Attack");
+  }
+
+  sharkyAttackDKey() {
+    console.log("Fin Slap Attack");
+  }
+
+  sharkyStandAnimation() {
     this.doImageAnimation(imagesStand, this.img, 180);
   }
-  sharkyFallAsleep() {
+  sharkyFallAsleepAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesFallAsleep, this.img, 150);
   }
-  sharkySleep() {
+  sharkySleepAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesSleep, this.img, 200);
   }
-  sharkySwim() {
-    this.clearIntervalsAnimationMove();
+  sharkySwimAnimation() {
     this.doImageAnimation(imagesSwim, this.img, 130);
   }
-  sharkyBubbleWithout() {
+  sharkyBubbleWithoutAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesAttackBubbleWithout, this.img, 110);
   }
-  sharkyBubbleRegular() {
+  sharkyBubbleRegularAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesAttackBubbleRegular, this.img, 110);
   }
-  sharkyBubblePoison() {
+  sharkyBubblePoisonAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesAttackBubblePoison, this.img, 110);
   }
-  sharkyFinSlap() {
+  sharkyFinSlapAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesAttackFinSlap, this.img, 100);
   }
-  sharkyHurtRegular() {
+  sharkyHurtRegularAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesHurtRegular, this.img, 110);
   }
-  sharkyHurtShock() {
+  sharkyHurtShockAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesHurtShock, this.img, 110);
   }
-  sharkyDeadRegular() {
+  sharkyDeadRegularAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesDeadRegular, this.img, 130);
   }
-  sharkyDeadShock() {
+  sharkyDeadShockAnimation() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesDeadShock, this.img, 130);
   }
-  sharkyStop() {
+  sharkyStopAnimation() {
     this.clearIntervalsAnimationMove();
   }
 }
