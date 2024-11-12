@@ -177,7 +177,7 @@ export class Sharky extends MoveableObject {
         if (this.x > -30) {
           this.x -= 4;
           const sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
-          if (this.x > sharkyMidPoint && this.x > 0 && (this.x < canvasWidth * 3.5 - this.width)) {
+          if (this.x > sharkyMidPoint && this.x > 0 && this.x < canvasWidth * 3.5 - this.width) {
             this.world.camera_x = sharkyMidPoint - this.x;
           } else if (this.x <= 0) {
             this.world.camera_x = 0;
@@ -189,8 +189,6 @@ export class Sharky extends MoveableObject {
 
   moveSharkyRight() {
     if (!this.world.keyboard.RIGHT) {
-      console.log(this.x);
-      
       this.clearIntervalsAnimationMove();
       this.world.keyboard.RIGHT = true;
       this.otherDirection = false;
@@ -199,7 +197,7 @@ export class Sharky extends MoveableObject {
         if (this.x < canvasWidth * 4 - this.width) {
           this.x += 4;
           let sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
-          if (this.x >= sharkyMidPoint && (this.x < canvasWidth * 3.5 - this.width)) this.world.camera_x = sharkyMidPoint - this.x;
+          if (this.x >= sharkyMidPoint && this.x < canvasWidth * 3.5 - this.width) this.world.camera_x = sharkyMidPoint - this.x;
         }
       }, 10);
     }
