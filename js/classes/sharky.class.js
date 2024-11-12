@@ -15,6 +15,10 @@ import {
   imagesDeadShock,
 } from "./sharky.class.images.js";
 
+export let sharkyXPosition;
+export let sharkyYPosition;
+export let sharkyWidth;
+export let sharkyHeight;
 //
 export class Sharky extends MoveableObject {
   currentAnimationIntervall;
@@ -33,6 +37,8 @@ export class Sharky extends MoveableObject {
     this.y = 200;
     this.width = 180 * moveObjRatio;
     this.height = 221 * moveObjRatio;
+    sharkyWidth = this.width;
+    sharkyHeight = this.height;
     this.loadAllImagesCacheSharky();
     this.checkImagesCacheLoaded();
     window.addEventListener("keydown", (event) => {
@@ -48,6 +54,7 @@ export class Sharky extends MoveableObject {
         clearInterval(this.firstInterval);
       }
     }, 100);
+    this.checkCurrentSharkyPositions();
   }
 
   async loadAllImagesCacheSharky() {
@@ -63,6 +70,13 @@ export class Sharky extends MoveableObject {
     await this.loadImageCache(imagesHurtShock, this.constructor.name);
     await this.loadImageCache(imagesDeadRegular, this.constructor.name);
     await this.loadImageCache(imagesDeadShock, this.constructor.name);
+  }
+
+  checkCurrentSharkyPositions() {
+    setInterval(() => {
+      sharkyXPosition = this.x;
+      sharkyYPosition = this.y;
+    }, 50);
   }
 
   letSharkySleep() {

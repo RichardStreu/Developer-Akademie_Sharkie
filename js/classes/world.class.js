@@ -39,11 +39,11 @@ export class World {
     new Fondo1(), 
     new Fondo2(), 
     new Floor(), 
-    new Light(),
     new Water((canvasWidth * 2), 0), 
     new Fondo1((canvasWidth * 2), 0), 
     new Fondo2((canvasWidth * 2), 0), 
     new Floor((canvasWidth * 2), 0), 
+    new Light(),
   ];
 
   // give each enemy its index of enemies as parameter
