@@ -44,6 +44,7 @@ export class Sharky extends MoveableObject {
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
         this.sharkyStandAnimation();
+        this.letSharkySleep();
         clearInterval(this.firstInterval);
       }
     }, 100);
@@ -62,6 +63,17 @@ export class Sharky extends MoveableObject {
     await this.loadImageCache(imagesHurtShock, this.constructor.name);
     await this.loadImageCache(imagesDeadRegular, this.constructor.name);
     await this.loadImageCache(imagesDeadShock, this.constructor.name);
+  }
+
+  letSharkySleep() {
+    let timeOfUnmoved = 0;
+    this.currentMovement = setInterval(() => {
+      timeOfUnmoved++;
+      if (timeOfUnmoved > 5) {
+        this.clearIntervalsAnimationMove();
+        this.sharkySleepAnimation();
+      }
+    }, 1000);
   }
 
   sharkyStandAnimation() {
@@ -127,6 +139,7 @@ export class Sharky extends MoveableObject {
     if (event.key == "d") this.world.keyboard.DKey = false;
     if (Object.values(world.keyboard).every((value) => value === false)) {
       this.clearIntervalsAnimationMove();
+      this.letSharkySleep();
       this.sharkyStandAnimation();
     }
   }
@@ -149,7 +162,7 @@ export class Sharky extends MoveableObject {
       this.isSwimLeft = setInterval(() => {
         if (this.x > -30) {
           this.x -= 4;
-          const sharkyMidPoint = (canvasWidth / 2 - this.width / 2) - 50;
+          const sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
           if (this.x > sharkyMidPoint && this.x > 0) {
             this.world.camera_x = sharkyMidPoint - this.x;
           } else if (this.x <= 0) {
@@ -168,7 +181,7 @@ export class Sharky extends MoveableObject {
       this.sharkySwimAnimation();
       this.isSwimRight = setInterval(() => {
         this.x += 4;
-        let sharkyMidPoint = (canvasWidth / 2 - this.width / 2) - 50;
+        let sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
         if (this.x >= sharkyMidPoint) this.world.camera_x = this.world.camera_x = sharkyMidPoint - this.x;
       }, 10);
     }

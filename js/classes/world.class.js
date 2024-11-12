@@ -17,6 +17,8 @@ import { Barrier1 } from "./staticBarrier1.class.js";
 import { Barrier2 } from "./staticBarrier2.class.js";
 import { Barrier3 } from "./staticBarrier3.class.js";
 
+import { canvasWidth } from "../script.js";
+
 export class World {
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -32,7 +34,17 @@ export class World {
 
   sharky = new Sharky();
 
-  landscape = [new Water(), new Fondo1(), new Fondo2(), new Floor(), new Light()];
+  landscape = [
+    new Water(), 
+    new Fondo1(), 
+    new Fondo2(), 
+    new Floor(), 
+    new Light(),
+    new Water((canvasWidth * 2), 0), 
+    new Fondo1((canvasWidth * 2), 0), 
+    new Fondo2((canvasWidth * 2), 0), 
+    new Floor((canvasWidth * 2), 0), 
+  ];
 
   // give each enemy its index of enemies as parameter
   enemies = [
