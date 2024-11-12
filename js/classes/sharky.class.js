@@ -149,7 +149,7 @@ export class Sharky extends MoveableObject {
       this.isSwimLeft = setInterval(() => {
         if (this.x > -30) {
           this.x -= 4;
-          const sharkyMidPoint = canvasWidth / 2 - this.width / 2;
+          const sharkyMidPoint = (canvasWidth / 2 - this.width / 2) - 50;
           if (this.x > sharkyMidPoint && this.x > 0) {
             this.world.camera_x = sharkyMidPoint - this.x;
           } else if (this.x <= 0) {
@@ -168,7 +168,7 @@ export class Sharky extends MoveableObject {
       this.sharkySwimAnimation();
       this.isSwimRight = setInterval(() => {
         this.x += 4;
-        let sharkyMidPoint = canvasWidth / 2 - this.width / 2;
+        let sharkyMidPoint = (canvasWidth / 2 - this.width / 2) - 50;
         if (this.x >= sharkyMidPoint) this.world.camera_x = this.world.camera_x = sharkyMidPoint - this.x;
       }, 10);
     }
