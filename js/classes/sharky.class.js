@@ -49,27 +49,47 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyDown(event) {
-    if (event.key == "ArrowLeft") this.world.keyboard.LEFT = true;
-    if (event.key == "ArrowRight") this.world.keyboard.RIGHT = true;
-    if (event.key == "ArrowUp") this.world.keyboard.UP = true;
-    if (event.key == "ArrowDown") this.world.keyboard.DOWN = true;
-    if (event.key == " ") this.world.keyboard.SPACE = true;
-    if (event.key == "d") this.world.keyboard.DKey = true;
-    this.startMovingSharky();
+    this.clearIntervalsAnimationMove();
+    if (event.key == "ArrowLeft") {
+      this.moveSharkyLeft();
+      this.world.keyboard.LEFT = true;
+    }
+    if (event.key == "ArrowRight") {
+      this.moveSharkyRight();
+      this.world.keyboard.RIGHT = true;
+    }
+    if (event.key == "ArrowUp") {
+      this.moveSharkyUp();
+      this.world.keyboard.UP = true;
+    }
+    if (event.key == "ArrowDown") {
+      this.moveSharkyDown();
+      this.world.keyboard.DOWN = true;
+    }
+    if (event.key == " ") {
+      this.sharkyAttackSpace();
+      this.world.keyboard.SPACE = true;
+    }
+    if (event.key == "d") {
+      this.sharkyAttackDKey();
+      this.world.keyboard.DKey = true;
+    }
   }
 
   handleKeyUp(event) {
+    this.stopMovingSharky();
+    this.currentAnimation = "stand";
+    this.doCurrentSharkyAnimation();
     if (event.key == "ArrowLeft") this.world.keyboard.LEFT = false;
     if (event.key == "ArrowRight") this.world.keyboard.RIGHT = false;
     if (event.key == "ArrowUp") this.world.keyboard.UP = false;
     if (event.key == "ArrowDown") this.world.keyboard.DOWN = false;
     if (event.key == " ") this.world.keyboard.SPACE = false;
     if (event.key == "d") this.world.keyboard.DKey = false;
-    this.stopMovingSharky();
   }
 
   startMovingSharky() {
-    this.clearIntervalsAnimationMove()
+    this.clearIntervalsAnimationMove();
     if (this.world.keyboard.LEFT == true) this.moveSharkyLeft();
     if (this.world.keyboard.RIGHT == true) this.moveSharkyRight();
     if (this.world.keyboard.UP == true) this.moveSharkyUp();
@@ -85,6 +105,7 @@ export class Sharky extends MoveableObject {
   moveSharkyLeft() {
     this.currentAnimation = "swim";
     this.doCurrentSharkyAnimation();
+    this.otherDirection = true;
     this.currentMovement = setInterval(() => {
       this.x -= 1.2;
     }, 1);
@@ -93,6 +114,7 @@ export class Sharky extends MoveableObject {
   moveSharkyRight() {
     this.currentAnimation = "swim";
     this.doCurrentSharkyAnimation();
+    this.otherDirection = false;
     this.currentMovement = setInterval(() => {
       this.x += 1.2;
     }, 1);
@@ -159,6 +181,7 @@ export class Sharky extends MoveableObject {
   }
 
   sharkyStand() {
+    this.currentAnimation = "stand";
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesStand, this.img, 180);
   }
