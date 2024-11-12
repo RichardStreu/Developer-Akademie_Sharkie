@@ -11,7 +11,7 @@ export let canvasHeight = 480;
 // minimum x position where an object respawns
 export let enemyStartX = 200;
 // maximum x position (+ enemyStartX) where an object respawns
-export let enemyStartDistX = 2000;
+export let enemyStartDistX = 2200;
 // minimum y position where an object respawns
 export let enemyStartY = 0;
 // maximum y position where an object respawns

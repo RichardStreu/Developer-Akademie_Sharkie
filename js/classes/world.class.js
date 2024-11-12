@@ -35,14 +35,14 @@ export class World {
   sharky = new Sharky();
 
   landscape = [
-    new Water(), 
-    new Water((canvasWidth * 2), 0), 
-    new Fondo1(), 
-    new Fondo2(), 
-    new Fondo1((canvasWidth * 2), 0), 
-    new Fondo2((canvasWidth * 2), 0),
-    new Floor(), 
-    new Floor((canvasWidth * 2), 0), 
+    new Water(),
+    new Water(canvasWidth * 2, 0),
+    new Fondo1(),
+    new Fondo2(),
+    new Fondo1(canvasWidth * 2, 0),
+    new Fondo2(canvasWidth * 2, 0),
+    new Floor(),
+    new Floor(canvasWidth * 2, 0),
     new Light(),
   ];
 
@@ -55,6 +55,16 @@ export class World {
     new JellyFishGreenSD(4),
     new JellyFishPinkSD(5),
     new PufferFishRed(6),
+    new PufferFishOrange(7),
+    new JellyFishGreenSD(8),
+    new PufferFishGreen(9),
+    new PufferFishGreen(10),
+    new PufferFishGreen(11),
+    new PufferFishRed(12),
+    new JellyFishPinkSD(13),
+    new JellyFishYellowRD(14),
+    new PufferFishGreen(15),
+    new PufferFishGreen(16),
     // new EndBoss(),
   ];
 
