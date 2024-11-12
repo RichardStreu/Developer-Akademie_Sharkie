@@ -1,5 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { moveObjRatio, loadedCachsArray } from "../script.js";
+import { moveObjRatio, loadedCachsArray, canvasHeight, canvasWidth } from "../script.js";
 import {
   imagesStand,
   imagesFallAsleep,
@@ -27,8 +27,6 @@ export class Sharky extends MoveableObject {
 
   world;
 
-  isKeyPressed;
-
   constructor() {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
     this.x = 0;
@@ -38,7 +36,6 @@ export class Sharky extends MoveableObject {
     this.loadAllImagesCacheSharky();
     this.checkImagesCacheLoaded();
     window.addEventListener("keydown", (event) => {
-      this.isKeyPressed = true;
       this.handleKeyDown(event);
     });
     window.addEventListener("keyup", (event) => {
@@ -77,7 +74,7 @@ export class Sharky extends MoveableObject {
     this.doImageAnimation(imagesSleep, this.img, 200);
   }
   sharkySwimAnimation() {
-    this.doImageAnimation(imagesSwim, this.img, 130);
+    this.doImageAnimation(imagesSwim, this.img, 80);
   }
   sharkyBubbleWithoutAnimation() {
     this.doImageAnimation(imagesAttackBubbleWithout, this.img, 110);
@@ -150,7 +147,15 @@ export class Sharky extends MoveableObject {
       this.otherDirection = true;
       this.sharkySwimAnimation();
       this.isSwimLeft = setInterval(() => {
-        this.x -= 4;
+        if (this.x > -30) {
+          this.x -= 4;
+          const sharkyMidPoint = canvasWidth / 2 - this.width / 2;
+          if (this.x > sharkyMidPoint && this.x > 0) {
+            this.world.camera_x = sharkyMidPoint - this.x;
+          } else if (this.x <= 0) {
+            this.world.camera_x = 0;
+          }
+        }
       }, 10);
     }
   }
@@ -163,6 +168,8 @@ export class Sharky extends MoveableObject {
       this.sharkySwimAnimation();
       this.isSwimRight = setInterval(() => {
         this.x += 4;
+        let sharkyMidPoint = canvasWidth / 2 - this.width / 2;
+        if (this.x >= sharkyMidPoint) this.world.camera_x = this.world.camera_x = sharkyMidPoint - this.x;
       }, 10);
     }
   }
@@ -173,7 +180,7 @@ export class Sharky extends MoveableObject {
       this.world.keyboard.UP = true;
       this.sharkySwimAnimation();
       this.isSwimUp = setInterval(() => {
-        this.y -= 4;
+        if (this.y > -120) this.y -= 4;
       }, 10);
     }
   }
@@ -184,7 +191,9 @@ export class Sharky extends MoveableObject {
       this.world.keyboard.DOWN = true;
       this.sharkySwimAnimation();
       this.isSwimDown = setInterval(() => {
-        this.y += 4;
+        if (this.y < canvasHeight - 262) {
+          this.y += 4;
+        }
       }, 10);
     }
   }
