@@ -19,6 +19,8 @@ import { Barrier3 } from "./staticBarrier3.class.js";
 
 import { canvasWidth } from "../script.js";
 
+import { Level1 } from "./level1.class.js"
+
 export class World {
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -32,41 +34,14 @@ export class World {
     this.sharky.world = this;
   }
 
+  level1 = new Level1();
+
   sharky = new Sharky();
 
-  landscape = [
-    new Water(),
-    new Water(canvasWidth * 2, 0),
-    new Fondo1(),
-    new Fondo2(),
-    new Fondo1(canvasWidth * 2, 0),
-    new Fondo2(canvasWidth * 2, 0),
-    new Floor(),
-    new Floor(canvasWidth * 2, 0),
-    new Light(),
-  ];
+  landscape = this.level1.landscape;
+  enemies = this.level1.enemies;
 
   // give each enemy its index of enemies as parameter
-  enemies = [
-    new PufferFishGreen(0),
-    new JellyFishYellowRD(1),
-    new PufferFishOrange(2),
-    new JellyFishLilaRD(3),
-    new JellyFishGreenSD(4),
-    new JellyFishPinkSD(5),
-    new PufferFishRed(6),
-    new PufferFishOrange(7),
-    new JellyFishGreenSD(8),
-    new PufferFishGreen(9),
-    new PufferFishGreen(10),
-    new PufferFishGreen(11),
-    new PufferFishRed(12),
-    new JellyFishPinkSD(13),
-    new JellyFishYellowRD(14),
-    new PufferFishGreen(15),
-    new PufferFishGreen(16),
-    // new EndBoss(),
-  ];
 
   canvas;
   ctx;
