@@ -28,13 +28,21 @@ export class MoveableObject {
   }
 
   drawFrame(ctx) {
-    // if (this instanceof Sharky || this instanceof PufferFish || this instanceof JellyFish) {
+    if (this.constructor.name == "Sharky" ||
+        this.constructor.name == "PufferFishGreen" ||
+        this.constructor.name == "PufferFishOrange" ||
+        this.constructor.name == "PufferFishRed" ||
+        this.constructor.name == "JellyFishGreenSD" ||
+        this.constructor.name == "JellyFishPinkSD" ||
+        this.constructor.name == "JellyFishLilaRD" ||
+        this.constructor.name == "JellyFishYellowRD" ||
+        this.constructor.name == "EndBoss") {
       ctx.beginPath();
       ctx.lineWidth = "5";
       ctx.strokeStyle = "red";
       ctx.rect(this.x, this.y, this.width, this.height);
       ctx.stroke();
-    // }
+    }
   }
 
   changeCacheStatusToFalse(className) {
