@@ -43,7 +43,7 @@ export class MoveableObject {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
-    ctx.rect((this.x + 40), (this.y + 125), (this.width - 80), (this.height - 190));
+    ctx.rect(this.x + 40, this.y + 125, this.width - 80, this.height - 190);
     ctx.stroke();
   }
 
@@ -51,7 +51,7 @@ export class MoveableObject {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
-    ctx.rect((this.x), (this.y), (this.width), (this.height - 10));
+    ctx.rect(this.x, this.y, this.width, this.height - 10);
     ctx.stroke();
   }
 
@@ -59,7 +59,7 @@ export class MoveableObject {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
-    ctx.rect((this.x), (this.y), (this.width), (this.height - 17));
+    ctx.rect(this.x, this.y, this.width, this.height - 17);
     ctx.stroke();
   }
 
@@ -67,7 +67,7 @@ export class MoveableObject {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
-    ctx.rect((this.x), (this.y + 4), (this.width - 10), (this.height - 30));
+    ctx.rect(this.x, this.y + 4, this.width - 10, this.height - 30);
     ctx.stroke();
   }
 
@@ -75,7 +75,7 @@ export class MoveableObject {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
-    ctx.rect((this.x), (this.y + 5), (this.width), (this.height - 15));
+    ctx.rect(this.x, this.y + 5, this.width, this.height - 15);
     ctx.stroke();
   }
 
@@ -83,7 +83,7 @@ export class MoveableObject {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
-    ctx.rect((this.x), (this.y + 5), (this.width), (this.height - 15));
+    ctx.rect(this.x, this.y + 5, this.width, this.height - 15);
     ctx.stroke();
   }
 
@@ -91,7 +91,7 @@ export class MoveableObject {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
-    ctx.rect((this.x), (this.y), (this.width), (this.height));
+    ctx.rect(this.x, this.y, this.width, this.height);
     ctx.stroke();
   }
 
@@ -99,7 +99,7 @@ export class MoveableObject {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
-    ctx.rect((this.x), (this.y + 5), (this.width), (this.height - 15));
+    ctx.rect(this.x, this.y + 5, this.width, this.height - 15);
     ctx.stroke();
   }
 
@@ -107,7 +107,7 @@ export class MoveableObject {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
-    ctx.rect((this.x + 10), (this.y + 180), (this.width - 35), (this.height - 250));
+    ctx.rect(this.x + 10, this.y + 180, this.width - 35, this.height - 250);
     ctx.stroke();
   }
 
@@ -152,5 +152,72 @@ export class MoveableObject {
       this.img = imagesArray[currentIndex];
       currentIndex = (currentIndex + 1) % imagesArray.length;
     }, intervall);
+  }
+
+  isColliding(obj) {
+    if (obj.constructor.name == "PufferFishGreen") this.isCollPufferGreen(obj);
+    if (obj.constructor.name == "PufferFishOrange") this.isCollPufferOrange(obj);
+    if (obj.constructor.name == "PufferFishRed") this.isCollPufferRed(obj);
+    if (obj.constructor.name == "JellyFishGreenSD") this.isCollJellyGreen(obj);
+    if (obj.constructor.name == "JellyFishPinkSD") this.isCollJellyPink(obj);
+    if (obj.constructor.name == "JellyFishLilaRD") this.isCollJellyLila(obj);
+    if (obj.constructor.name == "JellyFishYellowRD") this.isCollJellyYellow(obj);    
+    if (obj.constructor.name == "EndBoss") this.isCollEndBoss(obj);
+  }
+
+  isCollPufferGreen(obj) {
+    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+      console.log("Hidded PufferFishGreen");
+      return true;
+    }
+  }
+
+  isCollPufferOrange(obj) {
+    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+      console.log("Hidded PufferFishOrange");
+      return true;
+    }
+  }
+
+  isCollPufferRed(obj) {
+    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+      console.log("Hidded PufferFishRed");
+      return true;
+    }
+  }
+
+  isCollJellyGreen(obj) {
+    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+      console.log("Hidded JellyFishGreenSD");
+      return true;
+    }
+  }
+
+  isCollJellyPink(obj) {
+    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+      console.log("Hidded JellyFishPinkSD");
+      return true;
+    }
+  }
+
+  isCollJellyLila(obj) {
+    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+      console.log("Hidded JellyFishLilaRD");
+      return true;
+    }
+  }
+
+  isCollJellyYellow(obj) {
+    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+      console.log("Hidded JellyFishYellowRD");
+      return true;
+    }
+  }
+
+  isCollEndBoss(obj) {
+    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+      console.log("Hidded EndBoss");
+      return true;
+    }
   }
 }

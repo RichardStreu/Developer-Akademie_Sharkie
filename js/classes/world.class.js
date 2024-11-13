@@ -28,10 +28,21 @@ export class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.sharky.world = this;
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level1.enemies.forEach((enemy) => {
+       if (this.sharky.isColliding(enemy)) {
+          console.log("Collision with: " + enemy.constructor.name);
+       };
+      })
+    }, 1000);
   }
 
   level1 = new Level1();

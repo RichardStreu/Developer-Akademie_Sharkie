@@ -54,7 +54,6 @@ export class EndBoss extends MoveableObject {
 
   bossSwim() {
     this.clearIntervalsAnimationMove();
-    console.log(imagesBossSwim);
     this.doImageAnimation(imagesBossSwim, this.img, 180);
   }
 
