@@ -29,8 +29,8 @@ export let loadedCachsArray = [];
 function init() {
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
-  canvas.width = canvas.clientWidth * dpr;
-  canvas.height = canvas.clientHeight * dpr;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
 
   world = new World(canvas, keyboard);
   window.world = world;
