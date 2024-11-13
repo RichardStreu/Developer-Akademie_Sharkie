@@ -161,61 +161,86 @@ export class MoveableObject {
     if (obj.constructor.name == "JellyFishGreenSD") this.isCollJellyGreen(obj);
     if (obj.constructor.name == "JellyFishPinkSD") this.isCollJellyPink(obj);
     if (obj.constructor.name == "JellyFishLilaRD") this.isCollJellyLila(obj);
-    if (obj.constructor.name == "JellyFishYellowRD") this.isCollJellyYellow(obj);    
+    if (obj.constructor.name == "JellyFishYellowRD") this.isCollJellyYellow(obj);
     if (obj.constructor.name == "EndBoss") this.isCollEndBoss(obj);
   }
 
   isCollPufferGreen(obj) {
-    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 10)) {
       console.log("Hidded PufferFishGreen");
       return true;
     }
   }
 
   isCollPufferOrange(obj) {
-    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 17)) {
       console.log("Hidded PufferFishOrange");
       return true;
     }
   }
 
   isCollPufferRed(obj) {
-    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+    if (
+      this.x + 40 + (this.width - 80) > obj.x &&
+      this.x + 40 < obj.x + (obj.width - 10) &&
+      this.y + 125 + (this.height - 190) > obj.y + 4 &&
+      this.y + 125 < obj.y + 4 + (obj.height - 30)
+    ) {
       console.log("Hidded PufferFishRed");
       return true;
     }
   }
 
   isCollJellyGreen(obj) {
-    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+    if (
+      this.x + 40 + (this.width - 80) > obj.x &&
+      this.x + 40 < obj.x + obj.width &&
+      this.y + 125 + (this.height - 190) > obj.y + 5 &&
+      this.y + 125 < obj.y + 5 + (obj.height - 15)
+    ) {
       console.log("Hidded JellyFishGreenSD");
       return true;
     }
   }
 
   isCollJellyPink(obj) {
-    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+    if (
+      this.x + 40 + (this.width - 80) > obj.x &&
+      this.x + 40 < obj.x + obj.width &&
+      this.y + 125 + (this.height - 190) > obj.y + 5 &&
+      this.y + 125 < obj.y + 5 + (obj.height - 15)
+    ) {
       console.log("Hidded JellyFishPinkSD");
       return true;
     }
   }
 
   isCollJellyLila(obj) {
-    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
       console.log("Hidded JellyFishLilaRD");
       return true;
     }
   }
 
   isCollJellyYellow(obj) {
-    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+    if (
+      this.x + 40 + (this.width - 80) > obj.x &&
+      this.x + 40 < obj.x + obj.width &&
+      this.y + 125 + (this.height - 190) > obj.y + 5 &&
+      this.y + 125 < obj.y + 5 + (obj.height - 15)
+    ) {
       console.log("Hidded JellyFishYellowRD");
       return true;
     }
   }
 
   isCollEndBoss(obj) {
-    if (this.x + this.width > obj.x && this.y + this.height > obj.y && this.x < obj.x && this.y < obj.y + obj.height) {
+    if (
+      this.x + 40 + (this.width - 80) > obj.x + 10 &&
+      this.x + 40 < obj.x + 10 + (obj.width - 35) &&
+      this.y + 125 + (this.height - 190) > obj.y + 180 &&
+      this.y + 125 < obj.y + 180 + (obj.height - 250)
+    ) {
       console.log("Hidded EndBoss");
       return true;
     }
