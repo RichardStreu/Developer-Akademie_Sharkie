@@ -9,6 +9,7 @@ export class MoveableObject {
   imageCache = {};
   otherDirection = false;
   speedY = 2;
+  lifeEnergy = 100;
 
   loadImage(path) {
     this.img = new Image();
@@ -155,26 +156,24 @@ export class MoveableObject {
   }
 
   isColliding(obj) {
-    if (obj.constructor.name == "PufferFishGreen") this.isCollPufferGreen(obj);
-    if (obj.constructor.name == "PufferFishOrange") this.isCollPufferOrange(obj);
-    if (obj.constructor.name == "PufferFishRed") this.isCollPufferRed(obj);
-    if (obj.constructor.name == "JellyFishGreenSD") this.isCollJellyGreen(obj);
-    if (obj.constructor.name == "JellyFishPinkSD") this.isCollJellyPink(obj);
-    if (obj.constructor.name == "JellyFishLilaRD") this.isCollJellyLila(obj);
-    if (obj.constructor.name == "JellyFishYellowRD") this.isCollJellyYellow(obj);
-    if (obj.constructor.name == "EndBoss") this.isCollEndBoss(obj);
+    if (obj.constructor.name == "PufferFishGreen") return this.isCollPufferGreen(obj);
+    if (obj.constructor.name == "PufferFishOrange") return this.isCollPufferOrange(obj);
+    if (obj.constructor.name == "PufferFishRed") return this.isCollPufferRed(obj);
+    if (obj.constructor.name == "JellyFishGreenSD") return this.isCollJellyGreen(obj);
+    if (obj.constructor.name == "JellyFishPinkSD") return this.isCollJellyPink(obj);
+    if (obj.constructor.name == "JellyFishLilaRD") return this.isCollJellyLila(obj);
+    if (obj.constructor.name == "JellyFishYellowRD") return this.isCollJellyYellow(obj);
+    if (obj.constructor.name == "EndBoss") return this.isCollEndBoss(obj);
   }
 
   isCollPufferGreen(obj) {
     if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 10)) {
-      console.log("Hidded PufferFishGreen");
       return true;
     }
   }
 
   isCollPufferOrange(obj) {
     if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 17)) {
-      console.log("Hidded PufferFishOrange");
       return true;
     }
   }
@@ -186,7 +185,6 @@ export class MoveableObject {
       this.y + 125 + (this.height - 190) > obj.y + 4 &&
       this.y + 125 < obj.y + 4 + (obj.height - 30)
     ) {
-      console.log("Hidded PufferFishRed");
       return true;
     }
   }
@@ -198,7 +196,6 @@ export class MoveableObject {
       this.y + 125 + (this.height - 190) > obj.y + 5 &&
       this.y + 125 < obj.y + 5 + (obj.height - 15)
     ) {
-      console.log("Hidded JellyFishGreenSD");
       return true;
     }
   }
@@ -210,14 +207,12 @@ export class MoveableObject {
       this.y + 125 + (this.height - 190) > obj.y + 5 &&
       this.y + 125 < obj.y + 5 + (obj.height - 15)
     ) {
-      console.log("Hidded JellyFishPinkSD");
       return true;
     }
   }
 
   isCollJellyLila(obj) {
     if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
-      console.log("Hidded JellyFishLilaRD");
       return true;
     }
   }
@@ -229,7 +224,6 @@ export class MoveableObject {
       this.y + 125 + (this.height - 190) > obj.y + 5 &&
       this.y + 125 < obj.y + 5 + (obj.height - 15)
     ) {
-      console.log("Hidded JellyFishYellowRD");
       return true;
     }
   }
@@ -241,7 +235,6 @@ export class MoveableObject {
       this.y + 125 + (this.height - 190) > obj.y + 180 &&
       this.y + 125 < obj.y + 180 + (obj.height - 250)
     ) {
-      console.log("Hidded EndBoss");
       return true;
     }
   }

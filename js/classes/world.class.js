@@ -38,11 +38,11 @@ export class World {
   checkCollisions() {
     setInterval(() => {
       this.level1.enemies.forEach((enemy) => {
-       if (this.sharky.isColliding(enemy)) {
-          console.log("Collision with: " + enemy.constructor.name);
-       };
-      })
-    }, 1000);
+        if (this.sharky.isColliding(enemy)) {
+          this.sharky.hurtSharky(enemy.constructor.name);
+        }
+      });
+    }, 200);
   }
 
   level1 = new Level1();

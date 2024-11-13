@@ -242,4 +242,31 @@ export class Sharky extends MoveableObject {
       console.log("Fin Slap Attack");
     }
   }
+
+  hurtSharky(enemy) {
+    if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
+    if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();
+    if (enemy == "JellyFishGreenSD" || enemy == "JellyFishPinkSD") this.hurtedByJellyFishSD();
+    if (enemy == "EndBoss") this.hurtedByEndBoss();
+  }
+
+  hurtedByPufferFish() {
+    this.lifeEnergy -= 2;
+    console.log(this.lifeEnergy);
+  }
+
+  hurtedByJellyFishRD() {
+    this.lifeEnergy -= 5;
+    console.log(this.lifeEnergy);
+  }
+
+  hurtedByJellyFishSD() {
+    this.lifeEnergy -= 10;
+    console.log(this.lifeEnergy);
+  }
+
+  hurtedByEndBoss() {
+    this.lifeEnergy -= 25;
+    console.log(this.lifeEnergy);
+  }
 }
