@@ -37,12 +37,17 @@ export class World {
 
   checkCollisions() {
     setInterval(() => {
-      this.level1.enemies.forEach((enemy) => {
+      for (let index = 0; index < this.level1.enemies.length; index++) {
+        const enemy = this.level1.enemies[index];
         if (this.sharky.isColliding(enemy)) {
           this.sharky.hurtSharky(enemy.constructor.name);
+          if (!this.sharky.isCurrentlyHurt) this.sharky.isCurrentlyHurt = true;
+          break;
+        } else {
+          this.sharky.isCurrentlyHurt = false;
         }
-      });
-    }, 200);
+      }
+    }, 100);
   }
 
   level1 = new Level1();

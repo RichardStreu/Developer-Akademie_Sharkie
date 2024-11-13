@@ -28,6 +28,7 @@ export class Sharky extends MoveableObject {
   isSwimRight;
   isSwimUp;
   isSwimDown;
+  isCurrentlyHurt = false;
 
   world;
 
@@ -252,21 +253,21 @@ export class Sharky extends MoveableObject {
 
   hurtedByPufferFish() {
     this.lifeEnergy -= 2;
-    console.log(this.lifeEnergy);
+    // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
   }
 
   hurtedByJellyFishRD() {
     this.lifeEnergy -= 5;
-    console.log(this.lifeEnergy);
+    // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
   }
 
   hurtedByJellyFishSD() {
     this.lifeEnergy -= 10;
-    console.log(this.lifeEnergy);
+    // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
   }
 
   hurtedByEndBoss() {
     this.lifeEnergy -= 25;
-    console.log(this.lifeEnergy);
+    // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
   }
 }
