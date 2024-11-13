@@ -51,7 +51,7 @@ export class Level1 {
       new JellyFishYellowRD(14),
       new PufferFishGreen(15),
       new PufferFishGreen(16),
-      // new EndBoss(17),
+      new EndBoss(17),
     ];
   }
 }

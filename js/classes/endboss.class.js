@@ -10,8 +10,6 @@ export class EndBoss extends MoveableObject {
   currentMovement;
 
   constructor() {
-    console.log("FUCK YOU ALL");
-    
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/2.floating/1.png");
     this.x = 300;
     this.y = 100;
@@ -19,6 +17,12 @@ export class EndBoss extends MoveableObject {
     this.height = 365 * moveObjRatio;
     this.loadAllImagesEndboss();
     this.checkImagesCacheLoaded();
+    this.firstInterval = setInterval(() => {
+      if (this.isImageCacheLoaded) {
+        this.doCurrentBossAnimation();
+        clearInterval(this.firstInterval);
+      }
+    }, 100);
   }
 
   async loadAllImagesEndboss() {
@@ -50,6 +54,7 @@ export class EndBoss extends MoveableObject {
 
   bossSwim() {
     this.clearIntervalsAnimationMove();
+    console.log(imagesBossSwim);
     this.doImageAnimation(imagesBossSwim, this.img, 180);
   }
 

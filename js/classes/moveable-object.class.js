@@ -28,21 +28,79 @@ export class MoveableObject {
   }
 
   drawFrame(ctx) {
-    if (this.constructor.name == "Sharky" ||
-        this.constructor.name == "PufferFishGreen" ||
-        this.constructor.name == "PufferFishOrange" ||
-        this.constructor.name == "PufferFishRed" ||
-        this.constructor.name == "JellyFishGreenSD" ||
-        this.constructor.name == "JellyFishPinkSD" ||
-        this.constructor.name == "JellyFishLilaRD" ||
-        this.constructor.name == "JellyFishYellowRD" ||
-        this.constructor.name == "EndBoss") {
-      ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "red";
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.stroke();
-    }
+    if (this.constructor.name == "Sharky") this.drawSharkyFrame(ctx);
+    if (this.constructor.name == "PufferFishGreen") this.drawPufferGreenFrame(ctx);
+    if (this.constructor.name == "PufferFishOrange") this.drawPufferOrangeFrame(ctx);
+    if (this.constructor.name == "PufferFishRed") this.drawPufferRedFrame(ctx);
+    if (this.constructor.name == "JellyFishGreenSD") this.drawJellyGreen(ctx);
+    if (this.constructor.name == "JellyFishPinkSD") this.drawJellyPink(ctx);
+    if (this.constructor.name == "JellyFishLilaRD") this.drawJellyPink(ctx);
+    if (this.constructor.name == "JellyFishYellowRD") this.drawJellyYellow(ctx);
+    if (this.constructor.name == "EndBoss");
+  }
+
+  drawSharkyFrame(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "red";
+    ctx.rect((this.x + 40), (this.y + 125), (this.width - 80), (this.height - 190));
+    ctx.stroke();
+  }
+
+  drawPufferGreenFrame(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "red";
+    ctx.rect((this.x), (this.y), (this.width), (this.height - 10));
+    ctx.stroke();
+  }
+
+  drawPufferOrangeFrame(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "red";
+    ctx.rect((this.x), (this.y), (this.width), (this.height - 17));
+    ctx.stroke();
+  }
+
+  drawPufferRedFrame(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "red";
+    ctx.rect((this.x), (this.y + 4), (this.width - 10), (this.height - 30));
+    ctx.stroke();
+  }
+
+  drawJellyGreen(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "red";
+    ctx.rect((this.x), (this.y + 5), (this.width), (this.height - 15));
+    ctx.stroke();
+  }
+
+  drawJellyPink(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "red";
+    ctx.rect((this.x), (this.y + 5), (this.width), (this.height - 15));
+    ctx.stroke();
+  }
+
+  drawJellyLila(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "red";
+    ctx.rect((this.x), (this.y), (this.width), (this.height));
+    ctx.stroke();
+  }
+
+  drawJellyYellow(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "red";
+    ctx.rect((this.x), (this.y + 5), (this.width), (this.height - 15));
+    ctx.stroke();
   }
 
   changeCacheStatusToFalse(className) {
