@@ -36,7 +36,7 @@ export class MoveableObject {
     if (this.constructor.name == "JellyFishPinkSD") this.drawJellyPink(ctx);
     if (this.constructor.name == "JellyFishLilaRD") this.drawJellyPink(ctx);
     if (this.constructor.name == "JellyFishYellowRD") this.drawJellyYellow(ctx);
-    if (this.constructor.name == "EndBoss");
+    if (this.constructor.name == "EndBoss") this.drawEndbossFrame(ctx);
   }
 
   drawSharkyFrame(ctx) {
@@ -100,6 +100,14 @@ export class MoveableObject {
     ctx.lineWidth = "5";
     ctx.strokeStyle = "red";
     ctx.rect((this.x), (this.y + 5), (this.width), (this.height - 15));
+    ctx.stroke();
+  }
+
+  drawEndbossFrame(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = "5";
+    ctx.strokeStyle = "red";
+    ctx.rect((this.x + 10), (this.y + 180), (this.width - 35), (this.height - 250));
     ctx.stroke();
   }
 
