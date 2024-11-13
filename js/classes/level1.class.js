@@ -19,7 +19,6 @@ import { Barrier3 } from "./staticBarrier3.class.js";
 
 import { canvasWidth } from "../script.js";
 
-
 export class Level1 {
   constructor() {
     this.landscape = [
@@ -52,7 +51,7 @@ export class Level1 {
       new JellyFishYellowRD(14),
       new PufferFishGreen(15),
       new PufferFishGreen(16),
-      // new EndBoss(),
+      // new EndBoss(17),
     ];
   }
 }

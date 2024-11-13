@@ -19,7 +19,7 @@ import { Barrier3 } from "./staticBarrier3.class.js";
 
 import { canvasWidth } from "../script.js";
 
-import { Level1 } from "./level1.class.js"
+import { Level1 } from "./level1.class.js";
 
 export class World {
   constructor(canvas, keyboard) {
@@ -63,7 +63,8 @@ export class World {
 
   addToMap(object) {
     if (object.otherDirection) this.flipImage(object);
-    this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+    object.draw(this.ctx);
+    object.drawFrame(this.ctx);
     if (object.otherDirection) this.flipImageBack(object);
   }
 

@@ -8,6 +8,7 @@ export class MoveableObject {
   height = 100;
   imageCache = {};
   otherDirection = false;
+  speedY = 2;
 
   loadImage(path) {
     this.img = new Image();
@@ -20,6 +21,20 @@ export class MoveableObject {
       img.src = path;
       this.imageCache[path] = img;
     });
+  }
+
+  draw(ctx) {
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+
+  drawFrame(ctx) {
+    // if (this instanceof Sharky || this instanceof PufferFish || this instanceof JellyFish) {
+      ctx.beginPath();
+      ctx.lineWidth = "5";
+      ctx.strokeStyle = "red";
+      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.stroke();
+    // }
   }
 
   changeCacheStatusToFalse(className) {
@@ -43,6 +58,14 @@ export class MoveableObject {
         clearInterval(checkInterval);
       }
     }, 100);
+  }
+
+  applyGravity() {
+    setInterval(() => {
+      if (this.y > -100 - this.height) {
+        this.y -= this.speedY;
+      }
+    }, 1000 / 25);
   }
 
   doImageAnimation(imageArray, imgRef, intervall) {
