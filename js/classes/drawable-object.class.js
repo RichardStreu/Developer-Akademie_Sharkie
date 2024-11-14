@@ -47,5 +47,9 @@ export class DrawableObject {
       }
     }, 100);
   }
+
+  async loadAllStatusBarCache() {
+    
+  }
 }
 
