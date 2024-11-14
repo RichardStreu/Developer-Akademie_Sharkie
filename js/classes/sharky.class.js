@@ -34,7 +34,7 @@ import {
 
 import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, sharkyAttackDKey } from "./sharky.action.movement.js";
 
-import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss, isSharkyDead, regularDead, electricDead, gameOver } from "./sharky.action.hurt.js";
+import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss, regularHurt, electricHurt, isSharkyDead, regularDead, electricDead, gameOver } from "./sharky.action.hurt.js";
 
 export let sharkyXPosition;
 export let sharkyYPosition;
@@ -50,6 +50,7 @@ export class Sharky extends MoveableObject {
   isSwimUp;
   isSwimDown;
   isCurrentlyHurt = false;
+  isCurrentlyHurtAnimation = false;
   world;
   lifeEnergy = 100;
 
@@ -166,9 +167,11 @@ export class Sharky extends MoveableObject {
   }
 
   allKeysUp() {
-    this.clearIntervalsAnimationMove();
-    this.letSharkySleep();
-    this.sharkyStandAnimation();
+    if (!this.isCurrentlyHurtAnimation) {
+      this.clearIntervalsAnimationMove();
+      this.letSharkySleep();
+      this.sharkyStandAnimation();
+    }
   }
 
   hurtSharky(enemy) {
@@ -206,6 +209,8 @@ Sharky.prototype.hurtedByPufferFish = hurtedByPufferFish;
 Sharky.prototype.hurtedByJellyFishRD = hurtedByJellyFishRD;
 Sharky.prototype.hurtedByJellyFishSD = hurtedByJellyFishSD;
 Sharky.prototype.hurtedByEndBoss = hurtedByEndBoss;
+Sharky.prototype.regularHurt = regularHurt;
+Sharky.prototype.electricHurt = electricHurt;
 Sharky.prototype.isSharkyDead = isSharkyDead;
 Sharky.prototype.regularDead = regularDead;
 Sharky.prototype.electricDead = electricDead;

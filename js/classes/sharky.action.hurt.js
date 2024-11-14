@@ -1,29 +1,61 @@
 export function hurtedByPufferFish() {
-  this.lifeEnergy -= 2;
-  this.isSharkyDead("regular");
-  console.log(this.lifeEnergy);
-  // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
+  this.lifeEnergy -= 4;
+  if (!this.isCurrentlyHurtAnimation) {
+    this.clearIntervalsAnimationMove();
+    this.sharkyHurtRegularAnimation();
+    this.isCurrentlyHurtAnimation = true;
+    setTimeout(() => {
+      this.clearIntervalsAnimationMove();
+      this.sharkyStandAnimation();
+      this.isSharkyDead("regular");
+      this.isCurrentlyHurtAnimation = false;
+    }, 600);
+  }
 }
 
 export function hurtedByJellyFishRD() {
-  this.lifeEnergy -= 5;
-  this.isSharkyDead("regular");
-  console.log(this.lifeEnergy);
-  // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
+  this.lifeEnergy -= 6;
+  if (!this.isCurrentlyHurtAnimation) {
+    this.clearIntervalsAnimationMove();
+    this.sharkyHurtRegularAnimation();
+    this.isCurrentlyHurtAnimation = true;
+    setTimeout(() => {
+      this.clearIntervalsAnimationMove();
+      this.sharkyStandAnimation();
+      this.isSharkyDead("regular");
+      this.isCurrentlyHurtAnimation = false;
+    }, 600);
+  }
 }
 
 export function hurtedByJellyFishSD() {
   this.lifeEnergy -= 10;
-  this.isSharkyDead("electric");
-  console.log(this.lifeEnergy);
-  // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
+  if (!this.isCurrentlyHurtAnimation) {
+    this.clearIntervalsAnimationMove();
+    this.sharkyHurtShockAnimation();
+    this.isCurrentlyHurtAnimation = true;
+    setTimeout(() => {
+      this.clearIntervalsAnimationMove();
+      this.sharkyStandAnimation();
+      this.isSharkyDead("electric");
+      this.isCurrentlyHurtAnimation = false;
+    }, 600);
+  }
 }
 
 export function hurtedByEndBoss() {
-  this.lifeEnergy -= 25;
-  this.isSharkyDead("regular");
-  console.log(this.lifeEnergy);
-  // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
+  this.lifeEnergy -= 20;
+  if (!this.isCurrentlyHurtAnimation) {
+    this.clearIntervalsAnimationMove();
+    this.sharkyHurtRegularAnimation();
+    this.isCurrentlyHurtAnimation = true;
+    setTimeout(() => {
+      this.clearIntervalsAnimationMove();
+      this.sharkyStandAnimation();
+      this.isSharkyDead("regular");
+      this.isCurrentlyHurtAnimation = false;
+    }, 600);
+  }
 }
 
 export function isSharkyDead(kindOfDead) {
@@ -32,6 +64,10 @@ export function isSharkyDead(kindOfDead) {
     isRegularDead ? this.regularDead() : this.electricDead();
   }
 }
+
+export function regularHurt() {}
+
+export function electricHurt() {}
 
 export function regularDead() {
   this.clearIntervalsAnimationMove();

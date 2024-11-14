@@ -13,10 +13,10 @@ export function letSharkySleep() {
 
 export function moveSharkyLeft() {
   if (!this.world.keyboard.LEFT) {
-    this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.LEFT = true;
     this.otherDirection = true;
-    this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
     this.isSwimLeft = setInterval(() => {
       if (this.x > -30 && this.lifeEnergy > 0) {
         this.x -= 4;
@@ -33,10 +33,10 @@ export function moveSharkyLeft() {
 
 export function moveSharkyRight() {
   if (!this.world.keyboard.RIGHT) {
-    this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.RIGHT = true;
     this.otherDirection = false;
-    this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
     this.isSwimRight = setInterval(() => {
       if (this.x < canvasWidth * 4 - this.width && this.lifeEnergy > 0) {
         this.x += 4;
@@ -49,9 +49,9 @@ export function moveSharkyRight() {
 
 export function moveSharkyUp() {
   if (!this.world.keyboard.UP) {
-    this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.UP = true;
-    this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
     this.isSwimUp = setInterval(() => {
       if (this.y > -120 && this.lifeEnergy > 0) this.y -= 4;
     }, 10);
@@ -60,9 +60,9 @@ export function moveSharkyUp() {
 
 export function moveSharkyDown() {
   if (!this.world.keyboard.DOWN) {
-    this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.DOWN = true;
-    this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
     this.isSwimDown = setInterval(() => {
       if (this.y < canvasHeight - 262 && this.lifeEnergy > 0) {
         this.y += 4;
@@ -74,7 +74,7 @@ export function moveSharkyDown() {
 export function sharkyAttackSpace() {
   if (!this.world.keyboard.SPACE) {
     this.world.keyboard.SPACE = true;
-    this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     console.log("Bubble Attack");
   }
 }
@@ -82,7 +82,7 @@ export function sharkyAttackSpace() {
 export function sharkyAttackDKey() {
   if (!this.world.keyboard.DKey) {
     this.world.keyboard.DKey = true;
-    this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     console.log("Fin Slap Attack");
   }
 }

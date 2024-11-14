@@ -38,10 +38,10 @@ export function sharkyFinSlapAnimation() {
   this.doImageAnimation(imagesAttackFinSlap, this.img, 100);
 }
 export function sharkyHurtRegularAnimation() {
-  this.doImageAnimation(imagesHurtRegular, this.img, 110);
+  this.doImageAnimation(imagesHurtRegular, this.img, 150);
 }
 export function sharkyHurtShockAnimation() {
-  this.doImageAnimation(imagesHurtShock, this.img, 110);
+  this.doImageAnimation(imagesHurtShock, this.img, 150);
 }
 export function sharkyDeadRegularAnimation() {
   return this.doImageAnimation(imagesDeadRegular, this.img, 130);
