@@ -9,7 +9,11 @@ export class MoveableObject {
   imageCache = {};
   otherDirection = false;
   speedY = 2;
-  lifeEnergy = 100;
+  lifeEnergy;
+
+  constructor() {
+    this.lifeEnergy = 100;
+  }
 
   loadImage(path) {
     this.img = new Image();

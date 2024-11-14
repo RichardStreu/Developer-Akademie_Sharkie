@@ -25,3 +25,7 @@ export function hurtedByEndBoss() {
   
   // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
 }
+
+export function isSharkyDead() {
+  
+}

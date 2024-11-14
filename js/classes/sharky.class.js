@@ -51,6 +51,7 @@ export class Sharky extends MoveableObject {
   isSwimDown;
   isCurrentlyHurt = false;
   world;
+  lifeEnergy = 100;
 
   constructor() {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
@@ -114,12 +115,14 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyDown(event) {
-    if (event.key == "ArrowLeft") this.moveSharkyLeft();
-    if (event.key == "ArrowRight") this.moveSharkyRight();
-    if (event.key == "ArrowUp") this.moveSharkyUp();
-    if (event.key == "ArrowDown") this.moveSharkyDown();
-    if (event.key == " ") this.sharkyAttackSpace();
-    if (event.key == "d") this.sharkyAttackDKey();
+    if (this.lifeEnergy > 0) {
+      if (event.key == "ArrowLeft") this.moveSharkyLeft();
+      if (event.key == "ArrowRight") this.moveSharkyRight();
+      if (event.key == "ArrowUp") this.moveSharkyUp();
+      if (event.key == "ArrowDown") this.moveSharkyDown();
+      if (event.key == " ") this.sharkyAttackSpace();
+      if (event.key == "d") this.sharkyAttackDKey();
+    }
   }
 
   handleKeyUp(event) {
@@ -129,7 +132,7 @@ export class Sharky extends MoveableObject {
     if (event.key == "ArrowDown") this.keyArrowDownUp();
     if (event.key == " ") this.keySpaceUp();
     if (event.key == "d") this.keyDUp();
-    if (Object.values(world.keyboard).every((value) => value === false)) this.allKeysUp();  
+    if (Object.values(world.keyboard).every((value) => value === false)) this.allKeysUp();
   }
 
   keyArrowLeftUp() {
