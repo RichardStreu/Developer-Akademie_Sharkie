@@ -1,5 +1,7 @@
 import { MoveableObject } from "./moveable-object.class.js";
+
 import { moveObjRatio, loadedCachsArray, canvasHeight, canvasWidth } from "../script.js";
+
 import {
   imagesStand,
   imagesFallAsleep,
@@ -14,7 +16,24 @@ import {
   imagesDeadRegular,
   imagesDeadShock,
 } from "./sharky.class.images.js";
+
+import {
+  sharkyStandAnimation,
+  sharkyFallAsleepAnimation,
+  sharkySleepAnimation,
+  sharkySwimAnimation,
+  sharkyBubbleWithoutAnimation,
+  sharkyBubbleRegularAnimation,
+  sharkyBubblePoisonAnimation,
+  sharkyFinSlapAnimation,
+  sharkyHurtRegularAnimation,
+  sharkyHurtShockAnimation,
+  sharkyDeadRegularAnimation,
+  sharkyDeadShockAnimation,
+} from "./sharky.action.animations.js";
+
 import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, sharkyAttackDKey } from "./sharky.action.movement.js";
+
 import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss } from "./sharky.action.hurt.js";
 
 export let sharkyXPosition;
@@ -82,43 +101,6 @@ export class Sharky extends MoveableObject {
     }, 50);
   }
 
-  sharkyStandAnimation() {
-    this.doImageAnimation(imagesStand, this.img, 180);
-  }
-  sharkyFallAsleepAnimation() {
-    this.doImageAnimation(imagesFallAsleep, this.img, 150);
-  }
-  sharkySleepAnimation() {
-    this.doImageAnimation(imagesSleep, this.img, 200);
-  }
-  sharkySwimAnimation() {
-    this.doImageAnimation(imagesSwim, this.img, 80);
-  }
-  sharkyBubbleWithoutAnimation() {
-    this.doImageAnimation(imagesAttackBubbleWithout, this.img, 110);
-  }
-  sharkyBubbleRegularAnimation() {
-    this.doImageAnimation(imagesAttackBubbleRegular, this.img, 110);
-  }
-  sharkyBubblePoisonAnimation() {
-    this.doImageAnimation(imagesAttackBubblePoison, this.img, 110);
-  }
-  sharkyFinSlapAnimation() {
-    this.doImageAnimation(imagesAttackFinSlap, this.img, 100);
-  }
-  sharkyHurtRegularAnimation() {
-    this.doImageAnimation(imagesHurtRegular, this.img, 110);
-  }
-  sharkyHurtShockAnimation() {
-    this.doImageAnimation(imagesHurtShock, this.img, 110);
-  }
-  sharkyDeadRegularAnimation() {
-    this.doImageAnimation(imagesDeadRegular, this.img, 130);
-  }
-  sharkyDeadShockAnimation() {
-    this.doImageAnimation(imagesDeadShock, this.img, 130);
-  }
-
   clearIntervalsAnimationMove() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
@@ -167,6 +149,19 @@ export class Sharky extends MoveableObject {
   }
 }
 
+Sharky.prototype.sharkyStandAnimation = sharkyStandAnimation;
+Sharky.prototype.sharkyFallAsleepAnimation = sharkyFallAsleepAnimation;
+Sharky.prototype.sharkySleepAnimation = sharkySleepAnimation;
+Sharky.prototype.sharkySwimAnimation = sharkySwimAnimation;
+Sharky.prototype.sharkyBubbleWithoutAnimation = sharkyBubbleWithoutAnimation;
+Sharky.prototype.sharkyBubbleRegularAnimation = sharkyBubbleRegularAnimation;
+Sharky.prototype.sharkyBubblePoisonAnimation = sharkyBubblePoisonAnimation;
+Sharky.prototype.sharkyFinSlapAnimation = sharkyFinSlapAnimation;
+Sharky.prototype.sharkyHurtRegularAnimation = sharkyHurtRegularAnimation;
+Sharky.prototype.sharkyHurtShockAnimation = sharkyHurtShockAnimation;
+Sharky.prototype.sharkyDeadRegularAnimation = sharkyDeadRegularAnimation;
+Sharky.prototype.sharkyDeadShockAnimation = sharkyDeadShockAnimation;
+
 Sharky.prototype.letSharkySleep = letSharkySleep;
 Sharky.prototype.moveSharkyLeft = moveSharkyLeft;
 Sharky.prototype.moveSharkyRight = moveSharkyRight;
@@ -179,5 +174,3 @@ Sharky.prototype.hurtedByPufferFish = hurtedByPufferFish;
 Sharky.prototype.hurtedByJellyFishRD = hurtedByJellyFishRD;
 Sharky.prototype.hurtedByJellyFishSD = hurtedByJellyFishSD;
 Sharky.prototype.hurtedByEndBoss = hurtedByEndBoss;
-
-
