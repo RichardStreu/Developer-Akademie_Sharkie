@@ -1,5 +1,16 @@
 import { canvasHeight, canvasWidth } from "../script.js";
 
+export function letSharkySleep() {
+  let timeOfUnmoved = 0;
+  this.currentMovement = setInterval(() => {
+    timeOfUnmoved++;
+    if (timeOfUnmoved > 5) {
+      this.clearIntervalsAnimationMove();
+      this.sharkySleepAnimation();
+    }
+  }, 1000);
+}
+
 export function moveSharkyLeft() {
   if (!this.world.keyboard.LEFT) {
     this.clearIntervalsAnimationMove();

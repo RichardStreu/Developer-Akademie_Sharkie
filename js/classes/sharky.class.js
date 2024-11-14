@@ -14,7 +14,8 @@ import {
   imagesDeadRegular,
   imagesDeadShock,
 } from "./sharky.class.images.js";
-import { moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, sharkyAttackDKey } from "./sharky.action.movement.js";
+import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, sharkyAttackDKey } from "./sharky.action.movement.js";
+import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss } from "./sharky.action.hurt.js";
 
 export let sharkyXPosition;
 export let sharkyYPosition;
@@ -79,17 +80,6 @@ export class Sharky extends MoveableObject {
       sharkyXPosition = this.x;
       sharkyYPosition = this.y;
     }, 50);
-  }
-
-  letSharkySleep() {
-    let timeOfUnmoved = 0;
-    this.currentMovement = setInterval(() => {
-      timeOfUnmoved++;
-      if (timeOfUnmoved > 5) {
-        this.clearIntervalsAnimationMove();
-        this.sharkySleepAnimation();
-      }
-    }, 1000);
   }
 
   sharkyStandAnimation() {
@@ -175,33 +165,19 @@ export class Sharky extends MoveableObject {
     if (enemy == "JellyFishGreenSD" || enemy == "JellyFishPinkSD") this.hurtedByJellyFishSD();
     if (enemy == "EndBoss") this.hurtedByEndBoss();
   }
-
-  hurtedByPufferFish() {
-    this.lifeEnergy -= 2;
-    // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
-  }
-
-  hurtedByJellyFishRD() {
-    this.lifeEnergy -= 5;
-    // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
-  }
-
-  hurtedByJellyFishSD() {
-    this.lifeEnergy -= 10;
-    // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
-  }
-
-  hurtedByEndBoss() {
-    this.lifeEnergy -= 25;
-    // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
-  }
 }
 
+Sharky.prototype.letSharkySleep = letSharkySleep;
 Sharky.prototype.moveSharkyLeft = moveSharkyLeft;
 Sharky.prototype.moveSharkyRight = moveSharkyRight;
 Sharky.prototype.moveSharkyUp = moveSharkyUp;
 Sharky.prototype.moveSharkyDown = moveSharkyDown;
 Sharky.prototype.sharkyAttackSpace = sharkyAttackSpace;
 Sharky.prototype.sharkyAttackDKey = sharkyAttackDKey;
+
+Sharky.prototype.hurtedByPufferFish = hurtedByPufferFish;
+Sharky.prototype.hurtedByJellyFishRD = hurtedByJellyFishRD;
+Sharky.prototype.hurtedByJellyFishSD = hurtedByJellyFishSD;
+Sharky.prototype.hurtedByEndBoss = hurtedByEndBoss;
 
 
