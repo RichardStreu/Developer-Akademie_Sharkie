@@ -44,8 +44,8 @@ export function sharkyHurtShockAnimation() {
   this.doImageAnimation(imagesHurtShock, this.img, 110);
 }
 export function sharkyDeadRegularAnimation() {
-  this.doImageAnimation(imagesDeadRegular, this.img, 130);
+  return this.doImageAnimation(imagesDeadRegular, this.img, 130);
 }
 export function sharkyDeadShockAnimation() {
-  this.doImageAnimation(imagesDeadShock, this.img, 130);
+  return this.doImageAnimation(imagesDeadShock, this.img, 160);
 }

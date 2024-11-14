@@ -1,4 +1,4 @@
-import { imgCachesObject, areImgCachesReady, loadedCachsArray } from "../script.js";
+import { imgCachesObject, areImgCachesReady, loadedCachsArray, canvasHeight } from "../script.js";
 
 export class MoveableObject {
   img;
@@ -139,12 +139,24 @@ export class MoveableObject {
     }, 100);
   }
 
-  applyGravity() {
-    setInterval(() => {
+  floatToSurface() {
+    this.currentMovement = setInterval(() => {
       if (this.y > -100 - this.height) {
-        this.y -= this.speedY;
+        this.y -= this.speedY / 2;
+      } else {
+        clearInterval(this.currentMovement);
       }
-    }, 1000 / 25);
+    }, 1000 / 40);
+  }
+
+  sinkToGround() {
+    this.currentMovement = setInterval(() => {
+      if (this.y < canvasHeight - this.height - 10) {
+        this.y += this.speedY * 4;
+      } else {
+        clearInterval(this.currentMovement);
+      }
+    }, 1000 / 70);
   }
 
   doImageAnimation(imageArray, imgRef, intervall) {
@@ -213,7 +225,12 @@ export class MoveableObject {
   }
 
   isCollEndBoss(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x + 10 && this.x + 40 < obj.x + 10 + (obj.width - 35) && this.y + 125 + (this.height - 190) > obj.y + 180 && this.y + 125 < obj.y + 180 + (obj.height - 250)) {
+    if (
+      this.x + 40 + (this.width - 80) > obj.x + 10 &&
+      this.x + 40 < obj.x + 10 + (obj.width - 35) &&
+      this.y + 125 + (this.height - 190) > obj.y + 180 &&
+      this.y + 125 < obj.y + 180 + (obj.height - 250)
+    ) {
       return true;
     }
   }

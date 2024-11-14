@@ -18,7 +18,7 @@ export function moveSharkyLeft() {
     this.otherDirection = true;
     this.sharkySwimAnimation();
     this.isSwimLeft = setInterval(() => {
-      if (this.x > -30) {
+      if (this.x > -30 && this.lifeEnergy > 0) {
         this.x -= 4;
         const sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
         if (this.x > sharkyMidPoint && this.x > 0 && this.x < canvasWidth * 3.5 - this.width) {
@@ -38,7 +38,7 @@ export function moveSharkyRight() {
     this.otherDirection = false;
     this.sharkySwimAnimation();
     this.isSwimRight = setInterval(() => {
-      if (this.x < canvasWidth * 4 - this.width) {
+      if (this.x < canvasWidth * 4 - this.width && this.lifeEnergy > 0) {
         this.x += 4;
         let sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
         if (this.x >= sharkyMidPoint && this.x < canvasWidth * 3.5 - this.width) this.world.camera_x = sharkyMidPoint - this.x;
@@ -53,7 +53,7 @@ export function moveSharkyUp() {
     this.world.keyboard.UP = true;
     this.sharkySwimAnimation();
     this.isSwimUp = setInterval(() => {
-      if (this.y > -120) this.y -= 4;
+      if (this.y > -120 && this.lifeEnergy > 0) this.y -= 4;
     }, 10);
   }
 }
@@ -64,7 +64,7 @@ export function moveSharkyDown() {
     this.world.keyboard.DOWN = true;
     this.sharkySwimAnimation();
     this.isSwimDown = setInterval(() => {
-      if (this.y < canvasHeight - 262) {
+      if (this.y < canvasHeight - 262 && this.lifeEnergy > 0) {
         this.y += 4;
       }
     }, 10);
