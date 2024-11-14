@@ -139,24 +139,30 @@ export class MoveableObject {
     }, 100);
   }
 
-  floatToSurface() {
+  floatToSurface(item) {
     this.currentMovement = setInterval(() => {
-      if (this.y > -100 - this.height) {
-        this.y -= this.speedY / 2;
+      if (this.y > -20 - this.height) {
+        this.y -= this.speedY;
       } else {
+        if (item == "Sharky") this.gameOver();
         clearInterval(this.currentMovement);
       }
     }, 1000 / 40);
   }
 
-  sinkToGround() {
+  sinkToGround(item) {
     this.currentMovement = setInterval(() => {
       if (this.y < canvasHeight - this.height - 10) {
-        this.y += this.speedY * 4;
+        this.y += this.speedY;
       } else {
+        if (item == "Sharky") {
+          setTimeout(() => {
+            this.gameOver();
+          }, 1500);
+        } 
         clearInterval(this.currentMovement);
       }
-    }, 1000 / 70);
+    }, 1000 / 40);
   }
 
   doImageAnimation(imageArray, imgRef, intervall) {

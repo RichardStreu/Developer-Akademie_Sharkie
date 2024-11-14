@@ -38,7 +38,7 @@ export function regularDead() {
   this.sharkyDeadRegularAnimation();
   setTimeout(() => {
     this.clearIntervalsAnimationMove();
-    this.floatToSurface();
+    this.floatToSurface("Sharky");
   }, 1560);
 }
 
@@ -47,6 +47,10 @@ export function electricDead() {
   this.sharkyDeadShockAnimation();
   setTimeout(() => {
     this.clearIntervalsAnimationMove();
-    this.sinkToGround();
+    this.sinkToGround("Sharky");
   }, 1600);
+}
+
+export function gameOver() {
+  console.log("GAME OVER");
 }

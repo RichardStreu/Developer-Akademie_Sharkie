@@ -34,7 +34,7 @@ import {
 
 import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, sharkyAttackDKey } from "./sharky.action.movement.js";
 
-import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss, isSharkyDead, regularDead, electricDead } from "./sharky.action.hurt.js";
+import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss, isSharkyDead, regularDead, electricDead, gameOver } from "./sharky.action.hurt.js";
 
 export let sharkyXPosition;
 export let sharkyYPosition;
@@ -209,3 +209,4 @@ Sharky.prototype.hurtedByEndBoss = hurtedByEndBoss;
 Sharky.prototype.isSharkyDead = isSharkyDead;
 Sharky.prototype.regularDead = regularDead;
 Sharky.prototype.electricDead = electricDead;
+Sharky.prototype.gameOver = gameOver;
