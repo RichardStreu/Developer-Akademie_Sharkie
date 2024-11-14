@@ -9,4 +9,13 @@ export class StatusBarLife extends DrawableObject {
     "../../assets/img/4. Marcadores/green/Life/80_  copia 3.png",
     "../../assets/img/4. Marcadores/green/Life/100_  copia 2.png",
   ];
+
+  constructor() {
+    super();
+    this.loadStatBarLifeImg();
+  }
+
+  async loadStatBarLifeImg() {
+    await this.loadImageCache(this.imgStatBarLife, this.constructor.name);
+  }
 }

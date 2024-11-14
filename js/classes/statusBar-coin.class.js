@@ -9,4 +9,13 @@ export class StatusBarCoin extends DrawableObject {
     "../../assets/img/4. Marcadores/green/Coin/80_  copia 4.png",
     "../../assets/img/4. Marcadores/green/Coin/100_  copia 4.png",
   ];
+
+  constructor() {
+    super();
+    this.loadStatBarCoinImg();
+  }
+
+  async loadStatBarCoinImg() {
+    await this.loadImageCache(this.imgStatBarCoin, this.constructor.name);
+  }
 }

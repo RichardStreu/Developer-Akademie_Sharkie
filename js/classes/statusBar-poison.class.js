@@ -9,4 +9,13 @@ export class StatusBarPoison extends DrawableObject {
     "../../assets/img/4. Marcadores/green/poisoned bubbles/80_ copia 2.png",
     "../../assets/img/4. Marcadores/green/poisoned bubbles/100_ copia 3.png",
   ];
+
+  constructor() {
+    super();
+    this.loadStatBarPoisonImg();
+  }
+
+  async loadStatBarPoisonImg() {
+    await this.loadImageCache(this.imgStatBarPoison, this.constructor.name);
+  }
 }
