@@ -42,8 +42,8 @@ export let sharkyWidth;
 export let sharkyHeight;
 //
 export class Sharky extends MoveableObject {
+  firstInterval;
   currentAnimationIntervall;
-
   currentMovement;
   isSwimLeft;
   isSwimRight;
@@ -63,19 +63,8 @@ export class Sharky extends MoveableObject {
     sharkyHeight = this.height;
     this.loadAllImagesCacheSharky();
     this.checkImagesCacheLoaded();
-    window.addEventListener("keydown", (event) => {
-      this.handleKeyDown(event);
-    });
-    window.addEventListener("keyup", (event) => {
-      this.handleKeyUp(event);
-    });
-    this.firstInterval = setInterval(() => {
-      if (this.isImageCacheLoaded) {
-        this.sharkyStandAnimation();
-        this.letSharkySleep();
-        clearInterval(this.firstInterval);
-      }
-    }, 100);
+    this.setSharkyWindowEventListeners();
+    this.setFirstSharkyAnimation();
     this.checkCurrentSharkyPositions();
   }
 
@@ -92,6 +81,25 @@ export class Sharky extends MoveableObject {
     await this.loadImageCache(imagesHurtShock, this.constructor.name);
     await this.loadImageCache(imagesDeadRegular, this.constructor.name);
     await this.loadImageCache(imagesDeadShock, this.constructor.name);
+  }
+
+  setSharkyWindowEventListeners() {
+    window.addEventListener("keydown", (event) => {
+      this.handleKeyDown(event);
+    });
+    window.addEventListener("keyup", (event) => {
+      this.handleKeyUp(event);
+    });
+  }
+
+  setFirstSharkyAnimation() {
+    this.firstInterval = setInterval(() => {
+      if (this.isImageCacheLoaded) {
+        this.sharkyStandAnimation();
+        this.letSharkySleep();
+        clearInterval(this.firstInterval);
+      }
+    }, 100);
   }
 
   checkCurrentSharkyPositions() {
