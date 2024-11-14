@@ -34,7 +34,7 @@ import {
 
 import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, sharkyAttackDKey } from "./sharky.action.movement.js";
 
-import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss } from "./sharky.action.hurt.js";
+import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss, isSharkyDead, regularDead, electricDead } from "./sharky.action.hurt.js";
 
 export let sharkyXPosition;
 export let sharkyYPosition;
@@ -126,13 +126,15 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyUp(event) {
-    if (event.key == "ArrowLeft") this.keyArrowLeftUp();
-    if (event.key == "ArrowRight") this.keyArrowRightUp();
-    if (event.key == "ArrowUp") this.keyArrowUpUp();
-    if (event.key == "ArrowDown") this.keyArrowDownUp();
-    if (event.key == " ") this.keySpaceUp();
-    if (event.key == "d") this.keyDUp();
-    if (Object.values(world.keyboard).every((value) => value === false)) this.allKeysUp();
+    if (this.lifeEnergy > 0) {
+      if (event.key == "ArrowLeft") this.keyArrowLeftUp();
+      if (event.key == "ArrowRight") this.keyArrowRightUp();
+      if (event.key == "ArrowUp") this.keyArrowUpUp();
+      if (event.key == "ArrowDown") this.keyArrowDownUp();
+      if (event.key == " ") this.keySpaceUp();
+      if (event.key == "d") this.keyDUp();
+      if (Object.values(world.keyboard).every((value) => value === false)) this.allKeysUp();
+    }
   }
 
   keyArrowLeftUp() {
@@ -170,10 +172,12 @@ export class Sharky extends MoveableObject {
   }
 
   hurtSharky(enemy) {
-    if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
-    if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();
-    if (enemy == "JellyFishGreenSD" || enemy == "JellyFishPinkSD") this.hurtedByJellyFishSD();
-    if (enemy == "EndBoss") this.hurtedByEndBoss();
+    if (this.lifeEnergy > 0) {
+      if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
+      if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();
+      if (enemy == "JellyFishGreenSD" || enemy == "JellyFishPinkSD") this.hurtedByJellyFishSD();
+      if (enemy == "EndBoss") this.hurtedByEndBoss();
+    }
   }
 }
 
@@ -202,3 +206,6 @@ Sharky.prototype.hurtedByPufferFish = hurtedByPufferFish;
 Sharky.prototype.hurtedByJellyFishRD = hurtedByJellyFishRD;
 Sharky.prototype.hurtedByJellyFishSD = hurtedByJellyFishSD;
 Sharky.prototype.hurtedByEndBoss = hurtedByEndBoss;
+Sharky.prototype.isSharkyDead = isSharkyDead;
+Sharky.prototype.regularDead = regularDead;
+Sharky.prototype.electricDead = electricDead;
