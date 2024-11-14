@@ -50,7 +50,6 @@ export class Sharky extends MoveableObject {
   isSwimUp;
   isSwimDown;
   isCurrentlyHurt = false;
-
   world;
 
   constructor() {
@@ -64,7 +63,7 @@ export class Sharky extends MoveableObject {
     this.loadAllImagesCacheSharky();
     this.checkImagesCacheLoaded();
     this.setSharkyWindowEventListeners();
-    this.setFirstSharkyAnimation();
+    this.firstSharkyAnimationAfterCacheLoading();
     this.checkCurrentSharkyPositions();
   }
 
@@ -92,7 +91,7 @@ export class Sharky extends MoveableObject {
     });
   }
 
-  setFirstSharkyAnimation() {
+  firstSharkyAnimationAfterCacheLoading() {
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
         this.sharkyStandAnimation();
@@ -114,32 +113,6 @@ export class Sharky extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
   }
 
-  handleKeyUp(event) {
-    if (event.key == "ArrowLeft") {
-      this.world.keyboard.LEFT = false;
-      clearInterval(this.isSwimLeft);
-    }
-    if (event.key == "ArrowRight") {
-      this.world.keyboard.RIGHT = false;
-      clearInterval(this.isSwimRight);
-    }
-    if (event.key == "ArrowUp") {
-      this.world.keyboard.UP = false;
-      clearInterval(this.isSwimUp);
-    }
-    if (event.key == "ArrowDown") {
-      this.world.keyboard.DOWN = false;
-      clearInterval(this.isSwimDown);
-    }
-    if (event.key == " ") this.world.keyboard.SPACE = false;
-    if (event.key == "d") this.world.keyboard.DKey = false;
-    if (Object.values(world.keyboard).every((value) => value === false)) {
-      this.clearIntervalsAnimationMove();
-      this.letSharkySleep();
-      this.sharkyStandAnimation();
-    }
-  }
-
   handleKeyDown(event) {
     if (event.key == "ArrowLeft") this.moveSharkyLeft();
     if (event.key == "ArrowRight") this.moveSharkyRight();
@@ -147,6 +120,50 @@ export class Sharky extends MoveableObject {
     if (event.key == "ArrowDown") this.moveSharkyDown();
     if (event.key == " ") this.sharkyAttackSpace();
     if (event.key == "d") this.sharkyAttackDKey();
+  }
+
+  handleKeyUp(event) {
+    if (event.key == "ArrowLeft") this.keyArrowLeftUp();
+    if (event.key == "ArrowRight") this.keyArrowRightUp();
+    if (event.key == "ArrowUp") this.keyArrowUpUp();
+    if (event.key == "ArrowDown") this.keyArrowDownUp();
+    if (event.key == " ") this.keySpaceUp();
+    if (event.key == "d") this.keyDUp();
+    if (Object.values(world.keyboard).every((value) => value === false)) this.allKeysUp();  
+  }
+
+  keyArrowLeftUp() {
+    this.world.keyboard.LEFT = false;
+    clearInterval(this.isSwimLeft);
+  }
+
+  keyArrowRightUp() {
+    this.world.keyboard.RIGHT = false;
+    clearInterval(this.isSwimRight);
+  }
+
+  keyArrowUpUp() {
+    this.world.keyboard.UP = false;
+    clearInterval(this.isSwimUp);
+  }
+
+  keyArrowDownUp() {
+    this.world.keyboard.DOWN = false;
+    clearInterval(this.isSwimDown);
+  }
+
+  keySpaceUp() {
+    this.world.keyboard.SPACE = false;
+  }
+
+  keyDUp() {
+    this.world.keyboard.DKey = false;
+  }
+
+  allKeysUp() {
+    this.clearIntervalsAnimationMove();
+    this.letSharkySleep();
+    this.sharkyStandAnimation();
   }
 
   hurtSharky(enemy) {
