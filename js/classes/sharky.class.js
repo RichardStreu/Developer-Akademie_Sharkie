@@ -14,6 +14,7 @@ import {
   imagesDeadRegular,
   imagesDeadShock,
 } from "./sharky.class.images.js";
+import { moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, sharkyAttackDKey } from "./sharky.action.movement.js";
 
 export let sharkyXPosition;
 export let sharkyYPosition;
@@ -168,82 +169,6 @@ export class Sharky extends MoveableObject {
     if (event.key == "d") this.sharkyAttackDKey();
   }
 
-  moveSharkyLeft() {
-    if (!this.world.keyboard.LEFT) {
-      this.clearIntervalsAnimationMove();
-      this.world.keyboard.LEFT = true;
-      this.otherDirection = true;
-      this.sharkySwimAnimation();
-      this.isSwimLeft = setInterval(() => {
-        if (this.x > -30) {
-          this.x -= 4;
-          const sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
-          if (this.x > sharkyMidPoint && this.x > 0 && this.x < canvasWidth * 3.5 - this.width) {
-            this.world.camera_x = sharkyMidPoint - this.x;
-          } else if (this.x <= 0) {
-            this.world.camera_x = 0;
-          }
-        }
-      }, 10);
-    }
-  }
-
-  moveSharkyRight() {
-    if (!this.world.keyboard.RIGHT) {
-      this.clearIntervalsAnimationMove();
-      this.world.keyboard.RIGHT = true;
-      this.otherDirection = false;
-      this.sharkySwimAnimation();
-      this.isSwimRight = setInterval(() => {
-        if (this.x < canvasWidth * 4 - this.width) {
-          this.x += 4;
-          let sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
-          if (this.x >= sharkyMidPoint && this.x < canvasWidth * 3.5 - this.width) this.world.camera_x = sharkyMidPoint - this.x;
-        }
-      }, 10);
-    }
-  }
-
-  moveSharkyUp() {
-    if (!this.world.keyboard.UP) {
-      this.clearIntervalsAnimationMove();
-      this.world.keyboard.UP = true;
-      this.sharkySwimAnimation();
-      this.isSwimUp = setInterval(() => {
-        if (this.y > -120) this.y -= 4;
-      }, 10);
-    }
-  }
-
-  moveSharkyDown() {
-    if (!this.world.keyboard.DOWN) {
-      this.clearIntervalsAnimationMove();
-      this.world.keyboard.DOWN = true;
-      this.sharkySwimAnimation();
-      this.isSwimDown = setInterval(() => {
-        if (this.y < canvasHeight - 262) {
-          this.y += 4;
-        }
-      }, 10);
-    }
-  }
-
-  sharkyAttackSpace() {
-    if (!this.world.keyboard.SPACE) {
-      this.world.keyboard.SPACE = true;
-      this.clearIntervalsAnimationMove();
-      console.log("Bubble Attack");
-    }
-  }
-
-  sharkyAttackDKey() {
-    if (!this.world.keyboard.DKey) {
-      this.world.keyboard.DKey = true;
-      this.clearIntervalsAnimationMove();
-      console.log("Fin Slap Attack");
-    }
-  }
-
   hurtSharky(enemy) {
     if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
     if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();
@@ -271,3 +196,12 @@ export class Sharky extends MoveableObject {
     // if (this.isCurrentlyHurt === false) this.isCurrentlyHurt = true;
   }
 }
+
+Sharky.prototype.moveSharkyLeft = moveSharkyLeft;
+Sharky.prototype.moveSharkyRight = moveSharkyRight;
+Sharky.prototype.moveSharkyUp = moveSharkyUp;
+Sharky.prototype.moveSharkyDown = moveSharkyDown;
+Sharky.prototype.sharkyAttackSpace = sharkyAttackSpace;
+Sharky.prototype.sharkyAttackDKey = sharkyAttackDKey;
+
+
