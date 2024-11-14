@@ -179,34 +179,19 @@ export class MoveableObject {
   }
 
   isCollPufferRed(obj) {
-    if (
-      this.x + 40 + (this.width - 80) > obj.x &&
-      this.x + 40 < obj.x + (obj.width - 10) &&
-      this.y + 125 + (this.height - 190) > obj.y + 4 &&
-      this.y + 125 < obj.y + 4 + (obj.height - 30)
-    ) {
+    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + (obj.width - 10) && this.y + 125 + (this.height - 190) > obj.y + 4 && this.y + 125 < obj.y + 4 + (obj.height - 30)) {
       return true;
     }
   }
 
   isCollJellyGreen(obj) {
-    if (
-      this.x + 40 + (this.width - 80) > obj.x &&
-      this.x + 40 < obj.x + obj.width &&
-      this.y + 125 + (this.height - 190) > obj.y + 5 &&
-      this.y + 125 < obj.y + 5 + (obj.height - 15)
-    ) {
+    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
       return true;
     }
   }
 
   isCollJellyPink(obj) {
-    if (
-      this.x + 40 + (this.width - 80) > obj.x &&
-      this.x + 40 < obj.x + obj.width &&
-      this.y + 125 + (this.height - 190) > obj.y + 5 &&
-      this.y + 125 < obj.y + 5 + (obj.height - 15)
-    ) {
+    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
       return true;
     }
   }
@@ -218,23 +203,13 @@ export class MoveableObject {
   }
 
   isCollJellyYellow(obj) {
-    if (
-      this.x + 40 + (this.width - 80) > obj.x &&
-      this.x + 40 < obj.x + obj.width &&
-      this.y + 125 + (this.height - 190) > obj.y + 5 &&
-      this.y + 125 < obj.y + 5 + (obj.height - 15)
-    ) {
+    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
       return true;
     }
   }
 
   isCollEndBoss(obj) {
-    if (
-      this.x + 40 + (this.width - 80) > obj.x + 10 &&
-      this.x + 40 < obj.x + 10 + (obj.width - 35) &&
-      this.y + 125 + (this.height - 190) > obj.y + 180 &&
-      this.y + 125 < obj.y + 180 + (obj.height - 250)
-    ) {
+    if (this.x + 40 + (this.width - 80) > obj.x + 10 && this.x + 40 < obj.x + 10 + (obj.width - 35) && this.y + 125 + (this.height - 190) > obj.y + 180 && this.y + 125 < obj.y + 180 + (obj.height - 250)) {
       return true;
     }
   }
