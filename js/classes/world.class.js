@@ -65,7 +65,7 @@ export class World {
 
   statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
 
-  bubbles = [new SharkyBubble()];
+  bubbles = [];
 
   canvas;
   ctx;
