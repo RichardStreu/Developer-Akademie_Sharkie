@@ -10,8 +10,8 @@ export class SharkyBubble extends MoveableObject {
     super();
     if (!this.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
     if (this.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
-    this.x = sharkyXPosition + 170;
-    this.y = sharkyYPosition + 100;
+    this.x = sharkyXPosition + 169;
+    this.y = sharkyYPosition + 151;
     this.width = 25;
     this.height = 25;
   }
