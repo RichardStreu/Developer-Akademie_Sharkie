@@ -21,6 +21,10 @@ import { canvasWidth } from "../script.js";
 
 import { Level1 } from "./level1.class.js";
 
+import { StatusBarLife } from "./statusBar-life.class.js";
+import { StatusBarCoin } from "./statusBar-coin.class.js";
+import { StatusBarPoison } from "./statusBar-poison.class.js";
+
 export class World {
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -57,6 +61,8 @@ export class World {
   landscape = this.level1.landscape;
   enemies = this.level1.enemies;
 
+  statBars = [new StatusBarCoin(20, 20), new StatusBarLife(20, 40), new StatusBarPoison(20, 60)];
+
   // give each enemy its index of enemies as parameter
 
   canvas;
@@ -69,6 +75,7 @@ export class World {
     this.addObjectsToMap(this.landscape);
     this.addToMap(this.sharky);
     this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.statBars);
     this.ctx.translate(-this.camera_x, 0);
     requestAnimationFrame(() => this.draw());
   }

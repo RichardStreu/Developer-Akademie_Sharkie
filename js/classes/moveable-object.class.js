@@ -1,9 +1,8 @@
 import { imgCachesObject, areImgCachesReady, loadedCachsArray, canvasHeight } from "../script.js";
 
-import { DrawableObject } from "./drawable-object.class.js"
+import { DrawableObject } from "./drawable-object.class.js";
 
 export class MoveableObject extends DrawableObject {
-  
   otherDirection = false;
   speedY = 2;
   lifeEnergy;
@@ -11,18 +10,6 @@ export class MoveableObject extends DrawableObject {
   constructor() {
     super();
     this.lifeEnergy = 100;
-  }
-
-  drawFrame(ctx) {
-    if (this.constructor.name == "Sharky") this.drawSharkyFrame(ctx);
-    if (this.constructor.name == "PufferFishGreen") this.drawPufferGreenFrame(ctx);
-    if (this.constructor.name == "PufferFishOrange") this.drawPufferOrangeFrame(ctx);
-    if (this.constructor.name == "PufferFishRed") this.drawPufferRedFrame(ctx);
-    if (this.constructor.name == "JellyFishGreenSD") this.drawJellyGreen(ctx);
-    if (this.constructor.name == "JellyFishPinkSD") this.drawJellyPink(ctx);
-    if (this.constructor.name == "JellyFishLilaRD") this.drawJellyPink(ctx);
-    if (this.constructor.name == "JellyFishYellowRD") this.drawJellyYellow(ctx);
-    if (this.constructor.name == "EndBoss") this.drawEndbossFrame(ctx);
   }
 
   drawSharkyFrame(ctx) {
@@ -97,8 +84,6 @@ export class MoveableObject extends DrawableObject {
     ctx.stroke();
   }
 
-
-
   floatToSurface(item) {
     this.currentMovement = setInterval(() => {
       if (this.y > -20 - this.height) {
@@ -119,7 +104,7 @@ export class MoveableObject extends DrawableObject {
           setTimeout(() => {
             this.gameOver();
           }, 1500);
-        } 
+        }
         clearInterval(this.currentMovement);
       }
     }, 1000 / 40);

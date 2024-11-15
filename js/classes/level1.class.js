@@ -17,10 +17,6 @@ import { Barrier1 } from "./staticBarrier1.class.js";
 import { Barrier2 } from "./staticBarrier2.class.js";
 import { Barrier3 } from "./staticBarrier3.class.js";
 
-import { StatusBarLife } from "./statusBar-life.class.js";
-import { StatusBarCoin } from "./statusBar-coin.class.js";
-import { StatusBarPoison } from "./statusBar-poison.class.js";
-
 import { canvasWidth } from "../script.js";
 
 export class Level1 {
@@ -57,7 +53,5 @@ export class Level1 {
       new PufferFishGreen(16),
       new EndBoss(17),
     ];
-
-    this.statBars = [new StatusBarCoin(20, 20), new StatusBarLife(20, 40), new StatusBarPoison(20, 60)];
   }
 }
