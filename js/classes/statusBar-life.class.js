@@ -13,6 +13,7 @@ export class StatusBarLife extends StatusBar {
   constructor(x, y) {
     super();
     this.loadImgArrayStatBar();
+    this.checkImagesCacheLoaded();
     this.percentage = 100;
     this.img = this.imageCache["../../assets/img/4. Marcadores/green/Life/100_  copia 2.png"];
     this.x = x;

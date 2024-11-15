@@ -1,5 +1,7 @@
 export function hurtedByPufferFish() {
-  this.lifeEnergy -= 4;
+  let demageFactor = -4;
+  this.lifeEnergy += demageFactor;
+  this.world.statBars[1].updatePercentageStatBar(demageFactor);
   if (!this.isCurrentlyHurtAnimation) {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
@@ -14,7 +16,9 @@ export function hurtedByPufferFish() {
 }
 
 export function hurtedByJellyFishRD() {
-  this.lifeEnergy -= 6;
+  let demageFactor = -6;
+  this.lifeEnergy += demageFactor;
+  this.world.statBars[1].updatePercentageStatBar(demageFactor);
   if (!this.isCurrentlyHurtAnimation) {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
@@ -29,7 +33,9 @@ export function hurtedByJellyFishRD() {
 }
 
 export function hurtedByJellyFishSD() {
-  this.lifeEnergy -= 10;
+  let demageFactor = -10;
+  this.lifeEnergy += demageFactor;
+  this.world.statBars[1].updatePercentageStatBar(demageFactor);
   if (!this.isCurrentlyHurtAnimation) {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtShockAnimation();
@@ -44,7 +50,9 @@ export function hurtedByJellyFishSD() {
 }
 
 export function hurtedByEndBoss() {
-  this.lifeEnergy -= 20;
+  let demageFactor = -20;
+  this.lifeEnergy += demageFactor;
+  this.world.statBars[1].updatePercentageStatBar(demageFactor);
   if (!this.isCurrentlyHurtAnimation) {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
