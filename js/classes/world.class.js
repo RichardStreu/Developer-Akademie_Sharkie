@@ -25,6 +25,8 @@ import { StatusBarLife } from "./statusBar-life.class.js";
 import { StatusBarCoin } from "./statusBar-coin.class.js";
 import { StatusBarPoison } from "./statusBar-poison.class.js";
 
+import { SharkyBubble } from "./sharky.bubble.class.js";
+
 export class World {
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -63,7 +65,7 @@ export class World {
 
   statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
 
-  
+  bubbles = [new SharkyBubble()];
 
   canvas;
   ctx;
@@ -75,6 +77,7 @@ export class World {
     this.addObjectsToMap(this.landscape);
     this.addToMap(this.sharky);
     this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.bubbles);
     this.ctx.translate(-this.camera_x, 0);
     this.addObjectsToMap(this.statBars);
     requestAnimationFrame(() => this.draw());

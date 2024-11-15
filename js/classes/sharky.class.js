@@ -36,8 +36,8 @@ import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveShar
 
 import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss, regularHurt, electricHurt, isSharkyDead, regularDead, electricDead, gameOver } from "./sharky.action.hurt.js";
 
-export let sharkyXPosition;
-export let sharkyYPosition;
+export let sharkyXPosition = 0;
+export let sharkyYPosition = 200;
 export let sharkyWidth;
 export let sharkyHeight;
 //
