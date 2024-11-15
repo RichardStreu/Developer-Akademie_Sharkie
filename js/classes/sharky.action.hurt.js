@@ -6,6 +6,7 @@ export function hurtedByPufferFish() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
+    this.iscurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();
@@ -23,6 +24,7 @@ export function hurtedByJellyFishRD() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
+    this.iscurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();
@@ -40,6 +42,7 @@ export function hurtedByJellyFishSD() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtShockAnimation();
     this.isCurrentlyHurtAnimation = true;
+    this.iscurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();
@@ -57,6 +60,7 @@ export function hurtedByEndBoss() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
+    this.iscurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();

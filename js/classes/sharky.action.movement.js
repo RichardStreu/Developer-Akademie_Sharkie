@@ -74,8 +74,20 @@ export function moveSharkyDown() {
 export function sharkyAttackSpace() {
   if (!this.world.keyboard.SPACE) {
     this.world.keyboard.SPACE = true;
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
-    console.log("Bubble Attack");
+    if (!this.isCurrentlyHurtAnimation && !this.iscurrentlyAttackAnimation) {
+      this.clearIntervalsAnimationMove();
+      // call attack animation
+      console.log("Bubble Attack");
+      this.iscurrentlyAttackAnimation = true;
+      setTimeout(() => {
+        this.clearIntervalsAnimationMove();
+        this.sharkyStandAnimation();
+        this.iscurrentlyAttackAnimation = false;
+      }, 600);
+      
+    } 
+    
+    
   }
 }
 

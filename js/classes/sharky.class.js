@@ -51,6 +51,7 @@ export class Sharky extends MoveableObject {
   isSwimDown;
   isCurrentlyHurt = false;
   isCurrentlyHurtAnimation = false;
+  iscurrentlyAttackAnimation = false;
   world;
   lifeEnergy = 100;
 
