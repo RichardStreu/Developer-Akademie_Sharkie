@@ -12,8 +12,9 @@ export class StatusBarLife extends StatusBar {
 
   constructor() {
     super();
-    this.percentage = 100;
     this.loadImgArrayStatBar();
+    this.percentage = 100;
+    updateStatBarImage();
   }
 
 }

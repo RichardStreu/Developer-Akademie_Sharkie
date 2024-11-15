@@ -12,7 +12,8 @@ export class StatusBarPoison extends StatusBar {
 
   constructor() {
     super();
-    this.percentage = 0;
     this.loadImgArrayStatBar();
+    this.percentage = 0;
+    updateStatBarImage();
   }
 }
