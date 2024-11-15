@@ -10,11 +10,12 @@ export class StatusBarPoison extends StatusBar {
     "../../assets/img/4. Marcadores/green/poisoned bubbles/100_ copia 3.png",
   ];
 
-  constructor() {
+  constructor(x, y) {
     super();
     this.loadImgArrayStatBar();
     this.percentage = 0;
     this.img = this.imageCache["../../assets/img/4. Marcadores/green/poisoned bubbles/0_ copia 2.png"];
-  
+    this.x = x;
+    this.y = y;
   }
 }

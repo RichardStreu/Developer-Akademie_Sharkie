@@ -7,14 +7,16 @@ export class StatusBarCoin extends StatusBar {
     "../../assets/img/4. Marcadores/green/Coin/40_  copia 4.png",
     "../../assets/img/4. Marcadores/green/Coin/60_  copia 4.png",
     "../../assets/img/4. Marcadores/green/Coin/80_  copia 4.png",
-    "../../assets/img/4. Marcadores/green/Coin/100_  copia 4.png",
+    "../../assets/img/4. Marcadores/green/Coin/100_ copia 4.png",
   ];
 
-  constructor() {
+  constructor(x, y) {
     super();
     this.loadImgArrayStatBar();
     this.percentage = 0;
     this.img = this.imageCache["../../assets/img/4. Marcadores/green/Coin/0_  copia 4.png"];
+    this.x = x;
+    this.y = y;
   }
 
 }
