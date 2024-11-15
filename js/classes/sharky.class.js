@@ -131,7 +131,7 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyUp(event) {
-    if (this.lifeEnergy > 0 && !this.iscurrentlyAttackAnimation) {
+    if (this.lifeEnergy > 0) {
       if (event.key == "ArrowLeft") this.keyArrowLeftUp();
       if (event.key == "ArrowRight") this.keyArrowRightUp();
       if (event.key == "ArrowUp") this.keyArrowUpUp();
@@ -172,6 +172,8 @@ export class Sharky extends MoveableObject {
 
   allKeysUp() {
     if (!this.isCurrentlyHurtAnimation) {
+      console.log("KAKA");
+      
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
       this.sharkyStandAnimation();

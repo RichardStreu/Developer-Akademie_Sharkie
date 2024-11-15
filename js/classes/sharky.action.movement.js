@@ -73,23 +73,9 @@ export function moveSharkyDown() {
   }
 }
 
-export function blockMoveKeys() {
-  this.world.keyboard.LEFT = true
-  this.world.keyboard.RIGHT = true;
-  this.world.keyboard.UP = true;
-  this.world.keyboard.DOWN = true;
-}
-
-export function freeMoveKeys() {
-  this.world.keyboard.LEFT = true
-  this.world.keyboard.RIGHT = true;
-  this.world.keyboard.UP = true;
-  this.world.keyboard.DOWN = true;
-}
-
 export function sharkyAttackSpace() {
   if (!this.world.keyboard.SPACE) {
-    this.world.keyboard.RIGHT = true;
+    this.world.keyboard.SPACE = true; 
     if (!this.isCurrentlyHurtAnimation) {
       this.clearIntervalsAnimationMove();
       if (!this.isEnoughPoison) this.sharkyBubbleRegularAnimation();
@@ -126,3 +112,9 @@ export function sharkyAttackDKey() {
     }
   }
 }
+
+
+
+
+
+
