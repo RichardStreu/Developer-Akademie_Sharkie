@@ -1,7 +1,7 @@
 import { StatusBar } from "./statusBar.class.js";
 
 export class StatusBarLife extends StatusBar {
-  imgStatBarLife = [
+  imgArrayStatusBar = [
     "../../assets/img/4. Marcadores/green/Life/0_  copia 3.png",
     "../../assets/img/4. Marcadores/green/Life/20_  copia 4.png",
     "../../assets/img/4. Marcadores/green/Life/40_  copia 3.png",
@@ -14,10 +14,7 @@ export class StatusBarLife extends StatusBar {
 
   constructor() {
     super();
-    this.loadStatBarLifeImg();
+    this.loadImgArrayStatBar();
   }
 
-  async loadStatBarLifeImg() {
-    await this.loadImageCache(this.imgStatBarLife, this.constructor.name);
-  }
 }

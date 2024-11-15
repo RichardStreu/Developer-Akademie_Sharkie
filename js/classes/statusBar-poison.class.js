@@ -1,7 +1,7 @@
 import { StatusBar } from "./statusBar.class.js";
 
 export class StatusBarPoison extends StatusBar {
-  imgStatBarPoison = [
+  imgArrayStatusBar = [
     "../../assets/img/4. Marcadores/green/poisoned bubbles/0_ copia 2.png",
     "../../assets/img/4. Marcadores/green/poisoned bubbles/20_ copia 3.png",
     "../../assets/img/4. Marcadores/green/poisoned bubbles/40_ copia 2.png",
@@ -14,10 +14,6 @@ export class StatusBarPoison extends StatusBar {
 
   constructor() {
     super();
-    this.loadStatBarPoisonImg();
-  }
-
-  async loadStatBarPoisonImg() {
-    await this.loadImageCache(this.imgStatBarPoison, this.constructor.name);
+    this.loadImgArrayStatBar();
   }
 }

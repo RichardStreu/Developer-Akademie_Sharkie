@@ -6,7 +6,12 @@ export class StatusBar extends DrawableObject {
     super();
   }
 
+  async loadImgArrayStatBar() {
+    await this.loadImageCache(this.imgArrayStatusBar, this.constructor.name);
+  }
+
   setPercantageStatBar(percent) {
     this.percentage += percent;
   }
+ 
 }
