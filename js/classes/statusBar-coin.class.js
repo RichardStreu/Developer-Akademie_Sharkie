@@ -10,6 +10,8 @@ export class StatusBarCoin extends DrawableObject {
     "../../assets/img/4. Marcadores/green/Coin/100_  copia 4.png",
   ];
 
+  percentage = 0;
+
   constructor() {
     super();
     this.loadStatBarCoinImg();

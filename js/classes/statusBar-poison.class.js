@@ -10,6 +10,8 @@ export class StatusBarPoison extends DrawableObject {
     "../../assets/img/4. Marcadores/green/poisoned bubbles/100_ copia 3.png",
   ];
 
+  percentage = 0;
+
   constructor() {
     super();
     this.loadStatBarPoisonImg();

@@ -1,0 +1,1 @@
+import { DrawableObject } from "./drawable-object.class";

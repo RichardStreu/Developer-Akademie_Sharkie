@@ -10,6 +10,8 @@ export class StatusBarLife extends DrawableObject {
     "../../assets/img/4. Marcadores/green/Life/100_  copia 2.png",
   ];
 
+  percentage = 100;
+
   constructor() {
     super();
     this.loadStatBarLifeImg();
