@@ -4,8 +4,6 @@ import { sharkyXPosition, sharkyYPosition, sharkyWidth, sharkyHeight } from "./s
 
 export class SharkyBubble extends MoveableObject {
 
-  isEnoughPoison = false;
-
   constructor() {
     super();
     if (!this.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
