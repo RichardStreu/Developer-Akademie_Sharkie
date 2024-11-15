@@ -10,10 +10,9 @@ export class StatusBarLife extends StatusBar {
     "../../assets/img/4. Marcadores/green/Life/100_  copia 2.png",
   ];
 
-  percentage = 100;
-
   constructor() {
     super();
+    this.percentage = 100;
     this.loadImgArrayStatBar();
   }
 

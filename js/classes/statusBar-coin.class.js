@@ -10,10 +10,9 @@ export class StatusBarCoin extends StatusBar {
     "../../assets/img/4. Marcadores/green/Coin/100_  copia 4.png",
   ];
 
-  percentage = 0;
-
   constructor() {
     super();
+    this.percentage = 0;
     this.loadImgArrayStatBar();
   }
 
