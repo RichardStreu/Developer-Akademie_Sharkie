@@ -14,6 +14,7 @@ export class StatusBarPoison extends StatusBar {
     super();
     this.loadImgArrayStatBar();
     this.percentage = 0;
-    updateStatBarImage();
+    this.img = this.imageCache["../../assets/img/4. Marcadores/green/poisoned bubbles/0_ copia 2.png"];
+  
   }
 }

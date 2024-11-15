@@ -14,7 +14,7 @@ export class StatusBarCoin extends StatusBar {
     super();
     this.loadImgArrayStatBar();
     this.percentage = 0;
-    updateStatBarImage();
+    this.img = this.imageCache["../../assets/img/4. Marcadores/green/Coin/0_  copia 4.png"];
   }
 
 }
