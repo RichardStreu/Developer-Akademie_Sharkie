@@ -16,18 +16,16 @@ export class StatusBar extends DrawableObject {
   updatePercentageStatBar(percent) {
     if (this.percentage >= 0 && this.percentage <= 100) {
       this.percentage += percent;
-      setTimeout(() => {
-        this.img = this.imageCache[this.imgArrayStatusBar[this.updateStatBarImage()]];
-      }, 100);
-    } 
+      this.img = this.imageCache[this.imgArrayStatusBar[this.updateStatBarImage()]];
+    }
   }
 
   updateStatBarImage() {
     if (this.percentage <= 0) return 0;
     if (this.percentage > 0 && this.percentage < 20) return 1;
-    if (this.percentage > 20 && this.percentage < 40) return 2;
-    if (this.percentage > 40 && this.percentage < 60) return 3;
-    if (this.percentage > 60 && this.percentage < 80) return 4;
-    if (this.percentage > 80) return 5;
+    if (this.percentage >= 20 && this.percentage < 40) return 2;
+    if (this.percentage >= 40 && this.percentage < 60) return 3;
+    if (this.percentage >= 60 && this.percentage < 80) return 4;
+    if (this.percentage >= 80) return 5;
   }
 }
