@@ -56,14 +56,14 @@ export class World {
 
   level1 = new Level1();
 
-  sharky = new Sharky();
+  sharky = new Sharky(this);
 
   landscape = this.level1.landscape;
   enemies = this.level1.enemies;
 
   statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
 
-  // give each enemy its index of enemies as parameter
+  
 
   canvas;
   ctx;
