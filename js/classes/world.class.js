@@ -61,7 +61,7 @@ export class World {
   landscape = this.level1.landscape;
   enemies = this.level1.enemies;
 
-  statBars = [new StatusBarCoin(20, 20), new StatusBarLife(20, 40), new StatusBarPoison(20, 60)];
+  statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
 
   // give each enemy its index of enemies as parameter
 

@@ -1,8 +1,12 @@
 import { DrawableObject } from "./drawable-object.class.js";
 
+import { staticObjRatio } from "../script.js";
+
 export class StatusBar extends DrawableObject {
   constructor() {
     super();
+    this.height = 50 * staticObjRatio;
+    this.width = 175 * staticObjRatio;
   }
 
   async loadImgArrayStatBar() {
