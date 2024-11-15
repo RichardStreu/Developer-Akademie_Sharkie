@@ -76,6 +76,7 @@ export function sharkyAttackSpace() {
     this.world.keyboard.SPACE = true;
     if (!this.isCurrentlyHurtAnimation && !this.iscurrentlyAttackAnimation) {
       this.clearIntervalsAnimationMove();
+      this.sharkyBubbleRegularAnimation();
       // call attack animation
       console.log("Bubble Attack");
       this.iscurrentlyAttackAnimation = true;
@@ -84,17 +85,24 @@ export function sharkyAttackSpace() {
         this.sharkyStandAnimation();
         this.iscurrentlyAttackAnimation = false;
       }, 600);
-      
-    } 
-    
-    
+    }
   }
 }
 
 export function sharkyAttackDKey() {
   if (!this.world.keyboard.DKey) {
     this.world.keyboard.DKey = true;
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
-    console.log("Fin Slap Attack");
+    if (!this.isCurrentlyHurtAnimation && !this.iscurrentlyAttackAnimation) {
+      this.clearIntervalsAnimationMove();
+      this.sharkyFinSlapAnimation();
+      // call attack animation
+      console.log("Fin Slap Attack");
+      this.iscurrentlyAttackAnimation = true;
+      setTimeout(() => {
+        this.clearIntervalsAnimationMove();
+        this.sharkyStandAnimation();
+        this.iscurrentlyAttackAnimation = false;
+      }, 600);
+    }
   }
 }
