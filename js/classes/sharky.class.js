@@ -32,9 +32,11 @@ import {
   sharkyDeadShockAnimation,
 } from "./sharky.action.animations.js";
 
-import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, sharkyAttackDKey } from "./sharky.action.movement.js";
+import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, shootBubble, sharkyAttackDKey } from "./sharky.action.movement.js";
 
 import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss, regularHurt, electricHurt, isSharkyDead, regularDead, electricDead, gameOver } from "./sharky.action.hurt.js";
+
+import { SharkyBubble } from "./sharky.bubble.class.js";
 
 export let sharkyXPosition = 0;
 export let sharkyYPosition = 200;
@@ -138,7 +140,7 @@ export class Sharky extends MoveableObject {
       if (event.key == "d") this.keyDUp();
       if (Object.values(world.keyboard).every((value) => value === false)) this.allKeysUp();
     }
-  } 
+  }
 
   keyArrowLeftUp() {
     this.world.keyboard.LEFT = false;
@@ -205,6 +207,7 @@ Sharky.prototype.moveSharkyRight = moveSharkyRight;
 Sharky.prototype.moveSharkyUp = moveSharkyUp;
 Sharky.prototype.moveSharkyDown = moveSharkyDown;
 Sharky.prototype.sharkyAttackSpace = sharkyAttackSpace;
+Sharky.prototype.shootBubble = shootBubble;
 Sharky.prototype.sharkyAttackDKey = sharkyAttackDKey;
 
 Sharky.prototype.hurtedByPufferFish = hurtedByPufferFish;
