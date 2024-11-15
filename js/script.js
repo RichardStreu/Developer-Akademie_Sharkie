@@ -11,7 +11,7 @@ export let canvasHeight = 480;
 // minimum x position where an object respawns
 export let enemyStartX = 200;
 // maximum x position (+ enemyStartX) where an object respawns
-export let enemyStartDistX = 400;
+export let enemyStartDistX = 2400;
 // minimum y position where an object respawns
 export let enemyStartY = 0;
 // maximum y position where an object respawns
@@ -29,8 +29,8 @@ export let loadedCachsArray = [];
 function init() {
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
-  canvas.width = canvas.clientWidth * dpr;
-  canvas.height = canvas.clientHeight * dpr;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
 
   world = new World(canvas, keyboard);
   window.world = world;

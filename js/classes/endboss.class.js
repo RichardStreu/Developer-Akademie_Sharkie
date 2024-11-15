@@ -11,13 +11,21 @@ export class EndBoss extends MoveableObject {
 
   constructor() {
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/2.floating/1.png");
-    this.x = 300;
-    this.y = 100;
+    this.x = 2400;
+    this.y = -50;
     this.width = 320 * moveObjRatio;
     this.height = 365 * moveObjRatio;
+    this.loadAllImagesEndboss();
+    this.checkImagesCacheLoaded();
+    this.firstInterval = setInterval(() => {
+      if (this.isImageCacheLoaded) {
+        this.doCurrentBossAnimation();
+        clearInterval(this.firstInterval);
+      }
+    }, 100);
   }
 
-  async loadAllImagesCacheSharky() {
+  async loadAllImagesEndboss() {
     await this.loadImageCache(imagesBossIntroduce, this.constructor.name);
     await this.loadImageCache(imagesBossSwim, this.constructor.name);
     await this.loadImageCache(imagesBossAttack, this.constructor.name);

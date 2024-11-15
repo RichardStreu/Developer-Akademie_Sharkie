@@ -17,6 +17,14 @@ import { Barrier1 } from "./staticBarrier1.class.js";
 import { Barrier2 } from "./staticBarrier2.class.js";
 import { Barrier3 } from "./staticBarrier3.class.js";
 
+import { canvasWidth } from "../script.js";
+
+import { Level1 } from "./level1.class.js";
+
+import { StatusBarLife } from "./statusBar-life.class.js";
+import { StatusBarCoin } from "./statusBar-coin.class.js";
+import { StatusBarPoison } from "./statusBar-poison.class.js";
+
 export class World {
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -24,27 +32,38 @@ export class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.sharky.world = this;
   }
 
+  checkCollisions() {
+    setInterval(() => {
+      for (let index = 0; index < this.level1.enemies.length; index++) {
+        const enemy = this.level1.enemies[index];
+        if (this.sharky.isColliding(enemy)) {
+          this.sharky.hurtSharky(enemy.constructor.name);
+          if (!this.sharky.isCurrentlyHurt) this.sharky.isCurrentlyHurt = true;
+          break;
+        } else {
+          this.sharky.isCurrentlyHurt = false;
+        }
+      }
+    }, 100);
+  }
+
+  level1 = new Level1();
+
   sharky = new Sharky();
 
-  landscape = [new Water(), new Fondo1(), new Fondo2(), new Floor(), new Light()];
+  landscape = this.level1.landscape;
+  enemies = this.level1.enemies;
+
+  statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
 
   // give each enemy its index of enemies as parameter
-  enemies = [
-    new PufferFishGreen(0),
-    new JellyFishYellowRD(1),
-    new PufferFishOrange(2),
-    new JellyFishLilaRD(3),
-    new JellyFishGreenSD(4),
-    new JellyFishPinkSD(5),
-    new PufferFishRed(6),
-    // new EndBoss(),
-  ];
 
   canvas;
   ctx;
@@ -52,21 +71,19 @@ export class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(this.camera_x, 0);
-
     this.addObjectsToMap(this.landscape);
     this.addToMap(this.sharky);
     this.addObjectsToMap(this.enemies);
-
     this.ctx.translate(-this.camera_x, 0);
-
+    this.addObjectsToMap(this.statBars);
     requestAnimationFrame(() => this.draw());
   }
 
   addToMap(object) {
     if (object.otherDirection) this.flipImage(object);
-    this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+    object.draw(this.ctx);
+    object.drawFrame(this.ctx);
     if (object.otherDirection) this.flipImageBack(object);
   }
 
