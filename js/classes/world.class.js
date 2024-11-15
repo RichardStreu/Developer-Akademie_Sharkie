@@ -75,8 +75,8 @@ export class World {
     this.addObjectsToMap(this.landscape);
     this.addToMap(this.sharky);
     this.addObjectsToMap(this.enemies);
-    this.addObjectsToMap(this.statBars);
     this.ctx.translate(-this.camera_x, 0);
+    this.addObjectsToMap(this.statBars);
     requestAnimationFrame(() => this.draw());
   }
 
