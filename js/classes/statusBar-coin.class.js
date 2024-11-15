@@ -1,6 +1,6 @@
-import { DrawableObject } from "./drawable-object.class";
+import { StatusBar } from "./statusBar.class.js";
 
-export class StatusBarCoin extends DrawableObject {
+export class StatusBarCoin extends StatusBar {
   imgStatBarCoin = [
     "../../assets/img/4. Marcadores/green/Coin/0_  copia 4.png",
     "../../assets/img/4. Marcadores/green/Coin/20_  copia 2.png",
