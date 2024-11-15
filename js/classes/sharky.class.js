@@ -117,7 +117,7 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyDown(event) {
-    if (this.lifeEnergy > 0) {
+    if (this.lifeEnergy > 0 && !this.iscurrentlyAttackAnimation) {
       if (event.key == "ArrowLeft") this.moveSharkyLeft();
       if (event.key == "ArrowRight") this.moveSharkyRight();
       if (event.key == "ArrowUp") this.moveSharkyUp();
@@ -128,7 +128,7 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyUp(event) {
-    if (this.lifeEnergy > 0) {
+    if (this.lifeEnergy > 0 && !this.iscurrentlyAttackAnimation) {
       if (event.key == "ArrowLeft") this.keyArrowLeftUp();
       if (event.key == "ArrowRight") this.keyArrowRightUp();
       if (event.key == "ArrowUp") this.keyArrowUpUp();
@@ -137,7 +137,7 @@ export class Sharky extends MoveableObject {
       if (event.key == "d") this.keyDUp();
       if (Object.values(world.keyboard).every((value) => value === false)) this.allKeysUp();
     }
-  }
+  } 
 
   keyArrowLeftUp() {
     this.world.keyboard.LEFT = false;

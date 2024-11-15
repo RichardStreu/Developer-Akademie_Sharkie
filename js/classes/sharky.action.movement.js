@@ -74,16 +74,15 @@ export function moveSharkyDown() {
 export function sharkyAttackSpace() {
   if (!this.world.keyboard.SPACE) {
     this.world.keyboard.SPACE = true;
-    if (!this.isCurrentlyHurtAnimation && !this.iscurrentlyAttackAnimation) {
+    if (!this.isCurrentlyHurtAnimation) {
       this.clearIntervalsAnimationMove();
       this.sharkyBubbleRegularAnimation();
-      // call attack animation
-      console.log("Bubble Attack");
       this.iscurrentlyAttackAnimation = true;
       setTimeout(() => {
+        this.iscurrentlyAttackAnimation = false;
+        this.world.keyboard.SPACE = false; 
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
-        this.iscurrentlyAttackAnimation = false;
       }, 600);
     }
   }
@@ -92,16 +91,15 @@ export function sharkyAttackSpace() {
 export function sharkyAttackDKey() {
   if (!this.world.keyboard.DKey) {
     this.world.keyboard.DKey = true;
-    if (!this.isCurrentlyHurtAnimation && !this.iscurrentlyAttackAnimation) {
+    if (!this.isCurrentlyHurtAnimation) {
       this.clearIntervalsAnimationMove();
       this.sharkyFinSlapAnimation();
-      // call attack animation
-      console.log("Fin Slap Attack");
       this.iscurrentlyAttackAnimation = true;
       setTimeout(() => {
+        this.iscurrentlyAttackAnimation = false;
+        this.world.keyboard.DKey = false;
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
-        this.iscurrentlyAttackAnimation = false;
       }, 600);
     }
   }
