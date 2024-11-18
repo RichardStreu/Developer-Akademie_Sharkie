@@ -8,7 +8,7 @@ export class Coin extends MoveableObject {
     "../../assets/img/4. Marcadores/1. Coins/4.png",
   ];
 
-  constructor(x, y) {
+  constructor(x, y, index) {
     super().loadImage("../../assets/img/4. Marcadores/1. Coins/1.png");
     this.loadImageCache(this.imagesCoin, this.constructor.name);
     this.checkImagesCacheLoaded();

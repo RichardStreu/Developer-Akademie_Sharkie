@@ -36,11 +36,10 @@ export class Level1 {
     ];
 
     this.enemies = [
-      new Poison(250, 350),
-      new PufferFishGreen(0),
-      new JellyFishYellowRD(1),
-      new PufferFishOrange(2),
-      new JellyFishLilaRD(3),
+      // new PufferFishGreen(0),
+      // new JellyFishYellowRD(1),
+      // new PufferFishOrange(2),
+      // new JellyFishLilaRD(3),
       // new JellyFishGreenSD(4),
       // new JellyFishPinkSD(5),
       // new PufferFishRed(6),
@@ -55,7 +54,12 @@ export class Level1 {
       // new PufferFishGreen(15),
       // new PufferFishGreen(16),
       // new EndBoss(17),
-      new Coin(300, 200),
+      new Poison(450, 350, 18),
+      new Poison(800, 390, 19),
+      new Poison(1400, 380, 20),
+      new Poison(1670, 360, 21),
+      new Poison(2090, 370, 22),
+      new Coin(300, 200, 18),
     ];
   }
 }
