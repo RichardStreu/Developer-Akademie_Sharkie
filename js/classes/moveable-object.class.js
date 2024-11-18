@@ -6,7 +6,7 @@ export class MoveableObject extends DrawableObject {
   otherDirection = false;
   speedY = 2;
   lifeEnergy;
-  isEnoughPoison = true;
+  isEnoughPoison = false;
 
   constructor() {
     super();

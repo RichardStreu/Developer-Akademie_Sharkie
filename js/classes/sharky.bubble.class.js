@@ -66,89 +66,73 @@ export class SharkyBubble extends MoveableObject {
 
   isCollPufferGreen(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y && this.y < obj.y + (obj.height - 10)) {
-      let demageFactor = 50;
-      obj.lifeEnergy -= demageFactor;
-      if (obj.lifeEnergy <= demageFactor) {
-        obj.enemyIsDead();
-      }
+      let demageFactor = 35;
+      this.bubbleHit(obj, demageFactor);
       return true;
     }
   }
 
   isCollPufferOrange(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y && this.y < obj.y + (obj.height - 17)) {
-      let demageFactor = 50;
-      obj.lifeEnergy -= demageFactor;
-      if (obj.lifeEnergy <= demageFactor) {
-        obj.enemyIsDead();
-      }
+      let demageFactor = 35;
+      this.bubbleHit(obj, demageFactor);
       return true;
     }
   }
 
   isCollPufferRed(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + (obj.width - 10) && this.y + this.height > obj.y + 4 && this.y < obj.y + 4 + (obj.height - 30)) {
-      let demageFactor = 50;
-      obj.lifeEnergy -= demageFactor;
-      if (obj.lifeEnergy <= demageFactor) {
-        obj.enemyIsDead();
-      }
+      let demageFactor = 35;
+      this.bubbleHit(obj, demageFactor);
       return true;
     }
   }
 
   isCollJellyGreen(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
-      let demageFactor = 50;
-      obj.lifeEnergy -= demageFactor;
-      if (obj.lifeEnergy <= demageFactor) {
-        obj.enemyIsDead();
-      }
+      let demageFactor = 30;
+      this.bubbleHit(obj, demageFactor);
       return true;
     }
   }
 
   isCollJellyPink(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
-      let demageFactor = 50;
-      obj.lifeEnergy -= demageFactor;
-      if (obj.lifeEnergy <= demageFactor) {
-        obj.enemyIsDead();
-      }
+      let demageFactor = 30;
+      this.bubbleHit(obj, demageFactor);
       return true;
     }
   }
 
   isCollJellyLila(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y && this.y < obj.y + obj.height) {
-      let demageFactor = 50;
-      obj.lifeEnergy -= demageFactor;
-      if (obj.lifeEnergy <= demageFactor) {
-        obj.enemyIsDead();
-      }
+      let demageFactor = 30;
+      this.bubbleHit(obj, demageFactor);
       return true;
     }
   }
 
   isCollJellyYellow(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
-      let demageFactor = 50;
-      obj.lifeEnergy -= demageFactor;
-      if (obj.lifeEnergy <= demageFactor) {
-        obj.enemyIsDead();
-      }
+      let demageFactor = 30;
+      this.bubbleHit(obj, demageFactor);
       return true;
     }
   }
 
   isCollEndBoss(obj) {
     if (this.x + this.width > obj.x + 10 && this.x < obj.x + 10 + (obj.width - 35) && this.y + this.height > obj.y + 180 && this.y < obj.y + 180 + (obj.height - 250)) {
-      let demageFactor = 15;
-      obj.lifeEnergy -= demageFactor;
-      if (obj.lifeEnergy <= demageFactor) {
-        obj.enemyIsDead();
-      }
+      let demageFactor = 10;
+      this.bubbleHit(obj, demageFactor);
       return true;
+    }
+  }
+
+  bubbleHit(obj, demageFactor) {
+    this.y = canvasHeight + 2000;
+    obj.lifeEnergy -= demageFactor;
+    if (obj.lifeEnergy <= demageFactor) {
+      obj.enemyIsDead();
     }
   }
 }
