@@ -140,6 +140,8 @@ export class MoveableObject extends DrawableObject {
     if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
       let enemyIndex = this.world.enemies.findIndex((element) => element.index === obj.index);
       this.world.enemies.splice(enemyIndex, 1);
+      this.coin += 1;
+      this.world.statBars[0].updatePercentageStatBar(9.1);
       return true;
     }
   }
@@ -148,6 +150,8 @@ export class MoveableObject extends DrawableObject {
     if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
       let enemyIndex = this.world.enemies.findIndex((element) => element.index === obj.index);
       this.world.enemies.splice(enemyIndex, 1);
+      this.poison += 1;
+      this.world.statBars[2].updatePercentageStatBar(17);
       return true;
     }
   }
