@@ -65,53 +65,74 @@ export class SharkyBubble extends MoveableObject {
   }
 
   isCollPufferGreen(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 10)) {
+    if (this.x + this.width > obj.x && 
+    this.x < obj.x + obj.width && 
+    this.y + this.height > obj.y && 
+    this.y < obj.y + (obj.height - 10)) {
       return true;
     }
   }
 
   isCollPufferOrange(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 17)) {
+    if (this.x + this.width > obj.x && 
+    this.x < obj.x + obj.width && 
+    this.y + this.height > obj.y && 
+    this.y < obj.y + (obj.height - 17)) {
       return true;
     }
   }
 
   isCollPufferRed(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + (obj.width - 10) && this.y + 125 + (this.height - 190) > obj.y + 4 && this.y + 125 < obj.y + 4 + (obj.height - 30)) {
+    if (this.x + this.width > obj.x && 
+    this.x < obj.x + (obj.width - 10) && 
+    this.y + this.height > obj.y + 4 && 
+    this.y < obj.y + 4 + (obj.height - 30)) {
       return true;
     }
   }
 
   isCollJellyGreen(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
+    if (this.x + this.width > obj.x && 
+    this.x < obj.x + obj.width && 
+    this.y + this.height > obj.y + 5 && 
+    this.y < obj.y + 5 + (obj.height - 15)) {
       return true;
     }
   }
 
   isCollJellyPink(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
+    if (this.x + this.width > obj.x && 
+    this.x < obj.x + obj.width && 
+    this.y + this.height > obj.y + 5 && 
+    this.y < obj.y + 5 + (obj.height - 15)) {
       return true;
     }
   }
 
   isCollJellyLila(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
+    if (this.x + this.width > obj.x && 
+    this.x < obj.x + obj.width && 
+    this.y + this.height > obj.y && 
+    this.y < obj.y + obj.height) {
       return true;
     }
   }
 
   isCollJellyYellow(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
+    if (this.x + this.width > obj.x && 
+    this.x < obj.x + obj.width && 
+    this.y + this.height > obj.y + 5 && 
+    this.y < obj.y + 5 + (obj.height - 15)) {
       return true;
     }
   }
 
   isCollEndBoss(obj) {
     if (
-      this.x + 40 + (this.width - 80) > obj.x + 10 &&
-      this.x + 40 < obj.x + 10 + (obj.width - 35) &&
-      this.y + 125 + (this.height - 190) > obj.y + 180 &&
-      this.y + 125 < obj.y + 180 + (obj.height - 250)
+      this.x + this.width > obj.x + 10 &&
+      this.x < obj.x + 10 + (obj.width - 35) &&
+      this.y + this.height > obj.y + 180 &&
+      this.y < obj.y + 180 + (obj.height - 250)
     ) {
       return true;
     }
