@@ -66,7 +66,7 @@ export class JellyFishPinkSD extends JellyFish {
     this.jellyDead();
     this.floatToSurface();
     setInterval(() => {
-      if (this.y < 0 - this.height + 100) {
+      if (this.y < -500) {
         clearInterval(this.currentMovement);
         clearInterval(this.currentAnimationIntervall);
       }

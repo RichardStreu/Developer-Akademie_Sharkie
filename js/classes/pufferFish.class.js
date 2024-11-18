@@ -20,6 +20,7 @@ export class PufferFish extends MoveableObject {
   }
 
   async loadAllImagesCachePuffer() {
+    await this.loadImageCache(this.imagesDie, this.constructor.name);
     await this.loadImageCache(this.imagesSwim, this.constructor.name);
     await this.loadImageCache(this.imagesTransition, this.constructor.name);
     await this.loadImageCache(this.imagesBubbleSwim, this.constructor.name);
@@ -70,7 +71,8 @@ export class PufferFish extends MoveableObject {
   enemyIsDead() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
-  
+
+    this.img = this.imageCache[this.imagesDie[2]];
     this.floatToSurface();
     setInterval(() => {
       if (this.y < -500) {

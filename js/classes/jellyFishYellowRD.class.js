@@ -59,14 +59,13 @@ export class JellyFishYellowRD extends JellyFish {
     this.doImageAnimation(this.imagesDead, this.img, 250);
   }
 
-
   enemyIsDead() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
     this.jellyDead();
     this.floatToSurface();
     setInterval(() => {
-      if (this.y < 0 - this.height + 100) {
+      if (this.y < -500) {
         clearInterval(this.currentMovement);
         clearInterval(this.currentAnimationIntervall);
       }
