@@ -1,3 +1,13 @@
+
+export function getCoins() {
+  console.log("goit coin");
+  
+}
+
+export function getPoison() {
+  console.log("goit poison");
+}
+
 export function hurtedByPufferFish() {
   let demageFactor = -4;
   this.lifeEnergy += demageFactor;

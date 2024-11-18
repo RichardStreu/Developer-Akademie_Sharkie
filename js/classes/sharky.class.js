@@ -34,7 +34,20 @@ import {
 
 import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, shootBubble, sharkyAttackDKey } from "./sharky.action.movement.js";
 
-import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss, regularHurt, electricHurt, isSharkyDead, regularDead, electricDead, gameOver } from "./sharky.action.hurt.js";
+import {
+  getCoins,
+  getPoison,
+  hurtedByPufferFish,
+  hurtedByJellyFishRD,
+  hurtedByJellyFishSD,
+  hurtedByEndBoss,
+  regularHurt,
+  electricHurt,
+  isSharkyDead,
+  regularDead,
+  electricDead,
+  gameOver,
+} from "./sharky.action.hurt.js";
 
 import { SharkyBubble } from "./sharky.bubble.class.js";
 
@@ -202,6 +215,8 @@ export class Sharky extends MoveableObject {
 
   hurtSharky(enemy) {
     if (this.lifeEnergy > 0) {
+      if (enemy == "Coin") this.getCoins();
+      if (enemy == "Poison") this.getPoison();
       if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
       if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();
       if (enemy == "JellyFishGreenSD" || enemy == "JellyFishPinkSD") this.hurtedByJellyFishSD();
@@ -232,6 +247,8 @@ Sharky.prototype.sharkyAttackSpace = sharkyAttackSpace;
 Sharky.prototype.shootBubble = shootBubble;
 Sharky.prototype.sharkyAttackDKey = sharkyAttackDKey;
 
+Sharky.prototype.getPoison = getPoison;
+Sharky.prototype.getCoins = getCoins;
 Sharky.prototype.hurtedByPufferFish = hurtedByPufferFish;
 Sharky.prototype.hurtedByJellyFishRD = hurtedByJellyFishRD;
 Sharky.prototype.hurtedByJellyFishSD = hurtedByJellyFishSD;

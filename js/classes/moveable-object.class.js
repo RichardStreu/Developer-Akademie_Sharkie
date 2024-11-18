@@ -125,7 +125,7 @@ export class MoveableObject extends DrawableObject {
 
   isColliding(obj) {
     if (obj.constructor.name == "Coin") return this.isCollCoin(obj);
-    if (obj.constructor.name == "Poison") return this.isCollPoison(obj); 
+    if (obj.constructor.name == "Poison") return this.isCollPoison(obj);
     if (obj.constructor.name == "PufferFishGreen") return this.isCollPufferGreen(obj);
     if (obj.constructor.name == "PufferFishOrange") return this.isCollPufferOrange(obj);
     if (obj.constructor.name == "PufferFishRed") return this.isCollPufferRed(obj);
@@ -136,9 +136,17 @@ export class MoveableObject extends DrawableObject {
     if (obj.constructor.name == "EndBoss") return this.isCollEndBoss(obj);
   }
 
-  isCollCoin() {}
+  isCollCoin(obj) {
+    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
+      return true;
+    }
+  }
 
-  isCollPoison() {}
+  isCollPoison(obj) {
+    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
+      return true;
+    }
+  }
 
   isCollPufferGreen(obj) {
     if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 10)) {
@@ -192,5 +200,4 @@ export class MoveableObject extends DrawableObject {
       return true;
     }
   }
-
 }
