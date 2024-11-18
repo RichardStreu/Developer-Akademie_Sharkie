@@ -217,7 +217,11 @@ export class Sharky extends MoveableObject {
 
   hurtSharky(enemy) {
     if (this.lifeEnergy > 0) {
-      if (enemy == "Coin") this.getCoins(enemy);
+      if (enemy == "Coin") {
+        this.getCoins(enemy);
+        console.log(enemy);
+        
+      } 
       if (enemy == "Poison") this.getPoison(enemy);
       if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
       if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();

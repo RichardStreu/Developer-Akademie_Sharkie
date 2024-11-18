@@ -1,11 +1,14 @@
+export function getCoins(enemy) {
+  // let enemyIndex = this.world.enemies.findIndex(element => element.index === enemy.index);
 
-export function getCoins() {
-  console.log("got coin");
   
+  // this.world.enemies.splice(enemyIndex, 1);
 }
 
-export function getPoison() {
-  console.log("got poison");
+export function getPoison(enemy) {
+  // console.log("got poison");
+  // let enemyIndex = this.world.enemies.findIndex(enemy => enemy.index === enemy.index);
+  // this.world.enemies.splice(enemyIndex, 1);
 }
 
 export function hurtedByPufferFish() {

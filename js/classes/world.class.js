@@ -46,7 +46,7 @@ export class World {
       for (let index = 0; index < this.level1.enemies.length; index++) {
         const enemy = this.level1.enemies[index];
         if (this.sharky.isColliding(enemy)) {
-          this.sharky.hurtSharky(enemy.constructor.name);
+          this.sharky.hurtSharky(enemy.constructor.name, enemy);
           if (!this.sharky.isCurrentlyHurt) this.sharky.isCurrentlyHurt = true;
           break;
         } else {
