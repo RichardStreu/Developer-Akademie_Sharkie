@@ -56,6 +56,8 @@ export class Sharky extends MoveableObject {
   iscurrentlyAttackAnimation = false;
   world;
   lifeEnergy = 100;
+  isEnoughPoison;
+  isEnoughCoin;
 
   constructor(world) {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
@@ -71,6 +73,8 @@ export class Sharky extends MoveableObject {
     this.setSharkyWindowEventListeners();
     this.firstSharkyAnimationAfterCacheLoading();
     this.checkCurrentSharkyPositions();
+    this.isEnoughPoison = false;
+    this.isEnoughCoin = false;
   }
 
   async loadAllImagesCacheSharky() {
