@@ -142,38 +142,53 @@ export class Sharky extends MoveableObject {
     }
   }
 
+  setAllKeyDownsToFalse() {
+    this.world.keyboard.LEFT = false;
+    this.world.keyboard.RIGHT = false;
+    this.world.keyboard.UP = false;
+    this.world.keyboard.DOWN = false;
+    this.world.keyboard.SPACE = false;
+    this.world.keyboard.DKey = false;
+  }
+
+  clearMovementIntervals() {
+    clearInterval(this.isSwimLeft);
+    clearInterval(this.isSwimRight);
+    clearInterval(this.isSwimUp);
+    clearInterval(this.isSwimDown);
+  }
+
   keyArrowLeftUp() {
     this.world.keyboard.LEFT = false;
     clearInterval(this.isSwimLeft);
   }
-
   keyArrowRightUp() {
     this.world.keyboard.RIGHT = false;
     clearInterval(this.isSwimRight);
   }
-
   keyArrowUpUp() {
     this.world.keyboard.UP = false;
     clearInterval(this.isSwimUp);
   }
-
   keyArrowDownUp() {
     this.world.keyboard.DOWN = false;
     clearInterval(this.isSwimDown);
   }
-
   keySpaceUp() {
     this.world.keyboard.SPACE = false;
   }
-
   keyDUp() {
     this.world.keyboard.DKey = false;
   }
-
   allKeysUp() {
-    if (!this.isCurrentlyHurtAnimation) {
-      console.log("KAKA");
-      
+    if (this.iscurrentlyAttackAnimation) {
+      setTimeout(() => {
+        this.clearIntervalsAnimationMove();
+        this.letSharkySleep();
+        this.sharkyStandAnimation();
+      }, 600);
+    }
+    if (!this.isCurrentlyHurtAnimation && !this.iscurrentlyAttackAnimation) {
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
       this.sharkyStandAnimation();
