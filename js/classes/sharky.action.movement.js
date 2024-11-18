@@ -1,4 +1,4 @@
-import { canvasHeight, canvasWidth } from "../script.js";
+  import { canvasHeight, canvasWidth } from "../script.js";
 
 import { SharkyBubble } from "./sharky.bubble.class.js";
 
@@ -82,7 +82,7 @@ export function sharkyAttackSpace() {
       if (this.isEnoughPoison) this.sharkyBubblePoisonAnimation();
       this.iscurrentlyAttackAnimation = true;
       setTimeout(() => {
-        this.iscurrentlyAttackAnimation = false;
+        if (this.iscurrentlyAttackAnimation) this.iscurrentlyAttackAnimation = false;
         this.world.keyboard.SPACE = false;
         this.shootBubble();
         this.clearIntervalsAnimationMove();

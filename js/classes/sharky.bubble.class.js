@@ -33,4 +33,20 @@ export class SharkyBubble extends MoveableObject {
       if (this.direction == "right" && this.x < canvasWidth * 4 && !this.hasBubbleHit) this.x += 5;
     }, 10);
   }
+
+  checkCollisions() {
+    setInterval(() => {
+      for (let index = 0; index < this.level1.enemies.length; index++) {
+        const enemy = this.level1.enemies[index];
+        if (this.sharky.isColliding(enemy)) {
+          this.sharky.hurtSharky(enemy.constructor.name);
+          if (!this.sharky.isCurrentlyHurt) this.sharky.isCurrentlyHurt = true;
+          break;
+        } else {
+          this.sharky.isCurrentlyHurt = false;
+        }
+      }
+    }, 100);
+  }
+
 }

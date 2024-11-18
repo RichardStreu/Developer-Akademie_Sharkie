@@ -183,6 +183,7 @@ export class Sharky extends MoveableObject {
   allKeysUp() {
     if (this.iscurrentlyAttackAnimation) {
       setTimeout(() => {
+        if (this.iscurrentlyAttackAnimation) this.iscurrentlyAttackAnimation = false;
         this.clearIntervalsAnimationMove();
         this.letSharkySleep();
         this.sharkyStandAnimation();
