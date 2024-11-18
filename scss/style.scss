@@ -4,15 +4,33 @@
 @import "./default.scss";
 @import "./canvas.scss";
 
+@font-face {
+  font-family: "LuckyGuy";
+  src: url("../assets/font/LuckiestGuy-Regular.ttf") format("woff2"), sans-sarif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "LuckyGuy";
+  color: white;
+}
+
 main {
   position: relative;
   height: 100dvh;
   background-image: url("../../assets/img/3. Background/Dark/1.png");
+
 
   h1 {
     position: absolute;
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  canvas {
+    border-radius: 1rem;
+    box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
   }
 }
