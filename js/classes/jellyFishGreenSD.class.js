@@ -62,4 +62,5 @@ export class JellyFishGreenSD extends JellyFish {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
   }
+
 }

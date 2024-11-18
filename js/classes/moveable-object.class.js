@@ -186,4 +186,5 @@ export class MoveableObject extends DrawableObject {
       return true;
     }
   }
+
 }

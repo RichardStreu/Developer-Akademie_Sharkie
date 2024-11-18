@@ -51,4 +51,5 @@ export class JellyFishLilaRD extends JellyFish {
       clearInterval(this.currentAnimationIntervall);
     }
   }
+
 }

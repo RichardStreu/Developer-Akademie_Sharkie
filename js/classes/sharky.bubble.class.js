@@ -43,8 +43,10 @@ export class SharkyBubble extends MoveableObject {
         const enemy = this.world.level1.enemies[index];
         
         if (this.isColliding(enemy)) {
-          console.log("hit enemy" + enemy);
+          console.log(enemy);
           
+          console.log(enemy.enemieIndex);
+          this.y = 2000;
           break;
         } else {
           
@@ -69,7 +71,10 @@ export class SharkyBubble extends MoveableObject {
     this.x < obj.x + obj.width && 
     this.y + this.height > obj.y && 
     this.y < obj.y + (obj.height - 10)) {
+      obj.lifeEnergy -= 20;
+      console.log("Hit pufferfish green");
       return true;
+
     }
   }
 
