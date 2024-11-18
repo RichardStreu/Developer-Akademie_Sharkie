@@ -34,10 +34,10 @@ export class Level1 {
     ];
 
     this.enemies = [
-      // new PufferFishGreen(0),
-      // new JellyFishYellowRD(1),
-      // new PufferFishOrange(2),
-      // new JellyFishLilaRD(3),
+      new PufferFishGreen(0),
+      new JellyFishYellowRD(1),
+      new PufferFishOrange(2),
+      new JellyFishLilaRD(3),
       // new JellyFishGreenSD(4),
       // new JellyFishPinkSD(5),
       // new PufferFishRed(6),
