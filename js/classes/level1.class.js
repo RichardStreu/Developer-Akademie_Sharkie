@@ -59,7 +59,16 @@ export class Level1 {
       new Poison(1400, 380, 20),
       new Poison(1670, 360, 21),
       new Poison(2090, 370, 22),
-      new Coin(300, 200, 18),
+      new Coin(320, 270, 23),
+      new Coin(380, 100, 24),
+      new Coin(500, 160, 25),
+      new Coin(800, 300, 26),
+      new Coin(800, 200, 27),
+      new Coin(800, 100, 28),
+      new Coin(1200, 300, 29),
+      new Coin(1500, 25, 30),
+      new Coin(1600, 10, 31),
+      new Coin(2000, 100, 32),
     ];
   }
 }
