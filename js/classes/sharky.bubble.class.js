@@ -4,12 +4,17 @@ import { sharkyXPosition, sharkyYPosition, sharkyWidth, sharkyHeight } from "./s
 
 export class SharkyBubble extends MoveableObject {
 
-  constructor() {
+  constructor(direction) {
     super();
     if (!this.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
     if (this.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
-    this.x = sharkyXPosition + 169;
-    this.y = sharkyYPosition + 151;
+    if (direction == "left") {
+      this.x = sharkyXPosition + 20;
+      this.y = sharkyYPosition + 151;
+    } else {
+      this.x = sharkyXPosition + 169;
+      this.y = sharkyYPosition + 151;
+    }
     this.width = 25;
     this.height = 25;
   }

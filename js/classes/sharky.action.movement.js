@@ -93,7 +93,8 @@ export function sharkyAttackSpace() {
 }
 
 export function shootBubble() {
-  this.world.bubbles.push(new SharkyBubble());
+  if (this.otherDirection) this.world.bubbles.push(new SharkyBubble("left"));
+  if (!this.otherDirection) this.world.bubbles.push(new SharkyBubble("right"));
 }
 
 export function sharkyAttackDKey() {
