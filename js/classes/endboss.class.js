@@ -75,4 +75,17 @@ export class EndBoss extends MoveableObject {
   bossStop() {
     this.clearIntervalsAnimationMove();
   }
+
+  enemyIsDead() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+    this.bossDead();
+    this.floatToSurface();
+    setInterval(() => {
+      if (this.y < 0 - this.height + 100) {
+        clearInterval(this.currentMovement);
+        clearInterval(this.currentAnimationIntervall);
+      }
+    }, 200);
+  }
 }

@@ -53,16 +53,4 @@ export class JellyFish extends MoveableObject {
     await this.loadImageCache(this.imagesDead, this.constructor.name);
   }
 
-  enemyIsDead() {
-    clearInterval(this.currentMovement);
-    clearInterval(this.currentAnimationIntervall);
-    this.jellyDead();
-    this.floatToSurface();
-    setInterval(() => {
-      if (this.y < 0 - this.height + 100) {
-        clearInterval(this.currentMovement);
-        clearInterval(this.currentAnimationIntervall);
-      }
-    }, 200);
-  }
 }

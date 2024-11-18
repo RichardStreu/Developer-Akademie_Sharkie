@@ -66,4 +66,16 @@ export class PufferFish extends MoveableObject {
       }
     }, 100);
   }
+
+  enemyIsDead() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+    this.floatToSurface();
+    setInterval(() => {
+      if (this.y < -500) {
+        clearInterval(this.currentMovement);
+        clearInterval(this.currentAnimationIntervall);
+      }
+    }, 200);
+  }
 }

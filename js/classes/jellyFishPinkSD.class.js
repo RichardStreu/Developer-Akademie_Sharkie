@@ -51,4 +51,25 @@ export class JellyFishPinkSD extends JellyFish {
       clearInterval(this.currentAnimationIntervall);
     }
   }
+
+  jellyDead() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+    // this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
+    this.doImageAnimation(this.imagesDead, this.img, 250);
+  }
+
+
+  enemyIsDead() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+    this.jellyDead();
+    this.floatToSurface();
+    setInterval(() => {
+      if (this.y < 0 - this.height + 100) {
+        clearInterval(this.currentMovement);
+        clearInterval(this.currentAnimationIntervall);
+      }
+    }, 200);
+  }
 }
