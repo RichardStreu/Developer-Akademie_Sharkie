@@ -16,6 +16,7 @@ export class Coin extends MoveableObject {
     this.width = 25;
     this.x = x;
     this.y = y;
+    this.index = index;
     this.coinAnimationAfterCacheLoading();
   }
 

@@ -10,5 +10,6 @@ export class Poison extends DrawableObject {
     this.width = 50;
     this.x = x;
     this.y = y;
+    this.index = index;
   }
 }

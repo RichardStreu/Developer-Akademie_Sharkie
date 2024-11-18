@@ -1,11 +1,11 @@
 
 export function getCoins() {
-  console.log("goit coin");
+  console.log("got coin");
   
 }
 
 export function getPoison() {
-  console.log("goit poison");
+  console.log("got poison");
 }
 
 export function hurtedByPufferFish() {

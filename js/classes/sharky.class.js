@@ -69,6 +69,8 @@ export class Sharky extends MoveableObject {
   iscurrentlyAttackAnimation = false;
   world;
   lifeEnergy = 100;
+  coin = 0;
+  poison = 0;
   isEnoughPoison;
   isEnoughCoin;
 
@@ -215,8 +217,8 @@ export class Sharky extends MoveableObject {
 
   hurtSharky(enemy) {
     if (this.lifeEnergy > 0) {
-      if (enemy == "Coin") this.getCoins();
-      if (enemy == "Poison") this.getPoison();
+      if (enemy == "Coin") this.getCoins(enemy);
+      if (enemy == "Poison") this.getPoison(enemy);
       if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
       if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();
       if (enemy == "JellyFishGreenSD" || enemy == "JellyFishPinkSD") this.hurtedByJellyFishSD();
