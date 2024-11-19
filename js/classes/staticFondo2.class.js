@@ -24,7 +24,7 @@ export class Fondo2 extends MoveableObject {
     }, 50);
   }
 
-  moveFondo1(sharkyX, x, sharkyMidPoint) {
+  moveFondo1(sharkyX, x, sharkyMidPoint) {  
     if (x < 1 && sharkyX > sharkyMidPoint && (sharkyX < (canvasWidth * 3.5) - sharkyWidth)) {
       this.x = (sharkyX * 0.1) - 30;
     } 

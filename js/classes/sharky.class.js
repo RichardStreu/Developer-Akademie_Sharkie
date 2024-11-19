@@ -52,7 +52,7 @@ import { SharkyBubble } from "./sharky.bubble.class.js";
 
 export let sharkyXPosition = 0;
 export let sharkyYPosition = 200;
-export let sharkyWidth;
+export let sharkyWidth = 216;
 export let sharkyHeight;
 //
 export class Sharky extends MoveableObject {
