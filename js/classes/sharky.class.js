@@ -73,7 +73,7 @@ export class Sharky extends MoveableObject {
   lifeEnergy = 100;
   coin = 0;
   poison = 0;
-  isEnoughPoison;
+  // isEnoughPoison;
   isEnoughCoin;
 
   constructor(world) {

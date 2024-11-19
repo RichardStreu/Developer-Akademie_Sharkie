@@ -8,11 +8,11 @@ export function getCoins(enemy) {
 export function getPoison(enemy) {
   console.log("got poison");
   this.poison += 1;
-  if (this.poison <= 5) this.isEnoughPoison = true;
+  if (this.poison >= 10) this.isEnoughPoison = true;
   // console.log("got poison");
   // let enemyIndex = this.world.enemies.findIndex(enemy => enemy.index === enemy.index);
   // this.world.enemies.splice(enemyIndex, 1);
-}
+}   
 
 export function hurtedByPufferFish() {
   let demageFactor = -4;
