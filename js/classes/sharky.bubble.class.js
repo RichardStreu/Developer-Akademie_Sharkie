@@ -119,7 +119,7 @@ export class SharkyBubble extends MoveableObject {
   isCollEndBoss(obj) {
     if (this.x + this.width > obj.x + 10 && this.x < obj.x + 10 + (obj.width - 35) && this.y + this.height > obj.y + 180 && this.y < obj.y + 180 + (obj.height - 250)) {
       let demageFactor = 10;
-      this.bubbleHit(obj, demageFactor);
+      if (this.world.sharky.isEnoughPoison == true) this.bubbleHit(obj, demageFactor);
       return true;
     }
   }

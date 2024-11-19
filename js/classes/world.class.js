@@ -71,6 +71,8 @@ export class World {
   ctx;
   camera_x = 0;
 
+  
+
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
@@ -80,6 +82,8 @@ export class World {
     this.addObjectsToMap(this.bubbles);
     this.ctx.translate(-this.camera_x, 0);
     this.addObjectsToMap(this.statBars);
+    
+    
     requestAnimationFrame(() => this.draw());
   }
 

@@ -17,11 +17,11 @@ export class EndBoss extends MoveableObject {
   sharkyY;
 
   constructor(index, world) {
-    super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/2.floating/1.png");
+    super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.x = 2450;
     this.y = -1000;
-    this.width = 320 * moveObjRatio;
-    this.height = 365 * moveObjRatio;
+    this.width = 300 * moveObjRatio;
+    this.height = 342 * moveObjRatio;
     this.world = world;
     this.loadAllImagesEndboss();
     this.checkImagesCacheLoaded();
@@ -32,11 +32,12 @@ export class EndBoss extends MoveableObject {
     setInterval(() => {
       this.sharkyX = this.world.sharky.x;
       this.sharkyY = this.world.sharky.y;
-      if (this.sharkyX = 2200 && this.bossIsVisible == false) this.doBossIntroduce();
+      if (this.sharkyX >= 2000 && !this.bossIsVisible) this.doBossIntroduce();
     }, 100);
   }
 
   doBossIntroduce() {
+    this.bossIsVisible = true;
     this.y = -50;
     this.bossIntroduce();
     setTimeout(() => {
