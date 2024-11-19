@@ -85,7 +85,7 @@ export class EndBoss extends MoveableObject {
 
   bossDead() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesBossDead, this.img, 180);
+    this.doImageAnimation(imagesBossDead, this.img, 150);
   }
 
   bossHurt() {
@@ -98,16 +98,22 @@ export class EndBoss extends MoveableObject {
   }
 
   enemyIsDead() {
-    clearInterval(this.currentMovement);
-    clearInterval(this.currentAnimationIntervall);
     this.bossDead();
-    youWin();
-    this.floatToSurface();
-    setInterval(() => {
-      if (this.y < 0 - (this.height + 400)) {
-        clearInterval(this.currentMovement);
-        clearInterval(this.currentAnimationIntervall);
-      }
-    }, 200);
+
+    setTimeout(() => {
+      clearInterval(this.currentAnimationIntervall);
+      this.loadImage("../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png");
+    }, 600);
+
+    setTimeout(() => {
+      this.floatToSurface();
+      setInterval(() => {
+        if (this.y < 0 - (this.height + 400)) {
+          clearInterval(this.currentMovement);
+          clearInterval(this.currentAnimationIntervall);
+          youWin();
+        }
+      }, 200);
+    }, 1500);
   }
 }
