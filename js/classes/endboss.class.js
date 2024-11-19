@@ -3,7 +3,7 @@ import { moveObjRatio, loadedCachsArray } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
 
 export class EndBoss extends MoveableObject {
-  currentAnimation = "introduce"; //"introduce""swim""attack""dead""hurt" / "stop"
+  // currentAnimation = "introduce"; //"introduce""swim""attack""dead""hurt" / "stop"
 
   currentAnimationIntervall;
 
@@ -11,21 +11,38 @@ export class EndBoss extends MoveableObject {
 
   world;
 
+  bossIsVisible = false;
+
+  sharkyX;
+  sharkyY;
+
   constructor(index, world) {
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/2.floating/1.png");
     this.x = 2450;
-    this.y = -50;
+    this.y = -1000;
     this.width = 320 * moveObjRatio;
     this.height = 365 * moveObjRatio;
     this.world = world;
     this.loadAllImagesEndboss();
     this.checkImagesCacheLoaded();
-    this.firstInterval = setInterval(() => {
-      if (this.isImageCacheLoaded) {
-        this.doCurrentBossAnimation();
-        clearInterval(this.firstInterval);
-      }
+    this.checkSharkyPosition();
+  }
+
+  checkSharkyPosition() {
+    setInterval(() => {
+      this.sharkyX = this.world.sharky.x;
+      this.sharkyY = this.world.sharky.y;
+      if (this.sharkyX = 2200 && this.bossIsVisible == false) this.doBossIntroduce();
     }, 100);
+  }
+
+  doBossIntroduce() {
+    this.y = -50;
+    this.bossIntroduce();
+    setTimeout(() => {
+      this.clearIntervalsAnimationMove();
+      this.bossSwim();
+    }, 1500);
   }
 
   async loadAllImagesEndboss() {
@@ -52,7 +69,7 @@ export class EndBoss extends MoveableObject {
 
   bossIntroduce() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesBossIntroduce, this.img, 180);
+    this.doImageAnimation(imagesBossIntroduce, this.img, 150);
   }
 
   bossSwim() {

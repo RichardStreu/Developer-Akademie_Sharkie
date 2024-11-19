@@ -63,7 +63,7 @@ export class World {
   landscape = this.level1.landscape;
   enemies = this.level1.enemies;
 
-  statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
+  statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40, this), new StatusBarPoison(10, 80)];
 
   bubbles = [];
 

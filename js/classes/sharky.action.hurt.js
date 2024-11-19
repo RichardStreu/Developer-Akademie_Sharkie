@@ -1,12 +1,13 @@
 export function getCoins(enemy) {
-  console.log("got coin");
-
+  this.coin += 1;
+  if (this.coin >= 20) {
+    this.lifeEnergy = 100;
+  } 
   // let enemyIndex = this.world.enemies.findIndex(element => element.index === enemy.index);
   // this.world.enemies.splice(enemyIndex, 1);
 }
 
 export function getPoison(enemy) {
-  console.log("got poison");
   this.poison += 1;
   if (this.poison >= 10) this.isEnoughPoison = true;
   // console.log("got poison");
