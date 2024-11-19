@@ -44,6 +44,7 @@ function init() {
 }
 
 init();
+window.init = init;
 
 export function checkImgChachStatus() {
   if (imgCachesObject) {
