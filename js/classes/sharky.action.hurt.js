@@ -121,7 +121,3 @@ export function electricDead() {
     this.sinkToGround("Sharky");
   }, 1600);
 }
-
-export function gameOver() {
-  console.log("GAME OVER");
-}

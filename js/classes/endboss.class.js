@@ -1,5 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { moveObjRatio, loadedCachsArray } from "../script.js";
+import { moveObjRatio, loadedCachsArray, youWin } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
 
 export class EndBoss extends MoveableObject {
@@ -101,9 +101,10 @@ export class EndBoss extends MoveableObject {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
     this.bossDead();
+    youWin();
     this.floatToSurface();
     setInterval(() => {
-      if (this.y < 0 - this.height + 100) {
+      if (this.y < 0 - (this.height + 400)) {
         clearInterval(this.currentMovement);
         clearInterval(this.currentAnimationIntervall);
       }

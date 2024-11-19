@@ -46,7 +46,6 @@ import {
   isSharkyDead,
   regularDead,
   electricDead,
-  gameOver,
 } from "./sharky.action.hurt.js";
 
 import { SharkyBubble } from "./sharky.bubble.class.js";
@@ -265,4 +264,3 @@ Sharky.prototype.electricHurt = electricHurt;
 Sharky.prototype.isSharkyDead = isSharkyDead;
 Sharky.prototype.regularDead = regularDead;
 Sharky.prototype.electricDead = electricDead;
-Sharky.prototype.gameOver = gameOver;

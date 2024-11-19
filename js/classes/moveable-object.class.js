@@ -1,4 +1,4 @@
-import { imgCachesObject, areImgCachesReady, loadedCachsArray, canvasHeight } from "../script.js";
+import { imgCachesObject, areImgCachesReady, loadedCachsArray, canvasHeight, youLoose } from "../script.js";
 
 import { DrawableObject } from "./drawable-object.class.js";
 
@@ -90,7 +90,7 @@ export class MoveableObject extends DrawableObject {
       if (this.y > -20 - this.height) {
         this.y -= this.speedY;
       } else {
-        if (item == "Sharky") this.gameOver();
+        if (item == "Sharky") youLoose();
         clearInterval(this.currentMovement);
       }
     }, 1000 / 40);
