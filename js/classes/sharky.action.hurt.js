@@ -1,7 +1,5 @@
 export function getCoins(enemy) {
   // let enemyIndex = this.world.enemies.findIndex(element => element.index === enemy.index);
-
-  
   // this.world.enemies.splice(enemyIndex, 1);
 }
 
@@ -19,7 +17,7 @@ export function hurtedByPufferFish() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
-    this.iscurrentlyAttackAnimation = false;
+    this.isCurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();
@@ -37,7 +35,7 @@ export function hurtedByJellyFishRD() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
-    this.iscurrentlyAttackAnimation = false;
+    this.isCurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();
@@ -55,7 +53,7 @@ export function hurtedByJellyFishSD() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtShockAnimation();
     this.isCurrentlyHurtAnimation = true;
-    this.iscurrentlyAttackAnimation = false;
+    this.isCurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();
@@ -73,7 +71,7 @@ export function hurtedByEndBoss() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
-    this.iscurrentlyAttackAnimation = false;
+    this.isCurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();

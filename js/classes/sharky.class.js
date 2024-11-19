@@ -32,7 +32,7 @@ import {
   sharkyDeadShockAnimation,
 } from "./sharky.action.animations.js";
 
-import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, shootBubble, sharkyAttackDKey } from "./sharky.action.movement.js";
+import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, shootBubble, sharkyAttackDKey, doFinSlap } from "./sharky.action.movement.js";
 
 import {
   getCoins,
@@ -66,7 +66,8 @@ export class Sharky extends MoveableObject {
   isSwimDown;
   isCurrentlyHurt = false;
   isCurrentlyHurtAnimation = false;
-  iscurrentlyAttackAnimation = false;
+  isCurrentlyAttackAnimation = false;
+  isCurrentlyFinSlap = false;
   world;
   lifeEnergy = 100;
   coin = 0;
@@ -139,7 +140,7 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyDown(event) {
-    if (this.lifeEnergy > 0 && !this.iscurrentlyAttackAnimation) {
+    if (this.lifeEnergy > 0 && !this.isCurrentlyAttackAnimation) {
       if (event.key == "ArrowLeft") this.moveSharkyLeft();
       if (event.key == "ArrowRight") this.moveSharkyRight();
       if (event.key == "ArrowUp") this.moveSharkyUp();
@@ -200,15 +201,15 @@ export class Sharky extends MoveableObject {
     this.world.keyboard.DKey = false;
   }
   allKeysUp() {
-    if (this.iscurrentlyAttackAnimation) {
+    if (this.isCurrentlyAttackAnimation) {
       setTimeout(() => {
-        if (this.iscurrentlyAttackAnimation) this.iscurrentlyAttackAnimation = false;
+        if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
         this.clearIntervalsAnimationMove();
         this.letSharkySleep();
         this.sharkyStandAnimation();
       }, 600);
     }
-    if (!this.isCurrentlyHurtAnimation && !this.iscurrentlyAttackAnimation) {
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyAttackAnimation) {
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
       this.sharkyStandAnimation();
@@ -220,8 +221,7 @@ export class Sharky extends MoveableObject {
       if (enemy == "Coin") {
         this.getCoins(enemy);
         console.log(enemy);
-        
-      } 
+      }
       if (enemy == "Poison") this.getPoison(enemy);
       if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
       if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();
@@ -252,6 +252,7 @@ Sharky.prototype.moveSharkyDown = moveSharkyDown;
 Sharky.prototype.sharkyAttackSpace = sharkyAttackSpace;
 Sharky.prototype.shootBubble = shootBubble;
 Sharky.prototype.sharkyAttackDKey = sharkyAttackDKey;
+Sharky.prototype.doFinSlap = doFinSlap;
 
 Sharky.prototype.getPoison = getPoison;
 Sharky.prototype.getCoins = getCoins;

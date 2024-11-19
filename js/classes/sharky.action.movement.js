@@ -1,4 +1,4 @@
-  import { canvasHeight, canvasWidth } from "../script.js";
+import { canvasHeight, canvasWidth } from "../script.js";
 
 import { SharkyBubble } from "./sharky.bubble.class.js";
 
@@ -75,14 +75,14 @@ export function moveSharkyDown() {
 
 export function sharkyAttackSpace() {
   if (!this.world.keyboard.SPACE) {
-    this.world.keyboard.SPACE = true; 
+    this.world.keyboard.SPACE = true;
     if (!this.isCurrentlyHurtAnimation) {
       this.clearIntervalsAnimationMove();
       if (!this.isEnoughPoison) this.sharkyBubbleRegularAnimation();
       if (this.isEnoughPoison) this.sharkyBubblePoisonAnimation();
-      this.iscurrentlyAttackAnimation = true;
+      this.isCurrentlyAttackAnimation = true;
       setTimeout(() => {
-        if (this.iscurrentlyAttackAnimation) this.iscurrentlyAttackAnimation = false;
+        if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
         this.world.keyboard.SPACE = false;
         this.shootBubble();
         this.clearIntervalsAnimationMove();
@@ -102,10 +102,12 @@ export function sharkyAttackDKey() {
     this.world.keyboard.DKey = true;
     if (!this.isCurrentlyHurtAnimation) {
       this.clearIntervalsAnimationMove();
+      this.doFinSlap();
       this.sharkyFinSlapAnimation();
-      this.iscurrentlyAttackAnimation = true;
+      this.isCurrentlyAttackAnimation = true;
       setTimeout(() => {
-        this.iscurrentlyAttackAnimation = false;
+        this.isCurrentlyFinSlap = false;
+        this.isCurrentlyAttackAnimation = false;
         this.world.keyboard.DKey = false;
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
@@ -114,8 +116,7 @@ export function sharkyAttackDKey() {
   }
 }
 
-
-
-
-
-
+export function doFinSlap() {
+  this.isCurrentlyFinSlap = true;
+  console.log("FINSLAP"); 
+}
