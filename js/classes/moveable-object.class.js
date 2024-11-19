@@ -124,15 +124,16 @@ export class MoveableObject extends DrawableObject {
   }
 
   isColliding(obj) {
+    let hitboxX = this.currentFinSlap === "left" ? this.x - 50 : this.currentFinSlap === "right" ? this.x + 50 : this.x;
     if (obj.constructor.name == "Coin") return this.isCollCoin(obj);
     if (obj.constructor.name == "Poison") return this.isCollPoison(obj);
     if (obj.constructor.name == "PufferFishGreen") return this.isCollPufferGreen(obj);
     if (obj.constructor.name == "PufferFishOrange") return this.isCollPufferOrange(obj);
     if (obj.constructor.name == "PufferFishRed") return this.isCollPufferRed(obj);
-    if (obj.constructor.name == "JellyFishGreenSD") return this.isCollJellyGreen(obj);
-    if (obj.constructor.name == "JellyFishPinkSD") return this.isCollJellyPink(obj);
-    if (obj.constructor.name == "JellyFishLilaRD") return this.isCollJellyLila(obj);
-    if (obj.constructor.name == "JellyFishYellowRD") return this.isCollJellyYellow(obj);
+    if (obj.constructor.name == "JellyFishGreenSD") return this.isCollJellyGreen(obj, hitboxX);
+    if (obj.constructor.name == "JellyFishPinkSD") return this.isCollJellyPink(obj, hitboxX);
+    if (obj.constructor.name == "JellyFishLilaRD") return this.isCollJellyLila(obj, hitboxX);
+    if (obj.constructor.name == "JellyFishYellowRD") return this.isCollJellyYellow(obj, hitboxX);
     if (obj.constructor.name == "EndBoss") return this.isCollEndBoss(obj);
   }
 
@@ -174,26 +175,26 @@ export class MoveableObject extends DrawableObject {
     }
   }
 
-  isCollJellyGreen(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
+  isCollJellyGreen(obj, hitboxX) {
+    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
       return true;
     }
   }
 
-  isCollJellyPink(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
+  isCollJellyPink(obj, hitboxX) {
+    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
       return true;
     }
   }
 
-  isCollJellyLila(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
+  isCollJellyLila(obj, hitboxX) {
+    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
       return true;
     }
   }
 
-  isCollJellyYellow(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
+  isCollJellyYellow(obj, hitboxX) {
+    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
       return true;
     }
   }

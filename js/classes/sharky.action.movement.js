@@ -120,6 +120,4 @@ export function sharkyAttackDKey() {
 export function doFinSlap() {
   this.isCurrentlyFinSlap = true;
   this.otherDirection ? this.currentFinSlap = "left" : this.currentFinSlap = "right";
-  console.log(this.currentFinSlap);
-  
 }
