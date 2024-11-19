@@ -52,4 +52,5 @@ export class JellyFish extends MoveableObject {
     await this.loadImageCache(this.imagesSwim, this.constructor.name);
     await this.loadImageCache(this.imagesDead, this.constructor.name);
   }
+
 }

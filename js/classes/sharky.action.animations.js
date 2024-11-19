@@ -29,10 +29,10 @@ export function sharkyBubbleWithoutAnimation() {
   this.doImageAnimation(imagesAttackBubbleWithout, this.img, 110);
 }
 export function sharkyBubbleRegularAnimation() {
-  this.doImageAnimation(imagesAttackBubbleRegular, this.img, 110);
+  this.doImageAnimation(imagesAttackBubbleRegular, this.img, 75);
 }
 export function sharkyBubblePoisonAnimation() {
-  this.doImageAnimation(imagesAttackBubblePoison, this.img, 110);
+  this.doImageAnimation(imagesAttackBubblePoison, this.img, 75);
 }
 export function sharkyFinSlapAnimation() {
   this.doImageAnimation(imagesAttackFinSlap, this.img, 100);

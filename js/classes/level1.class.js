@@ -18,6 +18,8 @@ import { Barrier2 } from "./staticBarrier2.class.js";
 import { Barrier3 } from "./staticBarrier3.class.js";
 
 import { canvasWidth } from "../script.js";
+import { Coin } from "./coin.class.js";
+import { Poison } from "./poison.class.js";
 
 export class Level1 {
   constructor() {
@@ -52,6 +54,21 @@ export class Level1 {
       new PufferFishGreen(15),
       new PufferFishGreen(16),
       new EndBoss(17),
+      new Poison(450, 350, 18),
+      new Poison(800, 390, 19),
+      new Poison(1400, 380, 20),
+      new Poison(1670, 360, 21),
+      new Poison(2090, 370, 22),
+      new Coin(320, 270, 23),
+      new Coin(380, 100, 24),
+      new Coin(500, 160, 25),
+      new Coin(800, 300, 26),
+      new Coin(800, 200, 27),
+      new Coin(800, 100, 28),
+      new Coin(1200, 300, 29),
+      new Coin(1500, 25, 30),
+      new Coin(1600, 10, 31),
+      new Coin(2000, 100, 32),
     ];
   }
 }

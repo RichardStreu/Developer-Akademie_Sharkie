@@ -1,5 +1,7 @@
 import { canvasHeight, canvasWidth } from "../script.js";
 
+import { SharkyBubble } from "./sharky.bubble.class.js";
+
 export function letSharkySleep() {
   let timeOfUnmoved = 0;
   this.currentMovement = setInterval(() => {
@@ -74,27 +76,48 @@ export function moveSharkyDown() {
 export function sharkyAttackSpace() {
   if (!this.world.keyboard.SPACE) {
     this.world.keyboard.SPACE = true;
-    if (!this.isCurrentlyHurtAnimation && !this.iscurrentlyAttackAnimation) {
+    if (!this.isCurrentlyHurtAnimation) {
       this.clearIntervalsAnimationMove();
-      // call attack animation
-      console.log("Bubble Attack");
-      this.iscurrentlyAttackAnimation = true;
+      if (!this.isEnoughPoison) this.sharkyBubbleRegularAnimation();
+      if (this.isEnoughPoison) this.sharkyBubblePoisonAnimation();
+      this.isCurrentlyAttackAnimation = true;
       setTimeout(() => {
+        if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
+        this.world.keyboard.SPACE = false;
+        this.shootBubble();
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
-        this.iscurrentlyAttackAnimation = false;
       }, 600);
-      
-    } 
-    
-    
+    }
   }
+}
+
+export function shootBubble() {
+  if (this.otherDirection) this.world.bubbles.push(new SharkyBubble(this.world, "left"));
+  if (!this.otherDirection) this.world.bubbles.push(new SharkyBubble(this.world, "right"));
 }
 
 export function sharkyAttackDKey() {
   if (!this.world.keyboard.DKey) {
     this.world.keyboard.DKey = true;
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
-    console.log("Fin Slap Attack");
+    if (!this.isCurrentlyHurtAnimation) {
+      this.clearIntervalsAnimationMove();
+      this.doFinSlap();
+      this.sharkyFinSlapAnimation();
+      this.isCurrentlyAttackAnimation = true;
+      setTimeout(() => {
+        this.isCurrentlyFinSlap = false;
+        this.currentFinSlap = "none";
+        this.isCurrentlyAttackAnimation = false;
+        this.world.keyboard.DKey = false;
+        this.clearIntervalsAnimationMove();
+        this.sharkyStandAnimation();
+      }, 600);
+    }
   }
+}
+
+export function doFinSlap() {
+  this.isCurrentlyFinSlap = true;
+  this.otherDirection ? this.currentFinSlap = "left" : this.currentFinSlap = "right";
 }

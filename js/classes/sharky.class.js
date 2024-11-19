@@ -32,12 +32,27 @@ import {
   sharkyDeadShockAnimation,
 } from "./sharky.action.animations.js";
 
-import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, sharkyAttackDKey } from "./sharky.action.movement.js";
+import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, shootBubble, sharkyAttackDKey, doFinSlap } from "./sharky.action.movement.js";
 
-import { hurtedByPufferFish, hurtedByJellyFishRD, hurtedByJellyFishSD, hurtedByEndBoss, regularHurt, electricHurt, isSharkyDead, regularDead, electricDead, gameOver } from "./sharky.action.hurt.js";
+import {
+  getCoins,
+  getPoison,
+  hurtedByPufferFish,
+  hurtedByJellyFishRD,
+  hurtedByJellyFishSD,
+  hurtedByEndBoss,
+  regularHurt,
+  electricHurt,
+  isSharkyDead,
+  regularDead,
+  electricDead,
+  gameOver,
+} from "./sharky.action.hurt.js";
 
-export let sharkyXPosition;
-export let sharkyYPosition;
+import { SharkyBubble } from "./sharky.bubble.class.js";
+
+export let sharkyXPosition = 0;
+export let sharkyYPosition = 200;
 export let sharkyWidth;
 export let sharkyHeight;
 //
@@ -51,12 +66,19 @@ export class Sharky extends MoveableObject {
   isSwimDown;
   isCurrentlyHurt = false;
   isCurrentlyHurtAnimation = false;
-  iscurrentlyAttackAnimation = false;
+  isCurrentlyAttackAnimation = false;
+  isCurrentlyFinSlap = false;
+  currentFinSlap = "none"; // "right", "left"
   world;
   lifeEnergy = 100;
+  coin = 0;
+  poison = 0;
+  isEnoughPoison;
+  isEnoughCoin;
 
-  constructor() {
+  constructor(world) {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
+    this.world = world;
     this.x = 0;
     this.y = 200;
     this.width = 180 * moveObjRatio;
@@ -68,6 +90,8 @@ export class Sharky extends MoveableObject {
     this.setSharkyWindowEventListeners();
     this.firstSharkyAnimationAfterCacheLoading();
     this.checkCurrentSharkyPositions();
+    this.isEnoughPoison = false;
+    this.isEnoughCoin = false;
   }
 
   async loadAllImagesCacheSharky() {
@@ -117,7 +141,7 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyDown(event) {
-    if (this.lifeEnergy > 0) {
+    if (this.lifeEnergy > 0 && !this.isCurrentlyAttackAnimation) {
       if (event.key == "ArrowLeft") this.moveSharkyLeft();
       if (event.key == "ArrowRight") this.moveSharkyRight();
       if (event.key == "ArrowUp") this.moveSharkyUp();
@@ -139,36 +163,54 @@ export class Sharky extends MoveableObject {
     }
   }
 
+  setAllKeyDownsToFalse() {
+    this.world.keyboard.LEFT = false;
+    this.world.keyboard.RIGHT = false;
+    this.world.keyboard.UP = false;
+    this.world.keyboard.DOWN = false;
+    this.world.keyboard.SPACE = false;
+    this.world.keyboard.DKey = false;
+  }
+
+  clearMovementIntervals() {
+    clearInterval(this.isSwimLeft);
+    clearInterval(this.isSwimRight);
+    clearInterval(this.isSwimUp);
+    clearInterval(this.isSwimDown);
+  }
+
   keyArrowLeftUp() {
     this.world.keyboard.LEFT = false;
     clearInterval(this.isSwimLeft);
   }
-
   keyArrowRightUp() {
     this.world.keyboard.RIGHT = false;
     clearInterval(this.isSwimRight);
   }
-
   keyArrowUpUp() {
     this.world.keyboard.UP = false;
     clearInterval(this.isSwimUp);
   }
-
   keyArrowDownUp() {
     this.world.keyboard.DOWN = false;
     clearInterval(this.isSwimDown);
   }
-
   keySpaceUp() {
     this.world.keyboard.SPACE = false;
   }
-
   keyDUp() {
     this.world.keyboard.DKey = false;
   }
-
   allKeysUp() {
-    if (!this.isCurrentlyHurtAnimation) {
+    if (this.isCurrentlyAttackAnimation) {
+      setTimeout(() => {
+        if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
+        this.clearIntervalsAnimationMove();
+        this.letSharkySleep();
+        this.sharkyStandAnimation();
+      }, 600);
+    }
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyAttackAnimation) {
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
       this.sharkyStandAnimation();
@@ -177,6 +219,11 @@ export class Sharky extends MoveableObject {
 
   hurtSharky(enemy) {
     if (this.lifeEnergy > 0) {
+      if (enemy == "Coin") {
+        this.getCoins(enemy);
+        console.log(enemy);
+      }
+      if (enemy == "Poison") this.getPoison(enemy);
       if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
       if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();
       if (enemy == "JellyFishGreenSD" || enemy == "JellyFishPinkSD") this.hurtedByJellyFishSD();
@@ -204,8 +251,12 @@ Sharky.prototype.moveSharkyRight = moveSharkyRight;
 Sharky.prototype.moveSharkyUp = moveSharkyUp;
 Sharky.prototype.moveSharkyDown = moveSharkyDown;
 Sharky.prototype.sharkyAttackSpace = sharkyAttackSpace;
+Sharky.prototype.shootBubble = shootBubble;
 Sharky.prototype.sharkyAttackDKey = sharkyAttackDKey;
+Sharky.prototype.doFinSlap = doFinSlap;
 
+Sharky.prototype.getPoison = getPoison;
+Sharky.prototype.getCoins = getCoins;
 Sharky.prototype.hurtedByPufferFish = hurtedByPufferFish;
 Sharky.prototype.hurtedByJellyFishRD = hurtedByJellyFishRD;
 Sharky.prototype.hurtedByJellyFishSD = hurtedByJellyFishSD;

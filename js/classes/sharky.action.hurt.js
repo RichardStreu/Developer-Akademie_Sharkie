@@ -1,3 +1,14 @@
+export function getCoins(enemy) {
+  // let enemyIndex = this.world.enemies.findIndex(element => element.index === enemy.index);
+  // this.world.enemies.splice(enemyIndex, 1);
+}
+
+export function getPoison(enemy) {
+  // console.log("got poison");
+  // let enemyIndex = this.world.enemies.findIndex(enemy => enemy.index === enemy.index);
+  // this.world.enemies.splice(enemyIndex, 1);
+}
+
 export function hurtedByPufferFish() {
   let demageFactor = -4;
   this.lifeEnergy += demageFactor;
@@ -6,7 +17,7 @@ export function hurtedByPufferFish() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
-    this.iscurrentlyAttackAnimation = false;
+    this.isCurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();
@@ -17,38 +28,42 @@ export function hurtedByPufferFish() {
 }
 
 export function hurtedByJellyFishRD() {
-  let demageFactor = -6;
-  this.lifeEnergy += demageFactor;
-  this.world.statBars[1].updatePercentageStatBar(demageFactor);
-  if (!this.isCurrentlyHurtAnimation) {
-    this.clearIntervalsAnimationMove();
-    this.sharkyHurtRegularAnimation();
-    this.isCurrentlyHurtAnimation = true;
-    this.iscurrentlyAttackAnimation = false;
-    setTimeout(() => {
+  if (!this.isCurrentlyFinSlap) {
+    let demageFactor = -6;
+    this.lifeEnergy += demageFactor;
+    this.world.statBars[1].updatePercentageStatBar(demageFactor);
+    if (!this.isCurrentlyHurtAnimation) {
       this.clearIntervalsAnimationMove();
-      this.sharkyStandAnimation();
-      this.isSharkyDead("regular");
-      this.isCurrentlyHurtAnimation = false;
-    }, 600);
+      this.sharkyHurtRegularAnimation();
+      this.isCurrentlyHurtAnimation = true;
+      this.isCurrentlyAttackAnimation = false;
+      setTimeout(() => {
+        this.clearIntervalsAnimationMove();
+        this.sharkyStandAnimation();
+        this.isSharkyDead("regular");
+        this.isCurrentlyHurtAnimation = false;
+      }, 600);
+    }
   }
 }
 
 export function hurtedByJellyFishSD() {
-  let demageFactor = -10;
-  this.lifeEnergy += demageFactor;
-  this.world.statBars[1].updatePercentageStatBar(demageFactor);
-  if (!this.isCurrentlyHurtAnimation) {
-    this.clearIntervalsAnimationMove();
-    this.sharkyHurtShockAnimation();
-    this.isCurrentlyHurtAnimation = true;
-    this.iscurrentlyAttackAnimation = false;
-    setTimeout(() => {
+  if (!this.isCurrentlyFinSlap) {
+    let demageFactor = -10;
+    this.lifeEnergy += demageFactor;
+    this.world.statBars[1].updatePercentageStatBar(demageFactor);
+    if (!this.isCurrentlyHurtAnimation) {
       this.clearIntervalsAnimationMove();
-      this.sharkyStandAnimation();
-      this.isSharkyDead("electric");
-      this.isCurrentlyHurtAnimation = false;
-    }, 600);
+      this.sharkyHurtShockAnimation();
+      this.isCurrentlyHurtAnimation = true;
+      this.isCurrentlyAttackAnimation = false;
+      setTimeout(() => {
+        this.clearIntervalsAnimationMove();
+        this.sharkyStandAnimation();
+        this.isSharkyDead("electric");
+        this.isCurrentlyHurtAnimation = false;
+      }, 600);
+    }
   }
 }
 
@@ -60,7 +75,7 @@ export function hurtedByEndBoss() {
     this.clearIntervalsAnimationMove();
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
-    this.iscurrentlyAttackAnimation = false;
+    this.isCurrentlyAttackAnimation = false;
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();

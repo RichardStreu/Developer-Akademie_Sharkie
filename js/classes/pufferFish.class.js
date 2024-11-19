@@ -20,6 +20,7 @@ export class PufferFish extends MoveableObject {
   }
 
   async loadAllImagesCachePuffer() {
+    await this.loadImageCache(this.imagesDie, this.constructor.name);
     await this.loadImageCache(this.imagesSwim, this.constructor.name);
     await this.loadImageCache(this.imagesTransition, this.constructor.name);
     await this.loadImageCache(this.imagesBubbleSwim, this.constructor.name);
@@ -45,10 +46,10 @@ export class PufferFish extends MoveableObject {
   }
 
   calculateMinMaxX() {
-    this.minX = this.x - (400 * this.moveForBackFactor);
+    this.minX = this.x - 400 * this.moveForBackFactor;
     if (this.minX < enemyStartX) this.minX = enemyStartX;
-    this.maxX = this.x + (400 * this.moveForBackFactor);
-    if (this.maxX > (enemyStartX + enemyStartDistX + this.width)) this.maxX = (enemyStartX + enemyStartDistX - this.width);
+    this.maxX = this.x + 400 * this.moveForBackFactor;
+    if (this.maxX > enemyStartX + enemyStartDistX + this.width) this.maxX = enemyStartX + enemyStartDistX - this.width;
   }
 
   forBackMovePufferFish(minX, maxX, speed) {
@@ -66,4 +67,19 @@ export class PufferFish extends MoveableObject {
       }
     }, 100);
   }
+
+  enemyIsDead() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+
+    this.img = this.imageCache[this.imagesDie[2]];
+    this.floatToSurface();
+    setInterval(() => {
+      if (this.y < -500) {
+        clearInterval(this.currentMovement);
+        clearInterval(this.currentAnimationIntervall);
+      }
+    }, 200);
+  }
+
 }

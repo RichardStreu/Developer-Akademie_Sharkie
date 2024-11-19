@@ -26,6 +26,12 @@ export class PufferFishRed extends PufferFish {
     "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim5.png",
   ];
 
+  imagesDie = [
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.2.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.3.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png"
+  ];
+
   currentAnimation = "swim"; // "swim" "transition" "bubbleSwim" "stop"
 
   currentAnimationIntervall;

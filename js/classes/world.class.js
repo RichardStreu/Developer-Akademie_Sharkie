@@ -25,6 +25,8 @@ import { StatusBarLife } from "./statusBar-life.class.js";
 import { StatusBarCoin } from "./statusBar-coin.class.js";
 import { StatusBarPoison } from "./statusBar-poison.class.js";
 
+import { SharkyBubble } from "./sharky.bubble.class.js";
+
 export class World {
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -44,7 +46,7 @@ export class World {
       for (let index = 0; index < this.level1.enemies.length; index++) {
         const enemy = this.level1.enemies[index];
         if (this.sharky.isColliding(enemy)) {
-          this.sharky.hurtSharky(enemy.constructor.name);
+          this.sharky.hurtSharky(enemy.constructor.name, enemy);
           if (!this.sharky.isCurrentlyHurt) this.sharky.isCurrentlyHurt = true;
           break;
         } else {
@@ -56,14 +58,14 @@ export class World {
 
   level1 = new Level1();
 
-  sharky = new Sharky();
+  sharky = new Sharky(this);
 
   landscape = this.level1.landscape;
   enemies = this.level1.enemies;
 
   statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
 
-  // give each enemy its index of enemies as parameter
+  bubbles = [];
 
   canvas;
   ctx;
@@ -75,6 +77,7 @@ export class World {
     this.addObjectsToMap(this.landscape);
     this.addToMap(this.sharky);
     this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.bubbles);
     this.ctx.translate(-this.camera_x, 0);
     this.addObjectsToMap(this.statBars);
     requestAnimationFrame(() => this.draw());
