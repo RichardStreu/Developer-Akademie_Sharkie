@@ -3,18 +3,21 @@ import { moveObjRatio, loadedCachsArray } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
 
 export class EndBoss extends MoveableObject {
-  currentAnimation = "swim"; //"introduce""swim""attack""dead""hurt" / "stop"
+  currentAnimation = "introduce"; //"introduce""swim""attack""dead""hurt" / "stop"
 
   currentAnimationIntervall;
 
   currentMovement;
 
-  constructor() {
+  world;
+
+  constructor(index, world) {
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/2.floating/1.png");
-    this.x = 2400;
+    this.x = 2450;
     this.y = -50;
     this.width = 320 * moveObjRatio;
     this.height = 365 * moveObjRatio;
+    this.world = world;
     this.loadAllImagesEndboss();
     this.checkImagesCacheLoaded();
     this.firstInterval = setInterval(() => {

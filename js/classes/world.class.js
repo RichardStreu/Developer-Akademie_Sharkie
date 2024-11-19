@@ -56,7 +56,7 @@ export class World {
     }, 100);
   }
 
-  level1 = new Level1();
+  level1 = new Level1(this);
 
   sharky = new Sharky(this);
 
