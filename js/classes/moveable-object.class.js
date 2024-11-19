@@ -128,9 +128,9 @@ export class MoveableObject extends DrawableObject {
     let currentFinSlap = this.currentFinSlap;
     if (obj.constructor.name == "Coin") return this.isCollCoin(obj);
     if (obj.constructor.name == "Poison") return this.isCollPoison(obj);
-    if (obj.constructor.name == "PufferFishGreen") return this.isCollPufferGreen(obj);
-    if (obj.constructor.name == "PufferFishOrange") return this.isCollPufferOrange(obj);
-    if (obj.constructor.name == "PufferFishRed") return this.isCollPufferRed(obj);
+    if (obj.constructor.name == "PufferFishGreen") return this.isCollPufferGreen(obj, hitboxX, currentFinSlap);
+    if (obj.constructor.name == "PufferFishOrange") return this.isCollPufferOrange(obj, hitboxX, currentFinSlap);
+    if (obj.constructor.name == "PufferFishRed") return this.isCollPufferRed(obj, hitboxX, currentFinSlap);
     if (obj.constructor.name == "JellyFishGreenSD") return this.isCollJellyGreen(obj, hitboxX, currentFinSlap);
     if (obj.constructor.name == "JellyFishPinkSD") return this.isCollJellyPink(obj, hitboxX, currentFinSlap);
     if (obj.constructor.name == "JellyFishLilaRD") return this.isCollJellyLila(obj, hitboxX, currentFinSlap);
@@ -158,20 +158,26 @@ export class MoveableObject extends DrawableObject {
     }
   }
 
-  isCollPufferGreen(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 10)) {
+  isCollPufferGreen(obj, hitboxX, currentFinSlap) {
+    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 10)) {
+      if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
+      if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
     }
   }
 
-  isCollPufferOrange(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 17)) {
+  isCollPufferOrange(obj, hitboxX, currentFinSlap) {
+    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 17)) {
+      if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
+      if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
     }
   }
 
-  isCollPufferRed(obj) {
-    if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + (obj.width - 10) && this.y + 125 + (this.height - 190) > obj.y + 4 && this.y + 125 < obj.y + 4 + (obj.height - 30)) {
+  isCollPufferRed(obj, hitboxX, currentFinSlap) {
+    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + (obj.width - 10) && this.y + 125 + (this.height - 190) > obj.y + 4 && this.y + 125 < obj.y + 4 + (obj.height - 30)) {
+      if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
+      if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
     }
   }

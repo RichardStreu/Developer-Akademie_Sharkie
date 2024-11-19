@@ -12,23 +12,25 @@ export function getPoison(enemy) {
   // console.log("got poison");
   // let enemyIndex = this.world.enemies.findIndex(enemy => enemy.index === enemy.index);
   // this.world.enemies.splice(enemyIndex, 1);
-}   
+}
 
 export function hurtedByPufferFish() {
-  let demageFactor = -4;
-  this.lifeEnergy += demageFactor;
-  this.world.statBars[1].updatePercentageStatBar(demageFactor);
-  if (!this.isCurrentlyHurtAnimation) {
-    this.clearIntervalsAnimationMove();
-    this.sharkyHurtRegularAnimation();
-    this.isCurrentlyHurtAnimation = true;
-    this.isCurrentlyAttackAnimation = false;
-    setTimeout(() => {
+  if (!this.isCurrentlyFinSlap) {
+    let demageFactor = -4;
+    this.lifeEnergy += demageFactor;
+    this.world.statBars[1].updatePercentageStatBar(demageFactor);
+    if (!this.isCurrentlyHurtAnimation) {
       this.clearIntervalsAnimationMove();
-      this.sharkyStandAnimation();
-      this.isSharkyDead("regular");
-      this.isCurrentlyHurtAnimation = false;
-    }, 600);
+      this.sharkyHurtRegularAnimation();
+      this.isCurrentlyHurtAnimation = true;
+      this.isCurrentlyAttackAnimation = false;
+      setTimeout(() => {
+        this.clearIntervalsAnimationMove();
+        this.sharkyStandAnimation();
+        this.isSharkyDead("regular");
+        this.isCurrentlyHurtAnimation = false;
+      }, 600);
+    }
   }
 }
 
