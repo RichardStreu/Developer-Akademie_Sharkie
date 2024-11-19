@@ -9,6 +9,8 @@ export class EndBoss extends MoveableObject {
 
   currentMovement;
 
+  currentlyMoveUp = true;
+
   world;
 
   bossIsVisible = false;
@@ -44,7 +46,19 @@ export class EndBoss extends MoveableObject {
       this.clearIntervalsAnimationMove();
       this.bossSwim();
     }, 1500);
+    this.moveBossUpDown();
   }
+
+  moveBossUpDown() {
+    let minY = -120;
+    let maxY = 50;
+    setInterval(() => {
+      if (this.currentlyMoveUp && this.y > minY) this.y -= 6;
+      if (this.currentlyMoveUp && this.y < minY) this.currentlyMoveUp = false;
+      if (!this.currentlyMoveUp && this.y < maxY) this.y += 6;
+      if (!this.currentlyMoveUp && this.y > maxY) this.currentlyMoveUp = true;
+    }, 100);
+    }
 
   async loadAllImagesEndboss() {
     await this.loadImageCache(imagesBossIntroduce, this.constructor.name);
