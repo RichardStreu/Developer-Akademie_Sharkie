@@ -107,6 +107,7 @@ export function sharkyAttackDKey() {
       this.isCurrentlyAttackAnimation = true;
       setTimeout(() => {
         this.isCurrentlyFinSlap = false;
+        this.currentFinSlap = "none";
         this.isCurrentlyAttackAnimation = false;
         this.world.keyboard.DKey = false;
         this.clearIntervalsAnimationMove();
@@ -118,5 +119,7 @@ export function sharkyAttackDKey() {
 
 export function doFinSlap() {
   this.isCurrentlyFinSlap = true;
-  console.log("FINSLAP"); 
+  this.otherDirection ? this.currentFinSlap = "left" : this.currentFinSlap = "right";
+  console.log(this.currentFinSlap);
+  
 }
