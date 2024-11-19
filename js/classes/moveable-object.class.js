@@ -209,11 +209,35 @@ export class MoveableObject extends DrawableObject {
   }
 
   hitJellyToRight(obj) {
-    obj.x += 30;
+    setTimeout(() => {
+      let endX = obj.x + 60;
+      let speed = 6;
+      let factor = 0.85;
+      let interval = setInterval(() => {
+        if (obj.x < endX) {
+          obj.x += speed;
+          speed = speed * factor;
+        } else {
+          clearInterval(interval);
+        }
+      }, 150);
+    }, 300);
   }
 
   hitJellyToLeft(obj) {
-    obj.x -= 30;
+    setTimeout(() => {
+      let endX = obj.x - 60;
+      let speed = 6;
+      let factor = 0.85;
+      let interval = setInterval(() => {
+        if (obj.x > endX) {
+          obj.x -= speed;
+          speed = speed * factor;
+        } else {
+          clearInterval(interval);
+        }
+      }, 150);
+    }, 300);
   }
 
   isCollEndBoss(obj) {
