@@ -178,37 +178,37 @@ export class MoveableObject extends DrawableObject {
 
   isCollJellyGreen(obj, hitboxX, currentFinSlap) {
     if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
-      if (currentFinSlap == "left") this.hitJellyToLeft(obj);
-      if (currentFinSlap == "right") this.hitJellyToRight(obj);
+      if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
+      if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
     }
   }
 
   isCollJellyPink(obj, hitboxX, currentFinSlap) {
     if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
-      if (currentFinSlap == "left") this.hitJellyToLeft(obj);
-      if (currentFinSlap == "right") this.hitJellyToRight(obj);
+      if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
+      if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
     }
   }
 
   isCollJellyLila(obj, hitboxX, currentFinSlap) {
     if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
-      if (currentFinSlap == "left") this.hitJellyToLeft(obj);
-      if (currentFinSlap == "right") this.hitJellyToRight(obj);
+      if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
+      if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
     }
   }
 
   isCollJellyYellow(obj, hitboxX, currentFinSlap) {
     if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
-      if (currentFinSlap == "left") this.hitJellyToLeft(obj);
-      if (currentFinSlap == "right") this.hitJellyToRight(obj);
+      if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
+      if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
     }
   }
 
-  hitJellyToRight(obj) {
+  hitEnemyToRight(obj) {
     setTimeout(() => {
       let endX = obj.x + 60;
       let speed = 6;
@@ -224,7 +224,7 @@ export class MoveableObject extends DrawableObject {
     }, 300);
   }
 
-  hitJellyToLeft(obj) {
+  hitEnemyToLeft(obj) {
     setTimeout(() => {
       let endX = obj.x - 60;
       let speed = 6;
