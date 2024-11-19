@@ -15,6 +15,10 @@ export class EndBoss extends MoveableObject {
 
   bossIsVisible = false;
 
+  sprintForwardTime = this.getRandomCooldown();
+
+  currentPlaytime = 0;
+
   sharkyX;
   sharkyY;
 
@@ -28,6 +32,13 @@ export class EndBoss extends MoveableObject {
     this.loadAllImagesEndboss();
     this.checkImagesCacheLoaded();
     this.checkSharkyPosition();
+    this.countSeconds();
+  }
+
+  countSeconds() {
+    setInterval(() => {
+      this.currentPlaytime += 1;
+    }, 1000);
   }
 
   checkSharkyPosition() {
@@ -58,7 +69,19 @@ export class EndBoss extends MoveableObject {
       if (!this.currentlyMoveUp && this.y < maxY) this.y += 6;
       if (!this.currentlyMoveUp && this.y > maxY) this.currentlyMoveUp = true;
     }, 100);
-    }
+  }
+
+  sprintBossForwards() {
+    setTimeout(() => {
+      setInterval(() => {
+        
+      }, 100);
+    }, 3000);
+  }
+
+  getRandomCooldown() {
+    return Math.floor(Math.random() * 5000) + 5000;
+  }
 
   async loadAllImagesEndboss() {
     await this.loadImageCache(imagesBossIntroduce, this.constructor.name);
