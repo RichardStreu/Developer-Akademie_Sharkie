@@ -6,21 +6,15 @@ export class EndBoss extends MoveableObject {
   // currentAnimation = "introduce"; //"introduce""swim""attack""dead""hurt" / "stop"
 
   currentAnimationIntervall;
-
   currentMovement;
-
   currentlyMoveUp = true;
-
+  floating;
   world;
-
   bossUpDown;
-
   bossIsVisible = false;
-
+  bossIsDead = false;
   sprintForwardTime = this.getRandomCooldown();
-
   currentPlaytime = 0;
-
   sharkyX;
   sharkyY;
 
@@ -144,25 +138,25 @@ export class EndBoss extends MoveableObject {
   }
 
   enemyIsDead() {
-    this.bossDead();
-
-    setTimeout(() => {
-      this.clearIntervalsAnimationMove();
-      clearInterval(this.bossUpDown);
-      // clearInterval(this.currentAnimationIntervall);
-      this.loadImage("../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png");
-    }, 600);
-
-    setTimeout(() => {
-      this.floatToSurface();
-      let float = setInterval(() => {
-        if (this.y <= -420) {
-          clearInterval(this.currentMovement);
-          clearInterval(this.currentAnimationIntervall);
-          clearInterval(float);
-          youWin();
-        }
-      }, 200);
-    }, 1500);
+    if (!this.bossIsDead) {
+      this.bossIsDead = true;
+      this.bossDead();
+      setTimeout(() => {
+        this.clearIntervalsAnimationMove();
+        clearInterval(this.bossUpDown);
+        this.loadImage("../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png");
+      }, 600);
+      setTimeout(() => {
+        this.floatToSurface();
+        const floatingInterval = setInterval(() => {
+          if (this.y <= -430) {
+            clearInterval(this.currentMovement);
+            clearInterval(this.currentAnimationIntervall);
+            youWin();
+            clearInterval(floatingInterval);
+          }
+        }, 10);
+      }, 1500);
+    }
   }
 }

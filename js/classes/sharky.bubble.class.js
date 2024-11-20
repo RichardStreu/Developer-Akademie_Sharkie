@@ -45,7 +45,7 @@ export class SharkyBubble extends MoveableObject {
   }
 
   moveBubbleTopLeft() {
-    if (this.x <= this.startPositionX - 100 && !this.isFloatToSurface) {
+    if (this.x <= this.startPositionX - 80 && !this.isFloatToSurface) {
       this.floatToSurface();
       this.isFloatToSurface = true;
     }
@@ -58,7 +58,7 @@ export class SharkyBubble extends MoveableObject {
   }
 
   moveBubbleToRight() {
-    if (this.x >= this.startPositionX + 100 && !this.isFloatToSurface) {
+    if (this.x >= this.startPositionX + 80 && !this.isFloatToSurface) {
       this.floatToSurface();
       this.isFloatToSurface = true;
     }
