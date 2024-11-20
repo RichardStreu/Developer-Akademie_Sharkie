@@ -26,15 +26,15 @@ export class DrawableObject {
   }
 
   drawFrame(ctx) {
-    if (this.constructor.name == "Sharky") this.drawSharkyFrame(ctx);
-    if (this.constructor.name == "PufferFishGreen") this.drawPufferGreenFrame(ctx);
-    if (this.constructor.name == "PufferFishOrange") this.drawPufferOrangeFrame(ctx);
-    if (this.constructor.name == "PufferFishRed") this.drawPufferRedFrame(ctx);
-    if (this.constructor.name == "JellyFishGreenSD") this.drawJellyGreen(ctx);
-    if (this.constructor.name == "JellyFishPinkSD") this.drawJellyPink(ctx);
-    if (this.constructor.name == "JellyFishLilaRD") this.drawJellyPink(ctx);
-    if (this.constructor.name == "JellyFishYellowRD") this.drawJellyYellow(ctx);
-    if (this.constructor.name == "EndBoss") this.drawEndbossFrame(ctx);
+    // if (this.constructor.name == "Sharky") this.drawSharkyFrame(ctx);
+    // if (this.constructor.name == "PufferFishGreen") this.drawPufferGreenFrame(ctx);
+    // if (this.constructor.name == "PufferFishOrange") this.drawPufferOrangeFrame(ctx);
+    // if (this.constructor.name == "PufferFishRed") this.drawPufferRedFrame(ctx);
+    // if (this.constructor.name == "JellyFishGreenSD") this.drawJellyGreen(ctx);
+    // if (this.constructor.name == "JellyFishPinkSD") this.drawJellyPink(ctx);
+    // if (this.constructor.name == "JellyFishLilaRD") this.drawJellyPink(ctx);
+    // if (this.constructor.name == "JellyFishYellowRD") this.drawJellyYellow(ctx);
+    // if (this.constructor.name == "EndBoss") this.drawEndbossFrame(ctx);
   }
 
   changeCacheStatusToFalse(className) {

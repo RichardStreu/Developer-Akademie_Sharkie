@@ -103,7 +103,7 @@ export class MoveableObject extends DrawableObject {
       } else {
         if (item == "Sharky") {
           setTimeout(() => {
-            this.gameOver();
+            youLoose();
           }, 1500);
         }
         clearInterval(this.currentMovement);
