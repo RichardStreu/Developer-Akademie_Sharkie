@@ -58,17 +58,24 @@ export class EndBoss extends MoveableObject {
       this.bossSwim();
     }, 1500);
     this.moveBossUpDown();
+    this.moveBossForBackwards();
   }
 
   moveBossUpDown() {
     let minY = -120;
     let maxY = 50;
     setInterval(() => {
-      if (this.currentlyMoveUp && this.y > minY) this.y -= 6;
+      if (this.currentlyMoveUp && this.y >= minY) this.y -= 1.5;
       if (this.currentlyMoveUp && this.y < minY) this.currentlyMoveUp = false;
-      if (!this.currentlyMoveUp && this.y < maxY) this.y += 6;
-      if (!this.currentlyMoveUp && this.y > maxY) this.currentlyMoveUp = true;
-    }, 100);
+      if (!this.currentlyMoveUp && this.y < maxY) this.y += 1.5;
+      if (!this.currentlyMoveUp && this.y >= maxY) this.currentlyMoveUp = true;
+    }, 10);
+  }
+
+  moveBossForBackwards() {
+    setInterval(() => {
+      this.x = this.world.sharky.x + 300;
+    }, 1);
   }
 
   sprintBossForwards() {
