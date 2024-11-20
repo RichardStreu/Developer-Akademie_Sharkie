@@ -26,7 +26,7 @@ export class Light extends MoveableObject {
   }
 
   moveLightLeft(sharkyX, x, sharkyMidPoint) {
-    if (x < 1 && sharkyX > sharkyMidPoint && sharkyX > 0 && (sharkyX < (canvasWidth * 3.5) - sharkyWidth)) {
+    if (x < 1 && sharkyX > sharkyMidPoint && sharkyX > 0 && sharkyX < canvasWidth * 3.5 - sharkyWidth) {
       this.x = sharkyX - sharkyMidPoint;
     } else if (x > 1 && sharkyX <= 0) {
       this.x = 0;
