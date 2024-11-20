@@ -3,12 +3,15 @@ import { canvasHeight, canvasWidth } from "../script.js";
 import { MoveableObject } from "./moveable-object.class.js";
 
 import { sharkyXPosition, sharkyYPosition, sharkyWidth, sharkyHeight } from "./sharky.class.js";
- 
+
 export class SharkyBubble extends MoveableObject {
   world;
   direction;
   bubbleMoveInterval;
   hasBubbleHit = false;
+  startPositionX;
+  isFloatToSurface = false;
+  factor = 1;
 
   constructor(world, direction) {
     super();
@@ -16,7 +19,7 @@ export class SharkyBubble extends MoveableObject {
     this.world = world;
     if (!this.world.sharky.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
     if (this.world.sharky.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
-    if (direction == "left") { 
+    if (direction == "left") {
       this.x = sharkyXPosition + 20;
       this.y = sharkyYPosition + 151;
     } else {
@@ -25,15 +28,46 @@ export class SharkyBubble extends MoveableObject {
     }
     this.width = 25;
     this.height = 25;
+    this.startPositionX = this.x;
     this.moveBubble();
     this.checkCollisions();
   }
 
   moveBubble() {
     this.bubbleMoveInterval = setInterval(() => {
-      if (this.direction == "left" && this.x > -this.width && !this.hasBubbleHit) this.x -= 5;
-      if (this.direction == "right" && this.x < canvasWidth * 4 && !this.hasBubbleHit) this.x += 5;
+      if (this.direction == "left" && this.x > -this.width && !this.hasBubbleHit) {
+        this.moveBubbleTopLeft();
+      }
+      if (this.direction == "right" && this.x < canvasWidth * 4 && !this.hasBubbleHit) {
+        this.moveBubbleToRight();
+      }
     }, 10);
+  }
+
+  moveBubbleTopLeft() {
+    if (this.x <= this.startPositionX - 100 && !this.isFloatToSurface) {
+      this.floatToSurface();
+      this.isFloatToSurface = true;
+    }
+    if (!this.isFloatToSurface) {
+      this.x -= 5;
+    } else {
+      this.x -= 5 * this.factor;
+      this.factor = this.factor * 0.95;
+    }
+  }
+
+  moveBubbleToRight() {
+    if (this.x >= this.startPositionX + 100 && !this.isFloatToSurface) {
+      this.floatToSurface();
+      this.isFloatToSurface = true;
+    }
+    if (!this.isFloatToSurface) {
+      this.x += 5;
+    } else {
+      this.x += 5 * this.factor;
+      this.factor = this.factor * 0.95;
+    }
   }
 
   checkCollisions() {
