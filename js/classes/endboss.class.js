@@ -18,6 +18,7 @@ export class EndBoss extends MoveableObject {
   currentPlaytime = 0;
   sharkyX;
   sharkyY;
+  isEnemyDead = false;
 
   constructor(index, world) {
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
@@ -168,6 +169,7 @@ export class EndBoss extends MoveableObject {
   enemyIsDead() {
     if (!this.bossIsDead) {
       this.bossIsDead = true;
+      this.isEnemyDead = true;
       this.bossDead();
       setTimeout(() => {
         this.clearIntervalsAnimationMove();
