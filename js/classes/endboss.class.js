@@ -13,6 +13,7 @@ export class EndBoss extends MoveableObject {
   bossUpDown;
   bossIsVisible = false;
   bossIsDead = false;
+  moveBossForward;
   sprintForwardTime = this.getRandomCooldown();
   currentPlaytime = 0;
   sharkyX;
@@ -55,6 +56,7 @@ export class EndBoss extends MoveableObject {
     }, 1500);
     this.moveBossUpDown();
     this.moveBossForBackwards();
+    this.sprintBossForwards();
   }
 
   moveBossUpDown() {
@@ -69,7 +71,7 @@ export class EndBoss extends MoveableObject {
   }
 
   moveBossForBackwards() {
-    setInterval(() => {
+    this.moveBossForward = setInterval(() => {
       if (this.world.sharky.x <= 2000) {
         this.x = this.world.sharky.x + 300;
       }
@@ -77,9 +79,35 @@ export class EndBoss extends MoveableObject {
   }
 
   sprintBossForwards() {
-    setTimeout(() => {
-      setInterval(() => {}, 100);
-    }, 3000);
+    setInterval(() => {
+      clearInterval(this.moveBossForward);
+      clearInterval(this.currentAnimationIntervall);
+      this.bossAttack();
+      let direction = "left"
+      let xRange = 0;
+      let interval = setInterval(() => {
+        if (xRange < 200 && direction == "left") {
+          this.x -= 5;
+          xRange += 5;
+        }
+        if (xRange >= 200 && direction == "left") {
+          direction = "right";
+        } 
+        if (xRange > 0 && direction == "right") {
+          this.x += 5;
+          xRange -= 5;
+        }
+        if (xRange <= 0 && direction == "right") {
+          direction = "left";
+          xRange = 0;
+          this.clearIntervalsAnimationMove();
+          this.moveBossForBackwards();
+          this.bossSwim();
+          clearInterval(interval);
+        }
+        console.log(this.sharkyX);
+      }, 10);
+    }, 4000);
   }
 
   getRandomCooldown() {
