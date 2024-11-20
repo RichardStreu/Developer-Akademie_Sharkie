@@ -26,10 +26,13 @@ export class Light extends MoveableObject {
   }
 
   moveLightLeft(sharkyX, x, sharkyMidPoint) {
+    const interpolation = (start, end, amount) => (1 - amount) * start + amount * end;
+    const smoothFactor = 0.1;
+
     if (x < 1 && sharkyX > sharkyMidPoint && sharkyX > 0 && sharkyX < canvasWidth * 3.5 - sharkyWidth) {
-      this.x = sharkyX - sharkyMidPoint;
+      this.x = interpolation(this.x, sharkyX - sharkyMidPoint, smoothFactor);
     } else if (x > 1 && sharkyX <= 0) {
-      this.x = 0;
+      this.x = interpolation(this.x, 0, smoothFactor);
     }
   }
 }
