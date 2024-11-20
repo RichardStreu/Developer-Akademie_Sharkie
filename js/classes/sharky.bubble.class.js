@@ -75,7 +75,7 @@ export class SharkyBubble extends MoveableObject {
       for (let index = 0; index < this.world.level1.enemies.length; index++) {
         const enemy = this.world.level1.enemies[index];
         if (this.isColliding(enemy)) {
-          this.y = 2000;
+          this.y = -40;
           break;
         } else {
         }

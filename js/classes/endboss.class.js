@@ -156,8 +156,6 @@ export class EndBoss extends MoveableObject {
     setTimeout(() => {
       this.floatToSurface();
       let float = setInterval(() => {
-        console.log(this.y);
-        
         if (this.y <= -420) {
           clearInterval(this.currentMovement);
           clearInterval(this.currentAnimationIntervall);
