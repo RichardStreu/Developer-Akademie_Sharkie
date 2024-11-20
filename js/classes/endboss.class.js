@@ -1,28 +1,93 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { moveObjRatio, loadedCachsArray } from "../script.js";
+import { moveObjRatio, loadedCachsArray, youWin } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
 
 export class EndBoss extends MoveableObject {
-  currentAnimation = "swim"; //"introduce""swim""attack""dead""hurt" / "stop"
+  // currentAnimation = "introduce"; //"introduce""swim""attack""dead""hurt" / "stop"
 
   currentAnimationIntervall;
 
   currentMovement;
 
-  constructor() {
-    super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/2.floating/1.png");
-    this.x = 2400;
-    this.y = -50;
-    this.width = 320 * moveObjRatio;
-    this.height = 365 * moveObjRatio;
+  currentlyMoveUp = true;
+
+  world;
+
+  bossIsVisible = false;
+
+  sprintForwardTime = this.getRandomCooldown();
+
+  currentPlaytime = 0;
+
+  sharkyX;
+  sharkyY;
+
+  constructor(index, world) {
+    super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
+    this.x = 2450;
+    this.y = -1000;
+    this.width = 300 * moveObjRatio;
+    this.height = 342 * moveObjRatio;
+    this.world = world;
     this.loadAllImagesEndboss();
     this.checkImagesCacheLoaded();
-    this.firstInterval = setInterval(() => {
-      if (this.isImageCacheLoaded) {
-        this.doCurrentBossAnimation();
-        clearInterval(this.firstInterval);
-      }
+    this.checkSharkyPosition();
+    this.countSeconds();
+  }
+
+  countSeconds() {
+    setInterval(() => {
+      this.currentPlaytime += 1;
+    }, 1000);
+  }
+
+  checkSharkyPosition() {
+    setInterval(() => {
+      this.sharkyX = this.world.sharky.x;
+      this.sharkyY = this.world.sharky.y;
+      if (this.sharkyX >= 2000 && !this.bossIsVisible) this.doBossIntroduce();
     }, 100);
+  }
+
+  doBossIntroduce() {
+    this.bossIsVisible = true;
+    this.y = -50;
+    this.bossIntroduce();
+    setTimeout(() => {
+      this.clearIntervalsAnimationMove();
+      this.bossSwim();
+    }, 1500);
+    this.moveBossUpDown();
+    this.moveBossForBackwards();
+  }
+
+  moveBossUpDown() {
+    let minY = -120;
+    let maxY = 50;
+    setInterval(() => {
+      if (this.currentlyMoveUp && this.y >= minY) this.y -= 1.5;
+      if (this.currentlyMoveUp && this.y < minY) this.currentlyMoveUp = false;
+      if (!this.currentlyMoveUp && this.y < maxY) this.y += 1.5;
+      if (!this.currentlyMoveUp && this.y >= maxY) this.currentlyMoveUp = true;
+    }, 10);
+  }
+
+  moveBossForBackwards() {
+    setInterval(() => {
+      if (this.world.sharky.x <= 2000) {
+        this.x = this.world.sharky.x + 300;
+      }
+    }, 1);
+  }
+
+  sprintBossForwards() {
+    setTimeout(() => {
+      setInterval(() => {}, 100);
+    }, 3000);
+  }
+
+  getRandomCooldown() {
+    return Math.floor(Math.random() * 5000) + 5000;
   }
 
   async loadAllImagesEndboss() {
@@ -49,7 +114,7 @@ export class EndBoss extends MoveableObject {
 
   bossIntroduce() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesBossIntroduce, this.img, 180);
+    this.doImageAnimation(imagesBossIntroduce, this.img, 150);
   }
 
   bossSwim() {
@@ -64,7 +129,7 @@ export class EndBoss extends MoveableObject {
 
   bossDead() {
     this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesBossDead, this.img, 180);
+    this.doImageAnimation(imagesBossDead, this.img, 150);
   }
 
   bossHurt() {
@@ -77,15 +142,22 @@ export class EndBoss extends MoveableObject {
   }
 
   enemyIsDead() {
-    clearInterval(this.currentMovement);
-    clearInterval(this.currentAnimationIntervall);
     this.bossDead();
-    this.floatToSurface();
-    setInterval(() => {
-      if (this.y < 0 - this.height + 100) {
-        clearInterval(this.currentMovement);
-        clearInterval(this.currentAnimationIntervall);
-      }
-    }, 200);
+
+    setTimeout(() => {
+      clearInterval(this.currentAnimationIntervall);
+      this.loadImage("../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png");
+    }, 600);
+
+    setTimeout(() => {
+      this.floatToSurface();
+      setInterval(() => {
+        if (this.y < 0 - (this.height + 400)) {
+          clearInterval(this.currentMovement);
+          clearInterval(this.currentAnimationIntervall);
+          youWin();
+        }
+      }, 200);
+    }, 1500);
   }
 }

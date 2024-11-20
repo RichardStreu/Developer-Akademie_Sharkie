@@ -44,6 +44,7 @@ function init() {
 }
 
 init();
+window.init = init;
 
 export function checkImgChachStatus() {
   if (imgCachesObject) {
@@ -56,4 +57,12 @@ export function checkImgChachStatus() {
   } else {
     throw new Error("Images cant be loaded");
   }
+}
+
+export function youWin() {
+  console.log("You Win");
+}
+
+export function youLoose() {
+  console.log("You loose");
 }

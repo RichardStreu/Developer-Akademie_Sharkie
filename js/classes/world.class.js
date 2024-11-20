@@ -56,14 +56,14 @@ export class World {
     }, 100);
   }
 
-  level1 = new Level1();
+  level1 = new Level1(this);
 
   sharky = new Sharky(this);
 
   landscape = this.level1.landscape;
   enemies = this.level1.enemies;
 
-  statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
+  statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40, this), new StatusBarPoison(10, 80)];
 
   bubbles = [];
 
@@ -80,7 +80,14 @@ export class World {
     this.addObjectsToMap(this.bubbles);
     this.ctx.translate(-this.camera_x, 0);
     this.addObjectsToMap(this.statBars);
+    this.checkBubblePosition();
     requestAnimationFrame(() => this.draw());
+  }
+
+  checkBubblePosition() {
+    this.bubbles.forEach((bubble, index) => {
+      if (bubble.y < -40) this.bubbles.splice(index, 1);
+    });
   }
 
   addToMap(object) {

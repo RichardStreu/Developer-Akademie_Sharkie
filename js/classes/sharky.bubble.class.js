@@ -9,13 +9,16 @@ export class SharkyBubble extends MoveableObject {
   direction;
   bubbleMoveInterval;
   hasBubbleHit = false;
+  startPositionX;
+  isFloatToSurface = false;
+  factor = 1;
 
   constructor(world, direction) {
     super();
     this.direction = direction;
     this.world = world;
-    if (!this.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
-    if (this.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
+    if (!this.world.sharky.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
+    if (this.world.sharky.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
     if (direction == "left") {
       this.x = sharkyXPosition + 20;
       this.y = sharkyYPosition + 151;
@@ -25,15 +28,46 @@ export class SharkyBubble extends MoveableObject {
     }
     this.width = 25;
     this.height = 25;
+    this.startPositionX = this.x;
     this.moveBubble();
     this.checkCollisions();
   }
 
   moveBubble() {
     this.bubbleMoveInterval = setInterval(() => {
-      if (this.direction == "left" && this.x > -this.width && !this.hasBubbleHit) this.x -= 5;
-      if (this.direction == "right" && this.x < canvasWidth * 4 && !this.hasBubbleHit) this.x += 5;
+      if (this.direction == "left" && this.x > -this.width && !this.hasBubbleHit) {
+        this.moveBubbleTopLeft();
+      }
+      if (this.direction == "right" && this.x < canvasWidth * 4 && !this.hasBubbleHit) {
+        this.moveBubbleToRight();
+      }
     }, 10);
+  }
+
+  moveBubbleTopLeft() {
+    if (this.x <= this.startPositionX - 100 && !this.isFloatToSurface) {
+      this.floatToSurface();
+      this.isFloatToSurface = true;
+    }
+    if (!this.isFloatToSurface) {
+      this.x -= 5;
+    } else {
+      this.x -= 5 * this.factor;
+      this.factor = this.factor * 0.95;
+    }
+  }
+
+  moveBubbleToRight() {
+    if (this.x >= this.startPositionX + 100 && !this.isFloatToSurface) {
+      this.floatToSurface();
+      this.isFloatToSurface = true;
+    }
+    if (!this.isFloatToSurface) {
+      this.x += 5;
+    } else {
+      this.x += 5 * this.factor;
+      this.factor = this.factor * 0.95;
+    }
   }
 
   checkCollisions() {
@@ -119,7 +153,7 @@ export class SharkyBubble extends MoveableObject {
   isCollEndBoss(obj) {
     if (this.x + this.width > obj.x + 10 && this.x < obj.x + 10 + (obj.width - 35) && this.y + this.height > obj.y + 180 && this.y < obj.y + 180 + (obj.height - 250)) {
       let demageFactor = 10;
-      this.bubbleHit(obj, demageFactor);
+      if (this.world.sharky.isEnoughPoison == true) this.bubbleHit(obj, demageFactor);
       return true;
     }
   }

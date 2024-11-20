@@ -13,23 +13,26 @@ export class Light extends MoveableObject {
     this.y = y;
     this.width = canvasWidth;
     this.height = canvasHeight;
-    this.getSharkyPosition();
+    this.sharkyMidPoint = canvasWidth / 2 - sharkyWidth / 2 - 50;
+    this.getSharkyPosition(x, this.sharkyMidPoint);
   }
 
-  getSharkyPosition() {
+  getSharkyPosition(x, sharkyMidPoint) {
     setInterval(() => {
       this.sharkyX = sharkyXPosition;
       this.sharkyY = sharkyYPosition;
-      this.moveLightLeft();
+      this.moveLightLeft(this.sharkyX, x, sharkyMidPoint);
     }, 50);
   }
 
-  moveLightLeft() {
-    const sharkyMidPoint = canvasWidth / 2 - sharkyWidth / 2 - 50;
-    if (this.sharkyX > sharkyMidPoint && this.sharkyX > 0 && (this.sharkyX < (canvasWidth * 3.5) - sharkyWidth)) {
-      this.x = this.sharkyX - sharkyMidPoint;
-    } else if (this.sharkyX <= 0) {
-      this.x = 0;
+  moveLightLeft(sharkyX, x, sharkyMidPoint) {
+    const interpolation = (start, end, amount) => (1 - amount) * start + amount * end;
+    const smoothFactor = 0.1;
+
+    if (x < 1 && sharkyX > sharkyMidPoint && sharkyX > 0 && sharkyX < canvasWidth * 3.5 - sharkyWidth) {
+      this.x = interpolation(this.x, sharkyX - sharkyMidPoint, smoothFactor);
+    } else if (x > 1 && sharkyX <= 0) {
+      this.x = interpolation(this.x, 0, smoothFactor);
     }
   }
 }

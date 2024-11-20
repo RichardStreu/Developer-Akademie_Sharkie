@@ -46,14 +46,13 @@ import {
   isSharkyDead,
   regularDead,
   electricDead,
-  gameOver,
 } from "./sharky.action.hurt.js";
 
 import { SharkyBubble } from "./sharky.bubble.class.js";
 
 export let sharkyXPosition = 0;
 export let sharkyYPosition = 200;
-export let sharkyWidth;
+export let sharkyWidth = 216;
 export let sharkyHeight;
 //
 export class Sharky extends MoveableObject {
@@ -73,7 +72,7 @@ export class Sharky extends MoveableObject {
   lifeEnergy = 100;
   coin = 0;
   poison = 0;
-  isEnoughPoison;
+  // isEnoughPoison;
   isEnoughCoin;
 
   constructor(world) {
@@ -221,7 +220,6 @@ export class Sharky extends MoveableObject {
     if (this.lifeEnergy > 0) {
       if (enemy == "Coin") {
         this.getCoins(enemy);
-        console.log(enemy);
       }
       if (enemy == "Poison") this.getPoison(enemy);
       if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
@@ -266,4 +264,3 @@ Sharky.prototype.electricHurt = electricHurt;
 Sharky.prototype.isSharkyDead = isSharkyDead;
 Sharky.prototype.regularDead = regularDead;
 Sharky.prototype.electricDead = electricDead;
-Sharky.prototype.gameOver = gameOver;
