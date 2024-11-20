@@ -87,7 +87,7 @@ export class MoveableObject extends DrawableObject {
 
   floatToSurface(item) {
     this.currentMovement = setInterval(() => {
-      if (this.y > -20 - this.height) {
+      if (this.y > -200 - this.height) {
         this.y -= this.speedY;
       } else {
         if (item == "Sharky") youLoose();
@@ -159,7 +159,13 @@ export class MoveableObject extends DrawableObject {
   }
 
   isCollPufferGreen(obj, hitboxX, currentFinSlap) {
-    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 10)) {
+    if (
+      hitboxX + 40 + (this.width - 80) > obj.x &&
+      hitboxX + 40 < obj.x + obj.width &&
+      this.y + 125 + (this.height - 190) > obj.y &&
+      this.y + 125 < obj.y + (obj.height - 10) &&
+      obj.isEnemyDead == false
+    ) {
       if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
       if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
@@ -167,7 +173,13 @@ export class MoveableObject extends DrawableObject {
   }
 
   isCollPufferOrange(obj, hitboxX, currentFinSlap) {
-    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + (obj.height - 17)) {
+    if (
+      hitboxX + 40 + (this.width - 80) > obj.x &&
+      hitboxX + 40 < obj.x + obj.width &&
+      this.y + 125 + (this.height - 190) > obj.y &&
+      this.y + 125 < obj.y + (obj.height - 17) &&
+      obj.isEnemyDead == false
+    ) {
       if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
       if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
@@ -175,7 +187,13 @@ export class MoveableObject extends DrawableObject {
   }
 
   isCollPufferRed(obj, hitboxX, currentFinSlap) {
-    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + (obj.width - 10) && this.y + 125 + (this.height - 190) > obj.y + 4 && this.y + 125 < obj.y + 4 + (obj.height - 30)) {
+    if (
+      hitboxX + 40 + (this.width - 80) > obj.x &&
+      hitboxX + 40 < obj.x + (obj.width - 10) &&
+      this.y + 125 + (this.height - 190) > obj.y + 4 &&
+      this.y + 125 < obj.y + 4 + (obj.height - 30) &&
+      obj.isEnemyDead == false
+    ) {
       if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
       if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
@@ -183,7 +201,13 @@ export class MoveableObject extends DrawableObject {
   }
 
   isCollJellyGreen(obj, hitboxX, currentFinSlap) {
-    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
+    if (
+      hitboxX + 40 + (this.width - 80) > obj.x &&
+      hitboxX + 40 < obj.x + obj.width &&
+      this.y + 125 + (this.height - 190) > obj.y + 5 &&
+      this.y + 125 < obj.y + 5 + (obj.height - 15) &&
+      obj.isEnemyDead == false
+    ) {
       if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
       if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
@@ -191,7 +215,13 @@ export class MoveableObject extends DrawableObject {
   }
 
   isCollJellyPink(obj, hitboxX, currentFinSlap) {
-    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
+    if (
+      hitboxX + 40 + (this.width - 80) > obj.x &&
+      hitboxX + 40 < obj.x + obj.width &&
+      this.y + 125 + (this.height - 190) > obj.y + 5 &&
+      this.y + 125 < obj.y + 5 + (obj.height - 15) &&
+      obj.isEnemyDead == false
+    ) {
       if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
       if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
@@ -199,7 +229,7 @@ export class MoveableObject extends DrawableObject {
   }
 
   isCollJellyLila(obj, hitboxX, currentFinSlap) {
-    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
+    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height && obj.isEnemyDead == false) {
       if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
       if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
@@ -207,7 +237,13 @@ export class MoveableObject extends DrawableObject {
   }
 
   isCollJellyYellow(obj, hitboxX, currentFinSlap) {
-    if (hitboxX + 40 + (this.width - 80) > obj.x && hitboxX + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y + 5 && this.y + 125 < obj.y + 5 + (obj.height - 15)) {
+    if (
+      hitboxX + 40 + (this.width - 80) > obj.x &&
+      hitboxX + 40 < obj.x + obj.width &&
+      this.y + 125 + (this.height - 190) > obj.y + 5 &&
+      this.y + 125 < obj.y + 5 + (obj.height - 15) &&
+      obj.isEnemyDead == false
+    ) {
       if (currentFinSlap == "left") this.hitEnemyToLeft(obj);
       if (currentFinSlap == "right") this.hitEnemyToRight(obj);
       return true;
@@ -251,7 +287,8 @@ export class MoveableObject extends DrawableObject {
       this.x + 40 + (this.width - 80) > obj.x + 10 &&
       this.x + 40 < obj.x + 10 + (obj.width - 35) &&
       this.y + 125 + (this.height - 190) > obj.y + 180 &&
-      this.y + 125 < obj.y + 180 + (obj.height - 250)
+      this.y + 125 < obj.y + 180 + (obj.height - 250) &&
+      obj.isEnemyDead == false
     ) {
       return true;
     }

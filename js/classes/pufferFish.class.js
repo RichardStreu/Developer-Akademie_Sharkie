@@ -73,13 +73,13 @@ export class PufferFish extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
 
     this.img = this.imageCache[this.imagesDie[2]];
+    this.isEnemyDead = true;
     this.floatToSurface();
     setInterval(() => {
-      if (this.y < -500) {
+      if (this.y < -1500) {
         clearInterval(this.currentMovement);
         clearInterval(this.currentAnimationIntervall);
       }
     }, 200);
   }
-
 }

@@ -15,9 +15,11 @@ export class EndBoss extends MoveableObject {
   bossIsDead = false;
   moveBossForward;
   sprintForwardTime = this.getRandomCooldown();
+  sprintForwardInterval;
   currentPlaytime = 0;
   sharkyX;
   sharkyY;
+  isEnemyDead = false;
 
   constructor(index, world) {
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
@@ -79,11 +81,11 @@ export class EndBoss extends MoveableObject {
   }
 
   sprintBossForwards() {
-    setInterval(() => {
+    this.sprintForwardInterval = setInterval(() => {
       clearInterval(this.moveBossForward);
       clearInterval(this.currentAnimationIntervall);
       this.bossAttack();
-      let direction = "left"
+      let direction = "left";
       let xRange = 0;
       let interval = setInterval(() => {
         if (xRange < 200 && direction == "left") {
@@ -92,7 +94,7 @@ export class EndBoss extends MoveableObject {
         }
         if (xRange >= 200 && direction == "left") {
           direction = "right";
-        } 
+        }
         if (xRange > 0 && direction == "right") {
           this.x += 5;
           xRange -= 5;
@@ -105,9 +107,8 @@ export class EndBoss extends MoveableObject {
           this.bossSwim();
           clearInterval(interval);
         }
-        console.log(this.sharkyX);
       }, 10);
-    }, 4000);
+    }, 4500);
   }
 
   getRandomCooldown() {
@@ -167,7 +168,10 @@ export class EndBoss extends MoveableObject {
 
   enemyIsDead() {
     if (!this.bossIsDead) {
+      clearInterval(this.moveBossForward);
+      clearInterval(this.sprintForwardInterval);
       this.bossIsDead = true;
+      this.isEnemyDead = true;
       this.bossDead();
       setTimeout(() => {
         this.clearIntervalsAnimationMove();

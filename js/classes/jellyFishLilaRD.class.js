@@ -21,6 +21,8 @@ export class JellyFishLilaRD extends JellyFish {
 
   currentMovement;
 
+  isEnemyDead = false;
+
   constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png");
     this.enemieIndex = index;
@@ -63,10 +65,11 @@ export class JellyFishLilaRD extends JellyFish {
   enemyIsDead() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
+    this.isEnemyDead = true;
     this.jellyDead();
     this.floatToSurface();
     setInterval(() => {
-      if (this.y < -500) {
+      if (this.y < -1500) {
         clearInterval(this.currentMovement);
         clearInterval(this.currentAnimationIntervall);
       }
