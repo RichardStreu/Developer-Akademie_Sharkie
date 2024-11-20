@@ -11,6 +11,7 @@ export class SharkyBubble extends MoveableObject {
   hasBubbleHit = false;
   startPositionX;
   isFloatToSurface = false;
+  collidingInterval;
   factor = 1;
 
   constructor(world, direction) {
@@ -71,7 +72,7 @@ export class SharkyBubble extends MoveableObject {
   }
 
   checkCollisions() {
-    setInterval(() => {
+    this.collidingInterval = setInterval(() => {
       for (let index = 0; index < this.world.level1.enemies.length; index++) {
         const enemy = this.world.level1.enemies[index];
         if (this.isColliding(enemy)) {
@@ -98,6 +99,7 @@ export class SharkyBubble extends MoveableObject {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y && this.y < obj.y + (obj.height - 10)) {
       let demageFactor = 35;
       this.bubbleHit(obj, demageFactor);
+      clearInterval(this.collidingInterval);
       return true;
     }
   }
@@ -106,6 +108,7 @@ export class SharkyBubble extends MoveableObject {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y && this.y < obj.y + (obj.height - 17)) {
       let demageFactor = 35;
       this.bubbleHit(obj, demageFactor);
+      clearInterval(this.collidingInterval);
       return true;
     }
   }
@@ -114,6 +117,7 @@ export class SharkyBubble extends MoveableObject {
     if (this.x + this.width > obj.x && this.x < obj.x + (obj.width - 10) && this.y + this.height > obj.y + 4 && this.y < obj.y + 4 + (obj.height - 30)) {
       let demageFactor = 35;
       this.bubbleHit(obj, demageFactor);
+      clearInterval(this.collidingInterval);
       return true;
     }
   }
@@ -122,6 +126,7 @@ export class SharkyBubble extends MoveableObject {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
       let demageFactor = 30;
       this.bubbleHit(obj, demageFactor);
+      clearInterval(this.collidingInterval);
       return true;
     }
   }
@@ -130,6 +135,7 @@ export class SharkyBubble extends MoveableObject {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
       let demageFactor = 30;
       this.bubbleHit(obj, demageFactor);
+      clearInterval(this.collidingInterval);
       return true;
     }
   }
@@ -138,6 +144,7 @@ export class SharkyBubble extends MoveableObject {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y && this.y < obj.y + obj.height) {
       let demageFactor = 30;
       this.bubbleHit(obj, demageFactor);
+      clearInterval(this.collidingInterval);
       return true;
     }
   }
@@ -146,6 +153,7 @@ export class SharkyBubble extends MoveableObject {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
       let demageFactor = 30;
       this.bubbleHit(obj, demageFactor);
+      clearInterval(this.collidingInterval);
       return true;
     }
   }
@@ -154,6 +162,7 @@ export class SharkyBubble extends MoveableObject {
     if (this.x + this.width > obj.x + 10 && this.x < obj.x + 10 + (obj.width - 35) && this.y + this.height > obj.y + 180 && this.y < obj.y + 180 + (obj.height - 250)) {
       let demageFactor = 10;
       if (this.world.sharky.isEnoughPoison == true) this.bubbleHit(obj, demageFactor);
+      clearInterval(this.collidingInterval);
       return true;
     }
   }
