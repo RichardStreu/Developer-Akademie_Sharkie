@@ -13,6 +13,8 @@ export class EndBoss extends MoveableObject {
 
   world;
 
+  bossUpDown;
+
   bossIsVisible = false;
 
   sprintForwardTime = this.getRandomCooldown();
@@ -64,7 +66,7 @@ export class EndBoss extends MoveableObject {
   moveBossUpDown() {
     let minY = -120;
     let maxY = 50;
-    setInterval(() => {
+    this.bossUpDown = setInterval(() => {
       if (this.currentlyMoveUp && this.y >= minY) this.y -= 1.5;
       if (this.currentlyMoveUp && this.y < minY) this.currentlyMoveUp = false;
       if (!this.currentlyMoveUp && this.y < maxY) this.y += 1.5;
@@ -145,16 +147,21 @@ export class EndBoss extends MoveableObject {
     this.bossDead();
 
     setTimeout(() => {
-      clearInterval(this.currentAnimationIntervall);
+      this.clearIntervalsAnimationMove();
+      clearInterval(this.bossUpDown);
+      // clearInterval(this.currentAnimationIntervall);
       this.loadImage("../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png");
     }, 600);
 
     setTimeout(() => {
       this.floatToSurface();
-      setInterval(() => {
-        if (this.y < 0 - (this.height + 400)) {
+      let float = setInterval(() => {
+        console.log(this.y);
+        
+        if (this.y <= -420) {
           clearInterval(this.currentMovement);
           clearInterval(this.currentAnimationIntervall);
+          clearInterval(float);
           youWin();
         }
       }, 200);
