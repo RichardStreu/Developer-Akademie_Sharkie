@@ -10,13 +10,19 @@
   <body>
     <main id="main" class="main">
       <h1>Sharky</h1>
+      <!-- Display Field of the game -->
       <div id="display" class="display">
-        <div id="startScreen" class="startScreen"></div>
+        <!-- loading screen -->
         <div id="loadingScreen" class="loadingScreen">
           <p>Loading...</p>
         </div>
-        <canvas id="canvas" class="canvas visibility_hidden"> </canvas>
+        <!-- start screen -->
+        <div id="startScreen" class="startScreen"></div>
+        <!-- game canvas -->
+        <canvas id="canvas" class="canvas d_none"> </canvas>
+        <!-- game over screen -->
         <div id="looseScreen" class="looseScreen"></div>
+        <!-- win screen -->
         <div id="winScreen" class="winScreen"></div>
       </div>
     </main>
