@@ -66,3 +66,7 @@ export function youWin() {
 export function youLoose() {
   console.log("You loose");
 }
+
+export function restartGame() {
+  this.init();
+}
