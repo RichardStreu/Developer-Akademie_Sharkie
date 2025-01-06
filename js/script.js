@@ -59,6 +59,17 @@ export function checkImgChachStatus() {
   }
 }
 
+export function startGame() {
+  document.getElementById("startScreen").classList.add("d_none");
+  document.getElementById("canvas").classList.remove("d_none");
+}
+window.startGame = startGame;
+
+export function restartGame() {
+  this.init();
+}
+window.restartGame = restartGame;
+
 export function youWin() {
   console.log("You Win");
 }
@@ -67,6 +78,3 @@ export function youLoose() {
   console.log("You loose");
 }
 
-export function restartGame() {
-  this.init();
-}
