@@ -5,4 +5,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .tryAgainButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
 }

@@ -41,6 +41,11 @@
   justify-content: center;
   align-items: center;
 }
+.looseScreen .tryAgainButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 
 .winScreen {
   width: 100%;
@@ -49,6 +54,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.winScreen .tryAgainButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 * {
