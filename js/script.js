@@ -51,7 +51,7 @@ export function checkImgChachStatus() {
     let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
     if (imagesReady) {
       areImgCachesReady = true;
-      document.getElementById("canvas").classList.remove("d_none");
+      document.getElementById("startScreen").classList.remove("d_none");
       document.getElementById("loadingScreen").classList.add("d_none");
     }
   } else {
