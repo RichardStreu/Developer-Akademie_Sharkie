@@ -1,3 +1,13 @@
+.blackScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  z-index: 5000;
+}
+
 .loadingScreen {
   width: 100%;
   height: 100%;
@@ -34,9 +44,13 @@
 }
 
 .looseScreen {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: red;
+  position: absolute;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,9 +62,13 @@
 }
 
 .winScreen {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: green;
+  position: absolute;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,6 +99,10 @@
 
 .d_flex {
   display: flex;
+}
+
+.opacity_zero {
+  opacity: 0;
 }
 
 .visibility_hidden {

@@ -13,6 +13,8 @@
       <h1>Sharky</h1>
       <!-- Display Field of the game -->
       <div id="display" class="display">
+        <!-- blackScreen -->
+        <div id="blackScreen" class="blackScreen"></div>
         <!-- loading screen -->
         <div id="loadingScreen" class="loadingScreen">
           <p>Loading...</p>
@@ -20,25 +22,24 @@
         <!-- start screen -->
         <div id="startScreen" class="startScreen d_none">
           <button onclick="startGame()" id="startButton" class="startButton">
-            <img src="./assets/img/6.Botones/Start/2.png" alt="">
+            <img src="./assets/img/6.Botones/Start/2.png" alt="" />
           </button>
         </div>
         <!-- game canvas -->
         <canvas id="canvas" class="canvas d_none"> </canvas>
         <!-- game over screen -->
-        <div id="looseScreen" class="looseScreen">
+        <div id="looseScreen" class="looseScreen d_none">
           <button onclick="restartGame()" class="tryAgainButton">
-            <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="">
+            <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>
         </div>
         <!-- win screen -->
-        <div id="winScreen" class="winScreen">
+        <div id="winScreen" class="winScreen d_none">
           <button onclick="restartGame()" class="tryAgainButton">
-            <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="">
+            <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>
         </div>
       </div>
     </main>
-    
   </body>
 </html>
