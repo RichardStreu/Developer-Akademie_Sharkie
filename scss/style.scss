@@ -1,8 +1,10 @@
-@import "./loadingScreen";
-@import "./startScreen";
 @import "./fonts.scss";
 @import "./var.scss";
+@import "./loadingScreen.scss";
+@import "./startScreen.scss";
 @import "./canvas.scss";
+@import "./looseScreen.scss";
+@import "./winScreen.scss";
 @import "./default.scss";
 
 @font-face {
