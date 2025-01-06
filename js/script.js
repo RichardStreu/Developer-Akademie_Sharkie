@@ -74,15 +74,19 @@ export function switchScreens() {
 window.switchScreens = switchScreens;
 
 export function startGame() {
+  switchScreens();
   setTimeout(() => {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
-  }, 200);
+  }, 500);
 }
 window.startGame = startGame;
 
 export function restartGame() {
-  this.init();
+  switchScreens();
+  setTimeout(() => {
+    this.init();
+  }, 500);
 }
 window.restartGame = restartGame;
 
