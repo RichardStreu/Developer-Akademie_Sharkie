@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./scss/style.css" />
-    <link rel="icon" href="./assets/icon/icons8-shark-94.png">
+    <link rel="icon" href="./assets/icon/icons8-shark-94.png" />
     <title>Sharky</title>
   </head>
   <body>
     <main id="main" class="main">
       <h1>Sharky</h1>
-      <div id="startScreen" class="startScreen"></div>
-      <div id="loadingScreen" class="loadingScreen">
-        <p>Loading...</p>
+      <div id="display" class="display">
+        <div id="startScreen" class="startScreen"></div>
+        <div id="loadingScreen" class="loadingScreen">
+          <p>Loading...</p>
+        </div>
+        <canvas id="canvas" class="canvas visibility_hidden" width="720px" height="480px"> </canvas>
+        <div id="looseScreen" class="looseScreen"></div>
+        <div id="winScreen" class="winScreen"></div>
       </div>
-      <canvas id="canvas" class="canvas visibility_hidden" width="720px" height="480px"> </canvas>
-      <div id="looseScreen" class="looseScreen"></div>
-      <div id="winScreen" class="winScreen"></div>
     </main>
     <script type="module" src="./js/script.js" defer></script>
   </body>
