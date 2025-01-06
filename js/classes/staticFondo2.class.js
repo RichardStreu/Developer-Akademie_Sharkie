@@ -14,7 +14,7 @@ export class Fondo2 extends MoveableObject {
     this.width = canvasWidth * 2;
     this.height = canvasHeight;
     this.sharkyMidPoint = canvasWidth / 2 - sharkyWidth / 2 - 50;
-    this.getSharkyPosition(x, this.sharkyMidPoint);
+    this.getSharkyPosition(this.x, this.sharkyMidPoint);
   }
 
   getSharkyPosition(x, sharkyMidPoint) {
@@ -24,13 +24,11 @@ export class Fondo2 extends MoveableObject {
     }, 50);
   }
 
-  moveFondo1(sharkyX, x, sharkyMidPoint) {  
-    if (x < 1 && sharkyX > sharkyMidPoint && (sharkyX < (canvasWidth * 3.5) - sharkyWidth)) {
-      this.x = (sharkyX * 0.1) - 30;
-    } 
-    else if (x > 1 && sharkyX > sharkyMidPoint && (sharkyX < (canvasWidth * 3.5) - sharkyWidth))
-       {
-      this.x = (sharkyX * 0.1 + x) - 30;
+  moveFondo1(sharkyX, x, sharkyMidPoint) {
+    if (x < 1 && sharkyX > sharkyMidPoint && sharkyX < canvasWidth * 3.5 - sharkyWidth) {
+      this.x = sharkyX * 0.1 - 30;
+    } else if (x > 1 && sharkyX > sharkyMidPoint && sharkyX < canvasWidth * 3.5 - sharkyWidth) {
+      this.x = sharkyX * 0.1 + x - 30;
     }
   }
 }

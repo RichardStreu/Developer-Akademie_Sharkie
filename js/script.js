@@ -35,27 +35,31 @@ function init() {
   world = new World(canvas, keyboard);
   window.world = world;
 
-  let cacheStatus = setInterval(() => {
-    checkImgChachStatus();
-    if (areImgCachesReady) {
-      clearInterval(cacheStatus);
-    }
-  }, 200);
+  if (!areImgCachesReady) {
+    let cacheStatus = setInterval(() => {
+      checkImgChachStatus();
+      if (areImgCachesReady) {
+        clearInterval(cacheStatus);
+      }
+    }, 200);
+  }
 }
 
 init();
 window.init = init;
 
 export function checkImgChachStatus() {
-  if (imgCachesObject) {
-    let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
-    if (imagesReady) {
-      areImgCachesReady = true;
-      document.getElementById("startScreen").classList.remove("d_none");
-      document.getElementById("loadingScreen").classList.add("d_none");
+  if (!areImgCachesReady) {
+    if (imgCachesObject) {
+      let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
+      if (imagesReady) {
+        areImgCachesReady = true;
+        document.getElementById("startScreen").classList.remove("d_none");
+        document.getElementById("loadingScreen").classList.add("d_none");
+      }
+    } else {
+      throw new Error("Images cant be loaded");
     }
-  } else {
-    throw new Error("Images cant be loaded");
   }
 }
 
@@ -85,15 +89,27 @@ window.startGame = startGame;
 export function restartGame() {
   switchScreens();
   setTimeout(() => {
-    this.init();
+    document.getElementById("winScreen").classList.add("d_none");
+    document.getElementById("looseScreen").classList.add("d_none");
+    document.getElementById("canvas").classList.add("d_none");
+    canvas = "";
+    setTimeout(() => {
+      document.getElementById("canvas").classList.remove("d_none");
+      // world.sharky.x = 0;
+      setTimeout(() => {
+        init();
+      }, 10);
+    }, 50);
   }, 500);
 }
 window.restartGame = restartGame;
 
 export function youWin() {
+  document.getElementById("winScreen").classList.remove("d_none");
   console.log("You Win");
 }
 
 export function youLoose() {
+  document.getElementById("looseScreen").classList.remove("d_none");
   console.log("You loose");
 }

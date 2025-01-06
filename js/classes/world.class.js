@@ -28,13 +28,26 @@ import { StatusBarPoison } from "./statusBar-poison.class.js";
 import { SharkyBubble } from "./sharky.bubble.class.js";
 
 export class World {
+  
+  level1 = new Level1(this);
+  landscape = this.level1.landscape;
+  enemies = this.level1.enemies;
+  statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40, this), new StatusBarPoison(10, 80)];
+  bubbles = [];
+  canvas;
+  ctx;
+  camera_x = 0;
+
   constructor(canvas, keyboard) {
+    // delete this.sharky;
+    this.sharky = new Sharky(this);
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
     this.checkCollisions();
+    
   }
 
   setWorld() {
@@ -56,20 +69,6 @@ export class World {
     }, 100);
   }
 
-  level1 = new Level1(this);
-
-  sharky = new Sharky(this);
-
-  landscape = this.level1.landscape;
-  enemies = this.level1.enemies;
-
-  statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40, this), new StatusBarPoison(10, 80)];
-
-  bubbles = [];
-
-  canvas;
-  ctx;
-  camera_x = 0;
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

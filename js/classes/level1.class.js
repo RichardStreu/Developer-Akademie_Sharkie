@@ -32,8 +32,8 @@ export class Level1 {
     this.landscape = [
       new Water(),
       new Water(canvasWidth * 2, 0),
-      new Fondo1(),
-      new Fondo2(),
+      new Fondo1(0),
+      new Fondo2(0),
       new Fondo1(canvasWidth * 2, 0),
       new Fondo2(canvasWidth * 2, 0),
       new Floor(),

@@ -129,6 +129,10 @@ export class Sharky extends MoveableObject {
 
   checkCurrentSharkyPositions() {
     setInterval(() => {
+      // console.log("KACKFISCH XXX = " + this.x);
+      // console.log("KACKFISCH YYY = " + this.y);
+      console.log(this.lifeEnergy);
+      
       sharkyXPosition = this.x;
       sharkyYPosition = this.y;
     }, 50);

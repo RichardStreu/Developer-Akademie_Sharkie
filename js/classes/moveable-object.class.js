@@ -90,7 +90,10 @@ export class MoveableObject extends DrawableObject {
       if (this.y > -200 - this.height) {
         this.y -= this.speedY;
       } else {
-        if (item == "Sharky") youLoose();
+        if (item == "Sharky") {
+          this.world.sharky.checkCurrentSharkyPositions();
+          youLoose();
+        }
         clearInterval(this.currentMovement);
       }
     }, 1000 / 40);
@@ -103,6 +106,7 @@ export class MoveableObject extends DrawableObject {
       } else {
         if (item == "Sharky") {
           setTimeout(() => {
+            this.world.sharky.checkCurrentSharkyPositions();
             youLoose();
           }, 1500);
         }
