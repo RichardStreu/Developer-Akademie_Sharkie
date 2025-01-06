@@ -59,6 +59,20 @@ export function checkImgChachStatus() {
   }
 }
 
+export function switchScreens() {
+  document.getElementById("blackScreen").classList.remove("d_none");
+  setTimeout(() => {
+    document.getElementById("blackScreen").classList.remove("opacity_zero");
+  }, 10);
+  setTimeout(() => {
+    document.getElementById("blackScreen").classList.add("opacity_zero");
+  }, 590);
+  setTimeout(() => {
+    document.getElementById("blackScreen").classList.add("d_none");
+  }, 990);
+}
+window.switchScreens = switchScreens;
+
 export function startGame() {
   setTimeout(() => {
     document.getElementById("startScreen").classList.add("d_none");
