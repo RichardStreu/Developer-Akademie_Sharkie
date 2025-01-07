@@ -34,8 +34,7 @@ function init() {
     world.statBars[1].clearLifeEnergyIntertval();
     world.clearWorld();
     console.log("SHARKY INTERVAL");
-    
-
+    world = null;
   }
   world = {};
   console.log("1: ", world);

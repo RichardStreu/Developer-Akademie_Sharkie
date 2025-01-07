@@ -7,6 +7,7 @@ export class EndBoss extends MoveableObject {
 
   currentAnimationIntervall;
   currentSharkyPositionInterval;
+  countSecondsInterval;
   currentMovement;
   currentlyMoveUp = true;
   floating;
@@ -41,11 +42,12 @@ export class EndBoss extends MoveableObject {
     clearInterval(this.sprintForwardInterval);
     clearInterval(this.currentAnimationIntervall);
     clearInterval(this.currentSharkyPositionInterval);
+    clearInterval(this.countSecondsInterval);
     this.clearIntervalsAnimationMove();
   }
 
   countSeconds() {
-    setInterval(() => {
+    this.countSecondsInterval = setInterval(() => {
       this.currentPlaytime += 1;
     }, 1000);
   }
