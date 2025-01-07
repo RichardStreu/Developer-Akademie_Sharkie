@@ -52,7 +52,6 @@ export class World {
 
   setWorld() {
     this.sharky.world = this;
-    this.level1.world = this;
     this.level1.enemies.forEach((enemy) => {
       if (enemy instanceof EndBoss) {
         enemy.world = this;

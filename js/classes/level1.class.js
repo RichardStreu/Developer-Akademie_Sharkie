@@ -23,11 +23,7 @@ import { Poison } from "./poison.class.js";
 
 export class Level1 {
 
-  world;
-
   constructor() {
-
-    // this.world = world;
 
     this.landscape = [
       new Water(),
