@@ -39,20 +39,21 @@ export class World {
   camera_x = 0;
 
   constructor(canvas, keyboard) {
-    // delete this.sharky;
+    // console.log(new Date);
+    
     this.sharky = new Sharky(this);
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.draw();
-    this.setWorld();
+    // this.setWorld();
     this.checkCollisions();
     
   }
 
-  setWorld() {
-    this.sharky.world = this;
-  }
+  // setWorld() {
+  //   this.sharky.world = this;
+  // }
 
   checkCollisions() {
     setInterval(() => {

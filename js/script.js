@@ -27,6 +27,10 @@ export let areImgCachesReady = false;
 export let loadedCachsArray = [];
 
 function init() {
+  world = {};
+  console.log("1: ", world);
+  
+
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
   canvas.width = canvasWidth;
@@ -34,6 +38,8 @@ function init() {
 
   world = new World(canvas, keyboard);
   window.world = world;
+  console.log("2: ", world);
+  
 
   if (!areImgCachesReady) {
     let cacheStatus = setInterval(() => {
@@ -95,7 +101,7 @@ export function restartGame() {
     canvas = "";
     setTimeout(() => {
       document.getElementById("canvas").classList.remove("d_none");
-      world.sharky.x = 0;
+      // world.sharky.x = 0;
       setTimeout(() => {
         init();
       }, 10);

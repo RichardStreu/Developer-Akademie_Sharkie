@@ -58,6 +58,7 @@ export let sharkyHeight;
 export class Sharky extends MoveableObject {
   firstInterval;
   currentAnimationIntervall;
+  currentPositionInterval
   currentMovement;
   isSwimLeft;
   isSwimRight;
@@ -128,14 +129,18 @@ export class Sharky extends MoveableObject {
   }
 
   checkCurrentSharkyPositions() {
-    setInterval(() => {
+    this.currentPositionInterval = setInterval(() => {
       // console.log("KACKFISCH XXX = " + this.x);
       // console.log("KACKFISCH YYY = " + this.y);
-      console.log(this.lifeEnergy);
+      // console.log(this.lifeEnergy);
       
       sharkyXPosition = this.x;
       sharkyYPosition = this.y;
     }, 50);
+  }
+
+  clearCurrentPositionInterval() {
+    clearInterval(this.currentPositionInterval);
   }
 
   clearIntervalsAnimationMove() {
