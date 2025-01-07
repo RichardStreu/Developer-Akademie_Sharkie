@@ -46,14 +46,14 @@ export class World {
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.draw();
-    // this.setWorld();
+    this.setWorld();
     this.checkCollisions();
     
   }
 
-  // setWorld() {
-  //   this.sharky.world = this;
-  // }
+  setWorld() {
+    this.sharky.world = this;
+  }
 
   checkCollisions() {
     setInterval(() => {

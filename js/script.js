@@ -101,7 +101,7 @@ export function restartGame() {
     canvas = "";
     setTimeout(() => {
       document.getElementById("canvas").classList.remove("d_none");
-      // world.sharky.x = 0;
+      world.sharky.x = 0;
       setTimeout(() => {
         init();
       }, 10);
