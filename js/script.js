@@ -33,12 +33,13 @@ function init() {
     world.clearCheckCollisionsInterval();
     world.statBars[1].clearLifeEnergyIntertval();
     world.clearWorld();
-    console.log("SHARKY INTERVAL");
+    world.sharky = null;
     world = null;
+
+    console.log("SHARKY INTERVAL");
   }
   world = {};
   console.log("1: ", world);
-  
 
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
@@ -48,7 +49,6 @@ function init() {
   world = new World(canvas, keyboard);
   window.world = world;
   console.log("2: ", world);
-  
 
   if (!areImgCachesReady) {
     let cacheStatus = setInterval(() => {

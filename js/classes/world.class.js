@@ -66,7 +66,7 @@ export class World {
     this.enemies = [];
     this.landscape = [];
     this.statBars = [];
-    this.sharky = null;
+    // this.sharky = null;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
@@ -94,7 +94,7 @@ export class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.landscape);
-    this.addToMap(this.sharky);
+    if (this.sharky) this.addToMap(this.sharky);
     this.addObjectsToMap(this.enemies);
     this.addObjectsToMap(this.bubbles);
     this.ctx.translate(-this.camera_x, 0);
