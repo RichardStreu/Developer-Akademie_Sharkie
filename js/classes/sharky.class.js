@@ -139,6 +139,12 @@ export class Sharky extends MoveableObject {
     }, 50);
   }
 
+  clearAllSharkyIntervals() {
+    this.clearMovementIntervals();
+    this.clearCurrentPositionInterval();
+    this.clearIntervalsAnimationMove();
+  }
+
   clearCurrentPositionInterval() {
     clearInterval(this.currentPositionInterval);
   }

@@ -27,6 +27,12 @@ export let areImgCachesReady = false;
 export let loadedCachsArray = [];
 
 function init() {
+  if (world) {
+    world.sharky.clearAllSharkyIntervals();
+    console.log("SHARKY INTERVAL");
+    
+
+  }
   world = {};
   console.log("1: ", world);
   
