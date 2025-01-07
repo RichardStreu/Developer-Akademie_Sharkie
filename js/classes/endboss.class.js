@@ -23,13 +23,13 @@ export class EndBoss extends MoveableObject {
   sharkyY;
   isEnemyDead = false;
 
-  constructor(index, world) {
+  constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.x = 2450;
     this.y = -1000;
     this.width = 300 * moveObjRatio;
     this.height = 342 * moveObjRatio;
-    this.world = world;
+    // this.world = world;
     this.loadAllImagesEndboss();
     this.checkImagesCacheLoaded();
     this.checkSharkyPosition();

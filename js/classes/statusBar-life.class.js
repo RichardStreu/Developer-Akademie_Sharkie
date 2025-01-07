@@ -13,7 +13,7 @@ export class StatusBarLife extends StatusBar {
   world;
   lifeEnergyInterval;
 
-  constructor(x, y, world) {
+  constructor(x, y) {
     super();
     this.loadImgArrayStatBar();
     this.checkImagesCacheLoaded();
@@ -21,7 +21,7 @@ export class StatusBarLife extends StatusBar {
     this.img = this.imageCache["../../assets/img/4. Marcadores/green/Life/100_  copia 2.png"];
     this.x = x;
     this.y = y;
-    this.world = world;
+    // this.world = world;
     this.updatePercentageStatBar(0);
     this.checkLifeEnergy();
   }

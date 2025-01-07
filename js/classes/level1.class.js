@@ -25,9 +25,9 @@ export class Level1 {
 
   world;
 
-  constructor(world) {
+  constructor() {
 
-    this.world = world;
+    // this.world = world;
 
     this.landscape = [
       new Water(),
@@ -59,7 +59,7 @@ export class Level1 {
       new JellyFishYellowRD(14),
       new PufferFishGreen(15),
       new PufferFishGreen(16),
-      new EndBoss(17, this.world),
+      new EndBoss(17),
       new Poison(450, 350, 18),
       new Poison(800, 390, 19),
       new Poison(1400, 380, 20),
