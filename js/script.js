@@ -30,6 +30,9 @@ function init() {
   if (world) {
     world.sharky.clearAllSharkyIntervals();
     world.level1.enemies[17].clearAllEndBossIntervals();
+    world.clearCheckCollisionsInterval();
+    world.statBars[1].clearLifeEnergyIntertval();
+    world.clearWorld();
     console.log("SHARKY INTERVAL");
     
 

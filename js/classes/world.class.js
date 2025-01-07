@@ -37,6 +37,7 @@ export class World {
   canvas;
   ctx;
   camera_x = 0;
+  checkCollisionsInterval;
 
   constructor(canvas, keyboard) {
     // console.log(new Date);
@@ -55,8 +56,26 @@ export class World {
     this.sharky.world = this;
   }
 
+  clearWorld() {
+    this.enemies.forEach(enemy => {
+      if (enemy.clearIntervalsAnimationMove) {
+        enemy.clearIntervalsAnimationMove();
+      }
+    });
+    this.bubbles = [];
+    this.enemies = [];
+    this.landscape = [];
+    this.statBars = [];
+    this.sharky = null;
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  clearCheckCollisionsInterval() {
+    clearInterval(this.checkCollisionsInterval);
+  }
+
   checkCollisions() {
-    setInterval(() => {
+    this.checkCollisionsInterval = setInterval(() => {
       for (let index = 0; index < this.level1.enemies.length; index++) {
         const enemy = this.level1.enemies[index];
         if (this.sharky.isColliding(enemy)) {
