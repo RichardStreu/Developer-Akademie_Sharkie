@@ -39,7 +39,6 @@ function init() {
     console.log("SHARKY INTERVAL");
   }
   world = {};
-  console.log("1: ", world);
 
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
@@ -47,8 +46,7 @@ function init() {
   canvas.height = canvasHeight;
 
   world = new World(canvas, keyboard);
-  window.world = world;
-  console.log("2: ", world);
+  // window.world = world;
 
   if (!areImgCachesReady) {
     let cacheStatus = setInterval(() => {

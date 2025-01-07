@@ -173,7 +173,7 @@ export class Sharky extends MoveableObject {
       if (event.key == "ArrowDown") this.keyArrowDownUp();
       if (event.key == " ") this.keySpaceUp();
       if (event.key == "d") this.keyDUp();
-      if (Object.values(world.keyboard).every((value) => value === false)) this.allKeysUp();
+      if (Object.values(this.world.keyboard).every((value) => value === false)) this.allKeysUp();
     }
   }
 
