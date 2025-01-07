@@ -29,6 +29,7 @@ export let loadedCachsArray = [];
 function init() {
   if (world) {
     world.sharky.clearAllSharkyIntervals();
+    world.level1.enemies[17].clearAllEndBossIntervals();
     console.log("SHARKY INTERVAL");
     
 

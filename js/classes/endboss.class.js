@@ -6,6 +6,7 @@ export class EndBoss extends MoveableObject {
   // currentAnimation = "introduce"; //"introduce""swim""attack""dead""hurt" / "stop"
 
   currentAnimationIntervall;
+  currentSharkyPositionInterval;
   currentMovement;
   currentlyMoveUp = true;
   floating;
@@ -34,6 +35,15 @@ export class EndBoss extends MoveableObject {
     this.countSeconds();
   }
 
+  clearAllEndBossIntervals() {
+    clearInterval(this.bossUpDown);
+    clearInterval(this.moveBossForward);
+    clearInterval(this.sprintForwardInterval);
+    clearInterval(this.currentAnimationIntervall);
+    clearInterval(this.currentSharkyPositionInterval);
+    this.clearIntervalsAnimationMove();
+  }
+
   countSeconds() {
     setInterval(() => {
       this.currentPlaytime += 1;
@@ -41,7 +51,7 @@ export class EndBoss extends MoveableObject {
   }
 
   checkSharkyPosition() {
-    setInterval(() => {
+    this.currentSharkyPositionInterval = setInterval(() => {
       this.sharkyX = this.world.sharky.x;
       this.sharkyY = this.world.sharky.y;
       if (this.sharkyX >= 2000 && !this.bossIsVisible) this.doBossIntroduce();
