@@ -29,6 +29,7 @@ export let loadedCachsArray = [];
 function init() {
   if (world) {
     world.sharky.clearAllSharkyIntervals();
+    world.sharky.removeSharkyWindowEventListeners();
     world.level1.enemies[17].clearAllEndBossIntervals();
     world.clearCheckCollisionsInterval();
     world.statBars[1].clearLifeEnergyIntertval();
@@ -48,7 +49,7 @@ function init() {
   world = new World(canvas, keyboard);
   // window.world = world;
 
-  if (!areImgCachesReady) {
+  if (!areImgCachesReady && world) {
     let cacheStatus = setInterval(() => {
       checkImgChachStatus();
       if (areImgCachesReady) {
@@ -111,6 +112,7 @@ export function restartGame() {
       world.sharky.x = 0;
       setTimeout(() => {
         init();
+        // location.reload();
       }, 10);
     }, 50);
   }, 500);

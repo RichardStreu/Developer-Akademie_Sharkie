@@ -76,7 +76,7 @@ export class Sharky extends MoveableObject {
   // isEnoughPoison;
   isEnoughCoin;
 
-  constructor(world) {
+  constructor() {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
     // this.world = world;
     this.x = 0;
@@ -92,6 +92,8 @@ export class Sharky extends MoveableObject {
     this.checkCurrentSharkyPositions();
     this.isEnoughPoison = false;
     this.isEnoughCoin = false;
+    this.keyDownHandler = this.handleKeyDown.bind(this);
+    this.keyUpHandler = this.handleKeyUp.bind(this);
   }
 
   async loadAllImagesCacheSharky() {
@@ -116,6 +118,11 @@ export class Sharky extends MoveableObject {
     window.addEventListener("keyup", (event) => {
       this.handleKeyUp(event);
     });
+  }
+
+  removeSharkyWindowEventListeners() {
+    window.removeEventListener("keydown", this.keyDownHandler);
+    window.removeEventListener("keyup", this.keyUpHandler);
   }
 
   firstSharkyAnimationAfterCacheLoading() {
