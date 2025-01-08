@@ -5,6 +5,7 @@ import { sharkyXPosition, sharkyYPosition, sharkyWidth, sharkyHeight } from "./s
 export class Fondo2 extends MoveableObject {
   sharkyX;
   sharkyY;
+  world;
 
   constructor(x = 0, y = 0) {
     super().loadImage("../../assets/img/3. Background/Layers/4.Fondo 2/L.png");
@@ -19,8 +20,10 @@ export class Fondo2 extends MoveableObject {
 
   getSharkyPosition(x, sharkyMidPoint) {
     setInterval(() => {
-      this.sharkyX = sharkyXPosition;
-      this.moveFondo1(this.sharkyX, x, sharkyMidPoint);
+      if (this.world.sharky) {
+        this.sharkyX = this.world.sharky.x;
+        this.moveFondo1(this.sharkyX, x, sharkyMidPoint);
+      }
     }, 50);
   }
 

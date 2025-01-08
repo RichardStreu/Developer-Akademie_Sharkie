@@ -28,21 +28,20 @@ import { StatusBarPoison } from "./statusBar-poison.class.js";
 import { SharkyBubble } from "./sharky.bubble.class.js";
 
 export class World {
-  level1 = new Level1();
-  landscape = this.level1.landscape;
-  enemies = this.level1.enemies;
-  statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
-  bubbles = [];
-  canvas;
-  ctx;
-  camera_x = 0;
-  checkCollisionsInterval;
-  isDrawing;
-
   constructor(canvas, keyboard) {
     // console.log(new Date);
 
     this.sharky = new Sharky();
+    this.level1 = new Level1();
+    this.landscape = this.level1.landscape;
+    this.enemies = this.level1.enemies;
+    this.statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
+    this.bubbles = [];
+    this.canvas;
+    this.ctx;
+    this.camera_x = 0;
+    this.checkCollisionsInterval;
+    this.isDrawing;
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
@@ -54,6 +53,10 @@ export class World {
 
   setWorld() {
     this.sharky.world = this;
+    this.landscape[2].world = this;
+    this.landscape[3].world = this;
+    this.landscape[4].world = this;
+    this.landscape[5].world = this;
     this.level1.enemies.forEach((enemy) => {
       if (enemy instanceof EndBoss) {
         enemy.world = this;
@@ -99,7 +102,7 @@ export class World {
     }, 100);
   }
 
-  startDrawing()  {
+  startDrawing() {
     this.isDrawing = true;
     this.draw();
   }
