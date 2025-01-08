@@ -129,7 +129,9 @@ window.restartGame = restartGame;
 
 export function youWin() {
   document.getElementById("winScreen").classList.remove("d_none");
-  console.log("You Win");
+  setTimeout(() => {
+    document.getElementById("winScreen").classList.remove("opacity_zero");
+  }, 20);
 }
 
 export function youLoose() {
@@ -137,5 +139,4 @@ export function youLoose() {
   setTimeout(() => {
     document.getElementById("looseScreen").classList.remove("opacity_zero");
   }, 20);
-  console.log("You loose");
 }
