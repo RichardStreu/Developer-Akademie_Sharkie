@@ -203,7 +203,7 @@ main .display {
   box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
   overflow: hidden;
 }
-main .display .menuButton {
+main .display .controlButton {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -211,12 +211,12 @@ main .display .menuButton {
   background-color: transparent;
   border: none;
 }
-main .display .menuButton img {
+main .display .controlButton img {
   width: 40px;
   height: auto;
   transition: all 0.25s ease;
   cursor: pointer;
 }
-main .display .menuButton img:hover {
+main .display .controlButton img:hover {
   transform: scale(1.1);
 }/*# sourceMappingURL=style.css.map */
