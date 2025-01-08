@@ -31,13 +31,14 @@ let isControlScreenVisible = false;
 
 function showHideControlScreen() {
   if (!isControlScreenVisible) {
-    document.getElementById("controlScreen").classList.add("d_none");
-    isControlScreenVisible = false;
-  } else {
-    document.getElementById("controlScreen").classList.remove("d_none");
+    document.getElementById("controlScreen").classList.remove("transformControlScreen");
     isControlScreenVisible = true;
+  } else {
+    document.getElementById("controlScreen").classList.add("transformControlScreen");
+    isControlScreenVisible = false;
   }
 }
+window.showHideControlScreen = showHideControlScreen;
 
 function init() {
   if (world) clearGlobalGame();
@@ -105,10 +106,6 @@ export function startGame() {
   setTimeout(() => {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
-
-    // document.getElementById("winScreen").classList.remove("d_none");
-    // document.getElementById("winScreen").classList.remove("opacity_zero");
-
     world.startDrawing();
   }, 500);
 }
@@ -123,10 +120,8 @@ export function restartGame() {
       world.sharky.x = 0;
       setTimeout(() => {
         init();
-        // location.reload();
         world.sharky.setSharkyWindowEventListeners();
         world.startDrawing();
-        // document.getElementById("startScreen").classList.add("d_none");
       }, 10);
     }, 50);
   }, 500);
