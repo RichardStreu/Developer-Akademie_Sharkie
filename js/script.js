@@ -22,23 +22,19 @@ let world;
 export let keyboard = new Keyboard();
 
 export let imgCachesObject = {};
+
 export let areImgCachesReady = false;
 
 export let loadedCachsArray = [];
 
 function init() {
   if (world) clearGlobalGame();
-  
-
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
-
   world = new World(canvas, keyboard);
-
   world.sharky.setSharkyWindowEventListeners();
-
   if (!areImgCachesReady && world) {
     let cacheStatus = setInterval(() => {
       checkImgChachStatus();
