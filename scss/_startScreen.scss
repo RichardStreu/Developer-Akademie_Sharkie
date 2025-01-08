@@ -1,16 +1,38 @@
 .startScreen {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-image: url("../assets/img/3. Background/Mesa de trabajo 1.png");
   background-size: cover;
   background-position: center;
+  position: relative;
 
-  button {
+  p {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-wrap: nowrap;
+    font-size: 3rem;
+    color: white;
+    font-family: "LuckyGuy";
+  }
+
+  .startButton {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    position: absolute;
+    bottom: 3rem;
+    right: 8rem;
+    transition: all 0.25s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    img {
+      width: 200px;
+      height: auto;
+    }
   }
 }

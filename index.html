@@ -10,9 +10,12 @@
   </head>
   <body>
     <main id="main" class="main">
-      <h1>Sharky</h1>
       <!-- Display Field of the game -->
       <div id="display" class="display">
+        <!-- menu button -->
+        <button class="menuButton">
+          <img src="./assets/img/menu.png" alt="" />
+        </button>
         <!-- blackScreen -->
         <div id="blackScreen" class="blackScreen opacity_zero d_none"></div>
         <!-- loading screen -->
@@ -31,7 +34,7 @@
         <!-- game over screen -->
         <div id="looseScreen" class="looseScreen d_none opacity_zero">
           <p>YOU LOSE</p>
-          <img class="deadSharky" src="./assets/img/1.Sharkie/6.dead/1.Poisoned/11.png" alt="">
+          <img class="deadSharky" src="./assets/img/1.Sharkie/6.dead/1.Poisoned/11.png" alt="" />
           <button onclick="restartGame()" class="tryAgainButton">
             <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>
@@ -43,7 +46,7 @@
           </button>
         </div>
         <!-- control screen -->
-         <div id="controlScreen" class="controlScreen"></div>
+        <div id="controlScreen" class="controlScreen"></div>
       </div>
     </main>
   </body>

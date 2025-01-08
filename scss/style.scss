@@ -46,5 +46,25 @@ main {
     border-radius: 1rem;
     box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
     overflow: hidden;
+
+    .menuButton {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10000;
+      background-color: transparent;
+      border: none;
+
+      img {
+        width: 40px;
+        height: auto;
+        transition: all 0.25s ease;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
   }; 
 }

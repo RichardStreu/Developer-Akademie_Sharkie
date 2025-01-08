@@ -28,17 +28,36 @@
 .startScreen {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-image: url("../assets/img/3. Background/Mesa de trabajo 1.png");
   background-size: cover;
   background-position: center;
+  position: relative;
 }
-.startScreen button {
+.startScreen p {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-wrap: nowrap;
+  font-size: 3rem;
+  color: white;
+  font-family: "LuckyGuy";
+}
+.startScreen .startButton {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  position: absolute;
+  bottom: 3rem;
+  right: 8rem;
+  transition: all 0.25s ease;
+}
+.startScreen .startButton:hover {
+  transform: scale(1.05);
+}
+.startScreen .startButton img {
+  width: 200px;
+  height: auto;
 }
 
 .canvas {
@@ -183,4 +202,21 @@ main .display {
   border-radius: 1rem;
   box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
   overflow: hidden;
+}
+main .display .menuButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+  background-color: transparent;
+  border: none;
+}
+main .display .menuButton img {
+  width: 40px;
+  height: auto;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+main .display .menuButton img:hover {
+  transform: scale(1.1);
 }/*# sourceMappingURL=style.css.map */
