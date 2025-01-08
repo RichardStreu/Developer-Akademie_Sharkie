@@ -96,12 +96,14 @@ export function startGame() {
   setTimeout(() => {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
+    world.startDrawing();
   }, 500);
 }
 window.startGame = startGame;
 
 export function restartGame() {
   switchScreens();
+  world.stopDrawing();
   setTimeout(() => {
     document.getElementById("winScreen").classList.add("d_none");
     document.getElementById("looseScreen").classList.add("d_none");
@@ -113,6 +115,8 @@ export function restartGame() {
       setTimeout(() => {
         init();
         // location.reload();
+        world.startDrawing();
+        // document.getElementById("startScreen").classList.add("d_none");
       }, 10);
     }, 50);
   }, 500);

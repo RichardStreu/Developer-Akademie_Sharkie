@@ -37,6 +37,7 @@ export class World {
   ctx;
   camera_x = 0;
   checkCollisionsInterval;
+  isDrawing;
 
   constructor(canvas, keyboard) {
     // console.log(new Date);
@@ -45,7 +46,8 @@ export class World {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
-    this.draw();
+    this.isDrawing = false;
+    // this.draw();
     this.setWorld();
     this.checkCollisions();
   }
@@ -97,7 +99,17 @@ export class World {
     }, 100);
   }
 
+  startDrawing()  {
+    this.isDrawing = true;
+    this.draw();
+  }
+
+  stopDrawing() {
+    this.isDrawing = false;
+  }
+
   draw() {
+    if (!this.isDrawing) return;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.landscape);
