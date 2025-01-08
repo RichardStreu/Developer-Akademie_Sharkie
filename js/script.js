@@ -27,6 +27,18 @@ export let areImgCachesReady = false;
 
 export let loadedCachsArray = [];
 
+let isControlScreenVisible = false;
+
+function showHideControlScreen() {
+  if (!isControlScreenVisible) {
+    document.getElementById("controlScreen").classList.add("d_none");
+    isControlScreenVisible = false;
+  } else {
+    document.getElementById("controlScreen").classList.remove("d_none");
+    isControlScreenVisible = true;
+  }
+}
+
 function init() {
   if (world) clearGlobalGame();
   canvas = document.getElementById("canvas");
