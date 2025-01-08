@@ -27,19 +27,7 @@ export let areImgCachesReady = false;
 export let loadedCachsArray = [];
 
 function init() {
-  if (world) {
-    world.sharky.clearAllSharkyIntervals();
-    world.sharky.removeSharkyWindowEventListeners();
-    world.level1.enemies[17].clearAllEndBossIntervals();
-    world.clearCheckCollisionsInterval();
-    world.statBars[1].clearLifeEnergyIntertval();
-    world.clearWorld();
-    world.sharky = null;
-    world = null;
-
-    console.log("SHARKY INTERVAL");
-  }
-  world = {};
+  if (world) clearGlobalGame();
 
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
@@ -61,6 +49,19 @@ function init() {
 
 init();
 window.init = init;
+
+function clearGlobalGame() {
+  world.sharky.clearAllSharkyIntervals();
+  world.sharky.removeSharkyWindowEventListeners();
+  world.level1.enemies[17].clearAllEndBossIntervals();
+  world.clearCheckCollisionsInterval();
+  world.statBars[1].clearLifeEnergyIntertval();
+  world.clearWorld();
+  world.sharky = null;
+  world = null;
+  console.log("Game cleared");
+  
+}
 
 export function checkImgChachStatus() {
   if (!areImgCachesReady) {
@@ -96,6 +97,9 @@ export function startGame() {
   setTimeout(() => {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
+
+    // document.getElementById("looseScreen").classList.remove("d_none");
+
     world.startDrawing();
   }, 500);
 }
