@@ -98,7 +98,8 @@ export function startGame() {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
 
-    // document.getElementById("looseScreen").classList.remove("d_none");
+    // document.getElementById("winScreen").classList.remove("d_none");
+    // document.getElementById("winScreen").classList.remove("opacity_zero");
 
     world.startDrawing();
   }, 500);
