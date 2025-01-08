@@ -69,7 +69,6 @@ function clearGlobalGame() {
   world.clearWorld();
   world.sharky = null;
   world = null;
-  console.log("Game cleared");
 }
 
 export function checkImgChachStatus() {

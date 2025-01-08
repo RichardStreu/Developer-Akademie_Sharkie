@@ -88,8 +88,6 @@ export class SharkyBubble extends MoveableObject {
 
   checkCollisions() {
     this.collidingInterval = setInterval(() => {
-      console.log("ARSCH");
-      
       for (let index = 0; index < this.world.level1.enemies.length; index++) {
         const enemy = this.world.level1.enemies[index];
         if (this.isColliding(enemy)) {

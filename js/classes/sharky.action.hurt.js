@@ -10,7 +10,6 @@ export function getCoins(enemy) {
 export function getPoison(enemy) {
   this.poison += 1;
   if (this.poison >= 10) this.isEnoughPoison = true;
-  // console.log("got poison");
   // let enemyIndex = this.world.enemies.findIndex(enemy => enemy.index === enemy.index);
   // this.world.enemies.splice(enemyIndex, 1);
 }

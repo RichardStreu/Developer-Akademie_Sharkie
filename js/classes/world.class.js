@@ -29,8 +29,6 @@ import { SharkyBubble } from "./sharky.bubble.class.js";
 
 export class World {
   constructor(canvas, keyboard) {
-    // console.log(new Date);
-
     this.sharky = new Sharky();
     this.level1 = new Level1();
     this.landscape = this.level1.landscape;
@@ -46,7 +44,6 @@ export class World {
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.isDrawing = false;
-    // this.draw();
     this.setWorld();
     this.checkCollisions();
   }
@@ -79,7 +76,6 @@ export class World {
     this.enemies = [];
     this.landscape = [];
     this.statBars = [];
-    // this.sharky = null;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
