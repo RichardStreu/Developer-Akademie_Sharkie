@@ -134,5 +134,8 @@ export function youWin() {
 
 export function youLoose() {
   document.getElementById("looseScreen").classList.remove("d_none");
+  setTimeout(() => {
+    document.getElementById("looseScreen").classList.remove("opacity_zero");
+  }, 20);
   console.log("You loose");
 }
