@@ -1,6 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-
-import { moveObjRatio, loadedCachsArray, canvasHeight, canvasWidth } from "../script.js";
+import { moveObjRatio } from "../script.js";
 
 import {
   imagesStand,
@@ -48,8 +47,6 @@ import {
   electricDead,
 } from "./sharky.action.hurt.js";
 
-import { SharkyBubble } from "./sharky.bubble.class.js";
-
 export let sharkyXPosition = 0;
 export let sharkyYPosition = 200;
 export let sharkyWidth = 216;
@@ -78,7 +75,6 @@ export class Sharky extends MoveableObject {
 
   constructor() {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
-    // this.world = world;
     this.x = 0;
     this.y = 200;
     this.width = 180 * moveObjRatio;

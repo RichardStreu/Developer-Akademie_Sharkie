@@ -1,8 +1,5 @@
 import { canvasHeight, canvasWidth } from "../script.js";
-
 import { MoveableObject } from "./moveable-object.class.js";
-
-import { sharkyXPosition, sharkyYPosition, sharkyWidth, sharkyHeight } from "./sharky.class.js";
 
 export class SharkyBubble extends MoveableObject {
   world;

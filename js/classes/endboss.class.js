@@ -1,9 +1,8 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { moveObjRatio, loadedCachsArray, youWin } from "../script.js";
+import { moveObjRatio, youWin } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
 
 export class EndBoss extends MoveableObject {
-  // currentAnimation = "introduce"; //"introduce""swim""attack""dead""hurt" / "stop"
 
   currentAnimationIntervall;
   currentSharkyPositionInterval;
@@ -29,7 +28,6 @@ export class EndBoss extends MoveableObject {
     this.y = -1000;
     this.width = 300 * moveObjRatio;
     this.height = 342 * moveObjRatio;
-    // this.world = world;
     this.loadAllImagesEndboss();
     this.checkImagesCacheLoaded();
     this.checkSharkyPosition();
