@@ -28,6 +28,7 @@ export let loadedCachsArray = [];
 
 function init() {
   if (world) clearGlobalGame();
+  
 
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
@@ -35,7 +36,8 @@ function init() {
   canvas.height = canvasHeight;
 
   world = new World(canvas, keyboard);
-  // window.world = world;
+
+  world.sharky.setSharkyWindowEventListeners();
 
   if (!areImgCachesReady && world) {
     let cacheStatus = setInterval(() => {
@@ -51,16 +53,15 @@ init();
 window.init = init;
 
 function clearGlobalGame() {
+  world.level1.enemies[17].clearAllEndBossIntervals();
   world.sharky.clearAllSharkyIntervals();
   world.sharky.removeSharkyWindowEventListeners();
-  world.level1.enemies[17].clearAllEndBossIntervals();
   world.clearCheckCollisionsInterval();
   world.statBars[1].clearLifeEnergyIntertval();
   world.clearWorld();
   world.sharky = null;
   world = null;
   console.log("Game cleared");
-  
 }
 
 export function checkImgChachStatus() {
@@ -108,18 +109,15 @@ window.startGame = startGame;
 
 export function restartGame() {
   switchScreens();
-  world.stopDrawing();
   setTimeout(() => {
     document.getElementById("winScreen").classList.add("d_none");
     document.getElementById("looseScreen").classList.add("d_none");
-    document.getElementById("canvas").classList.add("d_none");
-    canvas = "";
     setTimeout(() => {
-      document.getElementById("canvas").classList.remove("d_none");
       world.sharky.x = 0;
       setTimeout(() => {
         init();
         // location.reload();
+        world.sharky.setSharkyWindowEventListeners();
         world.startDrawing();
         // document.getElementById("startScreen").classList.add("d_none");
       }, 10);

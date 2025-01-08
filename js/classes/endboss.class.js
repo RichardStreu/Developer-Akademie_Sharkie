@@ -85,6 +85,8 @@ export class EndBoss extends MoveableObject {
   }
 
   moveBossForBackwards() {
+    console.log("ARSCHKEKS");
+    
     this.moveBossForward = setInterval(() => {
       if (this.world.sharky.x <= 2000) {
         this.x = this.world.sharky.x + 300;

@@ -32,6 +32,21 @@ export class SharkyBubble extends MoveableObject {
     this.startPositionX = this.x;
     this.moveBubble();
     this.checkCollisions();
+    this.checkPosition();
+  }
+
+  checkPosition() {
+    this.checkPositionInterval = setInterval(() => {
+      if (this.y < -40) {
+        this.clearBubbleIntervals();
+      }
+    }, 50);
+  }
+
+  clearBubbleIntervals() {
+    clearInterval(this.bubbleMoveInterval);
+    clearInterval(this.collidingInterval);
+    clearInterval(this.checkPositionInterval);
   }
 
   moveBubble() {
@@ -73,6 +88,8 @@ export class SharkyBubble extends MoveableObject {
 
   checkCollisions() {
     this.collidingInterval = setInterval(() => {
+      console.log("ARSCH");
+      
       for (let index = 0; index < this.world.level1.enemies.length; index++) {
         const enemy = this.world.level1.enemies[index];
         if (this.isColliding(enemy)) {
