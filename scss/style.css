@@ -32,6 +32,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../assets/img/3. Background/Mesa de trabajo 1.png");
+  background-size: cover;
+  background-position: center;
 }
 .startScreen button {
   background-color: transparent;
@@ -66,6 +69,7 @@
   font-size: 6rem;
   color: white;
   text-align: center;
+  font-family: "LuckyGuy";
 }
 .looseScreen .deadSharky {
   width: 400px;
