@@ -48,6 +48,27 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .controlContentContainer {
+
+    .infoBox {
+      width: 300px;
+      height: 300px;
+      background-color: green;
+    }
+
+    .controlsBox {
+      width: 300px;
+      height: 300px;
+      background-color: yellow;
+    }
+
+    .settingsBox {
+      width: 300px;
+      height: 300px;
+      background-color: red;
+    }
+  }
 }
 
 .transformControlScreen {

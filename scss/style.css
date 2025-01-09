@@ -184,6 +184,21 @@
   margin-left: auto;
   margin-right: auto;
 }
+.controlScreen .controlContentContainer .infoBox {
+  width: 300px;
+  height: 300px;
+  background-color: green;
+}
+.controlScreen .controlContentContainer .controlsBox {
+  width: 300px;
+  height: 300px;
+  background-color: yellow;
+}
+.controlScreen .controlContentContainer .settingsBox {
+  width: 300px;
+  height: 300px;
+  background-color: red;
+}
 
 .transformControlScreen {
   top: -100%;
