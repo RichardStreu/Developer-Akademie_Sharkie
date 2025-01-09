@@ -2,8 +2,9 @@ import { World } from "./classes/world.class.js";
 
 import { Keyboard } from "./classes/keyboard.class.js";
 
-import { showSubMenu } from "./settings.js";
+import { showSubMenu, toggleFullscreen } from "./settings.js";
 window.showSubMenu = showSubMenu;
+window.toggleFullscreen = toggleFullscreen;
 
 // with this ratio you can scale all moveable objects in one step
 export let moveObjRatio = 1;

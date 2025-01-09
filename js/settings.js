@@ -5,3 +5,15 @@ export function showSubMenu(groupNumber) {
   document.querySelector(`button[data-group="${groupNumber}"]`).classList.add("btnActive");
   document.querySelector(`div[data-group="${groupNumber}"]`).classList.remove("d_none");
 }
+
+let isFullscreen = false;
+
+export function toggleFullscreen() {
+  const canvas = document.getElementById("canvas");
+  if (!isFullscreen) {
+    canvas.requestFullscreen();
+  } else {
+    canvas.exitFullscreen();
+  }
+  isFullscreen = !isFullscreen;
+}
