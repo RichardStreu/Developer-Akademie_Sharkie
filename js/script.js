@@ -39,9 +39,11 @@ let isControlScreenVisible = false;
 function showHideControlScreen() {
   if (!isControlScreenVisible) {
     document.getElementById("controlScreen").classList.remove("transformControlScreen");
+    document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
     isControlScreenVisible = true;
   } else {
     document.getElementById("controlScreen").classList.add("transformControlScreen");
+    document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/menu.png");
     isControlScreenVisible = false;
   }
 }
