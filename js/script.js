@@ -2,6 +2,9 @@ import { World } from "./classes/world.class.js";
 
 import { Keyboard } from "./classes/keyboard.class.js";
 
+import { showSubMenu } from "./settings.js";
+window.showSubMenu = showSubMenu;
+
 // with this ratio you can scale all moveable objects in one step
 export let moveObjRatio = 1.2;
 // with this ratio you can scale all static objects in one step
