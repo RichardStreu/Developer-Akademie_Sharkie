@@ -193,20 +193,24 @@
 .controlScreen .controlContentContainer .infoBox {
   font-size: 1.13rem;
   line-height: 1.75rem;
+  letter-spacing: 0.05rem;
+  word-spacing: 0.25rem;
 }
 .controlScreen .controlContentContainer .controlsBox {
-  background-color: blue;
   width: 100%;
-  height: 100%;
+  min-height: 320px;
   font-family: "LuckyGuy";
   font-size: 1.5rem;
   flex-wrap: wrap;
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  justify-content: center;
+  gap: 4rem;
 }
 .controlScreen .controlContentContainer .controlsBox .controlsBoxUpper {
   display: flex;
+  justify-content: center;
+  gap: 4rem;
 }
 .controlScreen .controlContentContainer .controlsBox .controlBar {
   display: flex;
