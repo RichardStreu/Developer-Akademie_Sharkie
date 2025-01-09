@@ -153,7 +153,7 @@ export class Sharky extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
   }
 
-  handleKeyDown(event) {
+  handleKeyDown(event) { 
     if (this.lifeEnergy > 0 && !this.isCurrentlyAttackAnimation) {
       if (event.key == "ArrowLeft") this.moveSharkyLeft();
       if (event.key == "ArrowRight") this.moveSharkyRight();

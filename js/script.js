@@ -38,14 +38,16 @@ let isControlScreenVisible = false;
 
 function showHideControlScreen() {
   if (!isControlScreenVisible) {
-    document.getElementById("controlScreen").classList.remove("transformControlScreen");
-    document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
-    isControlScreenVisible = true;
+      document.getElementById("controlScreen").classList.remove("transformControlScreen");
+      document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
+      isControlScreenVisible = true;
   } else {
     document.getElementById("controlScreen").classList.add("transformControlScreen");
     document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/menu.png");
     isControlScreenVisible = false;
   }
+  document.getElementById("controlButton").blur();
+  document.getElementById("homeBtn").blur();
 }
 window.showHideControlScreen = showHideControlScreen;
 
@@ -77,7 +79,7 @@ export function clearGlobalGame() {
   world.clearCheckCollisionsInterval();
   world.statBars[1].clearLifeEnergyIntertval();
   world.clearWorld();
-  world.sharky = null;
+  // world.sharky = null;
   world = null;
 }
 
@@ -127,6 +129,7 @@ export function restartGame() {
     document.getElementById("looseScreen").classList.add("d_none");
     setTimeout(() => {
       world.sharky.x = 0;
+      world.sharky.lifeEnergy = 0;
       setTimeout(() => {
         init();
         world.sharky.setSharkyWindowEventListeners();
@@ -138,8 +141,13 @@ export function restartGame() {
 window.restartGame = restartGame;
 
 export function goToStartScreen() {
-  if (!document.getElementById("startScreen").classList.contains("d_none")) return;
-  clearGlobalGame();
+  if (!document.getElementById("startScreen").classList.contains("d_none")) {
+    showHideControlScreen();
+    return;
+  } else {
+    restartGame();
+    showHideControlScreen();
+  }
 }
 window.goToStartScreen = goToStartScreen;
 
