@@ -28,6 +28,7 @@
 
     &:hover {
       transform: scale(1.05);
+      filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
     }
 
     img {

@@ -54,6 +54,7 @@
 }
 .startScreen .startButton:hover {
   transform: scale(1.05);
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
 }
 .startScreen .startButton img {
   width: 200px;
@@ -166,12 +167,12 @@
   font-size: 1.5rem;
 }
 .controlScreen nav button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   color: white;
   filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
 }
-.controlScreen nav button:focus {
-  transform: scale(1.1);
+.controlScreen nav .btnActive {
+  transform: scale(1.05);
   color: white;
   filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
 }
@@ -265,9 +266,11 @@ main .display .controlButton {
   background-color: transparent;
   border: none;
   border-radius: 100vh;
+  transition: all 0.25s ease;
 }
 main .display .controlButton:hover {
-  background-color: rgba(160, 160, 160, 0.25);
+  background-color: rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
 }
 main .display .controlButton img {
   width: 32px;
@@ -276,5 +279,5 @@ main .display .controlButton img {
   cursor: pointer;
 }
 main .display .controlButton img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }/*# sourceMappingURL=style.css.map */

@@ -27,16 +27,16 @@
       font-size: 1.5rem;
 
       &:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
         color: white;
         filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
       }
+    }
 
-      &:focus {
-        transform: scale(1.1);
-        color: white;
-        filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
-      }
+    .btnActive {
+      transform: scale(1.05);
+      color: white;
+      filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
     }
   }
 
@@ -53,3 +53,5 @@
 .transformControlScreen {
   top: -100%;
 }
+
+
