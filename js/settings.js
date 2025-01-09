@@ -1,3 +1,4 @@
+
 export function showSubMenu(groupNumber) {
   const controlScreen = document.getElementById("controlScreen");
   Array.from(controlScreen.querySelectorAll("button[data-group]")).forEach((button) => button.classList.remove("btnActive"));

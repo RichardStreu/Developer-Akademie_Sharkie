@@ -70,7 +70,7 @@ function init() {
 init();
 window.init = init;
 
-function clearGlobalGame() {
+export function clearGlobalGame() {
   world.level1.enemies[17].clearAllEndBossIntervals();
   world.sharky.clearAllSharkyIntervals();
   world.sharky.removeSharkyWindowEventListeners();
@@ -136,6 +136,12 @@ export function restartGame() {
   }, 500);
 }
 window.restartGame = restartGame;
+
+export function goToStartScreen() {
+  if (!document.getElementById("startScreen").classList.contains("d_none")) return;
+  clearGlobalGame();
+}
+window.goToStartScreen = goToStartScreen;
 
 export function youWin() {
   document.getElementById("winScreen").classList.remove("d_none");
