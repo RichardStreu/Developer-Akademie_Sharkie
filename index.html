@@ -19,15 +19,15 @@
         <!-- control screen transformControlScreen -->
         <div id="controlScreen" class="controlScreen transformControlScreen">
           <nav id="controlNavBar">
-            <button data-group="1" onclick="showSubMenu('1')" id="infoBtn">INFO</button>
-            <button data-group="2" onclick="showSubMenu('2')" id="controlsBtn" class="btnActive">CONTROLS</button>
-            <button data-group="3" onclick="showSubMenu('3')" id="settingsBtn">SETTINGS</button>
+            <button data-group="0" onclick="showSubMenu(`0`)" id="infoBtn">INFO</button>
+            <button data-group="1" onclick="showSubMenu(`1`)" id="controlsBtn" class="btnActive">CONTROLS</button>
+            <button data-group="2" onclick="showSubMenu(`2`)" id="settingsBtn">SETTINGS</button>
           </nav>
           <div class="divider"></div>
           <div class="controlContentContainer">
-            <div data-group="1" id="infoBox" class="infoBox d_none"></div>
-            <div data-group="2" id="controlsBox" class="controlsBox"></div>
-            <div data-group="3" id="settingsBox" class="settingsBox d_none"></div>
+            <div data-group="0" id="infoBox" class="infoBox d_none"></div>
+            <div data-group="1" id="controlsBox" class="controlsBox"></div>
+            <div data-group="2" id="settingsBox" class="settingsBox d_none"></div>
           </div>
         </div>
         <!-- blackScreen -->
