@@ -6,10 +6,13 @@ import { showSubMenu } from "./settings.js";
 window.showSubMenu = showSubMenu;
 
 // with this ratio you can scale all moveable objects in one step
-export let moveObjRatio = 1.2;
+export let moveObjRatio = 1;
 // with this ratio you can scale all static objects in one step
-export let staticObjRatio = 1;
-export let canvasWidth = 720;
+export let staticObjRatio = 0.8;
+
+// export let canvasWidth = 720;
+export let canvasWidth = 853;
+
 export let canvasHeight = 480;
 // minimum x position where an object respawns
 export let enemyStartX = 200;
