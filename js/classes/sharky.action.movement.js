@@ -53,7 +53,6 @@ export function moveSharkyUp() {
   
   if (!this.world.keyboard.UP) {
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
-    console.log(this.isCurrentlyHurtAnimation);
     this.world.keyboard.UP = true;
     if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
     this.isSwimUp = setInterval(() => {
