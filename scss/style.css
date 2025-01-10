@@ -310,7 +310,7 @@
 .controlScreen .imprintBtnBox:hover {
   color: white;
 }
-.controlScreen .imprintBtnBox:hover div img {
+.controlScreen .imprintBtnBox:hover div {
   filter: drop-shadow(0 0 3px rgb(255, 255, 255));
 }
 .controlScreen .imprintBtnBox p {
@@ -319,23 +319,26 @@
 .controlScreen .imprintBtnBox img {
   width: 1.13rem;
   height: auto;
-  transition: all 0.25s ease;
 }
 .controlScreen .imprintBtnBox .arrowDownBox {
   display: flex;
   align-items: center;
   width: 1.13rem;
+  transition: all 0.25s ease;
 }
 .controlScreen .imprintBtnBox .arrowDownBox .arrowDown {
   transform: rotate(90deg);
+  transition: all 0.6s ease;
 }
 .controlScreen .imprintBtnBox .arrowUpBox {
   display: flex;
   align-items: center;
   width: 1.13rem;
+  transition: all 0.25s ease;
 }
 .controlScreen .imprintBtnBox .arrowUpBox .arrowUp {
   transform: rotate(-90deg);
+  transition: all 0.6s ease;
 }
 .controlScreen .imprint {
   position: absolute;

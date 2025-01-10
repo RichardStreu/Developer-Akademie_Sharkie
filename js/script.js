@@ -58,13 +58,13 @@ export function showHideImprint() {
     document.getElementById("imprint").classList.remove("d_none");
     setTimeout(() => {
       document.getElementById("imprint").classList.add("transformImprint");
-      document.getElementById("arrowUp").classList.remove("d_none");
-      document.getElementById("arrowDown").classList.add("d_none");
+      document.getElementById("arrowUp").classList.remove("opacity_zero");
+      document.getElementById("arrowDown").classList.add("opacity_zero");
     }, 10);
   } else {
     document.getElementById("imprint").classList.remove("transformImprint");
-    document.getElementById("arrowUp").classList.add("d_none");
-    document.getElementById("arrowDown").classList.remove("d_none");
+    document.getElementById("arrowUp").classList.add("opacity_zero");
+    document.getElementById("arrowDown").classList.remove("opacity_zero");
     setTimeout(() => {
       document.getElementById("imprint").classList.add("d_none");
     }, 610);
