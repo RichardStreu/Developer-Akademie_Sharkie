@@ -9,6 +9,13 @@ export function showSubMenu(groupNumber) {
 }
 
 let isFullscreen = false;
+window.addEventListener("keydown", (e) => {
+  
+  if (e.key === "Esc" && isFullscreen) {
+    isFullscreen = false;
+    console.log(isFullscreen); 
+  }
+});
 
 export function toggleFullscreen() {
   const canvas = document.getElementById("canvas");
@@ -16,9 +23,18 @@ export function toggleFullscreen() {
     canvas.requestFullscreen();
     showHideControlScreen();
     isFullscreen = true;
-  } else {
-    if (!isFullscreen) return;
+  } else if (isFullscreen) {
     document.exitFullscreen();
     isFullscreen = false;
   }
 }
+
+// export function toggleFullscreen() {
+//   const canvas = document.getElementById("canvas");
+//   if (canvas) {
+//     canvas.requestFullscreen();
+//     if (!isFullscreen) showHideControlScreen();
+//     if (isFullscreen) document.exitFullscreen();
+//     isFullscreen = !isFullscreen;
+//   }
+// }
