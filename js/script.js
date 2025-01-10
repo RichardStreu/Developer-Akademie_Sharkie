@@ -123,7 +123,7 @@ export function startGame() {
 window.startGame = startGame;
 
 export function restartGame(para) {
-  if (para !== 'homeBtn') switchScreens();
+  if (para !== "homeBtn") switchScreens();
   setTimeout(() => {
     document.getElementById("winScreen").classList.add("d_none");
     document.getElementById("looseScreen").classList.add("d_none");
@@ -140,20 +140,31 @@ export function restartGame(para) {
 }
 window.restartGame = restartGame;
 
-export function goToStartScreen() {
+export function goToStartScreen(para) {
   if (!document.getElementById("startScreen").classList.contains("d_none")) {
     showHideControlScreen();
     return;
   } else {
     Array.from(document.getElementById("display").querySelectorAll("[data-group='screens']")).forEach((screen) => {
       if (screen.id !== "startScreen" && screen.id !== "controlScreen") {
-        screen.classList.add("d_none");
+        if (para == "homeBtn") screen.classList.add("d_none");
+        if (para == "winLose")
+          setTimeout(() => {
+            screen.classList.add("d_none");
+          }, 500);
       } else {
-        screen.classList.remove("d_none");
+        if (para == "homeBtn") screen.classList.remove("d_none");
+        if (para == "winLose")
+          setTimeout(() => {
+            screen.classList.remove("d_none");
+          }, 500);
       }
     });
-    restartGame('homeBtn');
-    showHideControlScreen();
+    restartGame(para);
+    if (isControlScreenVisible)
+      setTimeout(() => {
+        showHideControlScreen();
+      }, 500);
   }
 }
 window.goToStartScreen = goToStartScreen;
