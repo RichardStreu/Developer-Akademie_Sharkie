@@ -51,6 +51,17 @@ export function showHideControlScreen() {
 }
 window.showHideControlScreen = showHideControlScreen;
 
+let isImprintVisible = false;
+
+export function showHideImprint() {
+  if (!isImprintVisible) {
+    document.getElementById("imprint").classList.add("transformImprint");
+  } else {
+    document.getElementById("imprint").classList.remove("transformImprint");
+  }
+  isImprintVisible = !isImprintVisible;
+}
+
 function init() {
   if (world) clearGlobalGame();
   canvas = document.getElementById("canvas");
@@ -68,9 +79,8 @@ function init() {
     }, 200);
   }
 }
-
-init();
 window.init = init;
+init();
 
 export function clearGlobalGame() {
   world.level1.enemies[17].clearAllEndBossIntervals();

@@ -292,6 +292,37 @@
 .controlScreen .homeBtn img:hover {
   transform: scale(1.05);
 }
+.controlScreen .imprintBtnBox {
+  position: absolute;
+  z-index: 10000;
+  left: -1rem;
+  bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 2rem;
+  color: rgb(200, 200, 200);
+  transform: rotate(-90deg);
+  transition: all 0.25s ease;
+}
+.controlScreen .imprintBtnBox:hover {
+  color: white;
+}
+.controlScreen .imprintBtnBox p {
+  font-size: 0.75rem;
+}
+.controlScreen .imprintBtnBox img {
+  width: 1.13rem;
+  height: auto;
+}
+.controlScreen .imprintBtnBox .arrowUp {
+  transform: rotate(90deg);
+}
+.controlScreen .imprintBtnBox .arrowDown {
+  transform: rotate(-90deg);
+}
 .controlScreen .imprint {
   position: absolute;
   top: 0;
@@ -316,6 +347,10 @@
 
 .transformControlScreen {
   top: -100%;
+}
+
+.transformImprint {
+  top: 0%;
 }
 
 * {
