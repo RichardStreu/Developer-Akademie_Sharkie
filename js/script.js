@@ -61,6 +61,7 @@ export function showHideImprint() {
   }
   isImprintVisible = !isImprintVisible;
 }
+window.showHideImprint = showHideImprint;
 
 function init() {
   if (world) clearGlobalGame();
