@@ -52,16 +52,20 @@ export function showHideControlScreen() {
 window.showHideControlScreen = showHideControlScreen;
 
 let isImprintVisible = false;
+let isImprintSliding = false;
 
 export function showHideImprint() {
-  if (!isImprintVisible) {
+  if (isImprintSliding) return;
+  if (!isImprintVisible && !isImprintSliding) {
+    isImprintSliding = true;
     document.getElementById("imprint").classList.remove("d_none");
     setTimeout(() => {
       document.getElementById("imprint").classList.add("transformImprint");
       document.getElementById("arrowUp").classList.remove("opacity_zero");
       document.getElementById("arrowDown").classList.add("opacity_zero");
     }, 10);
-  } else {
+  } else if (!isImprintSliding) {
+    isImprintSliding = true;
     document.getElementById("imprint").classList.remove("transformImprint");
     document.getElementById("arrowUp").classList.add("opacity_zero");
     document.getElementById("arrowDown").classList.remove("opacity_zero");
@@ -70,6 +74,9 @@ export function showHideImprint() {
     }, 610);
   }
   isImprintVisible = !isImprintVisible;
+  setTimeout(() => {
+    isImprintSliding = false;
+  }, 610);
 }
 window.showHideImprint = showHideImprint;
 
