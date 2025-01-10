@@ -36,7 +36,7 @@ export let loadedCachsArray = [];
 
 let isControlScreenVisible = false;
 
-function showHideControlScreen() {
+export function showHideControlScreen() {
   if (!isControlScreenVisible) {
     document.getElementById("controlScreen").classList.remove("transformControlScreen");
     document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");

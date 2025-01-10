@@ -1,3 +1,5 @@
+import { showHideControlScreen } from "./script.js";
+
 export function showSubMenu(groupNumber) {
   const controlScreen = document.getElementById("controlScreen");
   Array.from(controlScreen.querySelectorAll("button[data-group]")).forEach((button) => button.classList.remove("btnActive"));
@@ -8,5 +10,6 @@ export function showSubMenu(groupNumber) {
 
 export function toggleFullscreen() {
   const canvas = document.getElementById("canvas");
+  showHideControlScreen();
   canvas.requestFullscreen();
 }
