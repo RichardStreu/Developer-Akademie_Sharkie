@@ -47,7 +47,7 @@ export function showHideControlScreen() {
     isControlScreenVisible = false;
   }
   document.getElementById("controlButton").blur();
-  document.getElementById("homeBtn").blur();
+  Array.from(document.querySelectorAll(".homeBtn")).forEach((btn) => btn.blur());
 }
 window.showHideControlScreen = showHideControlScreen;
 
