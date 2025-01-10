@@ -1,4 +1,3 @@
-
 export function showSubMenu(groupNumber) {
   const controlScreen = document.getElementById("controlScreen");
   Array.from(controlScreen.querySelectorAll("button[data-group]")).forEach((button) => button.classList.remove("btnActive"));
@@ -7,14 +6,7 @@ export function showSubMenu(groupNumber) {
   document.querySelector(`div[data-group="${groupNumber}"]`).classList.remove("d_none");
 }
 
-let isFullscreen = false;
-
 export function toggleFullscreen() {
   const canvas = document.getElementById("canvas");
-  if (!isFullscreen) {
-    canvas.requestFullscreen();
-  } else {
-    canvas.exitFullscreen();
-  }
-  isFullscreen = !isFullscreen;
+  canvas.requestFullscreen();
 }

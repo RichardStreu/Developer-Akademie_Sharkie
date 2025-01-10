@@ -17,7 +17,7 @@
           <img id="controlButtonImg" src="./assets/img/menu.png" alt="" />
         </button>
         <!-- control screen transformControlScreen -->
-        <div id="controlScreen" class="controlScreen transformControlScreen">
+        <div data-group="screens" id="controlScreen" class="controlScreen transformControlScreen">
           <button id="homeBtn" class="homeBtn" onclick="goToStartScreen()"><img src="./assets/img/homeImg.svg" alt=""></button>
           <nav id="controlNavBar">
             <button data-group="0" onclick="showSubMenu(`0`)" id="infoBtn">INFO</button>
@@ -58,13 +58,13 @@
           </div>
         </div>
         <!-- blackScreen -->
-        <div id="blackScreen" class="blackScreen opacity_zero d_none"></div>
+        <div data-group="screens" id="blackScreen" class="blackScreen opacity_zero d_none"></div>
         <!-- loading screen -->
-        <div id="loadingScreen" class="loadingScreen">
+        <div data-group="screens" id="loadingScreen" class="loadingScreen">
           <p>Loading...</p>
         </div>
         <!-- start screen -->
-        <div id="startScreen" class="startScreen d_none">
+        <div data-group="screens" id="startScreen" class="startScreen d_none">
           <p>SHARKY THE BRAVE</p>
           <button onclick="startGame()" id="startButton" class="startButton">
             <img src="./assets/img/6.Botones/Start/2.png" alt="" />
@@ -73,7 +73,7 @@
         <!-- game canvas -->
         <canvas id="canvas" class="canvas d_none"> </canvas>
         <!-- game over screen -->
-        <div id="looseScreen" class="looseScreen d_none opacity_zero">
+        <div data-group="screens" id="looseScreen" class="looseScreen d_none opacity_zero">
           <p>YOU LOSE</p>
           <img class="deadSharky" src="./assets/img/1.Sharkie/6.dead/1.Poisoned/11.png" alt="" />
           <button onclick="restartGame()" class="tryAgainButton">
@@ -81,7 +81,7 @@
           </button>
         </div>
         <!-- win screen -->
-        <div id="winScreen" class="winScreen d_none opacity_zero">
+        <div data-group="screens" id="winScreen" class="winScreen d_none opacity_zero">
           <button onclick="restartGame()" class="tryAgainButton">
             <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>

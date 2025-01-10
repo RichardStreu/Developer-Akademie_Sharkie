@@ -38,9 +38,9 @@ let isControlScreenVisible = false;
 
 function showHideControlScreen() {
   if (!isControlScreenVisible) {
-      document.getElementById("controlScreen").classList.remove("transformControlScreen");
-      document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
-      isControlScreenVisible = true;
+    document.getElementById("controlScreen").classList.remove("transformControlScreen");
+    document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
+    isControlScreenVisible = true;
   } else {
     document.getElementById("controlScreen").classList.add("transformControlScreen");
     document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/menu.png");
@@ -122,8 +122,8 @@ export function startGame() {
 }
 window.startGame = startGame;
 
-export function restartGame() {
-  switchScreens();
+export function restartGame(para) {
+  if (para !== 'homeBtn') switchScreens();
   setTimeout(() => {
     document.getElementById("winScreen").classList.add("d_none");
     document.getElementById("looseScreen").classList.add("d_none");
@@ -145,7 +145,14 @@ export function goToStartScreen() {
     showHideControlScreen();
     return;
   } else {
-    restartGame();
+    Array.from(document.getElementById("display").querySelectorAll("[data-group='screens']")).forEach((screen) => {
+      if (screen.id !== "startScreen" && screen.id !== "controlScreen") {
+        screen.classList.add("d_none");
+      } else {
+        screen.classList.remove("d_none");
+      }
+    });
+    restartGame('homeBtn');
     showHideControlScreen();
   }
 }
