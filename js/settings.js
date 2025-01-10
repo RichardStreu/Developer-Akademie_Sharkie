@@ -12,7 +12,6 @@ export let isFullscreen = false;
 document.addEventListener("fullscreenchange", () => {
   if (isFullscreen) {
     isFullscreen = false;
-    console.log(isFullscreen);
   }
 });
 
