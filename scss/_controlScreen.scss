@@ -100,9 +100,54 @@
 
     // SETTINGS BOX
     .settingsBox {
-      background-color: red;
       width: 100%;
       min-height: 320px;
+
+      .settingsBar {
+        background-color: rgba(255, 255, 255, 0.08);
+        padding: 1rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .settingsImgBox {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          margin: 0 1rem;
+          border: 1.5px solid white;
+          background-color: rgb(127, 255, 224);
+          border-radius: 0.75rem;
+          height: 2rem;
+          width: 2rem;
+          padding: 0.5rem 1.5rem;
+          transition: all 0.25s ease;
+
+          img {
+            height: 1.5rem;
+            width: auto;
+          }
+
+          &:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 0.25rem rgba(255, 255, 255, 0.7));
+          }
+        }
+
+        .settingsDivider {
+          width: 2px;
+          height: 2rem;
+          background-color: white;
+          border-radius: 100vh;
+          margin: 0 2rem 0 1rem;
+        }
+
+        .settingsDescriptionBox {
+          font-size: 1.25rem;
+        }
+      }
     }
   }
 
