@@ -56,8 +56,12 @@ let isImprintVisible = false;
 export function showHideImprint() {
   if (!isImprintVisible) {
     document.getElementById("imprint").classList.add("transformImprint");
+    document.getElementById("arrowUp").classList.remove("d_none");
+    document.getElementById("arrowDown").classList.add("d_none");
   } else {
     document.getElementById("imprint").classList.remove("transformImprint");
+    document.getElementById("arrowUp").classList.add("d_none");
+    document.getElementById("arrowDown").classList.remove("d_none");
   }
   isImprintVisible = !isImprintVisible;
 }
