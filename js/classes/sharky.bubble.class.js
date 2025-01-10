@@ -1,8 +1,5 @@
 import { canvasHeight, canvasWidth } from "../script.js";
-
 import { MoveableObject } from "./moveable-object.class.js";
-
-import { sharkyXPosition, sharkyYPosition, sharkyWidth, sharkyHeight } from "./sharky.class.js";
 
 export class SharkyBubble extends MoveableObject {
   world;
@@ -21,17 +18,32 @@ export class SharkyBubble extends MoveableObject {
     if (!this.world.sharky.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
     if (this.world.sharky.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
     if (direction == "left") {
-      this.x = sharkyXPosition + 20;
-      this.y = sharkyYPosition + 151;
+      this.x = world.sharky.x + 20;
+      this.y = world.sharky.y + 151;
     } else {
-      this.x = sharkyXPosition + 169;
-      this.y = sharkyYPosition + 151;
+      this.x = world.sharky.x + 169;
+      this.y = world.sharky.y + 151;
     }
     this.width = 25;
     this.height = 25;
     this.startPositionX = this.x;
     this.moveBubble();
     this.checkCollisions();
+    this.checkPosition();
+  }
+
+  checkPosition() {
+    this.checkPositionInterval = setInterval(() => {
+      if (this.y < -40) {
+        this.clearBubbleIntervals();
+      }
+    }, 50);
+  }
+
+  clearBubbleIntervals() {
+    clearInterval(this.bubbleMoveInterval);
+    clearInterval(this.collidingInterval);
+    clearInterval(this.checkPositionInterval);
   }
 
   moveBubble() {

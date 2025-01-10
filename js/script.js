@@ -2,11 +2,18 @@ import { World } from "./classes/world.class.js";
 
 import { Keyboard } from "./classes/keyboard.class.js";
 
+import { showSubMenu, toggleFullscreen } from "./settings.js";
+window.showSubMenu = showSubMenu;
+window.toggleFullscreen = toggleFullscreen;
+
 // with this ratio you can scale all moveable objects in one step
-export let moveObjRatio = 1.2;
+export let moveObjRatio = 1;
 // with this ratio you can scale all static objects in one step
-export let staticObjRatio = 1;
-export let canvasWidth = 720;
+export let staticObjRatio = 0.8;
+
+// export let canvasWidth = 720;
+export let canvasWidth = 853;
+
 export let canvasHeight = 480;
 // minimum x position where an object respawns
 export let enemyStartX = 200;
@@ -22,47 +29,138 @@ let world;
 export let keyboard = new Keyboard();
 
 export let imgCachesObject = {};
+
 export let areImgCachesReady = false;
 
 export let loadedCachsArray = [];
 
+let isControlScreenVisible = false;
+
+function showHideControlScreen() {
+  if (!isControlScreenVisible) {
+      document.getElementById("controlScreen").classList.remove("transformControlScreen");
+      document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
+      isControlScreenVisible = true;
+  } else {
+    document.getElementById("controlScreen").classList.add("transformControlScreen");
+    document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/menu.png");
+    isControlScreenVisible = false;
+  }
+  document.getElementById("controlButton").blur();
+  document.getElementById("homeBtn").blur();
+}
+window.showHideControlScreen = showHideControlScreen;
+
 function init() {
+  if (world) clearGlobalGame();
   canvas = document.getElementById("canvas");
   const dpr = window.devicePixelRatio || 1;
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
-
   world = new World(canvas, keyboard);
-  window.world = world;
-
-  let cacheStatus = setInterval(() => {
-    checkImgChachStatus();
-    if (areImgCachesReady) {
-      clearInterval(cacheStatus);
-    }
-  }, 200);
+  world.sharky.setSharkyWindowEventListeners();
+  if (!areImgCachesReady && world) {
+    let cacheStatus = setInterval(() => {
+      checkImgChachStatus();
+      if (areImgCachesReady) {
+        clearInterval(cacheStatus);
+      }
+    }, 200);
+  }
 }
 
 init();
 window.init = init;
 
+export function clearGlobalGame() {
+  world.level1.enemies[17].clearAllEndBossIntervals();
+  world.sharky.clearAllSharkyIntervals();
+  world.sharky.removeSharkyWindowEventListeners();
+  world.clearCheckCollisionsInterval();
+  world.statBars[1].clearLifeEnergyIntertval();
+  world.clearWorld();
+  // world.sharky = null;
+  world = null;
+}
+
 export function checkImgChachStatus() {
-  if (imgCachesObject) {
-    let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
-    if (imagesReady) {
-      areImgCachesReady = true;
-      document.getElementById("canvas").classList.remove("visibility_hidden");
-      document.getElementById("loadingScreen").classList.add("d_none");
+  if (!areImgCachesReady) {
+    if (imgCachesObject) {
+      let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
+      if (imagesReady) {
+        areImgCachesReady = true;
+        document.getElementById("startScreen").classList.remove("d_none");
+        document.getElementById("loadingScreen").classList.add("d_none");
+      }
+    } else {
+      throw new Error("Images cant be loaded");
     }
-  } else {
-    throw new Error("Images cant be loaded");
   }
 }
 
+export function switchScreens() {
+  document.getElementById("blackScreen").classList.remove("d_none");
+  setTimeout(() => {
+    document.getElementById("blackScreen").classList.remove("opacity_zero");
+  }, 10);
+  setTimeout(() => {
+    document.getElementById("blackScreen").classList.add("opacity_zero");
+  }, 590);
+  setTimeout(() => {
+    document.getElementById("blackScreen").classList.add("d_none");
+  }, 990);
+}
+window.switchScreens = switchScreens;
+
+export function startGame() {
+  switchScreens();
+  setTimeout(() => {
+    document.getElementById("startScreen").classList.add("d_none");
+    document.getElementById("canvas").classList.remove("d_none");
+    world.startDrawing();
+  }, 500);
+}
+window.startGame = startGame;
+
+export function restartGame() {
+  switchScreens();
+  setTimeout(() => {
+    document.getElementById("winScreen").classList.add("d_none");
+    document.getElementById("looseScreen").classList.add("d_none");
+    setTimeout(() => {
+      world.sharky.x = 0;
+      world.sharky.lifeEnergy = 0;
+      setTimeout(() => {
+        init();
+        world.sharky.setSharkyWindowEventListeners();
+        world.startDrawing();
+      }, 10);
+    }, 50);
+  }, 500);
+}
+window.restartGame = restartGame;
+
+export function goToStartScreen() {
+  if (!document.getElementById("startScreen").classList.contains("d_none")) {
+    showHideControlScreen();
+    return;
+  } else {
+    restartGame();
+    showHideControlScreen();
+  }
+}
+window.goToStartScreen = goToStartScreen;
+
 export function youWin() {
-  console.log("You Win");
+  document.getElementById("winScreen").classList.remove("d_none");
+  setTimeout(() => {
+    document.getElementById("winScreen").classList.remove("opacity_zero");
+  }, 20);
 }
 
 export function youLoose() {
-  console.log("You loose");
+  document.getElementById("looseScreen").classList.remove("d_none");
+  setTimeout(() => {
+    document.getElementById("looseScreen").classList.remove("opacity_zero");
+  }, 20);
 }

@@ -1,11 +1,12 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { moveObjRatio, loadedCachsArray, youWin } from "../script.js";
+import { moveObjRatio, youWin } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
 
 export class EndBoss extends MoveableObject {
-  // currentAnimation = "introduce"; //"introduce""swim""attack""dead""hurt" / "stop"
 
   currentAnimationIntervall;
+  currentSharkyPositionInterval;
+  countSecondsInterval;
   currentMovement;
   currentlyMoveUp = true;
   floating;
@@ -21,27 +22,36 @@ export class EndBoss extends MoveableObject {
   sharkyY;
   isEnemyDead = false;
 
-  constructor(index, world) {
+  constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.x = 2450;
     this.y = -1000;
     this.width = 300 * moveObjRatio;
     this.height = 342 * moveObjRatio;
-    this.world = world;
     this.loadAllImagesEndboss();
     this.checkImagesCacheLoaded();
     this.checkSharkyPosition();
     this.countSeconds();
   }
 
+  clearAllEndBossIntervals() {
+    clearInterval(this.bossUpDown);
+    clearInterval(this.moveBossForward);
+    clearInterval(this.sprintForwardInterval);
+    clearInterval(this.currentAnimationIntervall);
+    clearInterval(this.currentSharkyPositionInterval);
+    clearInterval(this.countSecondsInterval);
+    this.clearIntervalsAnimationMove();
+  }
+
   countSeconds() {
-    setInterval(() => {
+    this.countSecondsInterval = setInterval(() => {
       this.currentPlaytime += 1;
     }, 1000);
   }
 
   checkSharkyPosition() {
-    setInterval(() => {
+    this.currentSharkyPositionInterval = setInterval(() => {
       this.sharkyX = this.world.sharky.x;
       this.sharkyY = this.world.sharky.y;
       if (this.sharkyX >= 2000 && !this.bossIsVisible) this.doBossIntroduce();

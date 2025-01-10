@@ -50,12 +50,13 @@ export function moveSharkyRight() {
 }
 
 export function moveSharkyUp() {
+  
   if (!this.world.keyboard.UP) {
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.UP = true;
     if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
     this.isSwimUp = setInterval(() => {
-      if (this.y > -120 && this.lifeEnergy > 0) this.y -= 4;
+      if (this.y > -95 && this.lifeEnergy > 0) this.y -= 4;
     }, 10);
   }
 }
@@ -66,7 +67,7 @@ export function moveSharkyDown() {
     this.world.keyboard.DOWN = true;
     if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
     this.isSwimDown = setInterval(() => {
-      if (this.y < canvasHeight - 262 && this.lifeEnergy > 0) {
+      if (this.y < canvasHeight - 220 && this.lifeEnergy > 0) {
         this.y += 4;
       }
     }, 10);

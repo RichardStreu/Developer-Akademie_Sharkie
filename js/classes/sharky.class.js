@@ -1,6 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-
-import { moveObjRatio, loadedCachsArray, canvasHeight, canvasWidth } from "../script.js";
+import { moveObjRatio } from "../script.js";
 
 import {
   imagesStand,
@@ -48,8 +47,6 @@ import {
   electricDead,
 } from "./sharky.action.hurt.js";
 
-import { SharkyBubble } from "./sharky.bubble.class.js";
-
 export let sharkyXPosition = 0;
 export let sharkyYPosition = 200;
 export let sharkyWidth = 216;
@@ -58,6 +55,7 @@ export let sharkyHeight;
 export class Sharky extends MoveableObject {
   firstInterval;
   currentAnimationIntervall;
+  currentPositionInterval
   currentMovement;
   isSwimLeft;
   isSwimRight;
@@ -75,9 +73,8 @@ export class Sharky extends MoveableObject {
   // isEnoughPoison;
   isEnoughCoin;
 
-  constructor(world) {
+  constructor() {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
-    this.world = world;
     this.x = 0;
     this.y = 200;
     this.width = 180 * moveObjRatio;
@@ -91,6 +88,8 @@ export class Sharky extends MoveableObject {
     this.checkCurrentSharkyPositions();
     this.isEnoughPoison = false;
     this.isEnoughCoin = false;
+    this.keyDownHandler = this.handleKeyDown.bind(this);
+    this.keyUpHandler = this.handleKeyUp.bind(this);
   }
 
   async loadAllImagesCacheSharky() {
@@ -117,6 +116,11 @@ export class Sharky extends MoveableObject {
     });
   }
 
+  removeSharkyWindowEventListeners() {
+    window.removeEventListener("keydown", this.keyDownHandler);
+    window.removeEventListener("keyup", this.keyUpHandler);
+  }
+
   firstSharkyAnimationAfterCacheLoading() {
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
@@ -128,10 +132,20 @@ export class Sharky extends MoveableObject {
   }
 
   checkCurrentSharkyPositions() {
-    setInterval(() => {
+    this.currentPositionInterval = setInterval(() => {
       sharkyXPosition = this.x;
       sharkyYPosition = this.y;
     }, 50);
+  }
+
+  clearAllSharkyIntervals() {
+    this.clearMovementIntervals();
+    this.clearCurrentPositionInterval();
+    this.clearIntervalsAnimationMove();
+  }
+
+  clearCurrentPositionInterval() {
+    clearInterval(this.currentPositionInterval);
   }
 
   clearIntervalsAnimationMove() {
@@ -139,7 +153,7 @@ export class Sharky extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
   }
 
-  handleKeyDown(event) {
+  handleKeyDown(event) { 
     if (this.lifeEnergy > 0 && !this.isCurrentlyAttackAnimation) {
       if (event.key == "ArrowLeft") this.moveSharkyLeft();
       if (event.key == "ArrowRight") this.moveSharkyRight();
@@ -158,7 +172,7 @@ export class Sharky extends MoveableObject {
       if (event.key == "ArrowDown") this.keyArrowDownUp();
       if (event.key == " ") this.keySpaceUp();
       if (event.key == "d") this.keyDUp();
-      if (Object.values(world.keyboard).every((value) => value === false)) this.allKeysUp();
+      if (Object.values(this.world.keyboard).every((value) => value === false)) this.allKeysUp();
     }
   }
 

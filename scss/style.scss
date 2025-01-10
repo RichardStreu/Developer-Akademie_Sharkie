@@ -1,8 +1,13 @@
-@import "./loadingScreen";
 @import "./fonts.scss";
 @import "./var.scss";
-@import "./default.scss";
+@import "./blackScreen.scss";
+@import "./loadingScreen.scss";
+@import "./startScreen.scss";
 @import "./canvas.scss";
+@import "./looseScreen.scss";
+@import "./winScreen.scss";
+@import "./controlScreen";
+@import "./default.scss";
 
 @font-face {
   font-family: "LuckyGuy";
@@ -31,8 +36,45 @@ main {
     transform: translateX(-50%);
   }
 
-  canvas {
+  .display {
+    width: 853px;
+    height: 480px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 1rem;
     box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
-  }
+    overflow: hidden;
+
+    .controlButton {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      border-radius: 100vh;
+      transition: all 0.25s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+      }
+
+      img {
+        width: 32px;
+        height: auto;
+        transition: all 0.25s ease;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }; 
 }

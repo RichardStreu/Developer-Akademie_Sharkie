@@ -1,16 +1,256 @@
-.loadingScreen {
-  width: 720px;
-  height: 480px;
-  background-color: black;
+.blackScreen {
   position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  z-index: 5000;
+  transition: all 0.4s ease-in-out;
+  opacity: 1;
+}
+
+.loadingScreen {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .loadingScreen p {
   color: white;
   font-size: 700;
+  font-family: "LuckyGuy";
+  font-size: 4rem;
+}
+
+.startScreen {
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/img/3. Background/Mesa de trabajo 1.png");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.startScreen p {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-wrap: nowrap;
+  font-size: 3rem;
+  color: white;
+  font-family: "LuckyGuy";
+}
+.startScreen .startButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 3rem;
+  right: 8rem;
+  transition: all 0.25s ease;
+}
+.startScreen .startButton:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+}
+.startScreen .startButton img {
+  width: 200px;
+  height: auto;
+}
+
+.canvas {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+
+.looseScreen {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+  padding: 2rem 0;
+}
+.looseScreen p {
+  font-size: 6rem;
+  color: white;
+  text-align: center;
+  font-family: "LuckyGuy";
+}
+.looseScreen .deadSharky {
+  width: 400px;
+  height: auto;
+  position: absolute;
+  z-index: -1;
+  filter: drop-shadow(0 0 16px rgb(255, 255, 255));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.looseScreen .tryAgainButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.looseScreen .tryAgainButton img {
+  width: 200px;
+  height: auto;
+}
+
+.winScreen {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/img/6.Botones/Tittles/You win/Mesa de trabajo 1.png");
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  position: absolute;
+  z-index: 1000;
+  transition: all 0.5s ease;
+}
+.winScreen .tryAgainButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.winScreen .tryAgainButton img {
+  width: 200px;
+  height: auto;
+}
+
+.controlScreen {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9000;
+  border-radius: 1rem;
+  transition: all 0.6s ease;
+  padding: 0 4rem;
+}
+.controlScreen nav {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 1.25rem 0;
+}
+.controlScreen nav button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: "LuckyGuy";
+  color: rgb(200, 200, 200);
+  font-size: 1.5rem;
+}
+.controlScreen nav button:hover {
+  transform: scale(1.05);
+  color: white;
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+}
+.controlScreen nav .btnActive {
+  transform: scale(1.05);
+  color: white;
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+}
+.controlScreen .divider {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  border-radius: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.7rem;
+}
+.controlScreen .controlContentContainer {
+  width: 100%;
+  min-height: 320px;
+}
+.controlScreen .controlContentContainer .infoBox {
+  font-size: 1.13rem;
+  line-height: 1.75rem;
+  letter-spacing: 0.05rem;
+  word-spacing: 0.25rem;
+}
+.controlScreen .controlContentContainer .controlsBox {
+  width: 100%;
+  min-height: 320px;
+  font-family: "LuckyGuy";
+  font-size: 1.5rem;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+}
+.controlScreen .controlContentContainer .controlsBox .controlsBoxUpper {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+.controlScreen .controlContentContainer .controlsBox .controlBar {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.controlScreen .controlContentContainer .controlsBox .controlBar img {
+  padding-top: 1rem;
+  height: 70px;
+  width: auto;
+}
+.controlScreen .controlContentContainer .settingsBox {
+  background-color: red;
+  width: 100%;
+  min-height: 320px;
+}
+.controlScreen .homeBtn {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 32px;
+  height: 32px;
+  z-index: 10;
+  background-color: transparent;
+  border: 1.5px solid white;
+  border-radius: 16px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.controlScreen .homeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+  transform: scale(1.05);
+}
+.controlScreen .homeBtn img:hover {
+  transform: scale(1.05);
+}
+
+.transformControlScreen {
+  top: -100%;
 }
 
 * {
@@ -24,7 +264,7 @@
 }
 
 .d_none {
-  display: none;
+  display: none !important;
 }
 
 .d_block {
@@ -35,16 +275,12 @@
   display: flex;
 }
 
-.visibility_hidden {
-  visibility: hidden;
+.opacity_zero {
+  opacity: 0;
 }
 
-.canvas {
-  background-color: black;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+.visibility_hidden {
+  visibility: hidden;
 }
 
 @font-face {
@@ -62,6 +298,9 @@ main {
   position: relative;
   height: 100dvh;
   background-image: url("../../assets/img/3. Background/Dark/1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 main h1 {
   position: absolute;
@@ -69,7 +308,40 @@ main h1 {
   left: 50%;
   transform: translateX(-50%);
 }
-main canvas {
+main .display {
+  width: 853px;
+  height: 480px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 1rem;
   box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+main .display .controlButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 100vh;
+  transition: all 0.25s ease;
+}
+main .display .controlButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+}
+main .display .controlButton img {
+  width: 32px;
+  height: auto;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+main .display .controlButton img:hover {
+  transform: scale(1.05);
 }/*# sourceMappingURL=style.css.map */
