@@ -344,6 +344,13 @@ main {
   background-position: center;
   background-repeat: no-repeat;
 }
+@media (max-width: 1000px) and (orientation: landscape) {
+  main {
+    width: 100vw;
+    height: 100vh;
+    font-weight: bold;
+  }
+}
 main h1 {
   position: absolute;
   top: 10%;
@@ -360,6 +367,13 @@ main .display {
   border-radius: 1rem;
   box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
   overflow: hidden;
+}
+@media (max-width: 1000px) and (orientation: landscape) {
+  main .display {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+  }
 }
 main .display .controlButton {
   position: absolute;
