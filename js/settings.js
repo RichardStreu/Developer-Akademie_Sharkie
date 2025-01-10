@@ -8,12 +8,11 @@ export function showSubMenu(groupNumber) {
   document.querySelector(`div[data-group="${groupNumber}"]`).classList.remove("d_none");
 }
 
-let isFullscreen = false;
-window.addEventListener("keydown", (e) => {
-  
-  if (e.key === "Esc" && isFullscreen) {
+export let isFullscreen = false;
+document.addEventListener("fullscreenchange", () => {
+  if (isFullscreen) {
     isFullscreen = false;
-    console.log(isFullscreen); 
+    console.log(isFullscreen);
   }
 });
 
@@ -22,19 +21,11 @@ export function toggleFullscreen() {
   if (!isFullscreen) {
     canvas.requestFullscreen();
     showHideControlScreen();
-    isFullscreen = true;
+    setTimeout(() => {
+      isFullscreen = true;
+    }, 250);
   } else if (isFullscreen) {
     document.exitFullscreen();
     isFullscreen = false;
   }
 }
-
-// export function toggleFullscreen() {
-//   const canvas = document.getElementById("canvas");
-//   if (canvas) {
-//     canvas.requestFullscreen();
-//     if (!isFullscreen) showHideControlScreen();
-//     if (isFullscreen) document.exitFullscreen();
-//     isFullscreen = !isFullscreen;
-//   }
-// }

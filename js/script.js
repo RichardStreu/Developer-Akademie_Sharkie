@@ -2,7 +2,7 @@ import { World } from "./classes/world.class.js";
 
 import { Keyboard } from "./classes/keyboard.class.js";
 
-import { showSubMenu, toggleFullscreen } from "./settings.js";
+import { showSubMenu, toggleFullscreen, isFullscreen } from "./settings.js";
 window.showSubMenu = showSubMenu;
 window.toggleFullscreen = toggleFullscreen;
 
@@ -200,7 +200,7 @@ window.goToStartScreen = goToStartScreen;
 export function youWin() {
   document.getElementById("winScreen").classList.remove("d_none");
   setTimeout(() => {
-    toggleFullscreen();
+    if (isFullscreen) toggleFullscreen();
     document.getElementById("winScreen").classList.remove("opacity_zero");
   }, 20);
 }
@@ -208,7 +208,7 @@ export function youWin() {
 export function youLoose() {
   document.getElementById("looseScreen").classList.remove("d_none");
   setTimeout(() => {
-    toggleFullscreen();
+    if (isFullscreen) toggleFullscreen();
     document.getElementById("looseScreen").classList.remove("opacity_zero");
   }, 20);
 }
