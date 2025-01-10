@@ -8,8 +8,17 @@ export function showSubMenu(groupNumber) {
   document.querySelector(`div[data-group="${groupNumber}"]`).classList.remove("d_none");
 }
 
+let isFullscreen = false;
+
 export function toggleFullscreen() {
   const canvas = document.getElementById("canvas");
-  showHideControlScreen();
-  canvas.requestFullscreen();
+  if (!isFullscreen) {
+    canvas.requestFullscreen();
+    showHideControlScreen();
+    isFullscreen = true;
+  } else {
+    if (!isFullscreen) return;
+    document.exitFullscreen();
+    isFullscreen = false;
+  }
 }

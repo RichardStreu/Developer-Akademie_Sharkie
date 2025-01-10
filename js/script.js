@@ -200,6 +200,7 @@ window.goToStartScreen = goToStartScreen;
 export function youWin() {
   document.getElementById("winScreen").classList.remove("d_none");
   setTimeout(() => {
+    toggleFullscreen();
     document.getElementById("winScreen").classList.remove("opacity_zero");
   }, 20);
 }
@@ -207,6 +208,7 @@ export function youWin() {
 export function youLoose() {
   document.getElementById("looseScreen").classList.remove("d_none");
   setTimeout(() => {
+    toggleFullscreen();
     document.getElementById("looseScreen").classList.remove("opacity_zero");
   }, 20);
 }
