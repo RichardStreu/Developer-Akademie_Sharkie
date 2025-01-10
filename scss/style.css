@@ -310,17 +310,31 @@
 .controlScreen .imprintBtnBox:hover {
   color: white;
 }
+.controlScreen .imprintBtnBox:hover div img {
+  filter: drop-shadow(0 0 3px rgb(255, 255, 255));
+}
 .controlScreen .imprintBtnBox p {
   font-size: 0.75rem;
 }
 .controlScreen .imprintBtnBox img {
   width: 1.13rem;
   height: auto;
+  transition: all 0.25s ease;
 }
-.controlScreen .imprintBtnBox .arrowUp {
+.controlScreen .imprintBtnBox .arrowDownBox {
+  display: flex;
+  align-items: center;
+  width: 1.13rem;
+}
+.controlScreen .imprintBtnBox .arrowDownBox .arrowDown {
   transform: rotate(90deg);
 }
-.controlScreen .imprintBtnBox .arrowDown {
+.controlScreen .imprintBtnBox .arrowUpBox {
+  display: flex;
+  align-items: center;
+  width: 1.13rem;
+}
+.controlScreen .imprintBtnBox .arrowUpBox .arrowUp {
   transform: rotate(-90deg);
 }
 .controlScreen .imprint {
