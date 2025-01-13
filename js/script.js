@@ -6,6 +6,9 @@ import { showSubMenu, toggleFullscreen, isFullscreen } from "./settings.js";
 window.showSubMenu = showSubMenu;
 window.toggleFullscreen = toggleFullscreen;
 
+import { playSfxSound } from "./sound.js";
+window.playSfxSound = playSfxSound;
+
 // with this ratio you can scale all moveable objects in one step
 export let moveObjRatio = 1;
 // with this ratio you can scale all static objects in one step
