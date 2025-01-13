@@ -86,3 +86,6 @@ let sounds = {
     loop: false,
   }
 };
+
+let audio = new Audio();
+
