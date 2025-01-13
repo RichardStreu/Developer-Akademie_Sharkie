@@ -2,6 +2,8 @@ import { canvasHeight, canvasWidth } from "../script.js";
 
 import { SharkyBubble } from "./sharky.bubble.class.js";
 
+import { playSfxSound } from "../sound.js";
+
 export function letSharkySleep() {
   let timeOfUnmoved = 0;
   this.currentMovement = setInterval(() => {
@@ -86,6 +88,7 @@ export function sharkyAttackSpace() {
         if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
         this.world.keyboard.SPACE = false;
         this.shootBubble();
+        playSfxSound("blub");
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
       }, 600);
@@ -105,6 +108,7 @@ export function sharkyAttackDKey() {
       this.clearIntervalsAnimationMove();
       this.doFinSlap();
       this.sharkyFinSlapAnimation();
+      playSfxSound("slap1", 600);
       this.isCurrentlyAttackAnimation = true;
       setTimeout(() => {
         this.isCurrentlyFinSlap = false;

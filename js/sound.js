@@ -71,11 +71,11 @@ let sounds = {
     volume: 0.5,
     loop: false,
   },
-  slap4: { 
-    slap4: new Audio("./assets/audio/edit/slap/slap4.mp3"), 
-    link: "./assets/audio/edit/slap/slap4.mp3", 
-    volume: 0.5, 
-    loop: false, 
+  slap4: {
+    slap4: new Audio("./assets/audio/edit/slap/slap4.mp3"),
+    link: "./assets/audio/edit/slap/slap4.mp3",
+    volume: 0.5,
+    loop: false,
   },
   slap5: {
     slap5: new Audio("./assets/audio/edit/slap/slap5.mp3"),
@@ -103,10 +103,12 @@ let sounds = {
   },
 };
 
-export function playSfxSound(sound) {
+export function playSfxSound(sound, delay = 0) {
   let soundToPlay = sounds[sound][sound];
   soundToPlay.volume = sounds[sound].volume * sfxVolume * basicVolume;
-  soundToPlay.play();
+  setTimeout(() => {
+    soundToPlay.play();
+  }, delay);
 }
 
 export function muteUnmuteSound() {
