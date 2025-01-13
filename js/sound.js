@@ -1,10 +1,12 @@
-let isSoundMuted = false;
 
 let basicVolume = 1;
+let isSoundMuted = false;
 
 let musicVolume = 1;
+let isMusicMuted = false;
 
 let sfxVolume = 1;
+let isSfxMuted = false;
 
 let currentHurtSound;
 let isCurrentHurtSoundPlaying = false;
@@ -14,7 +16,6 @@ let isCurrentSlapSoundPlaying = false;
 
 let currentBlubSound;
 let isCurrentBlubSoundPlaying = false;
-
 
 let sounds = {
   backgroundRetroArcade: {
