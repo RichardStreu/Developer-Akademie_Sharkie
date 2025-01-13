@@ -7,6 +7,9 @@ let isMusicMuted = false;
 let sfxVolume = 0.2;
 let isSfxMuted = false;
 
+let currentSwimSound;
+let isCurrentSwimSoundPlaying = false;
+
 let currentHurtSound;
 let isCurrentHurtSoundPlaying = false;
 
@@ -101,6 +104,12 @@ let sounds = {
     volume: 0.5,
     loop: false,
   },
+  swim: {
+    swim: new Audio("./assets/audio/rust-fake-swim.mp3"),
+    link: "./assets/audio/rust-fake-swim.mp3",
+    volume: 0.5,
+    loop: true,
+  },
 };
 
 export function playSfxSound(sound, delay = 0) {
@@ -110,6 +119,27 @@ export function playSfxSound(sound, delay = 0) {
     soundToPlay.play();
   }, delay);
 }
+
+export function playSwimSound() {
+  if (!isCurrentSwimSoundPlaying) {
+    currentSwimSound = sounds.swim.swim;
+    currentSwimSound.volume = 0.5 * basicVolume * musicVolume;
+    currentSwimSound.loop = true;
+    currentSwimSound.currentTime = 200;
+    currentSwimSound.play();
+    isCurrentSwimSoundPlaying = true;
+  }
+}
+window.playSwimSound = playSwimSound;
+
+export function stopSwimSound() {
+  if (isCurrentSwimSoundPlaying) {
+    currentSwimSound.pause();
+    currentSwimSound.currentTime = 200;
+    isCurrentSwimSoundPlaying = false;
+  }
+}
+window.stopSwimSound = stopSwimSound;
 
 export function muteUnmuteSound() {
   if (!isSoundMuted) {

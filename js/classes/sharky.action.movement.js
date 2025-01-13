@@ -2,7 +2,7 @@ import { canvasHeight, canvasWidth } from "../script.js";
 
 import { SharkyBubble } from "./sharky.bubble.class.js";
 
-import { playSfxSound } from "../sound.js";
+import { playSfxSound, playSwimSound } from "../sound.js";
 
 export function letSharkySleep() {
   let timeOfUnmoved = 0;
@@ -17,6 +17,7 @@ export function letSharkySleep() {
 
 export function moveSharkyLeft() {
   if (!this.world.keyboard.LEFT) {
+    playSwimSound();
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.LEFT = true;
     this.otherDirection = true;
@@ -37,6 +38,7 @@ export function moveSharkyLeft() {
 
 export function moveSharkyRight() {
   if (!this.world.keyboard.RIGHT) {
+    playSwimSound();
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.RIGHT = true;
     this.otherDirection = false;
@@ -54,6 +56,7 @@ export function moveSharkyRight() {
 export function moveSharkyUp() {
   
   if (!this.world.keyboard.UP) {
+    playSwimSound();
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.UP = true;
     if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
@@ -65,6 +68,7 @@ export function moveSharkyUp() {
 
 export function moveSharkyDown() {
   if (!this.world.keyboard.DOWN) {
+    playSwimSound();
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.DOWN = true;
     if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();

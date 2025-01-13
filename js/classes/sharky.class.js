@@ -1,5 +1,6 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio } from "../script.js";
+import { playSwimSound, stopSwimSound } from "../sound.js";
 
 import {
   imagesStand,
@@ -55,7 +56,7 @@ export let sharkyHeight;
 export class Sharky extends MoveableObject {
   firstInterval;
   currentAnimationIntervall;
-  currentPositionInterval
+  currentPositionInterval;
   currentMovement;
   isSwimLeft;
   isSwimRight;
@@ -153,7 +154,7 @@ export class Sharky extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
   }
 
-  handleKeyDown(event) { 
+  handleKeyDown(event) {
     if (this.lifeEnergy > 0 && !this.isCurrentlyAttackAnimation) {
       if (event.key == "ArrowLeft") this.moveSharkyLeft();
       if (event.key == "ArrowRight") this.moveSharkyRight();
@@ -194,18 +195,22 @@ export class Sharky extends MoveableObject {
 
   keyArrowLeftUp() {
     this.world.keyboard.LEFT = false;
+    stopSwimSound();
     clearInterval(this.isSwimLeft);
   }
   keyArrowRightUp() {
     this.world.keyboard.RIGHT = false;
+    stopSwimSound();
     clearInterval(this.isSwimRight);
   }
   keyArrowUpUp() {
     this.world.keyboard.UP = false;
+    stopSwimSound();
     clearInterval(this.isSwimUp);
   }
   keyArrowDownUp() {
     this.world.keyboard.DOWN = false;
+    stopSwimSound();
     clearInterval(this.isSwimDown);
   }
   keySpaceUp() {
