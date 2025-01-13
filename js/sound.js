@@ -125,7 +125,7 @@ export function playSwimSound() {
     currentSwimSound = sounds.swim.swim;
     currentSwimSound.volume = 0.5 * basicVolume * musicVolume;
     currentSwimSound.loop = true;
-    currentSwimSound.currentTime = 200;
+    currentSwimSound.currentTime = 800;
     currentSwimSound.play();
     isCurrentSwimSoundPlaying = true;
   }
