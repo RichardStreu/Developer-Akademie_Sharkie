@@ -19,10 +19,10 @@ export class SharkyBubble extends MoveableObject {
     if (this.world.sharky.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
     if (direction == "left") {
       this.x = world.sharky.x + 20;
-      this.y = world.sharky.y + 151;
+      this.y = world.sharky.y + 131;
     } else {
       this.x = world.sharky.x + 169;
-      this.y = world.sharky.y + 151;
+      this.y = world.sharky.y + 131;
     }
     this.width = 25;
     this.height = 25;

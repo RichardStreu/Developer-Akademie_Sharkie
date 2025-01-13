@@ -107,11 +107,10 @@ let sounds = {
 };
 
 export function muteUnmuteSound() {
-  let muteImage = document.getElementById("muteImage");
   if (!isSoundMuted) {
-    console.log("Sound is muted");
+    basicVolume = 0;
   } else {
-    console.log("Sound is unmuted");
+    basicVolume = 1;
   }
   isSoundMuted = !isSoundMuted;
 }
