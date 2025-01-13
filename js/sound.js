@@ -1,10 +1,10 @@
-let basicVolume = 1;
+let basicVolume = 0.5;
 let isSoundMuted = false;
 
 let musicVolume = 1;
 let isMusicMuted = false;
 
-let sfxVolume = 1;
+let sfxVolume = 0.2;
 let isSfxMuted = false;
 
 let currentHurtSound;

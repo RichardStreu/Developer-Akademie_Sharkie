@@ -1,5 +1,6 @@
 import { canvasHeight, canvasWidth } from "../script.js";
 import { MoveableObject } from "./moveable-object.class.js";
+import { playSfxSound } from "../sound.js";
 
 export class SharkyBubble extends MoveableObject {
   world;
@@ -30,6 +31,7 @@ export class SharkyBubble extends MoveableObject {
     this.moveBubble();
     this.checkCollisions();
     this.checkPosition();
+    playSfxSound("blub");
   }
 
   checkPosition() {
