@@ -1,7 +1,8 @@
-import { playHurtSound, stopSwimSound } from "../sound.js";
+import { playHurtSound, stopSwimSound, playSfxSound } from "../sound.js";
 
 export function getCoins(enemy) {
   this.coin += 1;
+  playSfxSound("coin", 0, false, 0.3);
   if (this.coin >= 20) {
     this.lifeEnergy = 100;
   }
@@ -9,6 +10,7 @@ export function getCoins(enemy) {
 
 export function getPoison(enemy) {
   this.poison += 1;
+  playSfxSound("bottle", 0 , false, 0.2);
   if (this.poison >= 10) this.isEnoughPoison = true;
 }
 

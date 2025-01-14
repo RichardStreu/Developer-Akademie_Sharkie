@@ -1,10 +1,10 @@
-let basicVolume = 0.5;
+let basicVolume = 1;
 let isSoundMuted = false;
 
 let musicVolume = 1;
 let isMusicMuted = false;
 
-let sfxVolume = 0.2;
+let sfxVolume = 1;
 let isSfxMuted = false;
 
 let currentSwimSound;
@@ -110,13 +110,25 @@ let sounds = {
     volume: 0.2,
     loop: true,
   },
+  coin: {
+    coin: new Audio("./assets/audio/edit/subway-surfers-coin-collect.mp3"),
+    link: "./assets/audio/edit/subway-surfers-coin-collect.mp3",
+    volume: 0.9,
+    loop: true,
+  },
+  bottle: {
+    bottle: new Audio("./assets/audio/edit/bottle-pop-open.mp3"),
+    link: "./assets/audio/edit/bottle-pop-open.mp3",
+    volume: 0.5,
+    loop: true,
+  },
 };
 
-
-export function playSfxSound(sound, delay = 0, loop = false) {
+export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
   let soundToPlay = sounds[sound][sound];
   soundToPlay.volume = sounds[sound].volume * sfxVolume * basicVolume;
   soundToPlay.loop = loop;
+  soundToPlay.currentTime = currentTime;
   setTimeout(() => {
     soundToPlay.play();
   }, delay);
@@ -125,7 +137,7 @@ export function playSfxSound(sound, delay = 0, loop = false) {
 export function playSwimSound() {
   if (!isCurrentSwimSoundPlaying) {
     currentSwimSound = sounds.swim.swim;
-    currentSwimSound.volume = sounds.swim.volume * basicVolume;
+    currentSwimSound.volume = sounds.swim.volume * sfxVolume * basicVolume;
     currentSwimSound.loop = true;
     currentSwimSound.play();
     isCurrentSwimSoundPlaying = true;
@@ -141,7 +153,7 @@ export function stopSwimSound() {
     let reduction = (currentSwimSound.volume - 0.05) / steps;
     for (let i = 1; i < steps; i++) {
       setTimeout(() => {
-        currentSwimSound.volume -= reduction;
+        if (currentSwimSound.volume > reduction) currentSwimSound.volume -= reduction;
       }, i * interval);
     }
     setTimeout(() => {
