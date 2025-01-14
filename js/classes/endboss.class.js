@@ -1,9 +1,9 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio, youWin } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
+import { playSfxSound } from "../sound.js";
 
 export class EndBoss extends MoveableObject {
-
   currentAnimationIntervall;
   currentSharkyPositionInterval;
   countSecondsInterval;
@@ -62,6 +62,9 @@ export class EndBoss extends MoveableObject {
     this.bossIsVisible = true;
     this.y = -50;
     this.bossIntroduce();
+    setTimeout(() => {
+      playSfxSound("bossSplash");
+    }, 500);
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.bossSwim();

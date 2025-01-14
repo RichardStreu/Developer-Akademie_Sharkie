@@ -136,6 +136,12 @@ let sounds = {
     volume: 0.1,
     loop: true,
   },
+  bossSplash: {
+    bossSplash: new Audio("./assets/audio/edit/water-for-drama.mp3"),
+    link: "./assets/audio/edit/water-for-drama.mp3",
+    volume: 0.4,
+    loop: true,
+  },
 };
 
 export function initHoverSound() {
@@ -148,7 +154,6 @@ export function initHoverSound() {
     }, 1000);
   }
 }
-
 
 export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
   let soundToPlay = sounds[sound][sound];
