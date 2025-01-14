@@ -127,7 +127,6 @@ export function playSwimSound() {
     currentSwimSound.loop = true;
     currentSwimSound.play();
     isCurrentSwimSoundPlaying = true;
-    console.log(isCurrentSwimSoundPlaying);
   }
 }
 window.playSwimSound = playSwimSound;
