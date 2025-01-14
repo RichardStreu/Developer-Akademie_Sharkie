@@ -105,8 +105,8 @@ let sounds = {
     loop: false,
   },
   swim: {
-    swim: new Audio("./assets/audio/rust-fake-swim.mp3"),
-    link: "./assets/audio/rust-fake-swim.mp3",
+    swim: new Audio("./assets/audio/edit/swim-short.mp3"),
+    link: "./assets/audio/edit/swim-short.mp3",
     volume: 0.5,
     loop: true,
   },
@@ -125,9 +125,11 @@ export function playSwimSound() {
     currentSwimSound = sounds.swim.swim;
     currentSwimSound.volume = 0.5 * basicVolume * musicVolume;
     currentSwimSound.loop = true;
-    currentSwimSound.currentTime = 800;
+    currentSwimSound.currentTime = 0;
     currentSwimSound.play();
     isCurrentSwimSoundPlaying = true;
+    console.log(isCurrentSwimSoundPlaying);
+    
   }
 }
 window.playSwimSound = playSwimSound;
@@ -135,7 +137,7 @@ window.playSwimSound = playSwimSound;
 export function stopSwimSound() {
   if (isCurrentSwimSoundPlaying) {
     currentSwimSound.pause();
-    currentSwimSound.currentTime = 200;
+    currentSwimSound.currentTime = 0;
     isCurrentSwimSoundPlaying = false;
   }
 }
