@@ -1,3 +1,5 @@
+let firstSoundInit = false;
+
 let basicVolume = 1;
 let isSoundMuted = false;
 
@@ -125,16 +127,28 @@ let sounds = {
   hover: {
     hover: new Audio("./assets/audio/edit/hover-sound-effect.mp3"),
     link: "./assets/audio/edit/hover-sound-effect.mp3",
-    volume: 0.15,
+    volume: 0.2,
     loop: true,
   },
   click: {
     click: new Audio("./assets/audio/edit/button-click.mp3"),
     link: "./assets/audio/edit/button-click.mp3",
-    volume: 0.15,
+    volume: 0.1,
     loop: true,
   },
 };
+
+export function initHoverSound() {
+  if (!firstSoundInit) {
+    sounds.hover.hover.muted = true;
+    sounds.hover.hover.play();
+    setTimeout(() => {
+      sounds.hover.hover.muted = false;
+      firstSoundInit = true;
+    }, 1000);
+  }
+}
+
 
 export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
   let soundToPlay = sounds[sound][sound];

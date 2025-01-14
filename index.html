@@ -9,7 +9,7 @@
     <script type="module" src="./js/script.js" defer></script>
   </head>
   <body>
-    <main id="main" class="main">
+    <main id="main" class="main" onmouseover="initHoverSound()">
       <!-- Display Field of the game -->
       <div id="display" class="display">
         <!-- control button -->
@@ -161,7 +161,7 @@
         <!-- start screen -->
         <div data-group="screens" id="startScreen" class="startScreen d_none">
           <p>SHARKY THE BRAVE</p>
-          <button onclick="startGame()" id="startButton" class="startButton">
+          <button onclick="startGame(); playSfxSound('click')" onmouseover="playSfxSound('hover')" id="startButton" class="startButton">
             <img src="./assets/img/6.Botones/Start/2.png" alt="" />
           </button>
         </div>
