@@ -142,6 +142,12 @@ let sounds = {
     volume: 0.4,
     loop: true,
   },
+  bossScream: {
+    bossScream: new Audio("./assets/audio/chewbacca.swf.mp3"),
+    link: "./assets/audio/chewbacca.swf.mp3",
+    volume: 0.3,
+    loop: true,
+  },
 };
 
 export function initHoverSound() {

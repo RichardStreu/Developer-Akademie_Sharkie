@@ -24,7 +24,7 @@ export class EndBoss extends MoveableObject {
 
   constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
-    this.x = 2450;
+    this.x = 2750;
     this.y = -1000;
     this.width = 300 * moveObjRatio;
     this.height = 342 * moveObjRatio;
@@ -54,7 +54,7 @@ export class EndBoss extends MoveableObject {
     this.currentSharkyPositionInterval = setInterval(() => {
       this.sharkyX = this.world.sharky.x;
       this.sharkyY = this.world.sharky.y;
-      if (this.sharkyX >= 2000 && !this.bossIsVisible) this.doBossIntroduce();
+      if (this.sharkyX >= 2300 && !this.bossIsVisible) this.doBossIntroduce();
     }, 100);
   }
 
@@ -75,8 +75,8 @@ export class EndBoss extends MoveableObject {
   }
 
   moveBossUpDown() {
-    let minY = -120;
-    let maxY = 50;
+    let minY = -110;
+    let maxY = 130;
     this.bossUpDown = setInterval(() => {
       if (this.currentlyMoveUp && this.y >= minY) this.y -= 1.5;
       if (this.currentlyMoveUp && this.y < minY) this.currentlyMoveUp = false;
@@ -101,11 +101,11 @@ export class EndBoss extends MoveableObject {
       let direction = "left";
       let xRange = 0;
       let interval = setInterval(() => {
-        if (xRange < 200 && direction == "left") {
+        if (xRange < 300 && direction == "left") {
           this.x -= 5;
           xRange += 5;
         }
-        if (xRange >= 200 && direction == "left") {
+        if (xRange >= 300 && direction == "left") {
           direction = "right";
         }
         if (xRange > 0 && direction == "right") {
@@ -161,6 +161,7 @@ export class EndBoss extends MoveableObject {
   }
 
   bossAttack() {
+    playSfxSound("bossScream", 0, false, 0);
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesBossAttack, this.img, 180);
   }
