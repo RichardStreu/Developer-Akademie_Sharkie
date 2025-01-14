@@ -122,6 +122,18 @@ let sounds = {
     volume: 0.5,
     loop: true,
   },
+  hover: {
+    hover: new Audio("./assets/audio/edit/hover-sound-effect.mp3"),
+    link: "./assets/audio/edit/hover-sound-effect.mp3",
+    volume: 0.15,
+    loop: true,
+  },
+  click: {
+    click: new Audio("./assets/audio/edit/button-click.mp3"),
+    link: "./assets/audio/edit/button-click.mp3",
+    volume: 0.15,
+    loop: true,
+  },
 };
 
 export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {

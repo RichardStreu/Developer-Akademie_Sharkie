@@ -13,7 +13,7 @@
       <!-- Display Field of the game -->
       <div id="display" class="display">
         <!-- control button -->
-        <button onclick="showHideControlScreen()" id="controlButton" class="controlButton">
+        <button onclick="showHideControlScreen(); playSfxSound('click')" onmouseover="playSfxSound('hover')" id="controlButton" class="controlButton">
           <img id="controlButtonImg" src="./assets/img/menu.png" alt="" />
         </button>
         <!-- control screen transformControlScreen -->
