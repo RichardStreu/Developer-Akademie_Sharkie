@@ -125,20 +125,28 @@ export function playSwimSound() {
     currentSwimSound = sounds.swim.swim;
     currentSwimSound.volume = sounds.swim.volume * basicVolume;
     currentSwimSound.loop = true;
-    currentSwimSound.currentTime = 0;
     currentSwimSound.play();
     isCurrentSwimSoundPlaying = true;
     console.log(isCurrentSwimSoundPlaying);
-    
   }
 }
 window.playSwimSound = playSwimSound;
 
 export function stopSwimSound() {
   if (isCurrentSwimSoundPlaying) {
-    currentSwimSound.pause();
-    currentSwimSound.currentTime = 0;
-    isCurrentSwimSoundPlaying = false;
+    let duration = 400;
+    let steps = 20;
+    let interval = duration / steps;
+    let reduction = (currentSwimSound.volume - 0.05) / steps;
+    for (let i = 1; i < steps; i++) {
+      setTimeout(() => {
+        currentSwimSound.volume -= reduction;
+      }, i * interval);
+    }
+    setTimeout(() => {
+      currentSwimSound.pause();
+      isCurrentSwimSoundPlaying = false;
+    }, duration);
   }
 }
 window.stopSwimSound = stopSwimSound;
