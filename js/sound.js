@@ -153,7 +153,9 @@ let sounds = {
 export function initHoverSound() {
   if (!firstSoundInit) {
     sounds.hover.hover.muted = true;
-    sounds.hover.hover.play();
+    setTimeout(() => {
+      sounds.hover.hover.play();
+    }, 50);
     setTimeout(() => {
       sounds.hover.hover.muted = false;
       firstSoundInit = true;
