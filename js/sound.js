@@ -112,9 +112,11 @@ let sounds = {
   },
 };
 
-export function playSfxSound(sound, delay = 0) {
+
+export function playSfxSound(sound, delay = 0, loop = false) {
   let soundToPlay = sounds[sound][sound];
   soundToPlay.volume = sounds[sound].volume * sfxVolume * basicVolume;
+  soundToPlay.loop = loop;
   setTimeout(() => {
     soundToPlay.play();
   }, delay);
@@ -149,6 +151,19 @@ export function stopSwimSound() {
   }
 }
 window.stopSwimSound = stopSwimSound;
+
+export function playHurtSound(sound) {
+  if (!isCurrentHurtSoundPlaying) {
+    currentHurtSound = sounds[sound][sound];
+    currentHurtSound.volume = sounds[sound].volume * sfxVolume * basicVolume;
+    currentHurtSound.loop = false;
+    currentHurtSound.play();
+    isCurrentHurtSoundPlaying = true;
+    currentHurtSound.addEventListener("ended", () => {
+      isCurrentHurtSoundPlaying = false;
+    });
+  }
+}
 
 export function muteUnmuteSound() {
   if (!isSoundMuted) {

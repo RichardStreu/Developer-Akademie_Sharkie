@@ -1,8 +1,10 @@
+import { playHurtSound, stopSwimSound } from "../sound.js";
+
 export function getCoins(enemy) {
   this.coin += 1;
   if (this.coin >= 20) {
     this.lifeEnergy = 100;
-  } 
+  }
 }
 
 export function getPoison(enemy) {
@@ -20,6 +22,7 @@ export function hurtedByPufferFish() {
       this.sharkyHurtRegularAnimation();
       this.isCurrentlyHurtAnimation = true;
       this.isCurrentlyAttackAnimation = false;
+      playHurtSound("hurt1");
       setTimeout(() => {
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
@@ -40,6 +43,7 @@ export function hurtedByJellyFishRD() {
       this.sharkyHurtRegularAnimation();
       this.isCurrentlyHurtAnimation = true;
       this.isCurrentlyAttackAnimation = false;
+      playHurtSound("hurt2");
       setTimeout(() => {
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
@@ -60,6 +64,7 @@ export function hurtedByJellyFishSD() {
       this.sharkyHurtShockAnimation();
       this.isCurrentlyHurtAnimation = true;
       this.isCurrentlyAttackAnimation = false;
+      playHurtSound("electroShock");
       setTimeout(() => {
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
@@ -79,6 +84,7 @@ export function hurtedByEndBoss() {
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
     this.isCurrentlyAttackAnimation = false;
+    playHurtSound("hurt4");
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();
@@ -90,6 +96,7 @@ export function hurtedByEndBoss() {
 
 export function isSharkyDead(kindOfDead) {
   if (this.lifeEnergy <= 0) {
+    stopSwimSound();
     let isRegularDead = kindOfDead == "regular";
     isRegularDead ? this.regularDead() : this.electricDead();
   }

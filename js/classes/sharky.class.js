@@ -1,6 +1,6 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio } from "../script.js";
-import { playSwimSound, stopSwimSound } from "../sound.js";
+import { stopSwimSound, playHurtSound } from "../sound.js";
 
 import {
   imagesStand,
