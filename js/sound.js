@@ -107,7 +107,7 @@ let sounds = {
   swim: {
     swim: new Audio("./assets/audio/edit/swim-short.mp3"),
     link: "./assets/audio/edit/swim-short.mp3",
-    volume: 0.5,
+    volume: 0.2,
     loop: true,
   },
 };
@@ -123,7 +123,7 @@ export function playSfxSound(sound, delay = 0) {
 export function playSwimSound() {
   if (!isCurrentSwimSoundPlaying) {
     currentSwimSound = sounds.swim.swim;
-    currentSwimSound.volume = 0.5 * basicVolume * musicVolume;
+    currentSwimSound.volume = sounds.swim.volume * basicVolume;
     currentSwimSound.loop = true;
     currentSwimSound.currentTime = 0;
     currentSwimSound.play();

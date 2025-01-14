@@ -193,24 +193,30 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimDown);
   }
 
+  checkSwimmingForStopSound() {
+    if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.UP && !this.world.keyboard.DOWN) {
+      stopSwimSound();
+    }
+  }
+
   keyArrowLeftUp() {
     this.world.keyboard.LEFT = false;
-    stopSwimSound();
+    this.checkSwimmingForStopSound();
     clearInterval(this.isSwimLeft);
   }
   keyArrowRightUp() {
     this.world.keyboard.RIGHT = false;
-    stopSwimSound();
+    this.checkSwimmingForStopSound();
     clearInterval(this.isSwimRight);
   }
   keyArrowUpUp() {
     this.world.keyboard.UP = false;
-    stopSwimSound();
+    this.checkSwimmingForStopSound();
     clearInterval(this.isSwimUp);
   }
   keyArrowDownUp() {
     this.world.keyboard.DOWN = false;
-    stopSwimSound();
+    this.checkSwimmingForStopSound();
     clearInterval(this.isSwimDown);
   }
   keySpaceUp() {
