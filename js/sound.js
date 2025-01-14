@@ -127,7 +127,7 @@ let sounds = {
   hover: {
     hover: new Audio("./assets/audio/edit/hover-sound-effect.mp3"),
     link: "./assets/audio/edit/hover-sound-effect.mp3",
-    volume: 0.2,
+    volume: 0.15,
     loop: true,
   },
   click: {

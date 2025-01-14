@@ -9,18 +9,18 @@
     <script type="module" src="./js/script.js" defer></script>
   </head>
   <body>
-    <main id="main" class="main" onmouseover="initHoverSound()">
+    <main id="main" class="main" onmouseenter="initHoverSound()">
       <!-- Display Field of the game -->
       <div id="display" class="display">
         <!-- control button -->
-        <button onclick="showHideControlScreen(); playSfxSound('click')" onmouseover="playSfxSound('hover')" id="controlButton" class="controlButton">
+        <button onclick="showHideControlScreen(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="controlButton" class="controlButton">
           <img id="controlButtonImg" src="./assets/img/menu.png" alt="" />
         </button>
         <!-- control screen transformControlScreen -->
         <div data-group="screens" id="controlScreen" class="controlScreen transformControlScreen">
-          <button class="homeBtn" onclick="goToStartScreen('homeBtn')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('homeBtn'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
           <!-- imprint Button box-->
-          <div onclick="showHideImprint()" class="imprintBtnBox">
+          <div onclick="showHideImprint(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" class="imprintBtnBox">
             <div class="arrowDownBox">
               <img id="arrowDown" class="arrowDown" src="./assets/img/arrow-up.png" alt="" />
             </div>
@@ -31,9 +31,9 @@
           </div>
           <!-- control nav bar -->
           <nav id="controlNavBar">
-            <button data-group="0" onclick="showSubMenu(`0`)" id="infoBtn">INFO</button>
-            <button data-group="1" onclick="showSubMenu(`1`)" id="controlsBtn" class="btnActive">CONTROLS</button>
-            <button data-group="2" onclick="showSubMenu(`2`)" id="settingsBtn">SETTINGS</button>
+            <button data-group="0" onclick="showSubMenu(`0`); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="infoBtn">INFO</button>
+            <button data-group="1" onclick="showSubMenu(`1`); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="controlsBtn" class="btnActive">CONTROLS</button>
+            <button data-group="2" onclick="showSubMenu(`2`); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="settingsBtn">SETTINGS</button>
           </nav>
           <div class="divider"></div>
           <div class="controlContentContainer">
@@ -65,7 +65,7 @@
             <!-- settings box -->
             <div data-group="2" id="settingsBox" class="settingsBox d_none">
               <div class="settingsBar">
-                <div onclick="toggleFullscreen()" class="settingsImgBox">
+                <div onclick="toggleFullscreen(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" class="settingsImgBox">
                   <img src="./assets/img/maximize.png" alt="" />
                 </div>
                 <div class="settingsDivider"></div>
@@ -161,7 +161,7 @@
         <!-- start screen -->
         <div data-group="screens" id="startScreen" class="startScreen d_none">
           <p>SHARKY THE BRAVE</p>
-          <button onclick="startGame(); playSfxSound('click')" onmouseover="playSfxSound('hover')" id="startButton" class="startButton">
+          <button onclick="startGame(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="startButton" class="startButton">
             <img src="./assets/img/6.Botones/Start/2.png" alt="" />
           </button>
         </div>
