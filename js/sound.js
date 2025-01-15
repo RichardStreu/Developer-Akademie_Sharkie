@@ -26,7 +26,7 @@ let sounds = {
   backgroundRetroArcade: {
     audio: new Audio("./assets/audio/retro-game-arcade-236133.mp3"),
     link: "./assets/audio/retro-game-arcade-236133.mp3",
-    volume: 0.5,
+    volume: 0.1,
     loop: true,
   },
   hurt1: {
@@ -92,7 +92,7 @@ let sounds = {
   blub: {
     audio: new Audio("./assets/audio/edit/blub.mp3"),
     link: "./assets/audio/edit/blub.mp3",
-    volume: 0.5,
+    volume: 0.3,
     loop: false,
   },
   electroShock: {
@@ -110,13 +110,13 @@ let sounds = {
   swim: {
     audio: new Audio("./assets/audio/edit/swim-short.mp3"),
     link: "./assets/audio/edit/swim-short.mp3",
-    volume: 0.2,
+    volume: 0.5,
     loop: true,
   },
   coin: {
     audio: new Audio("./assets/audio/edit/subway-surfers-coin-collect.mp3"),
     link: "./assets/audio/edit/subway-surfers-coin-collect.mp3",
-    volume: 0.9,
+    volume: 1,
     loop: true,
   },
   bottle: {
