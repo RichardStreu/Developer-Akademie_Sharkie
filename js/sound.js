@@ -128,7 +128,7 @@ let sounds = {
   swim: {
     audio: new Audio("./assets/audio/edit/swim-short.mp3"),
     link: "./assets/audio/edit/swim-short.mp3",
-    volume: 0.5,
+    volume: 0.6,
     loop: true,
   },
   coin: {
@@ -244,12 +244,17 @@ export function muteUnmuteSound() {
     document.getElementById("muteButtonDiv").classList.add("settingsImgBoxPushed");
     if (currentSwimSound) currentSwimSound.muted = true;
     sounds.backgroundRetroArcade.audio.muted = true;
+    sounds.backgroundLose.audio.muted = true;
+    sounds.backgroundWin.audio.muted = true;
     basicVolume = 0;
   } else {
     document.getElementById("muteButtonDiv").classList.remove("settingsImgBoxPushed");
     if (currentSwimSound) currentSwimSound.muted = false;
     sounds.backgroundRetroArcade.audio.muted = false;
     basicVolume = 1;
+    sounds.backgroundMetal.audio.volume = basicVolume * musicVolume;
+    sounds.backgroundLose.audio.muted = false;
+    sounds.backgroundWin.audio.muted = false;
   }
   isSoundMuted = !isSoundMuted;
 }
