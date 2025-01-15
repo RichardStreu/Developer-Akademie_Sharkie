@@ -218,9 +218,15 @@ export function playHurtSound(sound) {
 
 export function muteUnmuteSound() {
   if (!isSoundMuted) {
+    document.getElementById("muteButtonDiv").classList.add("settingsImgBoxPushed");
+    currentSwimSound.muted = true;
     basicVolume = 0;
   } else {
+    document.getElementById("muteButtonDiv").classList.remove("settingsImgBoxPushed");
+    currentSwimSound.muted = false;
     basicVolume = 1;
   }
   isSoundMuted = !isSoundMuted;
 }
+
+

@@ -6,9 +6,10 @@ import { showSubMenu, toggleFullscreen, isFullscreen } from "./settings.js";
 window.showSubMenu = showSubMenu;
 window.toggleFullscreen = toggleFullscreen;
 
-import { playSfxSound, initHoverSound } from "./sound.js";
+import { playSfxSound, initHoverSound, muteUnmuteSound } from "./sound.js";
 window.playSfxSound = playSfxSound;
 window.initHoverSound = initHoverSound;
+window.muteUnmuteSound = muteUnmuteSound;
 
 // with this ratio you can scale all moveable objects in one step
 export let moveObjRatio = 1;
