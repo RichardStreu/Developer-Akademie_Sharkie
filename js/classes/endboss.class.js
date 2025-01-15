@@ -97,32 +97,34 @@ export class EndBoss extends MoveableObject {
 
   sprintBossForwards() {
     this.sprintForwardInterval = setInterval(() => {
-      clearInterval(this.moveBossForward);
-      clearInterval(this.currentAnimationIntervall);
-      this.bossAttack();
-      let direction = "left";
-      let xRange = 0;
-      let interval = setInterval(() => {
-        if (xRange < 300 && direction == "left") {
-          this.x -= 5;
-          xRange += 5;
-        }
-        if (xRange >= 300 && direction == "left") {
-          direction = "right";
-        }
-        if (xRange > 0 && direction == "right") {
-          this.x += 5;
-          xRange -= 5;
-        }
-        if (xRange <= 0 && direction == "right") {
-          direction = "left";
-          xRange = 0;
-          this.clearIntervalsAnimationMove();
-          this.moveBossForBackwards();
-          this.bossSwim();
-          clearInterval(interval);
-        }
-      }, 10);
+      if (this.world.sharky.lifeEnergy > 0) {
+        clearInterval(this.moveBossForward);
+        clearInterval(this.currentAnimationIntervall);
+        this.bossAttack();
+        let direction = "left";
+        let xRange = 0;
+        let interval = setInterval(() => {
+          if (xRange < 300 && direction == "left") {
+            this.x -= 5;
+            xRange += 5;
+          }
+          if (xRange >= 300 && direction == "left") {
+            direction = "right";
+          }
+          if (xRange > 0 && direction == "right") {
+            this.x += 5;
+            xRange -= 5;
+          }
+          if (xRange <= 0 && direction == "right") {
+            direction = "left";
+            xRange = 0;
+            this.clearIntervalsAnimationMove();
+            this.moveBossForBackwards();
+            this.bossSwim();
+            clearInterval(interval);
+          }
+        }, 10);
+      }
     }, 4500);
   }
 
@@ -196,7 +198,7 @@ export class EndBoss extends MoveableObject {
       }, 600);
       setTimeout(() => {
         this.floatToSurface();
-        playSfxSound('backgroundWin')
+        playSfxSound("backgroundWin");
         stopSound("backgroundMetal");
         const floatingInterval = setInterval(() => {
           if (this.y <= -430) {
