@@ -29,6 +29,12 @@ let sounds = {
     volume: 0.1,
     loop: true,
   },
+  backgroundMetal: {
+    audio: new Audio("./assets/audio/metal.mp3"),
+    link: "./assets/audio/metal.mp3",
+    volume: 0.1,
+    loop: true,
+  },
   hurt1: {
     audio: new Audio("./assets/audio/edit/hurt/hurt1.mp3"),
     link: "./assets/audio/edit/hurt/hurt1.mp3",
@@ -217,17 +223,21 @@ export function playHurtSound(sound) {
   }
 }
 
+export function stopSound(sound) {
+  sounds[sound].audio.pause();
+}
+
 export function muteUnmuteSound() {
   if (!isSoundMuted) {
     document.getElementById("muteButtonDiv").classList.add("settingsImgBoxPushed");
-    currentSwimSound.muted = true;
+    if (currentSwimSound) currentSwimSound.muted = true;
+    sounds.backgroundRetroArcade.audio.muted = true;
     basicVolume = 0;
   } else {
     document.getElementById("muteButtonDiv").classList.remove("settingsImgBoxPushed");
-    currentSwimSound.muted = false;
+    if (currentSwimSound) currentSwimSound.muted = false;
+    sounds.backgroundRetroArcade.audio.muted = false;
     basicVolume = 1;
   }
   isSoundMuted = !isSoundMuted;
 }
-
-

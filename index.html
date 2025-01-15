@@ -18,7 +18,7 @@
         </button>
         <!-- control screen transformControlScreen -->
         <div data-group="screens" id="controlScreen" class="controlScreen transformControlScreen">
-          <button class="homeBtn" onclick="goToStartScreen('homeBtn'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('homeBtn'); stopSound('backgroundRetroArcade'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
           <!-- imprint Button box-->
           <div onclick="showHideImprint(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" class="imprintBtnBox">
             <div class="arrowDownBox">
@@ -172,7 +172,7 @@
         <!-- start screen -->
         <div data-group="screens" id="startScreen" class="startScreen d_none">
           <p>SHARKY THE BRAVE</p>
-          <button onclick="startGame(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="startButton" class="startButton">
+          <button onclick="startGame(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true);" onmouseenter="playSfxSound('hover')" id="startButton" class="startButton">
             <img src="./assets/img/6.Botones/Start/2.png" alt="" />
           </button>
         </div>
@@ -182,17 +182,17 @@
         <div data-group="screens" id="looseScreen" class="looseScreen d_none opacity_zero">
           <p>YOU LOSE</p>
           <img class="deadSharky" src="./assets/img/1.Sharkie/6.dead/1.Poisoned/11.png" alt="" />
-          <button onclick="restartGame(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
+          <button onclick="restartGame(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true)" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
             <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>
-          <button class="homeBtn" onclick="goToStartScreen('winLose'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopSound('backgroundRetroArcade'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
         </div>
         <!-- win screen -->
         <div data-group="screens" id="winScreen" class="winScreen d_none opacity_zero">
-          <button onclick="restartGame(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
+          <button onclick="restartGame(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true)" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
             <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>
-          <button class="homeBtn" onclick="goToStartScreen('winLose'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopSound('backgroundRetroArcade'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
         </div>
       </div>
     </main>

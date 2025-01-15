@@ -6,10 +6,11 @@ import { showSubMenu, toggleFullscreen, isFullscreen } from "./settings.js";
 window.showSubMenu = showSubMenu;
 window.toggleFullscreen = toggleFullscreen;
 
-import { playSfxSound, initHoverSound, muteUnmuteSound } from "./sound.js";
+import { playSfxSound, initHoverSound, muteUnmuteSound, stopSound } from "./sound.js";
 window.playSfxSound = playSfxSound;
 window.initHoverSound = initHoverSound;
 window.muteUnmuteSound = muteUnmuteSound;
+window.stopSound = stopSound;
 
 // with this ratio you can scale all moveable objects in one step
 export let moveObjRatio = 1;
@@ -151,7 +152,6 @@ export function startGame() {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
     world.startDrawing();
-    playSfxSound('backgroundRetroArcade', 0, true);
   }, 500);
 }
 window.startGame = startGame;
@@ -168,7 +168,6 @@ export function restartGame(para) {
         init();
         world.sharky.setSharkyWindowEventListeners();
         world.startDrawing();
-        playSfxSound('backgroundRetroArcade', 0, true);
       }, 10);
     }, 50);
   }, 500);
