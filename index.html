@@ -64,6 +64,7 @@
             </div>
             <!-- settings box -->
             <div data-group="2" id="settingsBox" class="settingsBox d_none">
+              <!-- fullscreen -->
               <div class="settingsBar">
                 <div onclick="toggleFullscreen(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" class="settingsImgBox">
                   <img src="./assets/img/maximize.png" alt="" />
@@ -71,6 +72,16 @@
                 <div class="settingsDivider"></div>
                 <div class="settingsDescriptionBox">
                   <p>Change to fullscreen mode / leaf with ESC</p>
+                </div>
+              </div>
+              <!-- mute -->
+              <div class="settingsBar">
+                <div onclick="toggleFullscreen(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" class="settingsImgBox settingsImgBoxPushed">
+                  <img src="./assets/img/mute-purple.png" alt="" />
+                </div>
+                <div class="settingsDivider"></div>
+                <div class="settingsDescriptionBox">
+                  <p>Mute / Unmute Sound</p>
                 </div>
               </div>
             </div>
