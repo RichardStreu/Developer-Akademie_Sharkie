@@ -129,7 +129,7 @@ export class EndBoss extends MoveableObject {
   }
 
   getRandomCooldown() {
-    return Math.floor(Math.random() * 5000) + 5000;
+    return Math.floor(Math.random() * 4500) + 4500;
   }
 
   async loadAllImagesEndboss() {
