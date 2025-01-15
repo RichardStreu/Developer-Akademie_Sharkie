@@ -138,7 +138,7 @@ export class SharkyBubble extends MoveableObject {
 
   isCollJellyGreen(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
-      let demageFactor = 30;
+      let demageFactor = 0;
       this.bubbleHit(obj, demageFactor);
       clearInterval(this.collidingInterval);
       return true;
@@ -147,7 +147,7 @@ export class SharkyBubble extends MoveableObject {
 
   isCollJellyPink(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
-      let demageFactor = 30;
+      let demageFactor = 0;
       this.bubbleHit(obj, demageFactor);
       clearInterval(this.collidingInterval);
       return true;
