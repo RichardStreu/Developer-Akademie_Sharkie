@@ -1,7 +1,7 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio, youWin } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
-import { playSfxSound } from "../sound.js";
+import { playSfxSound, stopSound } from "../sound.js";
 
 export class EndBoss extends MoveableObject {
   currentAnimationIntervall;
@@ -64,6 +64,8 @@ export class EndBoss extends MoveableObject {
     this.bossIntroduce();
     setTimeout(() => {
       playSfxSound("bossSplash");
+      stopSound("backgroundRetroArcade");
+      playSfxSound("backgroundMetal");
     }, 500);
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
@@ -194,6 +196,7 @@ export class EndBoss extends MoveableObject {
       }, 600);
       setTimeout(() => {
         this.floatToSurface();
+        stopSound("backgroundMetal");
         const floatingInterval = setInterval(() => {
           if (this.y <= -430) {
             clearInterval(this.currentMovement);

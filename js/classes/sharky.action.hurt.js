@@ -10,7 +10,7 @@ export function getCoins(enemy) {
 
 export function getPoison(enemy) {
   this.poison += 1;
-  playSfxSound("bottle", 0 , false, 0.2);
+  playSfxSound("bottle", 0, false, 0.2);
   if (this.poison >= 10) this.isEnoughPoison = true;
 }
 
@@ -109,6 +109,8 @@ export function regularHurt() {}
 export function electricHurt() {}
 
 export function regularDead() {
+  stopSound("backgroundRetroArcade");
+  stopSound("backgroundMetal");
   this.clearIntervalsAnimationMove();
   this.sharkyDeadRegularAnimation();
   setTimeout(() => {
@@ -118,6 +120,8 @@ export function regularDead() {
 }
 
 export function electricDead() {
+  stopSound("backgroundRetroArcade");
+  stopSound("backgroundMetal");
   this.clearIntervalsAnimationMove();
   this.sharkyDeadShockAnimation();
   setTimeout(() => {

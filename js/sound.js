@@ -32,7 +32,7 @@ let sounds = {
   backgroundMetal: {
     audio: new Audio("./assets/audio/metal.mp3"),
     link: "./assets/audio/metal.mp3",
-    volume: 0.1,
+    volume: 0.4,
     loop: true,
   },
   hurt1: {
@@ -110,7 +110,7 @@ let sounds = {
   chewbacca: {
     audio: new Audio("./assets/audio/chewbacca.swf.mp3"),
     link: "./assets/audio/chewbacca.swf.mp3",
-    volume: 0.5,
+    volume: 0.4,
     loop: false,
   },
   swim: {
