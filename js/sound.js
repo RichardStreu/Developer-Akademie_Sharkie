@@ -41,6 +41,12 @@ let sounds = {
     volume: 0.4,
     loop: true,
   },
+  backgroundWin: {
+    audio: new Audio("./assets/audio/winMusic.mp3"),
+    link: "./assets/audio/winMusic.mp3",
+    volume: 0.4,
+    loop: true,
+  },
   hurt1: {
     audio: new Audio("./assets/audio/edit/hurt/hurt1.mp3"),
     link: "./assets/audio/edit/hurt/hurt1.mp3",

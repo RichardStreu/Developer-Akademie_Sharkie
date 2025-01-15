@@ -196,6 +196,7 @@ export class EndBoss extends MoveableObject {
       }, 600);
       setTimeout(() => {
         this.floatToSurface();
+        playSfxSound('backgroundWin')
         stopSound("backgroundMetal");
         const floatingInterval = setInterval(() => {
           if (this.y <= -430) {

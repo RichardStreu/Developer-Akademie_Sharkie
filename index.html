@@ -182,17 +182,17 @@
         <div data-group="screens" id="looseScreen" class="looseScreen d_none opacity_zero">
           <p>YOU LOSE</p>
           <img class="deadSharky" src="./assets/img/1.Sharkie/6.dead/1.Poisoned/11.png" alt="" />
-          <button onclick="restartGame(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true)" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
+          <button onclick="restartGame(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true); stopSound('backgroundLose')" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
             <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>
-          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopSound('backgroundRetroArcade'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopSound('backgroundRetroArcade'); stopSound('backgroundLose'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
         </div>
         <!-- win screen -->
         <div data-group="screens" id="winScreen" class="winScreen d_none opacity_zero">
-          <button onclick="restartGame(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true)" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
+          <button onclick="restartGame(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true); stopSound('backgroundWin')" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
             <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>
-          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopSound('backgroundRetroArcade'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopSound('backgroundRetroArcade'); stopSound('backgroundWin'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
         </div>
       </div>
     </main>
