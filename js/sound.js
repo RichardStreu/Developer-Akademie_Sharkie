@@ -110,7 +110,7 @@ let sounds = {
   blub: {
     audio: new Audio("./assets/audio/edit/blub.mp3"),
     link: "./assets/audio/edit/blub.mp3",
-    volume: 0.3,
+    volume: 0.2,
     loop: false,
   },
   electroShock: {
