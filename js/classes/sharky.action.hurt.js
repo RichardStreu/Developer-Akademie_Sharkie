@@ -111,6 +111,7 @@ export function electricHurt() {}
 export function regularDead() {
   stopSound("backgroundRetroArcade");
   stopSound("backgroundMetal");
+  playSfxSound("backgroundLose");
   this.clearIntervalsAnimationMove();
   this.sharkyDeadRegularAnimation();
   setTimeout(() => {
@@ -122,6 +123,7 @@ export function regularDead() {
 export function electricDead() {
   stopSound("backgroundRetroArcade");
   stopSound("backgroundMetal");
+  playSfxSound("backgroundLose");
   this.clearIntervalsAnimationMove();
   this.sharkyDeadShockAnimation();
   setTimeout(() => {

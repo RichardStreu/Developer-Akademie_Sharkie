@@ -35,6 +35,12 @@ let sounds = {
     volume: 0.4,
     loop: true,
   },
+  backgroundLose: {
+    audio: new Audio("./assets/audio/lose-music.mp3"),
+    link: "./assets/audio/lose-music.mp3",
+    volume: 0.4,
+    loop: true,
+  },
   hurt1: {
     audio: new Audio("./assets/audio/edit/hurt/hurt1.mp3"),
     link: "./assets/audio/edit/hurt/hurt1.mp3",
