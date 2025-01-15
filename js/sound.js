@@ -5,6 +5,7 @@ let isSoundMuted = false;
 
 let musicVolume = 1;
 let isMusicMuted = false;
+let currentMusic;
 
 let sfxVolume = 1;
 let isSfxMuted = false;
