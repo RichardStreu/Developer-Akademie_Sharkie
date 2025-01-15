@@ -106,9 +106,10 @@ export function shootBubble() {
 }
 
 export function sharkyAttackDKey() {
-  if (!this.world.keyboard.DKey) {
+  if (!this.world.keyboard.DKey && !this.isCurrentlyFinSlap) {
     this.world.keyboard.DKey = true;
     if (!this.isCurrentlyHurtAnimation) {
+      this.isCurrentlyFinSlap = true;
       this.clearIntervalsAnimationMove();
       this.doFinSlap();
       this.sharkyFinSlapAnimation();
@@ -121,6 +122,7 @@ export function sharkyAttackDKey() {
         this.world.keyboard.DKey = false;
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
+        this.isCurrentlyFinSlap = false;
       }, 600);
     }
   }
