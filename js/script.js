@@ -200,7 +200,7 @@ export function goToStartScreen(para) {
           }, 500);
       }
     });
-    restartGame(para);
+    // restartGame(para);
     if (isControlScreenVisible)
       setTimeout(() => {
         showHideControlScreen();

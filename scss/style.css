@@ -428,6 +428,26 @@
   top: -100%;
 }
 
+#musicVolume {
+  width: 100%;
+  height: 0.75rem;
+  -webkit-appearance: none;
+  background: rgb(127, 255, 224);
+  border-radius: 0.75rem;
+  border: 1.5px solid white;
+  transition: all 0.25s ease;
+}
+#musicVolume::-webkit-slider-thumb {
+  background-color: rgb(83, 26, 130);
+  border: 2px solid white;
+  border-radius: 0.75rem;
+  height: 2rem;
+  width: 0.75rem;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 * {
   margin: 0px;
   padding: 0px;
