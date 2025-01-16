@@ -2,6 +2,8 @@ import { World } from "./classes/world.class.js";
 
 import { Keyboard } from "./classes/keyboard.class.js";
 
+import { letSharkySleep } from "./classes/sharky.action.movement.js";
+
 import { showSubMenu, toggleFullscreen, isFullscreen } from "./settings.js";
 window.showSubMenu = showSubMenu;
 window.toggleFullscreen = toggleFullscreen;
@@ -153,6 +155,7 @@ export function startGame() {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
     world.startDrawing();
+    letSharkySleep.call(world.sharky);
     playSfxSound('backgroundRetroArcade', 500, true);
   }, 500);
 }

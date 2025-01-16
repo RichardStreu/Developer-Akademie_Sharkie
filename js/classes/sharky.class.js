@@ -127,7 +127,7 @@ export class Sharky extends MoveableObject {
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
         this.sharkyStandAnimation();
-        this.letSharkySleep();
+        // this.letSharkySleep();
         clearInterval(this.firstInterval);
       }
     }, 100);

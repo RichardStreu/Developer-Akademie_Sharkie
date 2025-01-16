@@ -8,7 +8,7 @@ export function letSharkySleep() {
   let timeOfUnmoved = 0;
   this.currentMovement = setInterval(() => {
     timeOfUnmoved++;
-    if (timeOfUnmoved > 7) {
+    if (timeOfUnmoved > 5) {
       this.clearIntervalsAnimationMove();
       this.sharkySleepAnimation();
       playSfxSound('snore', 0, true);
