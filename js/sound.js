@@ -38,7 +38,7 @@ let sounds = {
   backgroundLose: {
     audio: new Audio("./assets/audio/lose-music.mp3"),
     link: "./assets/audio/lose-music.mp3",
-    volume: 0.4,
+    volume: 0.3,
     loop: true,
   },
   backgroundWin: {
