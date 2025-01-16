@@ -167,6 +167,12 @@ let sounds = {
     volume: 0.3,
     loop: true,
   },
+  snorke: {
+    audio: new Audio("./assets/audio/snorker.mp3"),
+    link: "./assets/audio/snorker.mp3",
+    volume: 0.3,
+    loop: true,
+  },
 };
 
 export function initHoverSound() {
