@@ -245,6 +245,14 @@ export function stopSound(sound) {
   sounds[sound].audio.pause();
 }
 
+export function stopAllLoopSounds() {
+  for (let sound in sounds) {
+    if (sounds[sound].loop && sounds[sound].audio.currentTime > 0) {
+      sounds[sound].audio.pause();
+    }
+  }
+}
+
 export function muteUnmuteSound() {
   if (!isSoundMuted) {
     document.getElementById("muteButtonDiv").classList.add("settingsImgBoxPushed");
