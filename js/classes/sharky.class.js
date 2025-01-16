@@ -1,6 +1,6 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio } from "../script.js";
-import { stopSwimSound, playHurtSound } from "../sound.js";
+import { stopSwimSound, stopSound} from "../sound.js";
 
 import {
   imagesStand,
@@ -162,6 +162,7 @@ export class Sharky extends MoveableObject {
       if (event.key == "ArrowDown") this.moveSharkyDown();
       if (event.key == " ") this.sharkyAttackSpace();
       if (event.key == "d") this.sharkyAttackDKey();
+      stopSound('snore');
     }
   }
 

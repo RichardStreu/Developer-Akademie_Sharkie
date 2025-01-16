@@ -26,7 +26,7 @@ let sounds = {
   backgroundRetroArcade: {
     audio: new Audio("./assets/audio/retro-game-arcade-236133.mp3"),
     link: "./assets/audio/retro-game-arcade-236133.mp3",
-    volume: 0.1,
+    volume: 0.07,
     loop: true,
   },
   backgroundMetal: {
@@ -104,7 +104,7 @@ let sounds = {
   slap5: {
     audio: new Audio("./assets/audio/edit/slap/slap5.mp3"),
     link: "./assets/audio/edit/slap/slap5.mp3",
-    volume: 0.5,
+    volume: 0.4,
     loop: false,
   },
   blub: {
@@ -167,10 +167,10 @@ let sounds = {
     volume: 0.3,
     loop: true,
   },
-  snorke: {
+  snore: {
     audio: new Audio("./assets/audio/snorker.mp3"),
     link: "./assets/audio/snorker.mp3",
-    volume: 0.3,
+    volume: 0.2,
     loop: true,
   },
 };

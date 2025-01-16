@@ -11,6 +11,7 @@ export function letSharkySleep() {
     if (timeOfUnmoved > 7) {
       this.clearIntervalsAnimationMove();
       this.sharkySleepAnimation();
+      playSfxSound('snore', 0, true);
     }
   }, 1000);
 }
@@ -54,7 +55,6 @@ export function moveSharkyRight() {
 }
 
 export function moveSharkyUp() {
-  
   if (!this.world.keyboard.UP) {
     playSwimSound();
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
