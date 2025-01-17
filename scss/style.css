@@ -221,7 +221,7 @@
 .controlScreen nav .btnActive {
   transform: scale(1.05);
   color: white;
-  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.5));
 }
 .controlScreen .divider {
   width: calc(100% - 8rem);
@@ -535,12 +535,30 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-image: url("../assets/img/3. Background/Legacy/Dark/1.png");
+  background-size: cover;
 }
 @media (hover: none) and (orientation: portrait) {
   .rotateOverlay {
     display: block;
   }
+}
+.rotateOverlay div {
+  background-color: rgba(0, 0, 0, 0.78);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+.rotateOverlay div img {
+  width: 96px;
+  height: 96px;
+}
+.rotateOverlay div p {
+  font-size: 2rem;
 }
 
 main {
