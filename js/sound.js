@@ -1,26 +1,18 @@
 let firstSoundInit = false;
 
 let basicVolume = 0.5;
+
 let isSoundMuted = false;
 
 let musicVolume = 0.8;
-let isMusicMuted = false;
-let currentMusic;
 
 let sfxVolume = 1;
-let isSfxMuted = false;
 
 let currentSwimSound;
+
 let isCurrentSwimSoundPlaying = false;
 
-let currentHurtSound;
 let isCurrentHurtSoundPlaying = false;
-
-let currentSlapSound;
-let isCurrentSlapSoundPlaying = false;
-
-let currentBlubSound;
-let isCurrentBlubSoundPlaying = false;
 
 export let sounds = {
   backgroundRetroArcade: {
