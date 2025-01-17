@@ -77,8 +77,10 @@
 
     // CONTRSOL BOX
     .controlsBox {
-      width: 100%;
+      width: 300px;
       min-height: 320px;
+      margin-left: auto;
+      margin-right: auto;
       font-family: "LuckyGuy";
       font-size: 1.5rem;
       flex-wrap: wrap;
@@ -88,6 +90,12 @@
       justify-content: center;
       gap: 4rem;
 
+      .controlBarBG {
+        background-color: rgba(255, 255, 255, 0.08);
+        padding: 1rem;
+        border-radius: 1rem;
+      }
+
       .controlsBoxUpper {
         display: flex;
         justify-content: center;
@@ -95,6 +103,18 @@
       }
 
       .controlBar {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+
+        img {
+          padding-top: 1rem;
+          height: 70px;
+          width: auto;
+        }
+      }
+
+      .controlBarUpper {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
