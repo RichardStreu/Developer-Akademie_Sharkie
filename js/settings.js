@@ -1,3 +1,4 @@
+import { showHideControlScreen } from "./script.js";
 
 export function showSubMenu(groupNumber) {
   const controlScreen = document.getElementById("controlScreen");
@@ -7,14 +8,23 @@ export function showSubMenu(groupNumber) {
   document.querySelector(`div[data-group="${groupNumber}"]`).classList.remove("d_none");
 }
 
-let isFullscreen = false;
+export let isFullscreen = false;
+document.addEventListener("fullscreenchange", () => {
+  if (isFullscreen) {
+    isFullscreen = false;
+  }
+});
 
 export function toggleFullscreen() {
   const canvas = document.getElementById("canvas");
   if (!isFullscreen) {
     canvas.requestFullscreen();
-  } else {
-    canvas.exitFullscreen();
+    showHideControlScreen();
+    setTimeout(() => {
+      isFullscreen = true;
+    }, 250);
+  } else if (isFullscreen) {
+    document.exitFullscreen();
+    isFullscreen = false;
   }
-  isFullscreen = !isFullscreen;
 }

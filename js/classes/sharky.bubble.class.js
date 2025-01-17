@@ -1,5 +1,6 @@
 import { canvasHeight, canvasWidth } from "../script.js";
 import { MoveableObject } from "./moveable-object.class.js";
+import { playSfxSound } from "../sound.js";
 
 export class SharkyBubble extends MoveableObject {
   world;
@@ -19,10 +20,10 @@ export class SharkyBubble extends MoveableObject {
     if (this.world.sharky.isEnoughPoison) this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
     if (direction == "left") {
       this.x = world.sharky.x + 20;
-      this.y = world.sharky.y + 151;
+      this.y = world.sharky.y + 131;
     } else {
       this.x = world.sharky.x + 169;
-      this.y = world.sharky.y + 151;
+      this.y = world.sharky.y + 131;
     }
     this.width = 25;
     this.height = 25;
@@ -30,6 +31,7 @@ export class SharkyBubble extends MoveableObject {
     this.moveBubble();
     this.checkCollisions();
     this.checkPosition();
+    playSfxSound("blub");
   }
 
   checkPosition() {
@@ -136,7 +138,7 @@ export class SharkyBubble extends MoveableObject {
 
   isCollJellyGreen(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
-      let demageFactor = 30;
+      let demageFactor = 0;
       this.bubbleHit(obj, demageFactor);
       clearInterval(this.collidingInterval);
       return true;
@@ -145,7 +147,7 @@ export class SharkyBubble extends MoveableObject {
 
   isCollJellyPink(obj) {
     if (this.x + this.width > obj.x && this.x < obj.x + obj.width && this.y + this.height > obj.y + 5 && this.y < obj.y + 5 + (obj.height - 15)) {
-      let demageFactor = 30;
+      let demageFactor = 0;
       this.bubbleHit(obj, demageFactor);
       clearInterval(this.collidingInterval);
       return true;

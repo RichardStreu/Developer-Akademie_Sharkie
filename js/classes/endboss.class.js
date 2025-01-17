@@ -1,9 +1,9 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio, youWin } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
+import { playSfxSound, stopSound } from "../sound.js";
 
 export class EndBoss extends MoveableObject {
-
   currentAnimationIntervall;
   currentSharkyPositionInterval;
   countSecondsInterval;
@@ -24,7 +24,7 @@ export class EndBoss extends MoveableObject {
 
   constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
-    this.x = 2450;
+    this.x = 2750;
     this.y = -1000;
     this.width = 300 * moveObjRatio;
     this.height = 342 * moveObjRatio;
@@ -54,7 +54,7 @@ export class EndBoss extends MoveableObject {
     this.currentSharkyPositionInterval = setInterval(() => {
       this.sharkyX = this.world.sharky.x;
       this.sharkyY = this.world.sharky.y;
-      if (this.sharkyX >= 2000 && !this.bossIsVisible) this.doBossIntroduce();
+      if (this.sharkyX >= 2300 && !this.bossIsVisible) this.doBossIntroduce();
     }, 100);
   }
 
@@ -62,6 +62,11 @@ export class EndBoss extends MoveableObject {
     this.bossIsVisible = true;
     this.y = -50;
     this.bossIntroduce();
+    setTimeout(() => {
+      playSfxSound("bossSplash");
+      stopSound("backgroundRetroArcade");
+      playSfxSound("backgroundMetal");
+    }, 500);
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.bossSwim();
@@ -72,8 +77,8 @@ export class EndBoss extends MoveableObject {
   }
 
   moveBossUpDown() {
-    let minY = -120;
-    let maxY = 50;
+    let minY = -110;
+    let maxY = 130;
     this.bossUpDown = setInterval(() => {
       if (this.currentlyMoveUp && this.y >= minY) this.y -= 1.5;
       if (this.currentlyMoveUp && this.y < minY) this.currentlyMoveUp = false;
@@ -84,45 +89,47 @@ export class EndBoss extends MoveableObject {
 
   moveBossForBackwards() {
     this.moveBossForward = setInterval(() => {
-      if (this.world.sharky.x <= 2000) {
+      if (this.world.sharky.x <= 2300) {
         this.x = this.world.sharky.x + 300;
       }
-    }, 1);
+    }, 10);
   }
 
   sprintBossForwards() {
     this.sprintForwardInterval = setInterval(() => {
-      clearInterval(this.moveBossForward);
-      clearInterval(this.currentAnimationIntervall);
-      this.bossAttack();
-      let direction = "left";
-      let xRange = 0;
-      let interval = setInterval(() => {
-        if (xRange < 200 && direction == "left") {
-          this.x -= 5;
-          xRange += 5;
-        }
-        if (xRange >= 200 && direction == "left") {
-          direction = "right";
-        }
-        if (xRange > 0 && direction == "right") {
-          this.x += 5;
-          xRange -= 5;
-        }
-        if (xRange <= 0 && direction == "right") {
-          direction = "left";
-          xRange = 0;
-          this.clearIntervalsAnimationMove();
-          this.moveBossForBackwards();
-          this.bossSwim();
-          clearInterval(interval);
-        }
-      }, 10);
+      if (this.world.sharky.lifeEnergy > 0) {
+        clearInterval(this.moveBossForward);
+        clearInterval(this.currentAnimationIntervall);
+        this.bossAttack();
+        let direction = "left";
+        let xRange = 0;
+        let interval = setInterval(() => {
+          if (xRange < 300 && direction == "left") {
+            this.x -= 5;
+            xRange += 5;
+          }
+          if (xRange >= 300 && direction == "left") {
+            direction = "right";
+          }
+          if (xRange > 0 && direction == "right") {
+            this.x += 5;
+            xRange -= 5;
+          }
+          if (xRange <= 0 && direction == "right") {
+            direction = "left";
+            xRange = 0;
+            this.clearIntervalsAnimationMove();
+            this.moveBossForBackwards();
+            this.bossSwim();
+            clearInterval(interval);
+          }
+        }, 10);
+      }
     }, 4500);
   }
 
   getRandomCooldown() {
-    return Math.floor(Math.random() * 5000) + 5000;
+    return Math.floor(Math.random() * 4500) + 4500;
   }
 
   async loadAllImagesEndboss() {
@@ -158,6 +165,7 @@ export class EndBoss extends MoveableObject {
   }
 
   bossAttack() {
+    playSfxSound("bossScream", 0, false, 0);
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesBossAttack, this.img, 180);
   }
@@ -190,6 +198,8 @@ export class EndBoss extends MoveableObject {
       }, 600);
       setTimeout(() => {
         this.floatToSurface();
+        playSfxSound("backgroundWin");
+        stopSound("backgroundMetal");
         const floatingInterval = setInterval(() => {
           if (this.y <= -430) {
             clearInterval(this.currentMovement);

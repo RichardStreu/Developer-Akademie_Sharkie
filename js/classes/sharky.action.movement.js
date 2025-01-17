@@ -2,19 +2,23 @@ import { canvasHeight, canvasWidth } from "../script.js";
 
 import { SharkyBubble } from "./sharky.bubble.class.js";
 
+import { playSfxSound, playSwimSound } from "../sound.js";
+
 export function letSharkySleep() {
   let timeOfUnmoved = 0;
   this.currentMovement = setInterval(() => {
     timeOfUnmoved++;
-    if (timeOfUnmoved > 7) {
+    if (timeOfUnmoved > 5) {
       this.clearIntervalsAnimationMove();
       this.sharkySleepAnimation();
+      playSfxSound('snore', 0, true);
     }
   }, 1000);
 }
 
 export function moveSharkyLeft() {
   if (!this.world.keyboard.LEFT) {
+    playSwimSound();
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.LEFT = true;
     this.otherDirection = true;
@@ -35,6 +39,7 @@ export function moveSharkyLeft() {
 
 export function moveSharkyRight() {
   if (!this.world.keyboard.RIGHT) {
+    playSwimSound();
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.RIGHT = true;
     this.otherDirection = false;
@@ -50,8 +55,8 @@ export function moveSharkyRight() {
 }
 
 export function moveSharkyUp() {
-  
   if (!this.world.keyboard.UP) {
+    playSwimSound();
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.UP = true;
     if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
@@ -63,6 +68,7 @@ export function moveSharkyUp() {
 
 export function moveSharkyDown() {
   if (!this.world.keyboard.DOWN) {
+    playSwimSound();
     if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
     this.world.keyboard.DOWN = true;
     if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
@@ -86,6 +92,7 @@ export function sharkyAttackSpace() {
         if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
         this.world.keyboard.SPACE = false;
         this.shootBubble();
+        playSfxSound("blub");
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
       }, 600);
@@ -99,12 +106,14 @@ export function shootBubble() {
 }
 
 export function sharkyAttackDKey() {
-  if (!this.world.keyboard.DKey) {
+  if (!this.world.keyboard.DKey && !this.isCurrentlyFinSlap) {
     this.world.keyboard.DKey = true;
     if (!this.isCurrentlyHurtAnimation) {
+      this.isCurrentlyFinSlap = true;
       this.clearIntervalsAnimationMove();
       this.doFinSlap();
       this.sharkyFinSlapAnimation();
+      playSfxSound("slap1", 300);
       this.isCurrentlyAttackAnimation = true;
       setTimeout(() => {
         this.isCurrentlyFinSlap = false;
@@ -113,6 +122,7 @@ export function sharkyAttackDKey() {
         this.world.keyboard.DKey = false;
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
+        this.isCurrentlyFinSlap = false;
       }, 600);
     }
   }

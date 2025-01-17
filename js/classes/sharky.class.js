@@ -1,5 +1,6 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio } from "../script.js";
+import { stopSwimSound, stopSound} from "../sound.js";
 
 import {
   imagesStand,
@@ -55,7 +56,7 @@ export let sharkyHeight;
 export class Sharky extends MoveableObject {
   firstInterval;
   currentAnimationIntervall;
-  currentPositionInterval
+  currentPositionInterval;
   currentMovement;
   isSwimLeft;
   isSwimRight;
@@ -65,6 +66,7 @@ export class Sharky extends MoveableObject {
   isCurrentlyHurtAnimation = false;
   isCurrentlyAttackAnimation = false;
   isCurrentlyFinSlap = false;
+  
   currentFinSlap = "none"; // "right", "left"
   world;
   lifeEnergy = 100;
@@ -125,7 +127,7 @@ export class Sharky extends MoveableObject {
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
         this.sharkyStandAnimation();
-        this.letSharkySleep();
+        // this.letSharkySleep();
         clearInterval(this.firstInterval);
       }
     }, 100);
@@ -153,7 +155,7 @@ export class Sharky extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
   }
 
-  handleKeyDown(event) { 
+  handleKeyDown(event) {
     if (this.lifeEnergy > 0 && !this.isCurrentlyAttackAnimation) {
       if (event.key == "ArrowLeft") this.moveSharkyLeft();
       if (event.key == "ArrowRight") this.moveSharkyRight();
@@ -161,6 +163,7 @@ export class Sharky extends MoveableObject {
       if (event.key == "ArrowDown") this.moveSharkyDown();
       if (event.key == " ") this.sharkyAttackSpace();
       if (event.key == "d") this.sharkyAttackDKey();
+      stopSound('snore');
     }
   }
 
@@ -192,20 +195,30 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimDown);
   }
 
+  checkSwimmingForStopSound() {
+    if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.UP && !this.world.keyboard.DOWN) {
+      stopSwimSound();
+    }
+  }
+
   keyArrowLeftUp() {
     this.world.keyboard.LEFT = false;
+    this.checkSwimmingForStopSound();
     clearInterval(this.isSwimLeft);
   }
   keyArrowRightUp() {
     this.world.keyboard.RIGHT = false;
+    this.checkSwimmingForStopSound();
     clearInterval(this.isSwimRight);
   }
   keyArrowUpUp() {
     this.world.keyboard.UP = false;
+    this.checkSwimmingForStopSound();
     clearInterval(this.isSwimUp);
   }
   keyArrowDownUp() {
     this.world.keyboard.DOWN = false;
+    this.checkSwimmingForStopSound();
     clearInterval(this.isSwimDown);
   }
   keySpaceUp() {

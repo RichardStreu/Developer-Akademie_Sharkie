@@ -2,9 +2,18 @@ import { World } from "./classes/world.class.js";
 
 import { Keyboard } from "./classes/keyboard.class.js";
 
-import { showSubMenu, toggleFullscreen } from "./settings.js";
+import { letSharkySleep } from "./classes/sharky.action.movement.js";
+
+import { showSubMenu, toggleFullscreen, isFullscreen } from "./settings.js";
 window.showSubMenu = showSubMenu;
 window.toggleFullscreen = toggleFullscreen;
+
+import { playSfxSound, initFirstSound, muteUnmuteSound, stopSound, stopAllLoopSounds } from "./sound.js";
+window.playSfxSound = playSfxSound;
+window.initFirstSound = initFirstSound;
+window.muteUnmuteSound = muteUnmuteSound;
+window.stopSound = stopSound;
+window.stopAllLoopSounds = stopAllLoopSounds;
 
 // with this ratio you can scale all moveable objects in one step
 export let moveObjRatio = 1;
@@ -36,20 +45,49 @@ export let loadedCachsArray = [];
 
 let isControlScreenVisible = false;
 
-function showHideControlScreen() {
+export function showHideControlScreen() {
   if (!isControlScreenVisible) {
-      document.getElementById("controlScreen").classList.remove("transformControlScreen");
-      document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
-      isControlScreenVisible = true;
+    document.getElementById("controlScreen").classList.remove("transformControlScreen");
+    document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
+    isControlScreenVisible = true;
   } else {
     document.getElementById("controlScreen").classList.add("transformControlScreen");
     document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/menu.png");
     isControlScreenVisible = false;
   }
   document.getElementById("controlButton").blur();
-  document.getElementById("homeBtn").blur();
+  Array.from(document.querySelectorAll(".homeBtn")).forEach((btn) => btn.blur());
 }
 window.showHideControlScreen = showHideControlScreen;
+
+let isImprintVisible = false;
+let isImprintSliding = false;
+
+export function showHideImprint() {
+  if (isImprintSliding) return;
+  if (!isImprintVisible && !isImprintSliding) {
+    isImprintSliding = true;
+    document.getElementById("imprint").classList.remove("d_none");
+    setTimeout(() => {
+      document.getElementById("imprint").classList.add("transformImprint");
+      document.getElementById("arrowUp").classList.remove("opacity_zero");
+      document.getElementById("arrowDown").classList.add("opacity_zero");
+    }, 10);
+  } else if (!isImprintSliding) {
+    isImprintSliding = true;
+    document.getElementById("imprint").classList.remove("transformImprint");
+    document.getElementById("arrowUp").classList.add("opacity_zero");
+    document.getElementById("arrowDown").classList.remove("opacity_zero");
+    setTimeout(() => {
+      document.getElementById("imprint").classList.add("d_none");
+    }, 610);
+  }
+  isImprintVisible = !isImprintVisible;
+  setTimeout(() => {
+    isImprintSliding = false;
+  }, 610);
+}
+window.showHideImprint = showHideImprint;
 
 function init() {
   if (world) clearGlobalGame();
@@ -68,9 +106,8 @@ function init() {
     }, 200);
   }
 }
-
-init();
 window.init = init;
+init();
 
 export function clearGlobalGame() {
   world.level1.enemies[17].clearAllEndBossIntervals();
@@ -118,12 +155,14 @@ export function startGame() {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
     world.startDrawing();
+    letSharkySleep.call(world.sharky);
+    playSfxSound("backgroundRetroArcade", 500, true);
   }, 500);
 }
 window.startGame = startGame;
 
-export function restartGame() {
-  switchScreens();
+export function restartGame(para) {
+  if (para !== "homeBtn") switchScreens();
   setTimeout(() => {
     document.getElementById("winScreen").classList.add("d_none");
     document.getElementById("looseScreen").classList.add("d_none");
@@ -134,19 +173,37 @@ export function restartGame() {
         init();
         world.sharky.setSharkyWindowEventListeners();
         world.startDrawing();
+        playSfxSound("backgroundRetroArcade", 500, true);
       }, 10);
     }, 50);
   }, 500);
 }
 window.restartGame = restartGame;
 
-export function goToStartScreen() {
+export function goToStartScreen(para) {
   if (!document.getElementById("startScreen").classList.contains("d_none")) {
     showHideControlScreen();
     return;
   } else {
-    restartGame();
-    showHideControlScreen();
+    Array.from(document.getElementById("display").querySelectorAll("[data-group='screens']")).forEach((screen) => {
+      if (screen.id !== "startScreen" && screen.id !== "controlScreen") {
+        if (para == "homeBtn") screen.classList.add("d_none");
+        if (para == "winLose")
+          setTimeout(() => {
+            screen.classList.add("d_none");
+          }, 500);
+      } else {
+        if (para == "homeBtn") screen.classList.remove("d_none");
+        if (para == "winLose")
+          setTimeout(() => {
+            screen.classList.remove("d_none");
+          }, 500);
+      }
+    });
+    if (isControlScreenVisible)
+      setTimeout(() => {
+        showHideControlScreen();
+      }, 500);
   }
 }
 window.goToStartScreen = goToStartScreen;
@@ -154,6 +211,7 @@ window.goToStartScreen = goToStartScreen;
 export function youWin() {
   document.getElementById("winScreen").classList.remove("d_none");
   setTimeout(() => {
+    if (isFullscreen) toggleFullscreen();
     document.getElementById("winScreen").classList.remove("opacity_zero");
   }, 20);
 }
@@ -161,6 +219,7 @@ export function youWin() {
 export function youLoose() {
   document.getElementById("looseScreen").classList.remove("d_none");
   setTimeout(() => {
+    if (isFullscreen) toggleFullscreen();
     document.getElementById("looseScreen").classList.remove("opacity_zero");
   }, 20);
 }

@@ -1,12 +1,16 @@
+import { playHurtSound, stopSwimSound, playSfxSound } from "../sound.js";
+
 export function getCoins(enemy) {
   this.coin += 1;
+  playSfxSound("coin", 0, false, 0.3);
   if (this.coin >= 20) {
     this.lifeEnergy = 100;
-  } 
+  }
 }
 
 export function getPoison(enemy) {
   this.poison += 1;
+  playSfxSound("bottle", 0, false, 0.2);
   if (this.poison >= 10) this.isEnoughPoison = true;
 }
 
@@ -20,6 +24,7 @@ export function hurtedByPufferFish() {
       this.sharkyHurtRegularAnimation();
       this.isCurrentlyHurtAnimation = true;
       this.isCurrentlyAttackAnimation = false;
+      playHurtSound("hurt1");
       setTimeout(() => {
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
@@ -40,6 +45,7 @@ export function hurtedByJellyFishRD() {
       this.sharkyHurtRegularAnimation();
       this.isCurrentlyHurtAnimation = true;
       this.isCurrentlyAttackAnimation = false;
+      playHurtSound("hurt2");
       setTimeout(() => {
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
@@ -60,6 +66,7 @@ export function hurtedByJellyFishSD() {
       this.sharkyHurtShockAnimation();
       this.isCurrentlyHurtAnimation = true;
       this.isCurrentlyAttackAnimation = false;
+      playHurtSound("electroShock");
       setTimeout(() => {
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
@@ -79,6 +86,7 @@ export function hurtedByEndBoss() {
     this.sharkyHurtRegularAnimation();
     this.isCurrentlyHurtAnimation = true;
     this.isCurrentlyAttackAnimation = false;
+    playHurtSound("hurt4");
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.sharkyStandAnimation();
@@ -90,6 +98,7 @@ export function hurtedByEndBoss() {
 
 export function isSharkyDead(kindOfDead) {
   if (this.lifeEnergy <= 0) {
+    stopSwimSound();
     let isRegularDead = kindOfDead == "regular";
     isRegularDead ? this.regularDead() : this.electricDead();
   }
@@ -100,6 +109,9 @@ export function regularHurt() {}
 export function electricHurt() {}
 
 export function regularDead() {
+  stopSound("backgroundRetroArcade");
+  stopSound("backgroundMetal");
+  playSfxSound("backgroundLose");
   this.clearIntervalsAnimationMove();
   this.sharkyDeadRegularAnimation();
   setTimeout(() => {
@@ -109,6 +121,9 @@ export function regularDead() {
 }
 
 export function electricDead() {
+  stopSound("backgroundRetroArcade");
+  stopSound("backgroundMetal");
+  playSfxSound("backgroundLose");
   this.clearIntervalsAnimationMove();
   this.sharkyDeadShockAnimation();
   setTimeout(() => {

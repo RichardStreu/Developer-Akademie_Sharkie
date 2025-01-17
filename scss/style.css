@@ -109,6 +109,27 @@
   width: 200px;
   height: auto;
 }
+.looseScreen .homeBtn {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 32px;
+  height: 32px;
+  z-index: 10;
+  background-color: transparent;
+  border: 1.5px solid white;
+  border-radius: 16px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.looseScreen .homeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+  transform: scale(1.05);
+}
+.looseScreen .homeBtn img:hover {
+  transform: scale(1.05);
+}
 
 .winScreen {
   top: 0;
@@ -137,6 +158,27 @@
   width: 200px;
   height: auto;
 }
+.winScreen .homeBtn {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 32px;
+  height: 32px;
+  z-index: 10;
+  background-color: transparent;
+  border: 1.5px solid white;
+  border-radius: 16px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.winScreen .homeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+  transform: scale(1.05);
+}
+.winScreen .homeBtn img:hover {
+  transform: scale(1.05);
+}
 
 .controlScreen {
   width: 100%;
@@ -150,7 +192,6 @@
   z-index: 9000;
   border-radius: 1rem;
   transition: all 0.6s ease;
-  padding: 0 4rem;
 }
 .controlScreen nav {
   display: flex;
@@ -178,23 +219,34 @@
   filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
 }
 .controlScreen .divider {
-  width: 100%;
+  width: calc(100% - 8rem);
   height: 2px;
   background-color: white;
   border-radius: 100vh;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1.7rem;
+  padding: 0 4rem;
 }
 .controlScreen .controlContentContainer {
-  width: 100%;
+  width: calc(100% - 8rem);
+  margin-left: auto;
+  margin-right: auto;
   min-height: 320px;
+}
+.controlScreen .controlContentContainer .textBar {
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
 }
 .controlScreen .controlContentContainer .infoBox {
   font-size: 1.13rem;
   line-height: 1.75rem;
   letter-spacing: 0.05rem;
   word-spacing: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 .controlScreen .controlContentContainer .controlsBox {
   width: 100%;
@@ -223,9 +275,55 @@
   width: auto;
 }
 .controlScreen .controlContentContainer .settingsBox {
-  background-color: red;
   width: 100%;
   min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.controlScreen .controlContentContainer .settingsBox .settingsBar {
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.controlScreen .controlContentContainer .settingsBox .settingsBar .settingsImgBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 1rem;
+  border: 1.5px solid white;
+  background-color: rgb(127, 255, 224);
+  border-radius: 0.75rem;
+  height: 2rem;
+  width: 2rem;
+  padding: 0.5rem 1.75rem;
+  transition: all 0.25s ease;
+}
+.controlScreen .controlContentContainer .settingsBox .settingsBar .settingsImgBox img {
+  height: 1.5rem;
+  width: auto;
+}
+.controlScreen .controlContentContainer .settingsBox .settingsBar .settingsImgBox:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 0.25rem rgba(255, 255, 255, 0.7));
+}
+.controlScreen .controlContentContainer .settingsBox .settingsBar .settingsImgBoxPushed {
+  background-color: rgb(58, 124, 108);
+  border-style: inset;
+}
+.controlScreen .controlContentContainer .settingsBox .settingsBar .settingsDivider {
+  width: 2px;
+  height: 2rem;
+  background-color: white;
+  border-radius: 100vh;
+  margin: 0 2rem 0 1rem;
+}
+.controlScreen .controlContentContainer .settingsBox .settingsBar .settingsDescriptionBox {
+  font-size: 1.25rem;
 }
 .controlScreen .homeBtn {
   position: absolute;
@@ -248,9 +346,122 @@
 .controlScreen .homeBtn img:hover {
   transform: scale(1.05);
 }
+.controlScreen .imprintBtnBox {
+  position: absolute;
+  z-index: 10000;
+  left: -1rem;
+  bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 2rem;
+  color: rgb(200, 200, 200);
+  transform: rotate(-90deg);
+  transition: all 0.25s ease;
+}
+.controlScreen .imprintBtnBox:hover {
+  color: white;
+}
+.controlScreen .imprintBtnBox:hover div {
+  filter: drop-shadow(0 0 3px rgb(255, 255, 255));
+}
+.controlScreen .imprintBtnBox p {
+  font-size: 0.75rem;
+}
+.controlScreen .imprintBtnBox img {
+  width: 1.13rem;
+  height: auto;
+}
+.controlScreen .imprintBtnBox .arrowDownBox {
+  display: flex;
+  align-items: center;
+  width: 1.13rem;
+  transition: all 0.25s ease;
+}
+.controlScreen .imprintBtnBox .arrowDownBox .arrowDown {
+  transform: rotate(90deg);
+  transition: all 0.6s ease;
+}
+.controlScreen .imprintBtnBox .arrowUpBox {
+  display: flex;
+  align-items: center;
+  width: 1.13rem;
+  transition: all 0.25s ease;
+}
+.controlScreen .imprintBtnBox .arrowUpBox .arrowUp {
+  transform: rotate(-90deg);
+  transition: all 0.6s ease;
+}
+.controlScreen .imprint {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(30, 30, 30);
+  overflow: auto;
+  padding: 2rem calc(4rem - 8px) 2rem 4rem;
+  z-index: 50;
+  transition: all 0.6s ease;
+  border-radius: 1rem;
+}
+.controlScreen .imprint h1 {
+  position: relative;
+  text-align: center;
+}
+.controlScreen .imprint a {
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.controlScreen .imprint a:hover {
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.75));
+}
+.controlScreen .imprint::-webkit-scrollbar {
+  width: 8px;
+}
+.controlScreen .imprint::-webkit-scrollbar-track {
+  background: rgb(30, 30, 30);
+}
+.controlScreen .imprint::-webkit-scrollbar-thumb {
+  background: rgb(200, 200, 200);
+  border-radius: 4px;
+}
+.controlScreen .transformImprint {
+  top: 0%;
+}
 
 .transformControlScreen {
   top: -100%;
+}
+
+.musicVolume {
+  width: 100%;
+  height: 0.75rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background: linear-gradient(to right, rgb(127, 255, 224) 80%, rgb(58, 124, 108) 80%);
+  border-radius: 0.75rem;
+  border: 1.5px solid white;
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+.musicVolume::-webkit-slider-thumb {
+  background-color: rgb(83, 26, 130);
+  border: 2px solid white;
+  border-radius: 0.75rem;
+  height: 2rem;
+  width: 0.75rem;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: all;
+}
+
+#masterVolume {
+  background: linear-gradient(to right, rgb(127, 255, 224) 50%, rgb(58, 124, 108) 50%);
 }
 
 * {
@@ -302,6 +513,13 @@ main {
   background-position: center;
   background-repeat: no-repeat;
 }
+@media (max-width: 1000px) and (orientation: landscape) {
+  main {
+    width: 100vw;
+    height: 100vh;
+    font-weight: bold;
+  }
+}
 main h1 {
   position: absolute;
   top: 10%;
@@ -318,6 +536,13 @@ main .display {
   border-radius: 1rem;
   box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
   overflow: hidden;
+}
+@media (max-width: 1000px) and (orientation: landscape) {
+  main .display {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+  }
 }
 main .display .controlButton {
   position: absolute;
