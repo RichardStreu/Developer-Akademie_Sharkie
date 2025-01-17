@@ -321,11 +321,6 @@ function categoryMusicVolumeChange(newVolume) {
 function categoryMasterVolumeChange(newVolume) {
   basicVolume = newVolume;
   Object.entries(sounds).forEach((sound) => {
-    if (sound[1].type === "sfx") {
-      sound[1].audio.volume = sound[1].volume * basicVolume * sfxVolume;
-    }
-    if (sound[1].type === "music") {
-      sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume;
-    }
+    sound[1].type === "music" ? sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume : sound[1].audio.volume = sound[1].volume * basicVolume * sfxVolume;
   });
 }
