@@ -28,175 +28,175 @@ export let sounds = {
     link: "./assets/audio/retro-game-arcade-236133.mp3",
     volume: 0.1,
     loop: true,
-    type: "music"
+    type: "music",
   },
   backgroundMetal: {
     audio: new Audio("./assets/audio/metal.mp3"),
     link: "./assets/audio/metal.mp3",
     volume: 0.5,
     loop: true,
-    type: "music"
+    type: "music",
   },
   backgroundLose: {
     audio: new Audio("./assets/audio/lose-music.mp3"),
     link: "./assets/audio/lose-music.mp3",
     volume: 0.4,
     loop: true,
-    type: "music"
+    type: "music",
   },
   backgroundWin: {
     audio: new Audio("./assets/audio/winMusic.mp3"),
     link: "./assets/audio/winMusic.mp3",
     volume: 0.5,
     loop: true,
-    type: "music"
+    type: "music",
   },
   hurt1: {
     audio: new Audio("./assets/audio/edit/hurt/hurt1.mp3"),
     link: "./assets/audio/edit/hurt/hurt1.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   hurt2: {
     audio: new Audio("./assets/audio/edit/hurt/hurt2.mp3"),
     link: "./assets/audio/edit/hurt/hurt2.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   hurt3: {
     audio: new Audio("./assets/audio/edit/hurt/hurt3.mp3"),
     link: "./assets/audio/edit/hurt/hurt3.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   hurt4: {
     audio: new Audio("./assets/audio/edit/hurt/hurt4.mp3"),
     link: "./assets/audio/edit/hurt/hurt4.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   hurt5: {
     audio: new Audio("./assets/audio/edit/hurt/hurt5.mp3"),
     link: "./assets/audio/edit/hurt/hurt5.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   slap1: {
     audio: new Audio("./assets/audio/edit/slap/slap1.mp3"),
     link: "./assets/audio/edit/slap/slap1.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   slap2: {
     audio: new Audio("./assets/audio/edit/slap/slap2.mp3"),
     link: "./assets/audio/edit/slap/slap2.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   slap3: {
     audio: new Audio("./assets/audio/edit/slap/slap3.mp3"),
     link: "./assets/audio/edit/slap/slap3.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   slap4: {
     audio: new Audio("./assets/audio/edit/slap/slap4.mp3"),
     link: "./assets/audio/edit/slap/slap4.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   slap5: {
     audio: new Audio("./assets/audio/edit/slap/slap5.mp3"),
     link: "./assets/audio/edit/slap/slap5.mp3",
     volume: 0.4,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   blub: {
     audio: new Audio("./assets/audio/edit/blub.mp3"),
     link: "./assets/audio/edit/blub.mp3",
     volume: 0.2,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   electroShock: {
     audio: new Audio("./assets/audio/edit/electro.mp3"),
     link: "./assets/audio/edit/electro.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   chewbacca: {
     audio: new Audio("./assets/audio/chewbacca.swf.mp3"),
     link: "./assets/audio/chewbacca.swf.mp3",
     volume: 0.4,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   swim: {
     audio: new Audio("./assets/audio/edit/swim-short.mp3"),
     link: "./assets/audio/edit/swim-short.mp3",
     volume: 0.6,
     loop: true,
-    type: "sfx"
+    type: "sfx",
   },
   coin: {
     audio: new Audio("./assets/audio/edit/subway-surfers-coin-collect.mp3"),
     link: "./assets/audio/edit/subway-surfers-coin-collect.mp3",
     volume: 1,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   bottle: {
     audio: new Audio("./assets/audio/edit/bottle-pop-open.mp3"),
     link: "./assets/audio/edit/bottle-pop-open.mp3",
     volume: 0.5,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   hover: {
     audio: new Audio("./assets/audio/edit/hover-sound-effect.mp3"),
     link: "./assets/audio/edit/hover-sound-effect.mp3",
     volume: 0.15,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   click: {
     audio: new Audio("./assets/audio/edit/button-click.mp3"),
     link: "./assets/audio/edit/button-click.mp3",
     volume: 0.1,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   bossSplash: {
     audio: new Audio("./assets/audio/edit/water-for-drama.mp3"),
     link: "./assets/audio/edit/water-for-drama.mp3",
     volume: 0.4,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   bossScream: {
     audio: new Audio("./assets/audio/chewbacca.swf.mp3"),
     link: "./assets/audio/chewbacca.swf.mp3",
     volume: 0.3,
     loop: false,
-    type: "sfx"
+    type: "sfx",
   },
   snore: {
     audio: new Audio("./assets/audio/snorker.mp3"),
     link: "./assets/audio/snorker.mp3",
     volume: 0,
     loop: true,
-    type: "sfx"
+    type: "sfx",
   },
 };
 window.sounds = sounds;
@@ -315,9 +315,17 @@ function categoryMusicVolumeChange(newVolume) {
     if (sound[1].type === "music") {
       sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume;
     }
-  })
+  });
 }
 
 function categoryMasterVolumeChange(newVolume) {
-
+  basicVolume = newVolume;
+  Object.entries(sounds).forEach((sound) => {
+    if (sound[1].type === "sfx") {
+      sound[1].audio.volume = sound[1].volume * basicVolume * sfxVolume;
+    }
+    if (sound[1].type === "music") {
+      sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume;
+    }
+  });
 }
