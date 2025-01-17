@@ -113,7 +113,7 @@ export function sharkyAttackDKey() {
       this.clearIntervalsAnimationMove();
       this.doFinSlap();
       this.sharkyFinSlapAnimation();
-      playSfxSound("slap1", 600);
+      playSfxSound("slap1", 300);
       this.isCurrentlyAttackAnimation = true;
       setTimeout(() => {
         this.isCurrentlyFinSlap = false;
