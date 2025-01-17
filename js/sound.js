@@ -274,3 +274,12 @@ export function muteUnmuteSound() {
   }
   isSoundMuted = !isSoundMuted;
 }
+
+export function changeMusicVolume(volume) {
+  musicVolume = volume;
+  sounds.backgroundRetroArcade.audio.volume = basicVolume * musicVolume;
+  sounds.backgroundMetal.audio.volume = basicVolume * musicVolume;
+  sounds.backgroundLose.audio.volume = basicVolume * musicVolume;
+  sounds.backgroundWin.audio.volume = basicVolume * musicVolume;
+}
+window.changeMusicVolume = changeMusicVolume;
