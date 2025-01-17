@@ -89,7 +89,7 @@ export class EndBoss extends MoveableObject {
 
   moveBossForBackwards() {
     this.moveBossForward = setInterval(() => {
-      if (this.world.sharky.x <= 2300) {
+      if (this.world.sharky.x <= 2300 && this.lifeEnergy > 0) {
         this.x = this.world.sharky.x + 300;
       }
     }, 10);
