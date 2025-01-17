@@ -223,6 +223,8 @@ export function stopSound(sound) {
 }
 
 export function stopAllLoopSounds() {
+  console.log("stopAllLoopSounds");
+  
   for (let sound in sounds) {
     if (sounds[sound].loop && sounds[sound].audio.currentTime > 0) {
       sounds[sound].audio.pause();
