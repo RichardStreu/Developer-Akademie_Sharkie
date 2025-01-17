@@ -32,7 +32,7 @@ export class PufferFishGreen extends PufferFish {
     "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 3 (can animate by going down to the floor after the Fin Slap attack).png",
   ];
 
-  currentAnimation = "swim"; // "swim" "transition" "bubbleSwim" "stop"
+  currentAnimation = "swim";
 
   currentAnimationIntervall;
 
@@ -54,11 +54,9 @@ export class PufferFishGreen extends PufferFish {
     }, 100);
   }
 
-  // doImageAnimation(imageArray, imgRef, intervall)
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       this.clearIntervalsAnimationMove();
-      // debugger;
       this.forBackMovePufferFish(this.minX, this.maxX, this.forBackSpeed);
       this.doImageAnimation(this.imagesSwim, this.img, 120);
     }

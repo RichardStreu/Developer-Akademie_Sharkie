@@ -52,7 +52,6 @@ export let sharkyXPosition = 0;
 export let sharkyYPosition = 200;
 export let sharkyWidth = 216;
 export let sharkyHeight;
-//
 export class Sharky extends MoveableObject {
   firstInterval;
   currentAnimationIntervall;
@@ -67,12 +66,11 @@ export class Sharky extends MoveableObject {
   isCurrentlyAttackAnimation = false;
   isCurrentlyFinSlap = false;
   
-  currentFinSlap = "none"; // "right", "left"
+  currentFinSlap = "none";
   world;
   lifeEnergy = 100;
   coin = 0;
   poison = 0;
-  // isEnoughPoison;
   isEnoughCoin;
 
   constructor() {

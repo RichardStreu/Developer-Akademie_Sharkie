@@ -15,22 +15,20 @@ window.muteUnmuteSound = muteUnmuteSound;
 window.stopSound = stopSound;
 window.stopAllLoopSounds = stopAllLoopSounds;
 
-// with this ratio you can scale all moveable objects in one step
 export let moveObjRatio = 1;
-// with this ratio you can scale all static objects in one step
+
 export let staticObjRatio = 0.8;
 
-// export let canvasWidth = 720;
 export let canvasWidth = 853;
 
 export let canvasHeight = 480;
-// minimum x position where an object respawns
+
 export let enemyStartX = 200;
-// maximum x position (+ enemyStartX) where an object respawns
+
 export let enemyStartDistX = 2400;
-// minimum y position where an object respawns
+
 export let enemyStartY = 0;
-// maximum y position where an object respawns
+
 export let enemyEndY = 460;
 
 let canvas;
@@ -116,7 +114,6 @@ export function clearGlobalGame() {
   world.clearCheckCollisionsInterval();
   world.statBars[1].clearLifeEnergyIntertval();
   world.clearWorld();
-  // world.sharky = null;
   world = null;
 }
 

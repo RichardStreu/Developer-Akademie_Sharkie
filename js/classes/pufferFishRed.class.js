@@ -32,7 +32,7 @@ export class PufferFishRed extends PufferFish {
     "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png"
   ];
 
-  currentAnimation = "swim"; // "swim" "transition" "bubbleSwim" "stop"
+  currentAnimation = "swim";
 
   currentAnimationIntervall;
 
@@ -54,7 +54,6 @@ export class PufferFishRed extends PufferFish {
     }, 100);
   }
 
-  // doImageAnimation(imageArray, imgRef, intervall)
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       this.clearIntervalsAnimationMove();
