@@ -192,8 +192,6 @@ export function stopSwimSound() {
     let steps = 20;
     let interval = duration / steps;
     let reduction = (currentSwimSound.volume - 0.05) / steps;
-    console.log(currentSwimSound);
-    
     for (let i = 1; i < steps; i++) {
       setTimeout(() => {
         if (currentSwimSound.volume > reduction) currentSwimSound.volume -= reduction;
