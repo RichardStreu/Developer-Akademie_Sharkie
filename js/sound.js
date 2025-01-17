@@ -3,7 +3,7 @@ let firstSoundInit = false;
 let basicVolume = 1;
 let isSoundMuted = false;
 
-let musicVolume = 1;
+let musicVolume = 0.8;
 let isMusicMuted = false;
 let currentMusic;
 
@@ -26,25 +26,25 @@ let sounds = {
   backgroundRetroArcade: {
     audio: new Audio("./assets/audio/retro-game-arcade-236133.mp3"),
     link: "./assets/audio/retro-game-arcade-236133.mp3",
-    volume: 0.07,
+    volume: 0.1,
     loop: true,
   },
   backgroundMetal: {
     audio: new Audio("./assets/audio/metal.mp3"),
     link: "./assets/audio/metal.mp3",
-    volume: 0.4,
+    volume: 0.5,
     loop: true,
   },
   backgroundLose: {
     audio: new Audio("./assets/audio/lose-music.mp3"),
     link: "./assets/audio/lose-music.mp3",
-    volume: 0.3,
+    volume: 0.4,
     loop: true,
   },
   backgroundWin: {
     audio: new Audio("./assets/audio/winMusic.mp3"),
     link: "./assets/audio/winMusic.mp3",
-    volume: 0.4,
+    volume: 0.5,
     loop: true,
   },
   hurt1: {
@@ -260,6 +260,7 @@ export function muteUnmuteSound() {
     sounds.backgroundRetroArcade.audio.muted = true;
     sounds.backgroundLose.audio.muted = true;
     sounds.backgroundWin.audio.muted = true;
+    sounds.snore.audio.muted = true;
     basicVolume = 0;
   } else {
     document.getElementById("muteButtonDiv").classList.remove("settingsImgBoxPushed");
@@ -269,6 +270,7 @@ export function muteUnmuteSound() {
     sounds.backgroundMetal.audio.volume = basicVolume * musicVolume;
     sounds.backgroundLose.audio.muted = false;
     sounds.backgroundWin.audio.muted = false;
+    sounds.snore.audio.muted = false;
   }
   isSoundMuted = !isSoundMuted;
 }
