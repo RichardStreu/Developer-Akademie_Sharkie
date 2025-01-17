@@ -222,11 +222,9 @@ export function stopSound(sound) {
   sounds[sound].audio.pause();
 }
 
-export function stopAllLoopSounds() {
-  console.log("stopAllLoopSounds");
-  
+export function stopAllLoopSounds() { 
   for (let sound in sounds) {
-    if (sounds[sound].loop && sounds[sound].audio.currentTime > 0) {
+    if (sounds[sound].loop) {
       sounds[sound].audio.pause();
     }
   }

@@ -18,7 +18,7 @@
         </button>
         <!-- control screen transformControlScreen -->
         <div data-group="screens" id="controlScreen" class="controlScreen transformControlScreen">
-          <button class="homeBtn" onclick="goToStartScreen('homeBtn'); stopSound('backgroundRetroArcade'); stopSound('snore'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('homeBtn'); stopAllLoopSounds(); stopSound('backgroundRetroArcade'); stopSound('snore'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
           <!-- imprint Button box-->
           <div onclick="showHideImprint(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" class="imprintBtnBox">
             <div class="arrowDownBox">
