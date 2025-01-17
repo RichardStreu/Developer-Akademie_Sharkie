@@ -295,12 +295,14 @@
   width: 100%;
   height: 0.75rem;
   -webkit-appearance: none;
+  appearance: none;
   background: linear-gradient(to right, 
             rgb(127, 255, 224) 50%, 
             rgb(58, 124, 108)50%);
   border-radius: 0.75rem;
   border: 1.5px solid white;
   transition: all 0.25s ease;
+  pointer-events: none;
 
   &::-webkit-slider-thumb {
     background-color: rgb(83, 26, 130);
@@ -311,5 +313,6 @@
     cursor: pointer;
     -webkit-appearance: none;
     appearance: none;
+    pointer-events: all;
   }
 }
