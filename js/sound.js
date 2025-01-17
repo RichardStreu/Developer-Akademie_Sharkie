@@ -144,26 +144,18 @@ export let sounds = {
 };
 window.sounds = sounds;
 
-export function initHoverSound() {
-  if (!firstSoundInit) {
-    sounds.hover.audio.muted = true;
-    setTimeout(() => {
-      sounds.hover.audio.play();
-    }, 50);
-    setTimeout(() => {
-      sounds.hover.audio.muted = false;
-      firstSoundInit = true;
-    }, 1000);
-  }
+export function initFirstSound() {
+  if (!firstSoundInit) firstSoundInit = true;
 }
 
 export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
-  let soundToPlay = sounds[sound].audio;
-  sounds[sound].type === "music" ? (soundToPlay.volume = sounds[sound].volume * musicVolume * basicVolume) : (soundToPlay.volume = sounds[sound].volume * sfxVolume * basicVolume);
-  soundToPlay.loop = loop;
-  soundToPlay.currentTime = currentTime;
+  if (sound === 'hover' && !firstSoundInit) return;
+  // let soundToPlay = sounds[sound].audio;
+  sounds[sound].type === "music" ? (sounds[sound].audio.volume = sounds[sound].volume * musicVolume * basicVolume) : (sounds[sound].audio.volume = sounds[sound].volume * sfxVolume * basicVolume);
+  sounds[sound].audio.loop = loop;
+  sounds[sound].audio.currentTime = currentTime;
   setTimeout(() => {
-    soundToPlay.play();
+    sounds[sound].audio.play();
   }, delay);
 }
 

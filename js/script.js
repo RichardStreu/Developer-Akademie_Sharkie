@@ -8,9 +8,9 @@ import { showSubMenu, toggleFullscreen, isFullscreen } from "./settings.js";
 window.showSubMenu = showSubMenu;
 window.toggleFullscreen = toggleFullscreen;
 
-import { playSfxSound, initHoverSound, muteUnmuteSound, stopSound, stopAllLoopSounds } from "./sound.js";
+import { playSfxSound, initFirstSound, muteUnmuteSound, stopSound, stopAllLoopSounds } from "./sound.js";
 window.playSfxSound = playSfxSound;
-window.initHoverSound = initHoverSound;
+window.initFirstSound = initFirstSound;
 window.muteUnmuteSound = muteUnmuteSound;
 window.stopSound = stopSound;
 window.stopAllLoopSounds = stopAllLoopSounds;
@@ -156,7 +156,7 @@ export function startGame() {
     document.getElementById("canvas").classList.remove("d_none");
     world.startDrawing();
     letSharkySleep.call(world.sharky);
-    playSfxSound('backgroundRetroArcade', 500, true);
+    playSfxSound("backgroundRetroArcade", 500, true);
   }, 500);
 }
 window.startGame = startGame;
@@ -173,7 +173,7 @@ export function restartGame(para) {
         init();
         world.sharky.setSharkyWindowEventListeners();
         world.startDrawing();
-        playSfxSound('backgroundRetroArcade', 500, true);
+        playSfxSound("backgroundRetroArcade", 500, true);
       }, 10);
     }, 50);
   }, 500);
