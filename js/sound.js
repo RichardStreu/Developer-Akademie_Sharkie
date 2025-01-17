@@ -276,10 +276,10 @@ export function muteUnmuteSound() {
 }
 
 export function changeMusicVolume(volume) {
-  musicVolume = volume;
-  sounds.backgroundRetroArcade.audio.volume = basicVolume * musicVolume;
-  sounds.backgroundMetal.audio.volume = basicVolume * musicVolume;
-  sounds.backgroundLose.audio.volume = basicVolume * musicVolume;
-  sounds.backgroundWin.audio.volume = basicVolume * musicVolume;
+  musicVolume = ( volume / 100 );
+  sounds.backgroundRetroArcade.audio.volume = sounds.backgroundRetroArcade.volume * basicVolume * musicVolume;
+  sounds.backgroundMetal.audio.volume = sounds.backgroundMetal.volume * basicVolume * musicVolume;
+  sounds.backgroundLose.audio.volume = sounds.backgroundLose.volume * basicVolume * musicVolume;
+  sounds.backgroundWin.audio.volume = sounds.backgroundWin.volume * basicVolume * musicVolume;
 }
 window.changeMusicVolume = changeMusicVolume;
