@@ -192,6 +192,8 @@ export function stopSwimSound() {
     let steps = 20;
     let interval = duration / steps;
     let reduction = (currentSwimSound.volume - 0.05) / steps;
+    console.log(currentSwimSound);
+    
     for (let i = 1; i < steps; i++) {
       setTimeout(() => {
         if (currentSwimSound.volume > reduction) currentSwimSound.volume -= reduction;
@@ -207,12 +209,9 @@ window.stopSwimSound = stopSwimSound;
 
 export function playHurtSound(sound) {
   if (!isCurrentHurtSoundPlaying) {
-    currentHurtSound = sounds[sound].audio;
-    currentHurtSound.volume = sounds[sound].volume * sfxVolume * basicVolume;
-    currentHurtSound.loop = false;
-    currentHurtSound.play();
     isCurrentHurtSoundPlaying = true;
-    currentHurtSound.addEventListener("ended", () => {
+    playSfxSound(sound);
+    sounds[sound].audio.addEventListener("ended", () => {
       isCurrentHurtSoundPlaying = false;
     });
   }
@@ -222,7 +221,7 @@ export function stopSound(sound) {
   sounds[sound].audio.pause();
 }
 
-export function stopAllLoopSounds() { 
+export function stopAllLoopSounds() {
   for (let sound in sounds) {
     if (sounds[sound].loop) {
       sounds[sound].audio.pause();
@@ -272,6 +271,6 @@ function categoryMusicVolumeChange(newVolume) {
 function categoryMasterVolumeChange(newVolume) {
   basicVolume = newVolume;
   Object.entries(sounds).forEach((sound) => {
-    sound[1].type === "music" ? sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume : sound[1].audio.volume = sound[1].volume * basicVolume * sfxVolume;
+    sound[1].type === "music" ? (sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume) : (sound[1].audio.volume = sound[1].volume * basicVolume * sfxVolume);
   });
 }
