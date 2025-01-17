@@ -3,7 +3,7 @@ let firstSoundInit = false;
 let basicVolume = 1;
 let isSoundMuted = false;
 
-let musicVolume = 0.8;
+let musicVolume = 0.5;
 let isMusicMuted = false;
 let currentMusic;
 
@@ -135,37 +135,37 @@ let sounds = {
     audio: new Audio("./assets/audio/edit/subway-surfers-coin-collect.mp3"),
     link: "./assets/audio/edit/subway-surfers-coin-collect.mp3",
     volume: 1,
-    loop: true,
+    loop: false,
   },
   bottle: {
     audio: new Audio("./assets/audio/edit/bottle-pop-open.mp3"),
     link: "./assets/audio/edit/bottle-pop-open.mp3",
     volume: 0.5,
-    loop: true,
+    loop: false,
   },
   hover: {
     audio: new Audio("./assets/audio/edit/hover-sound-effect.mp3"),
     link: "./assets/audio/edit/hover-sound-effect.mp3",
     volume: 0.15,
-    loop: true,
+    loop: false,
   },
   click: {
     audio: new Audio("./assets/audio/edit/button-click.mp3"),
     link: "./assets/audio/edit/button-click.mp3",
     volume: 0.1,
-    loop: true,
+    loop: false,
   },
   bossSplash: {
     audio: new Audio("./assets/audio/edit/water-for-drama.mp3"),
     link: "./assets/audio/edit/water-for-drama.mp3",
     volume: 0.4,
-    loop: true,
+    loop: false,
   },
   bossScream: {
     audio: new Audio("./assets/audio/chewbacca.swf.mp3"),
     link: "./assets/audio/chewbacca.swf.mp3",
     volume: 0.3,
-    loop: true,
+    loop: false,
   },
   snore: {
     audio: new Audio("./assets/audio/snorker.mp3"),
@@ -275,12 +275,18 @@ export function muteUnmuteSound() {
   isSoundMuted = !isSoundMuted;
 }
 
-export function changeMusicVolume(category ,volume) {
-  musicVolume = ( volume / 100 );
-  document.getElementById("musicVolume").style.background = `linear-gradient(to right, rgb(127, 255, 224) ${volume}%, rgb(58, 124, 108) ${volume}%)`
+export function changeMusicVolume(category, volume) {
+  musicVolume = volume / 100;
+  if (category === "music") categoryMusicVolumeChange(volume);
+}
+window.changeMusicVolume = changeMusicVolume;
+
+function categoryMusicVolumeChange(volume) {
+  document.getElementById("musicVolume").style.background = `linear-gradient(to right, rgb(127, 255, 224) ${volume}%, rgb(58, 124, 108) ${volume}%)`;
   sounds.backgroundRetroArcade.audio.volume = sounds.backgroundRetroArcade.volume * basicVolume * musicVolume;
   sounds.backgroundMetal.audio.volume = sounds.backgroundMetal.volume * basicVolume * musicVolume;
   sounds.backgroundLose.audio.volume = sounds.backgroundLose.volume * basicVolume * musicVolume;
   sounds.backgroundWin.audio.volume = sounds.backgroundWin.volume * basicVolume * musicVolume;
 }
-window.changeMusicVolume = changeMusicVolume;
+
+function categoryMasterVolumeChange() {}
