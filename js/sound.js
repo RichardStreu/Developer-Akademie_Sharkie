@@ -1,6 +1,6 @@
 let firstSoundInit = false;
 
-let basicVolume = 1;
+let basicVolume = 0.5;
 let isSoundMuted = false;
 
 let musicVolume = 0.8;
@@ -22,7 +22,7 @@ let isCurrentSlapSoundPlaying = false;
 let currentBlubSound;
 let isCurrentBlubSoundPlaying = false;
 
-let sounds = {
+export let sounds = {
   backgroundRetroArcade: {
     audio: new Audio("./assets/audio/retro-game-arcade-236133.mp3"),
     link: "./assets/audio/retro-game-arcade-236133.mp3",
@@ -199,6 +199,7 @@ let sounds = {
     type: "sfx"
   },
 };
+window.sounds = sounds;
 
 export function initHoverSound() {
   if (!firstSoundInit) {
@@ -291,7 +292,7 @@ export function muteUnmuteSound() {
     document.getElementById("muteButtonDiv").classList.remove("settingsImgBoxPushed");
     if (currentSwimSound) currentSwimSound.muted = false;
     sounds.backgroundRetroArcade.audio.muted = false;
-    basicVolume = 1;
+    basicVolume = document.getElementById("masterVolume").value / 100;
     sounds.backgroundMetal.audio.volume = basicVolume * musicVolume;
     sounds.backgroundLose.audio.muted = false;
     sounds.backgroundWin.audio.muted = false;
@@ -303,16 +304,20 @@ export function muteUnmuteSound() {
 export function changeMusicVolume(category, value) {
   let newVolume = value / 100;
   document.getElementById(`${category == "music" ? "musicVolume" : "masterVolume"}`).style.background = `linear-gradient(to right, rgb(127, 255, 224) ${value}%, rgb(58, 124, 108) ${value}%)`;
-
   if (category === "music") categoryMusicVolumeChange(newVolume);
+  if (category === "master") categoryMasterVolumeChange(newVolume);
 }
 window.changeMusicVolume = changeMusicVolume;
 
 function categoryMusicVolumeChange(newVolume) {
-  sounds.backgroundRetroArcade.audio.volume = sounds.backgroundRetroArcade.volume * basicVolume * newVolume;
-  sounds.backgroundMetal.audio.volume = sounds.backgroundMetal.volume * basicVolume * newVolume;
-  sounds.backgroundLose.audio.volume = sounds.backgroundLose.volume * basicVolume * newVolume;
-  sounds.backgroundWin.audio.volume = sounds.backgroundWin.volume * basicVolume * newVolume;
+  musicVolume = newVolume;
+  Object.entries(sounds).forEach((sound) => {
+    if (sound[1].type === "music") {
+      sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume;
+    }
+  })
 }
 
-function categoryMasterVolumeChange() {}
+function categoryMasterVolumeChange(newVolume) {
+
+}
