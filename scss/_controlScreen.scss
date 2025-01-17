@@ -56,7 +56,6 @@
     width: calc(100% - 8rem);
     margin-left: auto;
     margin-right: auto;
-    min-height: 320px;
 
     // INFO BOX
     .textBar {
@@ -78,17 +77,15 @@
     // CONTRSOL BOX
     .controlsBox {
       width: 300px;
-      min-height: 320px;
       margin-left: auto;
       margin-right: auto;
       font-family: "LuckyGuy";
       font-size: 1.5rem;
       flex-wrap: wrap;
-
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 4rem;
+      // justify-content: center;
+      gap: 1rem;
 
       .controlBarBG {
         background-color: rgba(255, 255, 255, 0.08);
@@ -98,8 +95,8 @@
 
       .controlsBoxUpper {
         display: flex;
-        justify-content: center;
-        gap: 4rem;
+        justify-content: space-between;
+        // gap: 4rem;
       }
 
       .controlBar {
@@ -318,6 +315,10 @@
 
 .transformControlScreen {
   top: -100%;
+}
+
+.volumeInputBox {
+  padding: 0 1rem;
 }
 
 .musicVolume {
