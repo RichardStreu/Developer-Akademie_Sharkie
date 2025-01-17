@@ -18,7 +18,7 @@
         </button>
         <!-- control screen transformControlScreen -->
         <div data-group="screens" id="controlScreen" class="controlScreen transformControlScreen">
-          <button class="homeBtn" onclick="goToStartScreen('homeBtn'); stopAllLoopSounds(); stopSound('backgroundRetroArcade'); stopSound('snore'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('homeBtn'); stopAllLoopSounds();  playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
           <!-- imprint Button box-->
           <div onclick="showHideImprint(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" class="imprintBtnBox">
             <div class="arrowDownBox">
@@ -208,14 +208,14 @@
           <button onclick="restartGame(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true); stopSound('snore'); stopSound('backgroundLose')" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
             <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>
-          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopSound('backgroundRetroArcade'); stopSound('snore'); stopSound('backgroundLose'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopAllLoopSounds(); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
         </div>
         <!-- win screen -->
         <div data-group="screens" id="winScreen" class="winScreen d_none opacity_zero">
           <button onclick="restartGame(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true); stopSound('snore'); stopSound('backgroundWin')" onmouseenter="playSfxSound('hover')" class="tryAgainButton">
             <img src="./assets/img/6.Botones/Try again/Recurso 17.png" alt="" />
           </button>
-          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopSound('backgroundRetroArcade'); stopSound('backgroundWin'); stopSound('snore'); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
+          <button class="homeBtn" onclick="goToStartScreen('winLose'); stopAllLoopSounds(); playSfxSound('click')" onmouseenter="playSfxSound('hover')"><img src="./assets/img/homeImg.svg" alt="" /></button>
         </div>
       </div>
     </main>
