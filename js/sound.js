@@ -277,6 +277,7 @@ export function muteUnmuteSound() {
 
 export function changeMusicVolume(volume) {
   musicVolume = ( volume / 100 );
+  document.getElementById("musicVolume").style.background = `linear-gradient(to right, rgb(127, 255, 224) ${volume}%, rgb(58, 124, 108) ${volume}%)`
   sounds.backgroundRetroArcade.audio.volume = sounds.backgroundRetroArcade.volume * basicVolume * musicVolume;
   sounds.backgroundMetal.audio.volume = sounds.backgroundMetal.volume * basicVolume * musicVolume;
   sounds.backgroundLose.audio.volume = sounds.backgroundLose.volume * basicVolume * musicVolume;
