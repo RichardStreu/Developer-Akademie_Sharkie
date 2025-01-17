@@ -33,25 +33,27 @@
           </div>
           <!-- control nav bar -->
           <nav id="controlNavBar">
-            <button data-group="0" onclick="showSubMenu(`0`); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="infoBtn">INFO</button>
-            <button data-group="1" onclick="showSubMenu(`1`); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="controlsBtn" class="btnActive">CONTROLS</button>
+            <button data-group="0" onclick="showSubMenu(`0`); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="infoBtn" class="btnActive">INFO</button>
+            <button data-group="1" onclick="showSubMenu(`1`); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="controlsBtn">CONTROLS</button>
             <button data-group="2" onclick="showSubMenu(`2`); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="settingsBtn">SETTINGS</button>
           </nav>
           <div class="divider"></div>
           <div class="controlContentContainer">
             <!-- info box -->
-            <div data-group="0" id="infoBox" class="infoBox d_none">
-              <p>
-                In Sharky the Brave, you play as Sharky, a heroic little shark fighting to free the ocean from evil pufferfish, jellyfish, and the deadly final boss, the killer whale.<br />
-                <br />
-                Collect coins to restore health and gather poison bottles to shoot powerful toxic bubbles. Use Sharky's tail slap to push enemies away or normal bubbles to attack. Save the reef!
-                <br />
-                <br />
+            <div data-group="0" id="infoBox" class="infoBox">
+                <div class="textBar">
+                In Sharky the Brave, you play as Sharky, a heroic little shark fighting to free the ocean from evil pufferfish, jellyfish, and the deadly final boss, the killer whale.
+                </div>
+                <div class="textBar">
+                Collect coins to restore health and gather poison bottles to shoot powerful toxic bubbles. Use Sharky's tail slap to push enemies away or normal bubbles to attack. 
+                Save the reef!
+                </div>
+                <div class="textBar">
                 Watch out for electric jellyfish, as they are immune to bubbles and can only be moved using Sharky’s tail slap. Navigate carefully to avoid their shocking traps!
-              </p>
+                </div>
             </div>
             <!-- controls box -->
-            <div data-group="1" id="controlsBox" class="controlsBox">
+            <div data-group="1" id="controlsBox" class="controlsBox d_none">
               <div class="controlsBoxUpper">
                 <div class="controlBar">
                   <img src="./assets/img/6.Botones/Key/arrow keys.png" alt="" />

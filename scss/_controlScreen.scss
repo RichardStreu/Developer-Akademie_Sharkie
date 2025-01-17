@@ -59,11 +59,20 @@
     min-height: 320px;
 
     // INFO BOX
+    .textBar {
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+    }
+
     .infoBox {
       font-size: 1.13rem;
       line-height: 1.75rem;
       letter-spacing: 0.05rem;
       word-spacing: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     // CONTRSOL BOX
