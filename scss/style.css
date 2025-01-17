@@ -434,7 +434,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
-  background: linear-gradient(to right, rgb(127, 255, 224) 50%, rgb(58, 124, 108) 50%);
+  background: linear-gradient(to right, rgb(127, 255, 224) 80%, rgb(58, 124, 108) 80%);
   border-radius: 0.75rem;
   border: 1.5px solid white;
   transition: all 0.25s ease;
@@ -450,6 +450,10 @@
   -webkit-appearance: none;
   appearance: none;
   pointer-events: all;
+}
+
+#masterVolume {
+  background: linear-gradient(to right, rgb(127, 255, 224) 50%, rgb(58, 124, 108) 50%);
 }
 
 * {
