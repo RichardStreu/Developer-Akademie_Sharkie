@@ -87,6 +87,16 @@
                   <p>Mute / Unmute Sound</p>
                 </div>
               </div>
+              <!-- master volume -->
+              <div class="settingsBar">
+                <div>
+                  <input type="range" id="masterVolume" class="musicVolume" name="masterVolume" min="0" max="100" value="50" onmouseenter="playSfxSound('hover')" oninput="changeMusicVolume('master' ,this.value)" onclick="playSfxSound('click')"/>
+                </div>
+                <div class="settingsDivider"></div>
+                <div class="settingsDescriptionBox">
+                  <p>Master Volume</p>
+                </div>
+              </div>
               <!-- music volume -->
               <div class="settingsBar">
                 <div>
