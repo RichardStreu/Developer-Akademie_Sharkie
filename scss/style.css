@@ -527,6 +527,22 @@ body {
   color: white;
 }
 
+.rotateOverlay {
+  display: none;
+  position: absolute;
+  z-index: 20000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+}
+@media (hover: none) and (orientation: portrait) {
+  .rotateOverlay {
+    display: block;
+  }
+}
+
 main {
   position: relative;
   height: 100dvh;
@@ -534,6 +550,11 @@ main {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+@media (hover: none) and (orientation: portrait) {
+  main {
+    display: none;
+  }
 }
 @media (max-width: 900px) and (orientation: landscape) {
   main {
