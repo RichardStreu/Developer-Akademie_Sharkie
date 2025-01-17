@@ -235,8 +235,7 @@ export function muteUnmuteSound() {
 export function changeMusicVolume(category, value) {
   let newVolume = value / 100;
   document.getElementById(`${category == "music" ? "musicVolume" : "masterVolume"}`).style.background = `linear-gradient(to right, rgb(127, 255, 224) ${value}%, rgb(58, 124, 108) ${value}%)`;
-  if (category === "music") categoryMusicVolumeChange(newVolume);
-  if (category === "master") categoryMasterVolumeChange(newVolume);
+  category === "music" ? categoryMusicVolumeChange(newVolume) : categoryMasterVolumeChange(newVolume);
 }
 window.changeMusicVolume = changeMusicVolume;
 
