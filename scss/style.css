@@ -84,9 +84,22 @@
   height: 85px;
   position: absolute;
   filter: drop-shadow(0 0 1.2rem rgb(255, 255, 255));
-  left: -100px;
+  left: -59px;
   bottom: -20px;
 }
+.endBossLifeBar .innerLifeBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgb(255, 0, 0);
+  background: linear-gradient(0deg, rgb(255, 0, 0) 50%, rgb(255, 162, 162) 100%);
+  transition: all 0.25s ease;
+  transform-origin: left;
+  width: 100%;
+  border-radius: 100vh;
+  height: 11.25px;
+}
+
 .looseScreen {
   top: 0;
   left: 0;

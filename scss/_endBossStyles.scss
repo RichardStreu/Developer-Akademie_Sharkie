@@ -15,12 +15,21 @@
     height: 85px;
     position: absolute;
     filter: drop-shadow(0 0 1.2rem rgba(255, 255, 255, 1));
-    left: -100px;
+    left: -59px;
     // left -58px
     bottom: -20px;
   }
 
   .innerLifeBar {
-
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgb(255, 0, 0);
+    background: linear-gradient(0deg, rgba(255, 0, 0, 1) 50%, rgba(255, 162, 162, 1) 100%);
+    transition: all 0.25s ease;
+    transform-origin: left;
+    width: 100%;
+    border-radius: 100vh;
+    height: 11.25px;
   }
 }
