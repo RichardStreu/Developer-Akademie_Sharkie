@@ -41,14 +41,11 @@ export let areImgCachesReady = false;
 
 export let loadedCachsArray = [];
 
-let isControlFirstShown = false;
+
 let isControlScreenVisible = false;
 
 export function showHideControlScreen() {
-  if (!isControlFirstShown) {
-    document.getElementById("controlButton").classList.remove("buttonPulse");
-    isControlFirstShown = true;
-  }
+  removeButtonPulse();
   if (!isControlScreenVisible) {
     document.getElementById("controlScreen").classList.remove("transformControlScreen");
     document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
@@ -62,6 +59,15 @@ export function showHideControlScreen() {
   Array.from(document.querySelectorAll(".homeBtn")).forEach((btn) => btn.blur());
 }
 window.showHideControlScreen = showHideControlScreen;
+
+let isControlFirstShown = false;
+
+function removeButtonPulse() {
+  if (!isControlFirstShown) {
+    document.getElementById("controlButton").classList.remove("buttonPulse");
+    isControlFirstShown = true;
+  }
+}
 
 let isImprintVisible = false;
 let isImprintSliding = false;
@@ -152,6 +158,7 @@ export function switchScreens() {
 window.switchScreens = switchScreens;
 
 export function startGame() {
+  removeButtonPulse();
   switchScreens();
   setTimeout(() => {
     document.getElementById("startScreen").classList.add("d_none");
