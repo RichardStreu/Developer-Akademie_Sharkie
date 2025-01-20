@@ -1,20 +1,26 @@
 .endBossLifeBar {
   position: absolute;
   z-index: 3000;
-  bottom: 3.5rem;
-  right: 90px;
+  bottom: 2.5rem;
+  right: 1.75rem;
   width: 148px;
-  height: 16px;
+  height: 14px;
   background: rgb(191, 210, 240);
   background: linear-gradient(0deg, rgba(191, 210, 240, 1) 55%, rgba(255, 255, 255, 1) 100%);
   border-radius: 100vh;
   border: 1.5px solid white;
 
   img {
-    transform: scaleX(-1);
-    height: 100px;
+    transform: scaleX(-1) rotateZ(-3deg);
+    height: 85px;
     position: absolute;
-    right: -70px;
-    bottom: -25px;
+    filter: drop-shadow(0 0 1.2rem rgba(255, 255, 255, 1));
+    left: -100px;
+    // left -58px
+    bottom: -20px;
+  }
+
+  .innerLifeBar {
+
   }
 }
