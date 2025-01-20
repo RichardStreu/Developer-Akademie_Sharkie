@@ -1,6 +1,6 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio } from "../script.js";
-import { stopSwimSound, stopSound} from "../sound.js";
+import { stopSwimSound, stopSound } from "../sound.js";
 
 import {
   imagesStand,
@@ -65,7 +65,7 @@ export class Sharky extends MoveableObject {
   isCurrentlyHurtAnimation = false;
   isCurrentlyAttackAnimation = false;
   isCurrentlyFinSlap = false;
-  
+
   currentFinSlap = "none";
   world;
   lifeEnergy = 100;
@@ -114,6 +114,30 @@ export class Sharky extends MoveableObject {
     });
     document.getElementById("attackFinSlapBtn").addEventListener("touchend", () => {
       this.sharkyAttackDKey();
+    });
+    document.getElementById("moveRightBtn").addEventListener("touchstart", () => {
+      this.moveSharkyRight();
+    });
+    document.getElementById("moveRightBtn").addEventListener("touchend", () => {
+      this.keyArrowRightUp();
+    });
+    document.getElementById("moveLeftBtn").addEventListener("touchstart", () => {
+      this.moveSharkyLeft();
+    });
+    document.getElementById("moveLeftBtn").addEventListener("touchend", () => {
+      this.keyArrowLeftUp();
+    });
+    document.getElementById("moveUpBtn").addEventListener("touchstart", () => {
+      this.moveSharkyUp();
+    });
+    document.getElementById("moveUpBtn").addEventListener("touchend", () => {
+      this.keyArrowUpUp();
+    });
+    document.getElementById("moveDownBtn").addEventListener("touchstart", () => {
+      this.moveSharkyDown();
+    });
+    document.getElementById("moveDownBtn").addEventListener("touchend", () => {
+      this.keyArrowDownUp();
     });
   }
 
@@ -170,7 +194,7 @@ export class Sharky extends MoveableObject {
       if (event.key == "ArrowDown") this.moveSharkyDown();
       if (event.key == " ") this.sharkyAttackSpace();
       if (event.key == "d") this.sharkyAttackDKey();
-      stopSound('snore');
+      stopSound("snore");
     }
   }
 
