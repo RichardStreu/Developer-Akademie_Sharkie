@@ -11,6 +11,8 @@
   border-radius: 1rem;
   transition: all 0.6s ease;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 900px) and (orientation: landscape) {
     border-radius: 0;
@@ -63,6 +65,7 @@
 
     @media (max-width: 900px) and (orientation: landscape) {
       overflow: auto;
+      padding-bottom: 2rem;
     }
 
     // INFO BOX

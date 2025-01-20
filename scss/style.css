@@ -227,6 +227,8 @@
   border-radius: 1rem;
   transition: all 0.6s ease;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 900px) and (orientation: landscape) {
   .controlScreen {
@@ -276,6 +278,7 @@
 @media (max-width: 900px) and (orientation: landscape) {
   .controlScreen .controlContentContainer {
     overflow: auto;
+    padding-bottom: 2rem;
   }
 }
 .controlScreen .controlContentContainer .textBar {
