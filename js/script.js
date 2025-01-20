@@ -41,9 +41,15 @@ export let areImgCachesReady = false;
 
 export let loadedCachsArray = [];
 
+let isControlFirstShown = false;
 let isControlScreenVisible = false;
 
 export function showHideControlScreen() {
+  if (!isControlFirstShown) {
+    document.getElementById("controlButtonImg").classList.remove("buttonPulse");
+    isControlFirstShown = true;
+    return;
+  }
   if (!isControlScreenVisible) {
     document.getElementById("controlScreen").classList.remove("transformControlScreen");
     document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
