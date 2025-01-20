@@ -10,6 +10,7 @@
   z-index: 9000;
   border-radius: 1rem;
   transition: all 0.6s ease;
+  overflow: hidden;
 
   @media (max-width: 900px) and (orientation: landscape) {
     border-radius: 0;
