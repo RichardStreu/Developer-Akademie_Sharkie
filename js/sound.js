@@ -150,7 +150,7 @@ export function initFirstSound() {
 }
 
 export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
-  if (sound === 'hover' && !firstSoundInit) return;
+  if ((sound === 'hover' && !firstSoundInit) || !sound) return;
   sounds[sound].type === "music" ? (sounds[sound].audio.volume = sounds[sound].volume * musicVolume * basicVolume) : (sounds[sound].audio.volume = sounds[sound].volume * sfxVolume * basicVolume);
   sounds[sound].audio.loop = loop;
   sounds[sound].audio.currentTime = currentTime;
