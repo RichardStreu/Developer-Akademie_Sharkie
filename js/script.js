@@ -46,9 +46,8 @@ let isControlScreenVisible = false;
 
 export function showHideControlScreen() {
   if (!isControlFirstShown) {
-    document.getElementById("controlButtonImg").classList.remove("buttonPulse");
+    document.getElementById("controlButton").classList.remove("buttonPulse");
     isControlFirstShown = true;
-    return;
   }
   if (!isControlScreenVisible) {
     document.getElementById("controlScreen").classList.remove("transformControlScreen");
