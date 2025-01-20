@@ -668,7 +668,7 @@ body {
   background-image: url("../assets/img/3. Background/Legacy/Dark/1.png");
   background-size: cover;
 }
-@media (hover: none) and (orientation: portrait) {
+@media (max-width: 900px) and (orientation: portrait) {
   .rotateOverlay {
     display: block;
   }
@@ -699,7 +699,7 @@ main {
   background-position: center;
   background-repeat: no-repeat;
 }
-@media (hover: none) and (orientation: portrait) {
+@media (max-width: 900px) and (orientation: portrait) {
   main {
     display: none;
   }
