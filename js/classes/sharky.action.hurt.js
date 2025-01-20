@@ -99,6 +99,7 @@ export function hurtedByEndBoss() {
 export function isSharkyDead(kindOfDead) {
   if (this.lifeEnergy <= 0) {
     stopSwimSound();
+    this.removeSharkyMobileListeners();
     let isRegularDead = kindOfDead == "regular";
     isRegularDead ? this.regularDead() : this.electricDead();
   }

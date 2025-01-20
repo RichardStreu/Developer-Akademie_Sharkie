@@ -1,6 +1,6 @@
 let firstSoundInit = false;
 
-let basicVolume = 0;
+let basicVolume = 0.5;
 // basic must be 0.5 by default
 
 let isSoundMuted = false;
@@ -149,7 +149,7 @@ export function initFirstSound() {
   if (!firstSoundInit) firstSoundInit = true;
 }
 
-export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
+export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) { 
   if ((sound === 'hover' && !firstSoundInit) || !sound) return;
   sounds[sound].type === "music" ? (sounds[sound].audio.volume = sounds[sound].volume * musicVolume * basicVolume) : (sounds[sound].audio.volume = sounds[sound].volume * sfxVolume * basicVolume);
   sounds[sound].audio.loop = loop;

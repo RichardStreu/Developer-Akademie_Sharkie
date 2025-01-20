@@ -91,8 +91,8 @@ export class Sharky extends MoveableObject {
     this.keyDownHandler = this.handleKeyDown.bind(this);
     this.keyUpHandler = this.handleKeyUp.bind(this);
     setTimeout(() => {
-      this.setSharkyMobildEventListeners();
-    }, 500);
+      this.setSharkyMobileEventListeners();
+    }, 2000);
   }
 
   async loadAllImagesCacheSharky() {
@@ -110,7 +110,9 @@ export class Sharky extends MoveableObject {
     await this.loadImageCache(imagesDeadShock, this.constructor.name);
   }
 
-  setSharkyMobildEventListeners() {
+  setSharkyMobileEventListeners() {
+    console.log("setSharkyMobileEventListeners");
+    
     document.getElementById("attackBubbleBtn").addEventListener("touchend", () => this.sharkyAttackSpace());
     document.getElementById("attackFinSlapBtn").addEventListener("touchend", () => this.sharkyAttackDKey());
     document.getElementById("moveRightBtn").addEventListener("touchstart", () => this.moveSharkyRight());
@@ -123,7 +125,19 @@ export class Sharky extends MoveableObject {
     document.getElementById("moveDownBtn").addEventListener("touchend", () => this.keyArrowDownUp());
   }
 
-  removeSharkyMobildListeners() {}
+  removeSharkyMobileListeners() {
+    console.log("removeSharkyMobileListeners");
+    document.getElementById("attackBubbleBtn").removeEventListener("touchend", () => this.sharkyAttackSpace());
+    document.getElementById("attackFinSlapBtn").removeEventListener("touchend", () => this.sharkyAttackDKey());
+    document.getElementById("moveRightBtn").removeEventListener("touchstart", () => this.moveSharkyRight());
+    document.getElementById("moveRightBtn").removeEventListener("touchend", () => this.keyArrowRightUp());
+    document.getElementById("moveLeftBtn").removeEventListener("touchstart", () => this.moveSharkyLeft());
+    document.getElementById("moveLeftBtn").removeEventListener("touchend", () => this.keyArrowLeftUp());
+    document.getElementById("moveUpBtn").removeEventListener("touchstart", () => this.moveSharkyUp());
+    document.getElementById("moveUpBtn").removeEventListener("touchend", () => this.keyArrowUpUp());
+    document.getElementById("moveDownBtn").removeEventListener("touchstart", () => this.moveSharkyDown());
+    document.getElementById("moveDownBtn").removeEventListener("touchend", () => this.keyArrowDownUp()); 
+  }
 
   setSharkyWindowEventListeners() {
     window.addEventListener("keydown", (event) => {
