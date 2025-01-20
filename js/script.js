@@ -175,6 +175,7 @@ export function restartGame(para) {
   setTimeout(() => {
     document.getElementById("winScreen").classList.add("d_none");
     document.getElementById("looseScreen").classList.add("d_none");
+    document.getElementById("innerLifeBar").style.width = `100%`;
     document.getElementById("endBossLifeBar").classList.add("d_none");
     setTimeout(() => {
       world.sharky.x = 0;
@@ -210,6 +211,7 @@ export function goToStartScreen(para) {
           }, 500);
       }
     });
+    document.getElementById("innerLifeBar").style.width = `100%`;
     document.getElementById("endBossLifeBar").classList.add("d_none");
     if (isControlScreenVisible)
       setTimeout(() => {

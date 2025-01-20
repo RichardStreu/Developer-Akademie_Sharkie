@@ -7,6 +7,7 @@ export class EndBoss extends MoveableObject {
   currentAnimationIntervall;
   currentSharkyPositionInterval;
   countSecondsInterval;
+  endBossLifeBarInterval;
   currentMovement;
   currentlyMoveUp = true;
   floating;
@@ -41,7 +42,23 @@ export class EndBoss extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
     clearInterval(this.currentSharkyPositionInterval);
     clearInterval(this.countSecondsInterval);
+    clearInterval(this.endBossLifeBarInterval);
     this.clearIntervalsAnimationMove();
+  }
+
+  setLifeBarInterval() {
+    this.endBossLifeBarInterval = setInterval(() => {
+      if (this.world.enemies[17].lifeEnergy <= 0) {
+        clearInterval(this.endBossLifeBarInterval);
+      }
+      if (this.world.enemies[17].lifeEnergy > 0) {
+        document.getElementById("innerLifeBar").style.width = `${this.world.enemies[17].lifeEnergy}%`;
+      }
+      if ((this.world.enemies[17].isEnemyDead)) {
+        document.getElementById("innerLifeBar").style.width = `0%`;
+        clearInterval(this.endBossLifeBarInterval);
+      }
+    }, 100);
   }
 
   countSeconds() {
@@ -157,6 +174,7 @@ export class EndBoss extends MoveableObject {
   bossIntroduce() {
     setTimeout(() => {
       document.getElementById("endBossLifeBar").classList.remove("d_none");
+      this.setLifeBarInterval();
     }, 1000);
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesBossIntroduce, this.img, 150);
