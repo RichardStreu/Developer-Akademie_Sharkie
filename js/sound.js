@@ -1,6 +1,6 @@
 let firstSoundInit = false;
 
-let basicVolume = 0;
+let basicVolume = 0.5;
 // basic must be 0.5 by default
 
 let isSoundMuted = false;
