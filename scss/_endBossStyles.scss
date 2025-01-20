@@ -2,8 +2,11 @@
   position: absolute;
   z-index: 3000;
   bottom: 2.5rem;
-  right: 1.75rem;
-  width: 148px;
+  // top: 3.8rem;
+  // right: 1.75rem;
+  left: 50%;
+  transform: translateX(-35%);
+  width: 180px;
   height: 14px;
   background: rgb(191, 210, 240);
   background: linear-gradient(0deg, rgba(191, 210, 240, 1) 55%, rgba(255, 255, 255, 1) 100%);

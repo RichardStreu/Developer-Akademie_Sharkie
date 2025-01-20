@@ -71,8 +71,9 @@
   position: absolute;
   z-index: 3000;
   bottom: 2.5rem;
-  right: 1.75rem;
-  width: 148px;
+  left: 50%;
+  transform: translateX(-35%);
+  width: 180px;
   height: 14px;
   background: rgb(191, 210, 240);
   background: linear-gradient(0deg, rgb(191, 210, 240) 55%, rgb(255, 255, 255) 100%);
