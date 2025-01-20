@@ -90,9 +90,16 @@ export class Sharky extends MoveableObject {
     this.isEnoughCoin = false;
     this.keyDownHandler = this.handleKeyDown.bind(this);
     this.keyUpHandler = this.handleKeyUp.bind(this);
-    setTimeout(() => {
-      this.setSharkyMobileEventListeners();
-    }, 2000);
+    this.attackBubbleHandler = this.sharkyAttackSpace.bind(this);
+    this.attackFinSlapHandler = this.sharkyAttackDKey.bind(this);
+    this.moveRightStartHandler = this.moveSharkyRight.bind(this);
+    this.moveRightEndHandler = this.keyArrowRightUp.bind(this);
+    this.moveLeftStartHandler = this.moveSharkyLeft.bind(this);
+    this.moveLeftEndHandler = this.keyArrowLeftUp.bind(this);
+    this.moveUpStartHandler = this.moveSharkyUp.bind(this);
+    this.moveUpEndHandler = this.keyArrowUpUp.bind(this);
+    this.moveDownStartHandler = this.moveSharkyDown.bind(this);
+    this.moveDownEndHandler = this.keyArrowDownUp.bind(this);
   }
 
   async loadAllImagesCacheSharky() {
@@ -113,30 +120,30 @@ export class Sharky extends MoveableObject {
   setSharkyMobileEventListeners() {
     console.log("setSharkyMobileEventListeners");
     
-    document.getElementById("attackBubbleBtn").addEventListener("touchend", () => this.sharkyAttackSpace());
-    document.getElementById("attackFinSlapBtn").addEventListener("touchend", () => this.sharkyAttackDKey());
-    document.getElementById("moveRightBtn").addEventListener("touchstart", () => this.moveSharkyRight());
-    document.getElementById("moveRightBtn").addEventListener("touchend", () => this.keyArrowRightUp());
-    document.getElementById("moveLeftBtn").addEventListener("touchstart", () => this.moveSharkyLeft());
-    document.getElementById("moveLeftBtn").addEventListener("touchend", () => this.keyArrowLeftUp());
-    document.getElementById("moveUpBtn").addEventListener("touchstart", () => this.moveSharkyUp());
-    document.getElementById("moveUpBtn").addEventListener("touchend", () => this.keyArrowUpUp());
-    document.getElementById("moveDownBtn").addEventListener("touchstart", () => this.moveSharkyDown());
-    document.getElementById("moveDownBtn").addEventListener("touchend", () => this.keyArrowDownUp());
+    document.getElementById("attackBubbleBtn").addEventListener("touchend", this.attackBubbleHandler);
+    document.getElementById("attackFinSlapBtn").addEventListener("touchend", this.attackFinSlapHandler);
+    document.getElementById("moveRightBtn").addEventListener("touchstart", this.moveRightStartHandler);
+    document.getElementById("moveRightBtn").addEventListener("touchend", this.moveRightEndHandler);
+    document.getElementById("moveLeftBtn").addEventListener("touchstart", this.moveLeftStartHandler);
+    document.getElementById("moveLeftBtn").addEventListener("touchend", this.moveLeftEndHandler);
+    document.getElementById("moveUpBtn").addEventListener("touchstart", this.moveUpStartHandler);
+    document.getElementById("moveUpBtn").addEventListener("touchend", this.moveUpEndHandler);
+    document.getElementById("moveDownBtn").addEventListener("touchstart", this.moveDownStartHandler);
+    document.getElementById("moveDownBtn").addEventListener("touchend", this.moveDownEndHandler);
   }
 
   removeSharkyMobileListeners() {
     console.log("removeSharkyMobileListeners");
-    document.getElementById("attackBubbleBtn").removeEventListener("touchend", () => this.sharkyAttackSpace());
-    document.getElementById("attackFinSlapBtn").removeEventListener("touchend", () => this.sharkyAttackDKey());
-    document.getElementById("moveRightBtn").removeEventListener("touchstart", () => this.moveSharkyRight());
-    document.getElementById("moveRightBtn").removeEventListener("touchend", () => this.keyArrowRightUp());
-    document.getElementById("moveLeftBtn").removeEventListener("touchstart", () => this.moveSharkyLeft());
-    document.getElementById("moveLeftBtn").removeEventListener("touchend", () => this.keyArrowLeftUp());
-    document.getElementById("moveUpBtn").removeEventListener("touchstart", () => this.moveSharkyUp());
-    document.getElementById("moveUpBtn").removeEventListener("touchend", () => this.keyArrowUpUp());
-    document.getElementById("moveDownBtn").removeEventListener("touchstart", () => this.moveSharkyDown());
-    document.getElementById("moveDownBtn").removeEventListener("touchend", () => this.keyArrowDownUp()); 
+    document.getElementById("attackBubbleBtn").removeEventListener("touchend", this.attackBubbleHandler);
+    document.getElementById("attackFinSlapBtn").removeEventListener("touchend", this.attackFinSlapHandler);
+    document.getElementById("moveRightBtn").removeEventListener("touchstart", this.moveRightStartHandler);
+    document.getElementById("moveRightBtn").removeEventListener("touchend", this.moveRightEndHandler);
+    document.getElementById("moveLeftBtn").removeEventListener("touchstart", this.moveLeftStartHandler);
+    document.getElementById("moveLeftBtn").removeEventListener("touchend", this.moveLeftEndHandler);
+    document.getElementById("moveUpBtn").removeEventListener("touchstart", this.moveUpStartHandler);
+    document.getElementById("moveUpBtn").removeEventListener("touchend", this.moveUpEndHandler);
+    document.getElementById("moveDownBtn").removeEventListener("touchstart", this.moveDownStartHandler);
+    document.getElementById("moveDownBtn").removeEventListener("touchend", this.moveDownEndHandler);
   }
 
   setSharkyWindowEventListeners() {

@@ -167,6 +167,7 @@ export function startGame() {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
     world.startDrawing();
+    world.sharky.setSharkyMobileEventListeners();
     letSharkySleep.call(world.sharky);
     playSfxSound("backgroundRetroArcade", 500, true);
   }, 500);
@@ -187,6 +188,7 @@ export function restartGame(para) {
         init();
         world.sharky.setSharkyWindowEventListeners();
         world.startDrawing();
+        world.sharky.setSharkyMobileEventListeners();
         playSfxSound("backgroundRetroArcade", 500, true);
       }, 10);
     }, 50);
