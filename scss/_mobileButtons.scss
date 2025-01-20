@@ -2,6 +2,9 @@
   position: absolute;
   bottom: 2rem;
   left: 1rem;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  user-select: none;
 
   .moveBoxUpper {
     display: flex;
@@ -42,6 +45,9 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 .btnBox {
@@ -53,6 +59,9 @@
   border-radius: 100vh;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background-color: rgba(127, 255, 224, 0.7);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .img {
@@ -62,4 +71,5 @@
   -webkit-touch-callout: none; /* Verhindert das Kontextmenü (iOS/Safari) */
   user-select: none; /* Für andere Browser */
   touch-action: none; /* Deaktiviert alle Touch-Aktionen */
+  -webkit-user-select: none;
 }

@@ -18,6 +18,10 @@
   font-style: normal;
 }
 
+* {
+  touch-action: manipulation;
+}
+
 body {
   font-family: "LuckyGuy";
   color: white;
