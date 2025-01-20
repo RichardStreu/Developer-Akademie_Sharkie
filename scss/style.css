@@ -105,9 +105,29 @@
   position: absolute;
   bottom: 2rem;
   left: 2rem;
-  min-height: 50px;
-  min-width: 50px;
-  background-color: magenta;
+}
+.mobileBtnMoveBox .moveBoxUpper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.mobileBtnMoveBox .moveBoxUpper .moveUpBtn {
+  transform: rotate(-90deg);
+}
+.mobileBtnMoveBox .moveBoxMiddle {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.mobileBtnMoveBox .moveBoxMiddle .moveLeftBtn {
+  transform: rotate(180deg);
+}
+.mobileBtnMoveBox .moveBoxLower {
+  display: flex;
+  justify-content: center;
+}
+.mobileBtnMoveBox .moveBoxLower .moveDownBtn {
+  transform: rotate(90deg);
 }
 
 .mobileBtnAttackBox {
@@ -117,6 +137,22 @@
   min-height: 50px;
   min-width: 50px;
   background-color: magenta;
+}
+
+.btnBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 100vh;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background-color: rgba(127, 255, 224, 0.7);
+}
+
+.img {
+  width: 36px;
+  height: 36px;
 }
 
 .looseScreen {
