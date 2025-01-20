@@ -216,6 +216,7 @@ export function goToStartScreen(para) {
           }, 500);
       }
     });
+    init();
     document.getElementById("innerLifeBar").style.width = `100%`;
     document.getElementById("endBossLifeBar").classList.add("d_none");
     if (isControlScreenVisible)
