@@ -129,5 +129,16 @@ main {
         }
       }
     }
+
+    .buttonPulse {
+      &:hover {
+        background-color: transparent;
+        filter: none;
+
+        img {
+          transform: none;
+        }
+      }
+    }
   }
 }

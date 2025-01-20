@@ -12,7 +12,7 @@
     <!-- mobile rotate overlay -->
     <div class="rotateOverlay">
       <div>
-        <img src="./assets/img/icons8-rotate-screen-96.png" alt="">
+        <img src="./assets/img/icons8-rotate-screen-96.png" alt="" />
         <p>Rotate Device</p>
       </div>
     </div>
@@ -21,7 +21,7 @@
       <!-- Display Field of the game -->
       <div id="display" class="display">
         <!-- control button -->
-        <button onclick="showHideControlScreen(); initFirstSound(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="controlButton" class="controlButton">
+        <button onclick="showHideControlScreen(); initFirstSound(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="controlButton" class="controlButton buttonPulse">
           <img id="controlButtonImg" src="./assets/img/menu.png" alt="" />
         </button>
         <!-- control screen transformControlScreen -->
@@ -49,16 +49,15 @@
           <div class="controlContentContainer">
             <!-- info box -->
             <div data-group="0" id="infoBox" class="infoBox">
-                <div class="textBar">
+              <div class="textBar">
                 In Sharky the Brave, you play as Sharky, a heroic little shark fighting to free the ocean from evil pufferfish, jellyfish, and the deadly final boss, the killer whale.
-                </div>
-                <div class="textBar">
-                Collect coins to restore health and gather poison bottles to shoot powerful toxic bubbles. Use Sharky's tail slap to push enemies away or normal bubbles to attack. 
-                Save the reef!
-                </div>
-                <div class="textBar">
+              </div>
+              <div class="textBar">
+                Collect coins to restore health and gather poison bottles to shoot powerful toxic bubbles. Use Sharky's tail slap to push enemies away or normal bubbles to attack. Save the reef!
+              </div>
+              <div class="textBar">
                 Watch out for electric jellyfish, as they are immune to bubbles and can only be moved using Sharky’s tail slap. Navigate carefully to avoid their shocking traps!
-                </div>
+              </div>
             </div>
             <!-- controls box -->
             <div data-group="1" id="controlsBox" class="controlsBox d_none">
@@ -230,7 +229,12 @@
         <!-- start screen -->
         <div data-group="screens" id="startScreen" class="startScreen d_none">
           <p>SHARKY THE BRAVE</p>
-          <button onclick="startGame(); initFirstSound(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true);" onmouseenter="playSfxSound('hover')" id="startButton" class="startButton">
+          <button
+            onclick="startGame(); initFirstSound(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true);"
+            onmouseenter="playSfxSound('hover')"
+            id="startButton"
+            class="startButton"
+          >
             <img src="./assets/img/6.Botones/Start/2.png" alt="" />
           </button>
         </div>

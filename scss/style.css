@@ -631,4 +631,11 @@ main .display .controlButton img {
 }
 main .display .controlButton img:hover {
   transform: scale(1.05);
+}
+main .display .buttonPulse:hover {
+  background-color: transparent;
+  filter: none;
+}
+main .display .buttonPulse:hover img {
+  transform: none;
 }/*# sourceMappingURL=style.css.map */
