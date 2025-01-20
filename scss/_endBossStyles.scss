@@ -2,8 +2,19 @@
   position: absolute;
   z-index: 3000;
   bottom: 3.5rem;
-  right: 1.25rem;
-  width: 200px;
-  height: 30px;
-  background-color: lightgray;
+  right: 90px;
+  width: 148px;
+  height: 16px;
+  background: rgb(191, 210, 240);
+  background: linear-gradient(0deg, rgba(191, 210, 240, 1) 55%, rgba(255, 255, 255, 1) 100%);
+  border-radius: 100vh;
+  border: 1.5px solid white;
+
+  img {
+    transform: scaleX(-1);
+    height: 100px;
+    position: absolute;
+    right: -70px;
+    bottom: -25px;
+  }
 }
