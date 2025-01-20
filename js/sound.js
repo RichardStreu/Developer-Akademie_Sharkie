@@ -1,4 +1,4 @@
-let firstSoundInit = false;
+export let firstSoundInit = false;
 
 let basicVolume = 0.5;
 
