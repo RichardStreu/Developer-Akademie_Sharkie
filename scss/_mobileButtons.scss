@@ -1,7 +1,7 @@
 .mobileBtnMoveBox {
   position: absolute;
   bottom: 2rem;
-  left: 2rem;
+  left: 1rem;
 
   .moveBoxUpper {
     display: flex;
@@ -38,11 +38,10 @@
 .mobileBtnAttackBox {
   position: absolute;
   bottom: 2rem;
-  right: 2rem;
-  min-height: 50px;
-  min-width: 50px;
-  background-color: magenta;
-
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
 
 .btnBox {
@@ -59,4 +58,8 @@
 .img {
   width: 36px;
   height: 36px;
+  -webkit-user-select: none; /* Deaktiviert die Auswahl des Bildes */
+  -webkit-touch-callout: none; /* Verhindert das Kontextmenü (iOS/Safari) */
+  user-select: none; /* Für andere Browser */
+  touch-action: none; /* Deaktiviert alle Touch-Aktionen */
 }
