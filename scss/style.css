@@ -111,6 +111,11 @@
   -moz-user-select: none;
        user-select: none;
 }
+@media (min-width: 901px) {
+  .mobileBtnMoveBox {
+    display: none;
+  }
+}
 .mobileBtnMoveBox .moveBoxUpper {
   display: flex;
   justify-content: center;
@@ -146,6 +151,11 @@
   touch-action: manipulation;
   -moz-user-select: none;
        user-select: none;
+}
+@media (min-width: 901px) {
+  .mobileBtnAttackBox {
+    display: none;
+  }
 }
 
 .btnBox {
