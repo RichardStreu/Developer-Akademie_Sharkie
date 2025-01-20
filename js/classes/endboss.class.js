@@ -155,6 +155,9 @@ export class EndBoss extends MoveableObject {
   }
 
   bossIntroduce() {
+    setTimeout(() => {
+      document.getElementById("endBossLifeBar").classList.remove("d_none");
+    }, 1000);
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesBossIntroduce, this.img, 150);
   }

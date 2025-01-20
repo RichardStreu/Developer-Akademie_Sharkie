@@ -69,7 +69,7 @@
 
 .endBossLifeBar {
   position: absolute;
-  z-index: 3000;
+  z-index: 800;
   bottom: 2.5rem;
   left: 50%;
   transform: translateX(-35%);

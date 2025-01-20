@@ -175,6 +175,7 @@ export function restartGame(para) {
   setTimeout(() => {
     document.getElementById("winScreen").classList.add("d_none");
     document.getElementById("looseScreen").classList.add("d_none");
+    document.getElementById("endBossLifeBar").classList.add("d_none");
     setTimeout(() => {
       world.sharky.x = 0;
       world.sharky.lifeEnergy = 0;
@@ -209,6 +210,7 @@ export function goToStartScreen(para) {
           }, 500);
       }
     });
+    document.getElementById("endBossLifeBar").classList.add("d_none");
     if (isControlScreenVisible)
       setTimeout(() => {
         showHideControlScreen();
