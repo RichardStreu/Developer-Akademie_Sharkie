@@ -70,12 +70,6 @@ main {
     display: none;
   }
 
-  @media (max-width: 900px) and (orientation: landscape) {
-    width: 100vw;
-    height: 100vh;
-    font-weight: bold;
-  }
-
   h1 {
     position: absolute;
     top: 10%;
@@ -96,7 +90,7 @@ main {
 
     @media (max-width: 900px) and (orientation: landscape) {
       width: 100vw;
-      height: 100vh;
+      height: 100dvh;
       border-radius: 0;
     }
 

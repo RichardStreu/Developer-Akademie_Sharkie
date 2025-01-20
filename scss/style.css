@@ -617,13 +617,6 @@ main {
     display: none;
   }
 }
-@media (max-width: 900px) and (orientation: landscape) {
-  main {
-    width: 100vw;
-    height: 100vh;
-    font-weight: bold;
-  }
-}
 main h1 {
   position: absolute;
   top: 10%;
@@ -644,7 +637,7 @@ main .display {
 @media (max-width: 900px) and (orientation: landscape) {
   main .display {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     border-radius: 0;
   }
 }
