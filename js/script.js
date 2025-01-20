@@ -2,8 +2,6 @@ import { World } from "./classes/world.class.js";
 
 import { Keyboard } from "./classes/keyboard.class.js";
 
-import { firstSoundInit } from "./sound.js";
-
 import { letSharkySleep } from "./classes/sharky.action.movement.js";
 
 import { showSubMenu, toggleFullscreen, isFullscreen } from "./settings.js";
