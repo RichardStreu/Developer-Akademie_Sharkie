@@ -11,7 +11,7 @@ export function letSharkySleep() {
     if (timeOfUnmoved > 5) {
       this.clearIntervalsAnimationMove();
       this.sharkySleepAnimation();
-      playSfxSound('snore', 0, true);
+      playSfxSound("snore", 0, true);
     }
   }, 1000);
 }
@@ -130,5 +130,6 @@ export function sharkyAttackDKey() {
 
 export function doFinSlap() {
   this.isCurrentlyFinSlap = true;
-  this.otherDirection ? this.currentFinSlap = "left" : this.currentFinSlap = "right";
+  this.otherDirection ? (this.currentFinSlap = "left") : (this.currentFinSlap = "right");
 }
+ 

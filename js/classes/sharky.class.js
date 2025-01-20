@@ -90,6 +90,7 @@ export class Sharky extends MoveableObject {
     this.isEnoughCoin = false;
     this.keyDownHandler = this.handleKeyDown.bind(this);
     this.keyUpHandler = this.handleKeyUp.bind(this);
+    this.setSharkyMobildEventListeners();
   }
 
   async loadAllImagesCacheSharky() {
@@ -105,6 +106,15 @@ export class Sharky extends MoveableObject {
     await this.loadImageCache(imagesHurtShock, this.constructor.name);
     await this.loadImageCache(imagesDeadRegular, this.constructor.name);
     await this.loadImageCache(imagesDeadShock, this.constructor.name);
+  }
+
+  setSharkyMobildEventListeners() {
+    document.getElementById("attackBubbleBtn").addEventListener("touchend", () => {
+      this.sharkyAttackSpace();
+    });
+    document.getElementById("attackFinSlapBtn").addEventListener("touchend", () => {
+      this.sharkyAttackDKey();
+    });
   }
 
   setSharkyWindowEventListeners() {
