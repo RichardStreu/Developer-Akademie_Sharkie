@@ -5,10 +5,8 @@ import { stopSwimSound, stopSound } from "../sound.js";
 
 import {
   imagesStand,
-  imagesFallAsleep,
   imagesSleep,
   imagesSwim,
-  imagesAttackBubbleWithout,
   imagesAttackBubbleRegular,
   imagesAttackBubblePoison,
   imagesAttackFinSlap,
@@ -20,10 +18,8 @@ import {
 
 import {
   sharkyStandAnimation,
-  sharkyFallAsleepAnimation,
   sharkySleepAnimation,
   sharkySwimAnimation,
-  sharkyBubbleWithoutAnimation,
   sharkyBubbleRegularAnimation,
   sharkyBubblePoisonAnimation,
   sharkyFinSlapAnimation,
@@ -105,10 +101,8 @@ export class Sharky extends MoveableObject {
 
   async loadAllImagesCacheSharky() {
     await this.loadImageCache(imagesStand, this.constructor.name);
-    await this.loadImageCache(imagesFallAsleep, this.constructor.name);
     await this.loadImageCache(imagesSleep, this.constructor.name);
     await this.loadImageCache(imagesSwim, this.constructor.name);
-    await this.loadImageCache(imagesAttackBubbleWithout, this.constructor.name);
     await this.loadImageCache(imagesAttackBubbleRegular, this.constructor.name);
     await this.loadImageCache(imagesAttackBubblePoison, this.constructor.name);
     await this.loadImageCache(imagesAttackFinSlap, this.constructor.name);
@@ -329,10 +323,8 @@ export class Sharky extends MoveableObject {
 }
 
 Sharky.prototype.sharkyStandAnimation = sharkyStandAnimation;
-Sharky.prototype.sharkyFallAsleepAnimation = sharkyFallAsleepAnimation;
 Sharky.prototype.sharkySleepAnimation = sharkySleepAnimation;
 Sharky.prototype.sharkySwimAnimation = sharkySwimAnimation;
-Sharky.prototype.sharkyBubbleWithoutAnimation = sharkyBubbleWithoutAnimation;
 Sharky.prototype.sharkyBubbleRegularAnimation = sharkyBubbleRegularAnimation;
 Sharky.prototype.sharkyBubblePoisonAnimation = sharkyBubblePoisonAnimation;
 Sharky.prototype.sharkyFinSlapAnimation = sharkyFinSlapAnimation;

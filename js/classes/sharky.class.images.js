@@ -19,23 +19,6 @@ export let imagesStand = [
   "../../assets/img/1.Sharkie/1.IDLE/18.png",
 ];
 
-export let imagesFallAsleep = [
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i1.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i2.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i3.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i4.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i5.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i6.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i7.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i8.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i9.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i10.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i11.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i12.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i13.png",
-  "../../assets/img/1.Sharkie/2.Long_IDLE/i14.png",
-];
-
 export let imagesSleep = [
   "../../assets/img/1.Sharkie/2.Long_IDLE/I11.png",
   "../../assets/img/1.Sharkie/2.Long_IDLE/I12.png",
@@ -50,16 +33,6 @@ export let imagesSwim = [
   "../../assets/img/1.Sharkie/3.Swim/4.png",
   "../../assets/img/1.Sharkie/3.Swim/5.png",
   "../../assets/img/1.Sharkie/3.Swim/6.png",
-];
-
-export let imagesAttackBubbleWithout = [
-  "../../assets/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/1.png",
-  "../../assets/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/2.png",
-  "../../assets/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/3.png",
-  "../../assets/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/4.png",
-  "../../assets/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/5.png",
-  "../../assets/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/6.png",
-  "../../assets/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/7.png",
 ];
 
 export let imagesAttackBubbleRegular = [
