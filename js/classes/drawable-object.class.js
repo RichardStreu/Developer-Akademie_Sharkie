@@ -1,4 +1,4 @@
-import { imgCachesObject, areImgCachesReady, loadedCachsArray, canvasHeight } from "../script.js";
+import { imgCachesObject, areImgCachesReady } from "../script.js";
 
 export class DrawableObject {
   img;

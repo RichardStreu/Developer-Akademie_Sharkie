@@ -43,10 +43,3 @@ export let imagesBossDead = [
   "../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png",
   "../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png",
 ];
-
-export let imagesBossHurt = [
-  "../../assets/img/2.Enemy/3 Final Enemy/Hurt/1.png",
-  "../../assets/img/2.Enemy/3 Final Enemy/Hurt/2.png",
-  "../../assets/img/2.Enemy/3 Final Enemy/Hurt/3.png",
-  "../../assets/img/2.Enemy/3 Final Enemy/Hurt/4.png",
-];

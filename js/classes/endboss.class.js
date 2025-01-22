@@ -1,6 +1,6 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio, youWin } from "../script.js";
-import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
+import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead } from "./endboss.class.images.js";
 import { playSfxSound, stopSound } from "../sound.js";
 
 export class EndBoss extends MoveableObject {
@@ -154,7 +154,6 @@ export class EndBoss extends MoveableObject {
     await this.loadImageCache(imagesBossSwim, this.constructor.name);
     await this.loadImageCache(imagesBossAttack, this.constructor.name);
     await this.loadImageCache(imagesBossDead, this.constructor.name);
-    await this.loadImageCache(imagesBossHurt, this.constructor.name);
   }
 
   doCurrentBossAnimation() {
@@ -162,7 +161,6 @@ export class EndBoss extends MoveableObject {
     if (this.currentAnimation == "swim") this.bossSwim();
     if (this.currentAnimation == "attack") this.bossAttack();
     if (this.currentAnimation == "dead") this.bossDead();
-    if (this.currentAnimation == "hurt") this.bossHurt();
     if (this.currentAnimation == "stop") this.bossStop();
   }
 
@@ -194,11 +192,6 @@ export class EndBoss extends MoveableObject {
   bossDead() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesBossDead, this.img, 150);
-  }
-
-  bossHurt() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesBossHurt, this.img, 180);
   }
 
   bossStop() {
