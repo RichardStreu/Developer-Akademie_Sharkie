@@ -142,15 +142,9 @@ export class EndBoss extends MoveableObject {
         let direction = "left";
         let xRange = 0;
         let interval = setInterval(() => {
-          if (xRange < 360 && direction == "left") {
-            this.x -= 5;
-            xRange += 5;
-          }
+          if (xRange < 360 && direction == "left") this.x -= 5, xRange += 5;
           if (xRange >= 360 && direction == "left") direction = "right";
-          if (xRange > 0 && direction == "right") {
-            this.x += 5;
-            xRange -= 5;
-          }
+          if (xRange > 0 && direction == "right") this.x += 5, xRange -= 5;
           if (xRange <= 0 && direction == "right") {
             direction = "left";
             xRange = 0;
