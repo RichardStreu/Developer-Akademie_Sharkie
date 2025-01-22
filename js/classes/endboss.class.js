@@ -142,9 +142,9 @@ export class EndBoss extends MoveableObject {
         let direction = "left";
         let xRange = 0;
         let interval = setInterval(() => {
-          if (xRange < 360 && direction == "left") this.x -= 5, xRange += 5;
+          if (xRange < 360 && direction == "left") (this.x -= 5), (xRange += 5);
           if (xRange >= 360 && direction == "left") direction = "right";
-          if (xRange > 0 && direction == "right") this.x += 5, xRange -= 5;
+          if (xRange > 0 && direction == "right") (this.x += 5), (xRange -= 5);
           if (xRange <= 0 && direction == "right") {
             direction = "left";
             xRange = 0;
@@ -208,25 +208,32 @@ export class EndBoss extends MoveableObject {
       this.bossIsDead = true;
       this.isEnemyDead = true;
       this.bossDead();
-      setTimeout(() => {
-        this.clearIntervalsAnimationMove();
-        clearInterval(this.bossUpDown);
-        this.loadImage("../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png");
-      }, 600);
-      setTimeout(() => {
-        this.floatToSurface();
-        stopSound("backgroundMetal");
-        playSfxSound("backgroundWin");
-        
-        const floatingInterval = setInterval(() => {
-          if (this.y <= -430) {
-            clearInterval(this.currentMovement);
-            clearInterval(this.currentAnimationIntervall);
-            youWin();
-            clearInterval(floatingInterval);
-          }
-        }, 10);
-      }, 1500);
+      this.endBossDeathAnimation();
+      this.triggerEndBossDefeatSequence();
     }
+  }
+
+  endBossDeathAnimation() {
+    setTimeout(() => {
+      this.clearIntervalsAnimationMove();
+      clearInterval(this.bossUpDown);
+      this.loadImage("../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png");
+    }, 600);
+  }
+
+  triggerEndBossDefeatSequence() {
+    setTimeout(() => {
+      this.floatToSurface();
+      stopSound("backgroundMetal");
+      playSfxSound("backgroundWin");
+      const floatingInterval = setInterval(() => {
+        if (this.y <= -430) {
+          clearInterval(this.currentMovement);
+          clearInterval(this.currentAnimationIntervall);
+          youWin();
+          clearInterval(floatingInterval);
+        }
+      }, 10);
+    }, 1500);
   }
 }
