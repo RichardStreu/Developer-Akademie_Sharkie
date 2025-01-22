@@ -68,8 +68,6 @@ export class PufferFishGreen extends PufferFish {
       this.clearIntervalsAnimationMove();
       this.doImageAnimation(this.imagesBubbleSwim, this.img, 200);
     }
-    if (this.currentAnimation == "stop") {
-      this.clearIntervalsAnimationMove();
-    }
+    if (this.currentAnimation == "stop") this.clearIntervalsAnimationMove();
   }
 }
