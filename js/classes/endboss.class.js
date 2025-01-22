@@ -138,10 +138,7 @@ export class EndBoss extends MoveableObject {
   sprintBossForwards() {
     this.sprintForwardInterval = setInterval(() => {
       if (this.world.sharky.lifeEnergy > 0) {
-        clearInterval(this.moveBossForward);
-        clearInterval(this.currentAnimationIntervall);
-        this.bossAttack();
-        
+        this.sprintBossBossAttackFunctions();
         let direction = "left";
         let xRange = 0;
         let interval = setInterval(() => {
@@ -149,9 +146,7 @@ export class EndBoss extends MoveableObject {
             this.x -= 5;
             xRange += 5;
           }
-          if (xRange >= 360 && direction == "left") {
-            direction = "right";
-          }
+          if (xRange >= 360 && direction == "left") direction = "right";
           if (xRange > 0 && direction == "right") {
             this.x += 5;
             xRange -= 5;
@@ -159,14 +154,24 @@ export class EndBoss extends MoveableObject {
           if (xRange <= 0 && direction == "right") {
             direction = "left";
             xRange = 0;
-            this.clearIntervalsAnimationMove();
-            this.moveBossForBackwards();
-            this.bossSwim();
+            this.sprintBossBossSwimFunctions();
             clearInterval(interval);
           }
         }, 10);
       }
     }, 4000);
+  }
+
+  sprintBossBossAttackFunctions() {
+    clearInterval(this.moveBossForward);
+    clearInterval(this.currentAnimationIntervall);
+    this.bossAttack();
+  }
+
+  sprintBossBossSwimFunctions() {
+    this.clearIntervalsAnimationMove();
+    this.moveBossForBackwards();
+    this.bossSwim();
   }
 
   doCurrentBossAnimation() {
@@ -216,8 +221,9 @@ export class EndBoss extends MoveableObject {
       }, 600);
       setTimeout(() => {
         this.floatToSurface();
-        playSfxSound("backgroundWin");
         stopSound("backgroundMetal");
+        playSfxSound("backgroundWin");
+        
         const floatingInterval = setInterval(() => {
           if (this.y <= -430) {
             clearInterval(this.currentMovement);
