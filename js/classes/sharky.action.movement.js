@@ -5,10 +5,12 @@ import { SharkyBubble } from "./sharky.bubble.class.js";
 import { playSfxSound, playSwimSound } from "../sound.js";
 
 export function letSharkySleep() {
+  console.log("letSharkySleep");
+  
   let timeOfUnmoved = 0;
   this.currentMovement = setInterval(() => {
     timeOfUnmoved++;
-    if (timeOfUnmoved > 5 && !document.getElementById("startScreen").classList.contains("d_none") && !document.getElementById("winScreen").classList.contains("d_none") && !document.getElementById("looseScreen").classList.contains("d_none")) {
+    if (timeOfUnmoved > 5 && document.getElementById("startScreen").classList.contains("d_none") && document.getElementById("winScreen").classList.contains("d_none") && document.getElementById("looseScreen").classList.contains("d_none")) {
       this.clearIntervalsAnimationMove();
       this.sharkySleepAnimation();
       playSfxSound("snore", 0, true);
