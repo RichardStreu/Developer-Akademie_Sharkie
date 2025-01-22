@@ -5,8 +5,6 @@ import { SharkyBubble } from "./sharky.bubble.class.js";
 import { playSfxSound, playSwimSound } from "../sound.js";
 
 export function letSharkySleep() {
-  console.log("letSharkySleep");
-  
   let timeOfUnmoved = 0;
   this.currentMovement = setInterval(() => {
     timeOfUnmoved++;
