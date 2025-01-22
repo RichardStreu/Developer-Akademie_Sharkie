@@ -492,8 +492,8 @@
 .controlScreen .imprintBtnBox {
   position: absolute;
   z-index: 10000;
-  left: -1rem;
-  bottom: 3rem;
+  left: -2rem;
+  bottom: 4rem;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -511,7 +511,7 @@
   filter: drop-shadow(0 0 3px rgb(255, 255, 255));
 }
 .controlScreen .imprintBtnBox p {
-  font-size: 0.75rem;
+  font-size: 1.25rem;
 }
 .controlScreen .imprintBtnBox img {
   width: 1.13rem;
