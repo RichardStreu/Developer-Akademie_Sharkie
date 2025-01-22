@@ -18,18 +18,16 @@ import { Coin } from "./coin.class.js";
 import { Poison } from "./poison.class.js";
 
 export class Level1 {
-
   constructor() {
-
     this.landscape = [
       new Water(),
-      new Water(canvasWidth * 2, 0),
+      new Water(canvasWidth * 2 - 1, 0),
       new Fondo1(0),
       new Fondo2(0),
-      new Fondo1(canvasWidth * 2, 0),
-      new Fondo2(canvasWidth * 2, 0),
+      new Fondo1(canvasWidth * 2 - 1, 0),
+      new Fondo2(canvasWidth * 2 - 1, 0),
       new Floor(),
-      new Floor(canvasWidth * 2, 0),
+      new Floor(canvasWidth * 2 - 1, 0),
       new Light(),
     ];
 

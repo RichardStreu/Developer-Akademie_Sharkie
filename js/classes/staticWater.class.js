@@ -7,6 +7,8 @@ export class Water extends MoveableObject {
     this.x = x;
     this.y = y;
     this.width = canvasWidth * 2;
+    console.log("Water width: " + this.width);
+    
     this.height = canvasHeight;
   }
 }
