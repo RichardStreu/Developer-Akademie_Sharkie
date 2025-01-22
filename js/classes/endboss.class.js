@@ -121,11 +121,11 @@ export class EndBoss extends MoveableObject {
         let direction = "left";
         let xRange = 0;
         let interval = setInterval(() => {
-          if (xRange < 300 && direction == "left") {
+          if (xRange < 360 && direction == "left") {
             this.x -= 5;
             xRange += 5;
           }
-          if (xRange >= 300 && direction == "left") {
+          if (xRange >= 360 && direction == "left") {
             direction = "right";
           }
           if (xRange > 0 && direction == "right") {
@@ -146,7 +146,7 @@ export class EndBoss extends MoveableObject {
   }
 
   getRandomCooldown() {
-    return Math.floor(Math.random() * 4500) + 4500;
+    return Math.floor(Math.random() * 4000) + 4000;
   }
 
   async loadAllImagesEndboss() {
