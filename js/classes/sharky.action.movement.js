@@ -24,10 +24,10 @@ export function letSharkySleep() {
 export function moveSharkyLeft() {
   if (!this.world.keyboard.LEFT) {
     playSwimSound();
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.LEFT = true;
     this.otherDirection = true;
-    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.sharkySwimAnimation();
     this.isSwimLeft = setInterval(() => {
       if (this.x > -30 && this.lifeEnergy > 0) {
         this.x -= 4;
@@ -45,10 +45,10 @@ export function moveSharkyLeft() {
 export function moveSharkyRight() {
   if (!this.world.keyboard.RIGHT) {
     playSwimSound();
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.RIGHT = true;
     this.otherDirection = false;
-    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.sharkySwimAnimation();
     this.isSwimRight = setInterval(() => {
       if (this.x < canvasWidth * 4 - this.width && this.lifeEnergy > 0) {
         this.x += 4;
@@ -62,9 +62,9 @@ export function moveSharkyRight() {
 export function moveSharkyUp() {
   if (!this.world.keyboard.UP) {
     playSwimSound();
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.UP = true;
-    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.sharkySwimAnimation();
     this.isSwimUp = setInterval(() => {
       if (this.y > -95 && this.lifeEnergy > 0) this.y -= 4;
     }, 10);
@@ -74,9 +74,9 @@ export function moveSharkyUp() {
 export function moveSharkyDown() {
   if (!this.world.keyboard.DOWN) {
     playSwimSound();
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.DOWN = true;
-    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.sharkySwimAnimation();
     this.isSwimDown = setInterval(() => {
       if (this.y < canvasHeight - 220 && this.lifeEnergy > 0) {
         this.y += 4;
@@ -87,9 +87,11 @@ export function moveSharkyDown() {
 
 export function sharkyAttackSpace() {
   if (this.isCurrentlyBubbleAttack) return;
-  this.clearIntervalsAnimationMove();
-  stopSound("snore");
   this.isCurrentlyBubbleAttack = true;
+  this.clearIntervalsAnimationMove();
+
+  stopSound("snore");
+
   if (!this.isEnoughPoison) this.sharkyBubbleRegularAnimation();
   if (this.isEnoughPoison) this.sharkyBubblePoisonAnimation();
   setTimeout(() => {
