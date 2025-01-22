@@ -107,28 +107,21 @@ export function shootBubble() {
 }
 
 export function sharkyAttackDKey() {
-  if (this.isCurrentlyFinSlap) return;
-  if (!this.isCurrentlyHurtAnimation) {
-    this.isCurrentlyFinSlap = true;
+  if (this.isCurrentlyFinSlap || this.isCurrentlyHurtAnimation) return;
+  this.clearIntervalsAnimationMove();
+  stopSound("snore");
+  this.doFinSlap();
+  this.isCurrentlyFinSlap = true;
+  setTimeout(() => {
     this.clearIntervalsAnimationMove();
-    stopSound("snore");
-    this.doFinSlap();
-    this.sharkyFinSlapAnimation();
-    playSfxSound("slap1", 300);
-    this.isCurrentlyAttackAnimation = true;
-    setTimeout(() => {
-      this.isCurrentlyFinSlap = false;
-      this.currentFinSlap = "none";
-      this.isCurrentlyAttackAnimation = false;
-
-      this.clearIntervalsAnimationMove();
-      this.sharkyStandAnimation();
-      this.isCurrentlyFinSlap = false;
-    }, 600);
-  }
+    this.currentFinSlap = "none";
+    this.isCurrentlyFinSlap = false;
+    this.sharkyStandAnimation();
+  }, 600);
 }
 
 export function doFinSlap() {
-  this.isCurrentlyFinSlap = true;
   this.otherDirection ? (this.currentFinSlap = "left") : (this.currentFinSlap = "right");
+  this.sharkyFinSlapAnimation();
+  playSfxSound("slap1", 300);
 }

@@ -248,9 +248,11 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimLeft);
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
-      this.clearIntervalsAnimationMove();
-      this.letSharkySleep();
-      this.sharkyStandAnimation();
+      if (!this.isCurrentlyFinSlap) {
+        this.clearIntervalsAnimationMove();
+        this.letSharkySleep();
+        this.sharkyStandAnimation();
+      }
     }
   }
 
@@ -260,9 +262,11 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimRight);
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
-      this.clearIntervalsAnimationMove();
-      this.letSharkySleep();
-      this.sharkyStandAnimation();
+      if (!this.isCurrentlyFinSlap) {
+        this.clearIntervalsAnimationMove();
+        this.letSharkySleep();
+        this.sharkyStandAnimation();
+      }
     }
   }
 
@@ -272,9 +276,11 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimUp);
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
-      this.clearIntervalsAnimationMove();
-      this.letSharkySleep();
-      this.sharkyStandAnimation();
+      if (!this.isCurrentlyFinSlap) {
+        this.clearIntervalsAnimationMove();
+        this.letSharkySleep();
+        this.sharkyStandAnimation();
+      }
     }
   }
 
@@ -284,9 +290,11 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimDown);
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
-      this.clearIntervalsAnimationMove();
-      this.letSharkySleep();
-      this.sharkyStandAnimation();
+      if (!this.isCurrentlyFinSlap) {
+        this.clearIntervalsAnimationMove();
+        this.letSharkySleep();
+        this.sharkyStandAnimation();
+      }
     }
   }
 
