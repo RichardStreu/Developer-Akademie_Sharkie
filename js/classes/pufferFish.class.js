@@ -1,5 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { enemyStartX, enemyStartDistX, enemyStartY, enemyEndY, areImgCachesReady, loadedCachsArray } from "../script.js";
+import { enemyStartX, enemyStartDistX, enemyStartY, enemyEndY } from "../script.js";
 
 export class PufferFish extends MoveableObject {
   minX;
@@ -71,7 +71,6 @@ export class PufferFish extends MoveableObject {
   enemyIsDead() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
-
     this.img = this.imageCache[this.imagesDie[2]];
     this.isEnemyDead = true;
     this.floatToSurface();
