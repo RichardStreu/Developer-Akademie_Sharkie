@@ -44,7 +44,6 @@ export let areImgCachesReady = false;
 
 export let loadedCachsArray = [];
 
-
 let isControlScreenVisible = false;
 
 export function showHideControlScreen() {
@@ -73,6 +72,7 @@ function removeButtonPulse() {
 }
 
 let isImprintVisible = false;
+
 let isImprintSliding = false;
 
 export function showHideImprint() {
@@ -132,19 +132,12 @@ export function clearGlobalGame() {
 }
 
 export function checkImgChachStatus() {
-  if (!areImgCachesReady) {
-    if (imgCachesObject) {
-      let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
-      if (imagesReady) {
-        areImgCachesReady = true;
-        document.getElementById("startScreen").classList.remove("d_none");
-        document.getElementById("loadingScreen").classList.add("d_none");
-      }
-    } else {
-      throw new Error("Images cant be loaded");
-    }
-  }
 }
+
+window.addEventListener("load", () => {
+  document.getElementById("startScreen").classList.remove("d_none");
+  document.getElementById("loadingScreen").classList.add("d_none");
+});
 
 export function switchScreens() {
   document.getElementById("blackScreen").classList.remove("d_none");
