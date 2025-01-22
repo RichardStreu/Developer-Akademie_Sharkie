@@ -34,6 +34,13 @@ export class EndBoss extends MoveableObject {
     this.countSeconds();
   }
 
+  async loadAllImagesEndboss() {
+    await this.loadImageCache(imagesBossIntroduce, this.constructor.name);
+    await this.loadImageCache(imagesBossSwim, this.constructor.name);
+    await this.loadImageCache(imagesBossAttack, this.constructor.name);
+    await this.loadImageCache(imagesBossDead, this.constructor.name);
+  }
+
   clearAllEndBossIntervals() {
     clearInterval(this.bossUpDown);
     clearInterval(this.moveBossForward);
@@ -134,6 +141,7 @@ export class EndBoss extends MoveableObject {
         clearInterval(this.moveBossForward);
         clearInterval(this.currentAnimationIntervall);
         this.bossAttack();
+        
         let direction = "left";
         let xRange = 0;
         let interval = setInterval(() => {
@@ -159,13 +167,6 @@ export class EndBoss extends MoveableObject {
         }, 10);
       }
     }, 4000);
-  }
-
-  async loadAllImagesEndboss() {
-    await this.loadImageCache(imagesBossIntroduce, this.constructor.name);
-    await this.loadImageCache(imagesBossSwim, this.constructor.name);
-    await this.loadImageCache(imagesBossAttack, this.constructor.name);
-    await this.loadImageCache(imagesBossDead, this.constructor.name);
   }
 
   doCurrentBossAnimation() {
