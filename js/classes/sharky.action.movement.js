@@ -94,6 +94,7 @@ export function sharkyAttackSpace() {
         if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
         this.world.keyboard.SPACE = false;
         this.shootBubble();
+        stopSound("snore");
         playSfxSound("blub");
         this.clearIntervalsAnimationMove();
         this.sharkyStandAnimation();
@@ -113,6 +114,7 @@ export function sharkyAttackDKey() {
     if (!this.isCurrentlyHurtAnimation) {
       this.isCurrentlyFinSlap = true;
       this.clearIntervalsAnimationMove();
+      stopSound("snore");
       this.doFinSlap();
       this.sharkyFinSlapAnimation();
       playSfxSound("slap1", 300);

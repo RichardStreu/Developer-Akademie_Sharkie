@@ -246,6 +246,7 @@ export class Sharky extends MoveableObject {
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimLeft);
     if (this.areMobileButtonsAvailable) {
+      stopSound("snore");
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
       this.sharkyStandAnimation();
@@ -257,6 +258,7 @@ export class Sharky extends MoveableObject {
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimRight);
     if (this.areMobileButtonsAvailable) {
+      stopSound("snore");
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
       this.sharkyStandAnimation();
@@ -268,6 +270,7 @@ export class Sharky extends MoveableObject {
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimUp);
     if (this.areMobileButtonsAvailable) {
+      stopSound("snore");
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
       this.sharkyStandAnimation();
@@ -279,6 +282,7 @@ export class Sharky extends MoveableObject {
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimDown);
     if (this.areMobileButtonsAvailable) {
+      stopSound("snore");
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
       this.sharkyStandAnimation();
