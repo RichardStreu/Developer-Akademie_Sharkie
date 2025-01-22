@@ -184,7 +184,12 @@ export class Sharky extends MoveableObject {
   }
 
   handleKeyDown(event) {
-    if (this.lifeEnergy > 0 && !this.isCurrentlyAttackAnimation) {
+    if (
+      this.lifeEnergy > 0 &&
+      !this.isCurrentlyAttackAnimation &&
+      document.getElementById("winScreen").classList.contains("d_none") &&
+      document.getElementById("looseScreen").classList.contains("d_none")
+    ) {
       if (event.key == "ArrowLeft") this.moveSharkyLeft();
       if (event.key == "ArrowRight") this.moveSharkyRight();
       if (event.key == "ArrowUp") this.moveSharkyUp();
