@@ -118,8 +118,6 @@ export class Sharky extends MoveableObject {
   }
 
   setSharkyMobileEventListeners() {
-    console.log("setSharkyMobileEventListeners");
-    
     document.getElementById("attackBubbleBtn").addEventListener("touchend", this.attackBubbleHandler);
     document.getElementById("attackFinSlapBtn").addEventListener("touchend", this.attackFinSlapHandler);
     document.getElementById("moveRightBtn").addEventListener("touchstart", this.moveRightStartHandler);
@@ -133,7 +131,6 @@ export class Sharky extends MoveableObject {
   }
 
   removeSharkyMobileListeners() {
-    console.log("removeSharkyMobileListeners");
     document.getElementById("attackBubbleBtn").removeEventListener("touchend", this.attackBubbleHandler);
     document.getElementById("attackFinSlapBtn").removeEventListener("touchend", this.attackFinSlapHandler);
     document.getElementById("moveRightBtn").removeEventListener("touchstart", this.moveRightStartHandler);
@@ -237,32 +234,65 @@ export class Sharky extends MoveableObject {
     }
   }
 
+  areMobileButtonsAvailable() {
+    let buttons = document.getElementById("mobileBtnMoveBox");
+    let buttonsAvaiable;
+    window.getComputedStyle(buttons).display === "none" ? (buttonsAvaiable = false) : (buttonsAvaiable = true);
+    return buttonsAvaiable;
+  }
+
   keyArrowLeftUp() {
     this.world.keyboard.LEFT = false;
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimLeft);
+    if (this.areMobileButtonsAvailable) {
+      this.clearIntervalsAnimationMove();
+      this.letSharkySleep();
+      this.sharkyStandAnimation();
+    }
   }
+
   keyArrowRightUp() {
     this.world.keyboard.RIGHT = false;
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimRight);
+    if (this.areMobileButtonsAvailable) {
+      this.clearIntervalsAnimationMove();
+      this.letSharkySleep();
+      this.sharkyStandAnimation();
+    }
   }
+
   keyArrowUpUp() {
     this.world.keyboard.UP = false;
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimUp);
+    if (this.areMobileButtonsAvailable) {
+      this.clearIntervalsAnimationMove();
+      this.letSharkySleep();
+      this.sharkyStandAnimation();
+    }
   }
+
   keyArrowDownUp() {
     this.world.keyboard.DOWN = false;
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimDown);
+    if (this.areMobileButtonsAvailable) {
+      this.clearIntervalsAnimationMove();
+      this.letSharkySleep();
+      this.sharkyStandAnimation();
+    }
   }
+
   keySpaceUp() {
     this.world.keyboard.SPACE = false;
   }
+
   keyDUp() {
     this.world.keyboard.DKey = false;
   }
+
   allKeysUp() {
     if (this.isCurrentlyAttackAnimation) {
       setTimeout(() => {
