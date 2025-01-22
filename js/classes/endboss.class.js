@@ -16,7 +16,6 @@ export class EndBoss extends MoveableObject {
   bossIsVisible = false;
   bossIsDead = false;
   moveBossForward;
-  sprintForwardTime = this.getRandomCooldown();
   sprintForwardInterval;
   currentPlaytime = 0;
   sharkyX;
@@ -54,7 +53,7 @@ export class EndBoss extends MoveableObject {
       if (this.world.enemies[17].lifeEnergy > 0) {
         document.getElementById("innerLifeBar").style.width = `${this.world.enemies[17].lifeEnergy}%`;
       }
-      if ((this.world.enemies[17].isEnemyDead)) {
+      if (this.world.enemies[17].isEnemyDead) {
         document.getElementById("innerLifeBar").style.width = `0%`;
         clearInterval(this.endBossLifeBarInterval);
       }
@@ -142,11 +141,9 @@ export class EndBoss extends MoveableObject {
           }
         }, 10);
       }
-    }, 4500);
-  }
-
-  getRandomCooldown() {
-    return Math.floor(Math.random() * 4000) + 4000;
+      clearInterval(this.sprintForwardInterval);
+      this.sprintBossForwards();
+    }, 4000);
   }
 
   async loadAllImagesEndboss() {
