@@ -74,22 +74,39 @@ export class EndBoss extends MoveableObject {
     }, 100);
   }
 
+  bossIntroduce() {
+    this.clearIntervalsAnimationMove();
+    this.doImageAnimation(imagesBossIntroduce, this.img, 150);
+    setTimeout(() => {
+      document.getElementById("endBossLifeBar").classList.remove("d_none");
+      this.setLifeBarInterval();
+    }, 1000);
+  }
+
+  playBossIntroduceSounds() {
+    playSfxSound("bossSplash");
+    stopSound("backgroundRetroArcade");
+    playSfxSound("backgroundMetal");
+  }
+
+  setBossMovementIntervals() {
+    this.moveBossUpDown();
+    this.moveBossForBackwards();
+    this.sprintBossForwards();
+  }
+
   doBossIntroduce() {
     this.bossIsVisible = true;
     this.y = -50;
     this.bossIntroduce();
+    this.setBossMovementIntervals();
     setTimeout(() => {
-      playSfxSound("bossSplash");
-      stopSound("backgroundRetroArcade");
-      playSfxSound("backgroundMetal");
+      this.playBossIntroduceSounds();
     }, 500);
     setTimeout(() => {
       this.clearIntervalsAnimationMove();
       this.bossSwim();
     }, 1500);
-    this.moveBossUpDown();
-    this.moveBossForBackwards();
-    this.sprintBossForwards();
   }
 
   moveBossUpDown() {
@@ -141,8 +158,6 @@ export class EndBoss extends MoveableObject {
           }
         }, 10);
       }
-      clearInterval(this.sprintForwardInterval);
-      this.sprintBossForwards();
     }, 4000);
   }
 
@@ -164,15 +179,6 @@ export class EndBoss extends MoveableObject {
   clearIntervalsAnimationMove() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
-  }
-
-  bossIntroduce() {
-    setTimeout(() => {
-      document.getElementById("endBossLifeBar").classList.remove("d_none");
-      this.setLifeBarInterval();
-    }, 1000);
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesBossIntroduce, this.img, 150);
   }
 
   bossSwim() {
