@@ -240,7 +240,7 @@ export class Sharky extends MoveableObject {
     this.world.keyboard.LEFT = false;
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimLeft);
-    if (this.areMobileButtonsAvailable) {
+    if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
@@ -252,7 +252,7 @@ export class Sharky extends MoveableObject {
     this.world.keyboard.RIGHT = false;
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimRight);
-    if (this.areMobileButtonsAvailable) {
+    if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
@@ -264,7 +264,7 @@ export class Sharky extends MoveableObject {
     this.world.keyboard.UP = false;
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimUp);
-    if (this.areMobileButtonsAvailable) {
+    if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
@@ -276,7 +276,7 @@ export class Sharky extends MoveableObject {
     this.world.keyboard.DOWN = false;
     this.checkSwimmingForStopSound();
     clearInterval(this.isSwimDown);
-    if (this.areMobileButtonsAvailable) {
+    if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
