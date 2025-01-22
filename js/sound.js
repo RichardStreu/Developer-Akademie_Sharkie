@@ -160,7 +160,7 @@ export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
 }
 
 export function playSwimSound() {
-  stopSwimSound("snore");
+  stopSwimSound("snore");  
   if (!isCurrentSwimSoundPlaying) {
     currentSwimSound = sounds.swim.audio;
     currentSwimSound.volume = sounds.swim.volume * sfxVolume * basicVolume;
