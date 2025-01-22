@@ -89,9 +89,7 @@ export function sharkyAttackSpace() {
   if (this.isCurrentlyBubbleAttack) return;
   this.isCurrentlyBubbleAttack = true;
   this.clearIntervalsAnimationMove();
-
   stopSound("snore");
-
   if (!this.isEnoughPoison) this.sharkyBubbleRegularAnimation();
   if (this.isEnoughPoison) this.sharkyBubblePoisonAnimation();
   setTimeout(() => {
