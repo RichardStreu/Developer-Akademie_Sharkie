@@ -62,6 +62,7 @@ export class Sharky extends MoveableObject {
   isCurrentlyHurtAnimation = false;
   isCurrentlyAttackAnimation = false;
   isCurrentlyFinSlap = false;
+  isCurrentlyBubbleAttack = false;
 
   currentFinSlap = "none";
   world;
@@ -306,7 +307,7 @@ export class Sharky extends MoveableObject {
         this.sharkyStandAnimation();
       }, 600);
     }
-    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyAttackAnimation) {
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyAttackAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) {
       this.clearIntervalsAnimationMove();
       this.letSharkySleep();
       this.sharkyStandAnimation();

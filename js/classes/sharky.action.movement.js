@@ -8,7 +8,12 @@ export function letSharkySleep() {
   let timeOfUnmoved = 0;
   this.currentMovement = setInterval(() => {
     timeOfUnmoved++;
-    if (timeOfUnmoved > 5 && document.getElementById("startScreen").classList.contains("d_none") && document.getElementById("winScreen").classList.contains("d_none") && document.getElementById("looseScreen").classList.contains("d_none")) {
+    if (
+      timeOfUnmoved > 5 &&
+      document.getElementById("startScreen").classList.contains("d_none") &&
+      document.getElementById("winScreen").classList.contains("d_none") &&
+      document.getElementById("looseScreen").classList.contains("d_none")
+    ) {
       this.clearIntervalsAnimationMove();
       this.sharkySleepAnimation();
       playSfxSound("snore", 0, true);
@@ -81,24 +86,19 @@ export function moveSharkyDown() {
 }
 
 export function sharkyAttackSpace() {
-  if (!this.world.keyboard.SPACE) {
-    this.world.keyboard.SPACE = true;
-    if (!this.isCurrentlyHurtAnimation) {
-      this.clearIntervalsAnimationMove();
-      if (!this.isEnoughPoison) this.sharkyBubbleRegularAnimation();
-      if (this.isEnoughPoison) this.sharkyBubblePoisonAnimation();
-      this.isCurrentlyAttackAnimation = true;
-      setTimeout(() => {
-        if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
-        this.world.keyboard.SPACE = false;
-        this.shootBubble();
-        stopSound("snore");
-        playSfxSound("blub");
-        this.clearIntervalsAnimationMove();
-        this.sharkyStandAnimation();
-      }, 600);
-    }
-  }
+  if (this.isCurrentlyBubbleAttack) return;
+  this.clearIntervalsAnimationMove();
+  stopSound("snore");
+  this.isCurrentlyBubbleAttack = true;
+  if (!this.isEnoughPoison) this.sharkyBubbleRegularAnimation();
+  if (this.isEnoughPoison) this.sharkyBubblePoisonAnimation();
+  setTimeout(() => {
+    this.shootBubble();
+    playSfxSound("blub");
+    this.clearIntervalsAnimationMove();
+    this.isCurrentlyBubbleAttack = false;
+    this.sharkyStandAnimation();
+  }, 600);
 }
 
 export function shootBubble() {
@@ -134,4 +134,3 @@ export function doFinSlap() {
   this.isCurrentlyFinSlap = true;
   this.otherDirection ? (this.currentFinSlap = "left") : (this.currentFinSlap = "right");
 }
- 
