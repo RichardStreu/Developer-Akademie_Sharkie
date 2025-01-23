@@ -129,8 +129,10 @@ export class EndBoss extends MoveableObject {
 
   moveBossForBackwards() {
     this.moveBossForward = setInterval(() => {
-      if (this.world.sharky.x <= 2300 && this.lifeEnergy > 0) {
+      if (this.world.sharky.x <= 2800 && this.lifeEnergy > 0) {
         this.x = this.world.sharky.x + 300;
+      } else {
+        this.x = 3100;
       }
     }, 10);
   }
@@ -140,16 +142,23 @@ export class EndBoss extends MoveableObject {
       if (this.world.sharky.lifeEnergy > 0) {
         this.sprintBossBossAttackFunctions();
         let direction = "left";
-        let xRoot = this.world.sharky.x + 300;
+        let rootDistance = 300;
+        if (this.world.sharky.x > 2800) rootDistance = 0;
         let xRange = 0;
         let interval = setInterval(() => {
-          if (xRange < 360 && direction == "left") (this.x = xRoot - xRange), (xRange += 5);
+          if (xRange < 360 && direction == "left") {
+            this.x = this.world.sharky.x + (300 - xRange);
+            setTimeout(() => (xRange += 5), 5);
+          }
           if (xRange >= 360 && direction == "left") direction = "right";
-          if (xRange > 0 && direction == "right") (this.x = xRoot - xRange), (xRange -= 5);
+          if (xRange > 0 && direction == "right") {
+            this.x = this.world.sharky.x + (300 - xRange);
+            setTimeout(() => (xRange -= 5), 5);
+          }
           if (xRange <= 0 && direction == "right") {
             direction = "left";
             xRange = 0;
-            this.x = xRoot;
+            this.x = this.world.sharky.x + 300;
             this.sprintBossBossSwimFunctions();
             clearInterval(interval);
           }
@@ -159,17 +168,14 @@ export class EndBoss extends MoveableObject {
   }
 
   sprintBossBossAttackFunctions() {
-    // clearInterval(this.bossUpDown);
     clearInterval(this.moveBossForward);
     clearInterval(this.currentAnimationIntervall);
     this.bossAttack();
   }
 
   sprintBossBossSwimFunctions() {
-    // this.clearIntervalsAnimationMove();
-    this.moveBossForBackwards();
-    // this.moveBossUpDown();
     this.bossSwim();
+    this.moveBossForBackwards();
   }
 
   clearIntervalsAnimationMove() {
