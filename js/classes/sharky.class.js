@@ -42,6 +42,7 @@ import {
   regularDead,
   electricDead,
   handleHurtAnimation,
+  resetHurtAnimation,
 } from "./sharky.action.hurt.js";
 
 export let sharkyXPosition = 0;
@@ -355,6 +356,7 @@ Sharky.prototype.shootBubble = shootBubble;
 Sharky.prototype.sharkyAttackDKey = sharkyAttackDKey;
 Sharky.prototype.doFinSlap = doFinSlap;
 Sharky.prototype.handleHurtAnimation = handleHurtAnimation;
+Sharky.prototype.resetHurtAnimation = resetHurtAnimation;
 
 Sharky.prototype.getPoison = getPoison;
 Sharky.prototype.getCoins = getCoins;
