@@ -168,14 +168,6 @@ export class EndBoss extends MoveableObject {
     this.bossSwim();
   }
 
-  doCurrentBossAnimation() {
-    if (this.currentAnimation == "introduce") this.bossIntroduce();
-    if (this.currentAnimation == "swim") this.bossSwim();
-    if (this.currentAnimation == "attack") this.bossAttack();
-    if (this.currentAnimation == "dead") this.bossDead();
-    if (this.currentAnimation == "stop") this.bossStop();
-  }
-
   clearIntervalsAnimationMove() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
@@ -195,10 +187,6 @@ export class EndBoss extends MoveableObject {
   bossDead() {
     this.clearIntervalsAnimationMove();
     this.doImageAnimation(imagesBossDead, this.img, 150);
-  }
-
-  bossStop() {
-    this.clearIntervalsAnimationMove();
   }
 
   enemyIsDead() {
