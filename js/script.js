@@ -60,27 +60,34 @@ function removeButtonPulse() {
 }
 
 let isImprintVisible = false;
-
 let isImprintSliding = false;
+
+function showImprint() {
+  isImprintSliding = true;
+  document.getElementById("imprint").classList.remove("d_none");
+  setTimeout(() => {
+    document.getElementById("imprint").classList.add("transformImprint");
+    document.getElementById("arrowUp").classList.remove("opacity_zero");
+    document.getElementById("arrowDown").classList.add("opacity_zero");
+  }, 10);
+}
+
+function hideImprint() {
+  isImprintSliding = true;
+  document.getElementById("imprint").classList.remove("transformImprint");
+  document.getElementById("arrowUp").classList.add("opacity_zero");
+  document.getElementById("arrowDown").classList.remove("opacity_zero");
+  setTimeout(() => {
+    document.getElementById("imprint").classList.add("d_none");
+  }, 610);
+}
 
 export function showHideImprint() {
   if (isImprintSliding) return;
   if (!isImprintVisible && !isImprintSliding) {
-    isImprintSliding = true;
-    document.getElementById("imprint").classList.remove("d_none");
-    setTimeout(() => {
-      document.getElementById("imprint").classList.add("transformImprint");
-      document.getElementById("arrowUp").classList.remove("opacity_zero");
-      document.getElementById("arrowDown").classList.add("opacity_zero");
-    }, 10);
+    showImprint();
   } else if (!isImprintSliding) {
-    isImprintSliding = true;
-    document.getElementById("imprint").classList.remove("transformImprint");
-    document.getElementById("arrowUp").classList.add("opacity_zero");
-    document.getElementById("arrowDown").classList.remove("opacity_zero");
-    setTimeout(() => {
-      document.getElementById("imprint").classList.add("d_none");
-    }, 610);
+    hideImprint();
   }
   isImprintVisible = !isImprintVisible;
   setTimeout(() => {
