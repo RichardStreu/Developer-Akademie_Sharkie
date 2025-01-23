@@ -74,7 +74,7 @@ export class Sharky extends MoveableObject {
   constructor() {
     super().loadImage("../../assets/img/1.Sharkie/1.IDLE/1.png");
     this.x = 0;
-    this.y = 200;
+    this.y = 30;
     this.width = 180 * moveObjRatio;
     this.height = 221 * moveObjRatio;
     sharkyWidth = this.width;
