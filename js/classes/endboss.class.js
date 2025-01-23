@@ -147,13 +147,13 @@ export class EndBoss extends MoveableObject {
         let xRange = 0;
         let interval = setInterval(() => {
           if (xRange < 360 && direction == "left") {
-            this.x = this.world.sharky.x + (300 - xRange);
-            setTimeout(() => (xRange += 5), 5);
+            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : this.x = 3100 - xRange;
+            setTimeout(() => (xRange += 5), 2);
           }
           if (xRange >= 360 && direction == "left") direction = "right";
           if (xRange > 0 && direction == "right") {
-            this.x = this.world.sharky.x + (300 - xRange);
-            setTimeout(() => (xRange -= 5), 5);
+            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : this.x = 3100 - xRange;
+            setTimeout(() => (xRange -= 5), 2);
           }
           if (xRange <= 0 && direction == "right") {
             direction = "left";
