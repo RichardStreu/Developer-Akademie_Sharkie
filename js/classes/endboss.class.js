@@ -77,7 +77,7 @@ export class EndBoss extends MoveableObject {
     this.currentSharkyPositionInterval = setInterval(() => {
       this.sharkyX = this.world.sharky.x;
       this.sharkyY = this.world.sharky.y;
-      if (this.sharkyX >= 2300 && !this.bossIsVisible) this.doBossIntroduce();
+      if (this.sharkyX >= 2300 && !this.bossIsVisible) this.doBossIntroduce(), clearInterval(this.currentSharkyPositionInterval);
     }, 100);
   }
 
@@ -140,14 +140,16 @@ export class EndBoss extends MoveableObject {
       if (this.world.sharky.lifeEnergy > 0) {
         this.sprintBossBossAttackFunctions();
         let direction = "left";
+        let xRoot = this.world.sharky.x + 300;
         let xRange = 0;
         let interval = setInterval(() => {
-          if (xRange < 360 && direction == "left") (this.x -= 5), (xRange += 5);
+          if (xRange < 360 && direction == "left") (this.x = xRoot - xRange), (xRange += 5);
           if (xRange >= 360 && direction == "left") direction = "right";
-          if (xRange > 0 && direction == "right") (this.x += 5), (xRange -= 5);
+          if (xRange > 0 && direction == "right") (this.x = xRoot - xRange), (xRange -= 5);
           if (xRange <= 0 && direction == "right") {
             direction = "left";
             xRange = 0;
+            this.x = xRoot;
             this.sprintBossBossSwimFunctions();
             clearInterval(interval);
           }
@@ -157,14 +159,16 @@ export class EndBoss extends MoveableObject {
   }
 
   sprintBossBossAttackFunctions() {
+    // clearInterval(this.bossUpDown);
     clearInterval(this.moveBossForward);
     clearInterval(this.currentAnimationIntervall);
     this.bossAttack();
   }
 
   sprintBossBossSwimFunctions() {
-    this.clearIntervalsAnimationMove();
+    // this.clearIntervalsAnimationMove();
     this.moveBossForBackwards();
+    // this.moveBossUpDown();
     this.bossSwim();
   }
 
