@@ -183,7 +183,10 @@ export function restartGame(para) {
     setTimeout(() => {
       world.sharky.x = 0;
       world.sharky.lifeEnergy = 0;
-      setTimeout(() => (init(), startGameActions()), 10);
+      setTimeout(() => {
+        init();
+        startGameActions();
+      }, 10);
     }, 50);
   }, 500);
 }
@@ -202,6 +205,7 @@ export function goToStartScreen(para) {
             screen.classList.add("d_none");
           }, 500);
       } else {
+        // debugger;
         if (para == "homeBtn") screen.classList.remove("d_none");
         if (para == "winLose")
           setTimeout(() => {
