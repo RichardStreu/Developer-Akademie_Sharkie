@@ -38,8 +38,6 @@ import {
   hurtedByJellyFishRD,
   hurtedByJellyFishSD,
   hurtedByEndBoss,
-  regularHurt,
-  electricHurt,
   isSharkyDead,
   regularDead,
   electricDead,
@@ -363,8 +361,6 @@ Sharky.prototype.hurtedByPufferFish = hurtedByPufferFish;
 Sharky.prototype.hurtedByJellyFishRD = hurtedByJellyFishRD;
 Sharky.prototype.hurtedByJellyFishSD = hurtedByJellyFishSD;
 Sharky.prototype.hurtedByEndBoss = hurtedByEndBoss;
-Sharky.prototype.regularHurt = regularHurt;
-Sharky.prototype.electricHurt = electricHurt;
 Sharky.prototype.isSharkyDead = isSharkyDead;
 Sharky.prototype.regularDead = regularDead;
 Sharky.prototype.electricDead = electricDead;

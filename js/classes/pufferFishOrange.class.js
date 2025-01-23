@@ -1,5 +1,5 @@
 import { PufferFish } from "./pufferFish.class.js";
-import { moveObjRatio, enemyStartX, enemyStartDistX, enemyStartY, enemyEndY } from "../script.js";
+import { moveObjRatio } from "../script.js";
 
 export class PufferFishOrange extends PufferFish {
   imagesSwim = [
