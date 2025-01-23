@@ -5,6 +5,7 @@ export function getCoins(enemy) {
   playSfxSound("coin", 0, false, 0.3);
   if (this.coin >= 20) {
     this.lifeEnergy = 100;
+    this.coin = 0;
   }
 }
 

@@ -19,5 +19,4 @@ export class StatusBarCoin extends StatusBar {
     this.x = x;
     this.y = y;
   }
-
 }
