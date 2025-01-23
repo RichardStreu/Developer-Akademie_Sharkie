@@ -107,9 +107,7 @@ function init() {
   if (!areImgCachesReady && world) {
     let cacheStatus = setInterval(() => {
       checkImgChachStatus();
-      if (areImgCachesReady) {
-        clearInterval(cacheStatus);
-      }
+      if (areImgCachesReady) clearInterval(cacheStatus);
     }, 200);
   }
 }
