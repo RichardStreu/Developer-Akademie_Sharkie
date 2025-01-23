@@ -128,9 +128,7 @@ export function checkImgChachStatus() {
   if (!areImgCachesReady) {
     if (imgCachesObject) {
       let imagesReady = Object.values(imgCachesObject).every((value) => value === true);
-      if (imagesReady) {
-        areImgCachesReady = true;
-      }
+      if (imagesReady) areImgCachesReady = true;
     } else {
       throw new Error("Images cant be loaded");
     }
