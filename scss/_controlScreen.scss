@@ -223,11 +223,11 @@
   .imprintBtnBox {
     position: absolute;
     z-index: 10000;
-    left: -2rem;
-    bottom: 3.75rem;
+    left: -2.8rem;
+    bottom: 4.65rem;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
     cursor: pointer;
     padding: 2px 4px;
     border-radius: 2rem;
@@ -244,8 +244,7 @@
     }
 
     p {
-      font-size: 1.25rem;
-      text-decoration: underline;
+      font-size: 1.5rem;
     }
 
     img {
