@@ -162,23 +162,28 @@ export function startGame() {
 }
 window.startGame = startGame;
 
+function resetGameUI() {
+  document.getElementById("winScreen").classList.add("d_none");
+  document.getElementById("looseScreen").classList.add("d_none");
+  document.getElementById("innerLifeBar").style.width = `100%`;
+  document.getElementById("endBossLifeBar").classList.add("d_none");
+}
+
+function startGameActions() {
+  world.sharky.setSharkyWindowEventListeners();
+  world.startDrawing();
+  world.sharky.setSharkyMobileEventListeners();
+  playSfxSound("backgroundRetroArcade", 500, true);
+}
+
 export function restartGame(para) {
   if (para !== "homeBtn") switchScreens();
   setTimeout(() => {
-    document.getElementById("winScreen").classList.add("d_none");
-    document.getElementById("looseScreen").classList.add("d_none");
-    document.getElementById("innerLifeBar").style.width = `100%`;
-    document.getElementById("endBossLifeBar").classList.add("d_none");
+    resetGameUI();
     setTimeout(() => {
       world.sharky.x = 0;
       world.sharky.lifeEnergy = 0;
-      setTimeout(() => {
-        init();
-        world.sharky.setSharkyWindowEventListeners();
-        world.startDrawing();
-        world.sharky.setSharkyMobileEventListeners();
-        playSfxSound("backgroundRetroArcade", 500, true);
-      }, 10);
+      setTimeout(() => (init(), startGameActions()), 10);
     }, 50);
   }, 500);
 }
