@@ -6,7 +6,7 @@
   touch-action: manipulation;
   user-select: none;
 
-  @media (min-width: 950px) and (hover: none) {
+  @media (hover: hover) {
     display: none;
   }
 
@@ -53,7 +53,7 @@
   touch-action: manipulation;
   user-select: none;
 
-  @media (min-width: 950px) and (hover: none) {
+  @media (hover: hover) {
     display: none;
   }
 }
