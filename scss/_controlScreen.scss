@@ -224,10 +224,10 @@
     position: absolute;
     z-index: 10000;
     left: -2rem;
-    bottom: 4rem;
+    bottom: 3.75rem;
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 6px;
     cursor: pointer;
     padding: 2px 4px;
     border-radius: 2rem;
@@ -245,6 +245,7 @@
 
     p {
       font-size: 1.25rem;
+      text-decoration: underline;
     }
 
     img {
