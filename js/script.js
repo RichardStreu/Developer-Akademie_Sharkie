@@ -19,29 +19,20 @@ window.stopSound = stopSound;
 window.stopAllLoopSounds = stopAllLoopSounds;
 
 export let moveObjRatio = 1;
-
 export let staticObjRatio = 0.8;
-
 export let canvasWidth = 853;
-
 export let canvasHeight = 480;
-
 export let enemyStartX = 200;
-
 export let enemyStartDistX = 2400;
-
 export let enemyStartY = 0;
-
 export let enemyEndY = 460;
 
 let canvas;
 let world;
+
 export let keyboard = new Keyboard();
-
 export let imgCachesObject = {};
-
 export let areImgCachesReady = false;
-
 export let loadedCachsArray = [];
 
 let isControlScreenVisible = false;
@@ -65,10 +56,7 @@ window.showHideControlScreen = showHideControlScreen;
 let isControlFirstShown = false;
 
 function removeButtonPulse() {
-  if (!isControlFirstShown) {
-    document.getElementById("controlButton").classList.remove("buttonPulse");
-    isControlFirstShown = true;
-  }
+  if (!isControlFirstShown) document.getElementById("controlButton").classList.remove("buttonPulse"), (isControlFirstShown = true);
 }
 
 let isImprintVisible = false;

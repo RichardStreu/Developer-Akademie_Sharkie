@@ -33,22 +33,16 @@ export class World {
     this.landscape[4].world = this;
     this.landscape[5].world = this;
     this.level1.enemies.forEach((enemy) => {
-      if (enemy instanceof EndBoss) {
-        enemy.world = this;
-      }
+      if (enemy instanceof EndBoss) enemy.world = this;
     });
     this.statBars.forEach((statBar) => {
-      if (statBar instanceof StatusBarLife) {
-        statBar.world = this;
-      }
+      if (statBar instanceof StatusBarLife) statBar.world = this;
     });
   }
 
   clearWorld() {
     this.enemies.forEach((enemy) => {
-      if (enemy.clearIntervalsAnimationMove) {
-        enemy.clearIntervalsAnimationMove();
-      }
+      if (enemy.clearIntervalsAnimationMove) enemy.clearIntervalsAnimationMove();
     });
     this.bubbles = [];
     this.enemies = [];
