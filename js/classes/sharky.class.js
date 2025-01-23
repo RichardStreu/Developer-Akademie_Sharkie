@@ -61,7 +61,6 @@ export class Sharky extends MoveableObject {
   isCurrentlyAttackAnimation = false;
   isCurrentlyFinSlap = false;
   isCurrentlyBubbleAttack = false;
-
   currentFinSlap = "none";
   world;
   lifeEnergy = 100;
