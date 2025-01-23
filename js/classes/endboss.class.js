@@ -142,23 +142,17 @@ export class EndBoss extends MoveableObject {
       if (this.world.sharky.lifeEnergy > 0) {
         this.sprintBossBossAttackFunctions();
         let direction = "left";
-        let rootDistance = 300;
-        if (this.world.sharky.x > 2800) rootDistance = 0;
         let xRange = 0;
         let interval = setInterval(() => {
           if (xRange < 360 && direction == "left") {
-            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : this.x = 3100 - xRange;
-            setTimeout(() => (xRange += 5), 2);
+            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : this.x = 3100 - xRange, setTimeout(() => (xRange += 5), 2);
           }
           if (xRange >= 360 && direction == "left") direction = "right";
           if (xRange > 0 && direction == "right") {
-            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : this.x = 3100 - xRange;
-            setTimeout(() => (xRange -= 5), 2);
+            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : this.x = 3100 - xRange, setTimeout(() => (xRange -= 5), 2);
           }
           if (xRange <= 0 && direction == "right") {
-            direction = "left";
-            xRange = 0;
-            this.x = this.world.sharky.x + 300;
+            direction = "left", xRange = 0, this.x = this.world.sharky.x + 300;
             this.sprintBossBossSwimFunctions();
             clearInterval(interval);
           }
