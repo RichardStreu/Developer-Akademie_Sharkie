@@ -87,7 +87,7 @@ export class MoveableObject extends DrawableObject {
 
   floatToSurface(item) {
     this.currentMovement = setInterval(() => {
-      if (this.y > -200 - this.height) {
+      if (this.y > -100 - this.height) {
         this.y -= this.speedY;
       } else {
         if (item == "Sharky") {
