@@ -107,13 +107,8 @@ export class EndBoss extends MoveableObject {
     this.y = -50;
     this.bossIntroduce();
     this.setBossMovementIntervals();
-    setTimeout(() => {
-      this.playBossIntroduceSounds();
-    }, 500);
-    setTimeout(() => {
-      this.clearIntervalsAnimationMove();
-      this.bossSwim();
-    }, 1500);
+    setTimeout(() => this.playBossIntroduceSounds(), 500);
+    setTimeout(() => (this.clearIntervalsAnimationMove(), this.bossSwim()), 1500);
   }
 
   moveBossUpDown() {
@@ -145,14 +140,14 @@ export class EndBoss extends MoveableObject {
         let xRange = 0;
         let interval = setInterval(() => {
           if (xRange < 360 && direction == "left") {
-            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : this.x = 3100 - xRange, setTimeout(() => (xRange += 5), 2);
+            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : (this.x = 3100 - xRange), setTimeout(() => (xRange += 5), 2);
           }
           if (xRange >= 360 && direction == "left") direction = "right";
           if (xRange > 0 && direction == "right") {
-            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : this.x = 3100 - xRange, setTimeout(() => (xRange -= 5), 2);
+            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : (this.x = 3100 - xRange), setTimeout(() => (xRange -= 5), 2);
           }
           if (xRange <= 0 && direction == "right") {
-            direction = "left", xRange = 0, this.x = this.world.sharky.x + 300;
+            (direction = "left"), (xRange = 0), (this.x = this.world.sharky.x + 300);
             this.sprintBossBossSwimFunctions();
             clearInterval(interval);
           }
