@@ -176,24 +176,21 @@ export function restartGame(para) {
 window.restartGame = restartGame;
 
 export function goToStartScreen(para) {
-  if (!document.getElementById("startScreen").classList.contains("d_none")) {
-    showHideControlScreen();
-    return;
-  } else {
-    Array.from(document.getElementById("display").querySelectorAll("[data-group='screens']")).forEach((screen) => {
-      if (screen.id !== "startScreen" && screen.id !== "controlScreen") {
-        if (para == "homeBtn") screen.classList.add("d_none");
-        if (para == "winLose") setTimeout(() => screen.classList.add("d_none"), 500);
-      } else {
-        if (para == "homeBtn") screen.classList.remove("d_none");
-        if (para == "winLose") setTimeout(() => screen.classList.remove("d_none"), 500);
-      }
-    });
-    init();
-    document.getElementById("innerLifeBar").style.width = `100%`;
-    document.getElementById("endBossLifeBar").classList.add("d_none");
-    if (isControlScreenVisible) setTimeout(() => showHideControlScreen(), 500);
-  }
+  !document.getElementById("startScreen").classList.contains("d_none")
+    ? showHideControlScreen()
+    : (Array.from(document.getElementById("display").querySelectorAll("[data-group='screens']")).forEach((screen) => {
+        if (screen.id !== "startScreen" && screen.id !== "controlScreen") {
+          if (para == "homeBtn") screen.classList.add("d_none");
+          if (para == "winLose") setTimeout(() => screen.classList.add("d_none"), 500);
+        } else {
+          if (para == "homeBtn") screen.classList.remove("d_none");
+          if (para == "winLose") setTimeout(() => screen.classList.remove("d_none"), 500);
+        }
+      }),
+      init(),
+      (document.getElementById("innerLifeBar").style.width = `100%`),
+      document.getElementById("endBossLifeBar").classList.add("d_none"),
+      isControlScreenVisible ? setTimeout(() => showHideControlScreen(), 500) : null);
 }
 window.goToStartScreen = goToStartScreen;
 
