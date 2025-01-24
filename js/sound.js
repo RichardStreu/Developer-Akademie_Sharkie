@@ -182,10 +182,7 @@ export function stopSwimSound() {
         if (currentSwimSound.volume > reduction) currentSwimSound.volume -= reduction;
       }, i * interval);
     }
-    setTimeout(() => {
-      currentSwimSound.pause();
-      isCurrentSwimSoundPlaying = false;
-    }, duration);
+    setTimeout(() => (currentSwimSound.pause(), (isCurrentSwimSoundPlaying = false)), duration);
   }
 }
 window.stopSwimSound = stopSwimSound;
