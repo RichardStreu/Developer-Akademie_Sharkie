@@ -178,6 +178,12 @@ export class Sharky extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
   }
 
+  resetSharkyState() {
+    this.clearIntervalsAnimationMove();
+    this.letSharkySleep();
+    this.sharkyStandAnimation();
+  }
+
   handleKeyDown(event) {
     if (
       this.lifeEnergy > 0 &&
@@ -243,9 +249,7 @@ export class Sharky extends MoveableObject {
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
       if (!this.isCurrentlyFinSlap) {
-        this.clearIntervalsAnimationMove();
-        this.letSharkySleep();
-        this.sharkyStandAnimation();
+        this.resetSharkyState();
       }
     }
   }
@@ -257,9 +261,7 @@ export class Sharky extends MoveableObject {
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
       if (!this.isCurrentlyFinSlap) {
-        this.clearIntervalsAnimationMove();
-        this.letSharkySleep();
-        this.sharkyStandAnimation();
+        this.resetSharkyState();
       }
     }
   }
@@ -271,9 +273,7 @@ export class Sharky extends MoveableObject {
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
       if (!this.isCurrentlyFinSlap) {
-        this.clearIntervalsAnimationMove();
-        this.letSharkySleep();
-        this.sharkyStandAnimation();
+        this.resetSharkyState();
       }
     }
   }
@@ -285,9 +285,7 @@ export class Sharky extends MoveableObject {
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
       if (!this.isCurrentlyFinSlap) {
-        this.clearIntervalsAnimationMove();
-        this.letSharkySleep();
-        this.sharkyStandAnimation();
+        this.resetSharkyState();
       }
     }
   }
@@ -304,15 +302,11 @@ export class Sharky extends MoveableObject {
     if (this.isCurrentlyAttackAnimation) {
       setTimeout(() => {
         if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
-        this.clearIntervalsAnimationMove();
-        this.letSharkySleep();
-        this.sharkyStandAnimation();
+        this.resetSharkyState();
       }, 600);
     }
     if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyAttackAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) {
-      this.clearIntervalsAnimationMove();
-      this.letSharkySleep();
-      this.sharkyStandAnimation();
+      this.resetSharkyState();
     }
   }
 
