@@ -198,9 +198,7 @@ export function stopSound(sound) {
 
 export function stopAllLoopSounds() {
   for (let sound in sounds) {
-    if (sounds[sound].loop) {
-      sounds[sound].audio.pause();
-    }
+    if (sounds[sound].loop) sounds[sound].audio.pause();
   }
 }
 
@@ -244,9 +242,7 @@ window.changeMusicVolume = changeMusicVolume;
 function categoryMusicVolumeChange(newVolume) {
   musicVolume = newVolume;
   Object.entries(sounds).forEach((sound) => {
-    if (sound[1].type === "music") {
-      sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume;
-    }
+    if (sound[1].type === "music") sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume;
   });
 }
 
