@@ -39,15 +39,13 @@ let world;
 
 export function showHideControlScreen() {
   removeButtonPulse();
-  if (!isControlScreenVisible) {
-    document.getElementById("controlScreen").classList.remove("transformControlScreen");
-    document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png");
-    isControlScreenVisible = true;
-  } else {
-    document.getElementById("controlScreen").classList.add("transformControlScreen");
-    document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/menu.png");
-    isControlScreenVisible = false;
-  }
+  !isControlScreenVisible
+    ? (document.getElementById("controlScreen").classList.remove("transformControlScreen"),
+      document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/arrow-up.png"),
+      (isControlScreenVisible = true))
+    : (document.getElementById("controlScreen").classList.add("transformControlScreen"),
+      document.getElementById("controlButtonImg").setAttribute("src", "./assets/img/menu.png"),
+      (isControlScreenVisible = false));
   document.getElementById("controlButton").blur();
   Array.from(document.querySelectorAll(".homeBtn")).forEach((btn) => btn.blur());
 }
@@ -193,7 +191,6 @@ export function goToStartScreen(para) {
     showHideControlScreen();
     return;
   } else {
-
     Array.from(document.getElementById("display").querySelectorAll("[data-group='screens']")).forEach((screen) => {
       if (screen.id !== "startScreen" && screen.id !== "controlScreen") {
         if (para == "homeBtn") screen.classList.add("d_none");
