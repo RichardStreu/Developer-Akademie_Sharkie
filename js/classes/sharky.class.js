@@ -45,6 +45,8 @@ import {
   resetHurtAnimation,
 } from "./sharky.action.hurt.js";
 
+import { handleKeyDown, setAllKeyDownsToFalse, handleKeyUp, keyArrowLeftUp, keyArrowRightUp, keyArrowUpUp, keyArrowDownUp, keySpaceUp, keyDUp, allKeysUp } from "./sharky.class.handleKeys.js";
+
 export let sharkyXPosition = 0;
 export let sharkyYPosition = 200;
 export let sharkyWidth = 216;
@@ -191,102 +193,6 @@ export class Sharky extends MoveableObject {
     return buttonsAvaiable;
   }
 
-  handleKeyDown(event) {
-    if (
-      this.lifeEnergy > 0 &&
-      !this.isCurrentlyAttackAnimation &&
-      document.getElementById("winScreen").classList.contains("d_none") &&
-      document.getElementById("looseScreen").classList.contains("d_none")
-    ) {
-      if (event.key == "ArrowLeft") this.moveSharkyLeft();
-      if (event.key == "ArrowRight") this.moveSharkyRight();
-      if (event.key == "ArrowUp") this.moveSharkyUp();
-      if (event.key == "ArrowDown") this.moveSharkyDown();
-      if (event.key == " ") this.sharkyAttackSpace();
-      if (event.key == "d") this.sharkyAttackDKey();
-      stopSound("snore");
-    }
-  }
-
-  setAllKeyDownsToFalse() {
-    this.world.keyboard.LEFT = false;
-    this.world.keyboard.RIGHT = false;
-    this.world.keyboard.UP = false;
-    this.world.keyboard.DOWN = false;
-    this.world.keyboard.SPACE = false;
-    this.world.keyboard.DKey = false;
-  } 
-
-  handleKeyUp(event) {
-    if (this.lifeEnergy > 0) {
-      if (event.key == "ArrowLeft") this.keyArrowLeftUp();
-      if (event.key == "ArrowRight") this.keyArrowRightUp();
-      if (event.key == "ArrowUp") this.keyArrowUpUp();
-      if (event.key == "ArrowDown") this.keyArrowDownUp();
-      if (event.key == " ") this.keySpaceUp();
-      if (event.key == "d") this.keyDUp();
-      if (Object.values(this.world.keyboard).every((value) => value === false)) this.allKeysUp();
-    }
-  }
-
-  keyArrowLeftUp() {
-    this.world.keyboard.LEFT = false;
-    this.checkSwimmingForStopSound();
-    clearInterval(this.isSwimLeft);
-    if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
-      stopSound("snore");
-      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
-    }
-  }
-
-  keyArrowRightUp() {
-    this.world.keyboard.RIGHT = false;
-    this.checkSwimmingForStopSound();
-    clearInterval(this.isSwimRight);
-    if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
-      stopSound("snore");
-      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
-    }
-  }
-
-  keyArrowUpUp() {
-    this.world.keyboard.UP = false;
-    this.checkSwimmingForStopSound();
-    clearInterval(this.isSwimUp);
-    if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
-      stopSound("snore");
-      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
-    }
-  }
-
-  keyArrowDownUp() {
-    this.world.keyboard.DOWN = false;
-    this.checkSwimmingForStopSound();
-    clearInterval(this.isSwimDown);
-    if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
-      stopSound("snore");
-      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
-    }
-  }
-
-  keySpaceUp() {
-    this.world.keyboard.SPACE = false;
-  }
-
-  keyDUp() {
-    this.world.keyboard.DKey = false;
-  }
-
-  allKeysUp() {
-    if (this.isCurrentlyAttackAnimation) {
-      setTimeout(() => {
-        if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
-        this.resetSharkyState();
-      }, 600);
-    }
-    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyAttackAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.resetSharkyState();
-  }
-
   hurtSharky(enemy) {
     if (this.lifeEnergy > 0) {
       if (enemy == "Coin") this.getCoins(enemy);
@@ -298,6 +204,17 @@ export class Sharky extends MoveableObject {
     }
   }
 }
+
+Sharky.prototype.handleKeyDown = handleKeyDown;
+Sharky.prototype.setAllKeyDownsToFalse = setAllKeyDownsToFalse;
+Sharky.prototype.handleKeyUp = handleKeyUp;
+Sharky.prototype.keyArrowLeftUp = keyArrowLeftUp;
+Sharky.prototype.keyArrowRightUp = keyArrowRightUp;
+Sharky.prototype.keyArrowUpUp = keyArrowUpUp;
+Sharky.prototype.keyArrowDownUp = keyArrowDownUp;
+Sharky.prototype.keySpaceUp = keySpaceUp;
+Sharky.prototype.keyDUp = keyDUp;
+Sharky.prototype.allKeysUp = allKeysUp;
 
 Sharky.prototype.sharkyStandAnimation = sharkyStandAnimation;
 Sharky.prototype.sharkySleepAnimation = sharkySleepAnimation;
