@@ -134,6 +134,7 @@ export function switchScreens() {
 window.switchScreens = switchScreens;
 
 export function startGame() {
+  if (world) world.sharky.x = 0, world.sharky.lifeEnergy = 0;
   init();
   removeButtonPulse();
   switchScreens();
