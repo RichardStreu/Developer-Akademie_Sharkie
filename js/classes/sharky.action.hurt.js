@@ -36,10 +36,7 @@ export function hurtedByPufferFish() {
       this.handleHurtAnimation();
       this.sharkyHurtRegularAnimation();
       playHurtSound("hurt1");
-      setTimeout(() => {
-        this.resetHurtAnimation();
-        this.isSharkyDead("regular");
-      }, 600);
+      setTimeout(() => (this.resetHurtAnimation(), this.isSharkyDead("regular")), 600);
     }
   }
 }
@@ -53,10 +50,7 @@ export function hurtedByJellyFishRD() {
       this.handleHurtAnimation();
       this.sharkyHurtRegularAnimation();
       playHurtSound("hurt2");
-      setTimeout(() => {
-        this.resetHurtAnimation();
-        this.isSharkyDead("regular");
-      }, 600);
+      setTimeout(() => (this.resetHurtAnimation(), this.isSharkyDead("regular")), 600);
     }
   }
 }
@@ -70,10 +64,7 @@ export function hurtedByJellyFishSD() {
       this.handleHurtAnimation();
       this.sharkyHurtShockAnimation();
       playHurtSound("electroShock");
-      setTimeout(() => {
-        this.resetHurtAnimation();
-        this.isSharkyDead("electric");
-      }, 600);
+      setTimeout(() => (this.resetHurtAnimation(), this.isSharkyDead("electric")), 600);
     }
   }
 }
@@ -86,10 +77,7 @@ export function hurtedByEndBoss() {
     this.handleHurtAnimation();
     this.sharkyHurtRegularAnimation();
     playHurtSound("hurt4");
-    setTimeout(() => {
-      this.resetHurtAnimation();
-      this.isSharkyDead("regular");
-    }, 600);
+    setTimeout(() => (this.resetHurtAnimation(), this.isSharkyDead("regular")), 600);
   }
 }
 
