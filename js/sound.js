@@ -1,17 +1,10 @@
 let firstSoundInit = false;
-
 let basicVolume = 0.5;
-
 let isSoundMuted = false;
-
 let musicVolume = 0.8;
-
 let sfxVolume = 1;
-
 let currentSwimSound;
-
 let isCurrentSwimSoundPlaying = false;
-
 let isCurrentHurtSoundPlaying = false;
 
 export let sounds = {
