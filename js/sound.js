@@ -154,9 +154,7 @@ export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
   sounds[sound].type === "music" ? (sounds[sound].audio.volume = sounds[sound].volume * musicVolume * basicVolume) : (sounds[sound].audio.volume = sounds[sound].volume * sfxVolume * basicVolume);
   sounds[sound].audio.loop = loop;
   sounds[sound].audio.currentTime = currentTime;
-  setTimeout(() => {
-    sounds[sound].audio.play();
-  }, delay);
+  setTimeout(() => sounds[sound].audio.play(), delay);
 }
 
 export function playSwimSound() {
