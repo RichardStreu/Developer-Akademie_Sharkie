@@ -1,4 +1,4 @@
-import { playHurtSound, stopSwimSound, playSfxSound } from "../sound.js";
+import { playHurtSound, stopSwimSound, playSfxSound, stopAllLoopSounds } from "../sound.js";
 
 export function getCoins(enemy) {
   this.coin += 1;
@@ -97,32 +97,17 @@ export function isSharkyDead(kindOfDead) {
   if (this.lifeEnergy <= 0) {
     stopSwimSound();
     this.removeSharkyMobileListeners();
-    let isRegularDead = kindOfDead == "regular";
-    isRegularDead ? this.regularDead() : this.electricDead();
+    this.sharkyDead(kindOfDead);
   }
 }
 
-export function regularDead() {
-  stopSound("backgroundRetroArcade");
-  stopSound("backgroundMetal");
+export function sharkyDead(kindOfDead) {
+  stopAllLoopSounds();
   playSfxSound("backgroundLose");
   this.clearIntervalsAnimationMove();
-  this.sharkyDeadRegularAnimation();
+  kindOfDead == "regular" ? this.sharkyDeadRegularAnimation() : this.sharkyDeadShockAnimation();
   setTimeout(() => {
     this.clearIntervalsAnimationMove();
-    this.floatToSurface("Sharky");
+    kindOfDead == "regular" ? this.floatToSurface("Sharky") : this.sinkToGround("Sharky");
   }, 1560);
 }
-
-export function electricDead() {
-  stopSound("backgroundRetroArcade");
-  stopSound("backgroundMetal");
-  playSfxSound("backgroundLose");
-  this.clearIntervalsAnimationMove();
-  this.sharkyDeadShockAnimation();
-  setTimeout(() => {
-    this.clearIntervalsAnimationMove();
-    this.sinkToGround("Sharky");
-  }, 1600);
-}
-

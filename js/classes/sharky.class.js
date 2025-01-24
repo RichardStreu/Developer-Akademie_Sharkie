@@ -1,7 +1,7 @@
 import { MoveableObject } from "./moveable-object.class.js";
 import { moveObjRatio } from "../script.js";
 
-import { stopSwimSound, stopSound } from "../sound.js";
+import { stopSwimSound, stopSound, stopAllLoopSounds } from "../sound.js";
 
 import {
   imagesStand,
@@ -39,8 +39,7 @@ import {
   hurtedByJellyFishSD,
   hurtedByEndBoss,
   isSharkyDead,
-  regularDead,
-  electricDead,
+  sharkyDead,
   handleHurtAnimation,
   resetHurtAnimation,
 } from "./sharky.action.hurt.js";
@@ -365,5 +364,5 @@ Sharky.prototype.hurtedByJellyFishRD = hurtedByJellyFishRD;
 Sharky.prototype.hurtedByJellyFishSD = hurtedByJellyFishSD;
 Sharky.prototype.hurtedByEndBoss = hurtedByEndBoss;
 Sharky.prototype.isSharkyDead = isSharkyDead;
-Sharky.prototype.regularDead = regularDead;
-Sharky.prototype.electricDead = electricDead;
+Sharky.prototype.sharkyDead = sharkyDead;
+
