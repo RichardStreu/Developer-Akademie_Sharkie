@@ -213,10 +213,7 @@ export class Sharky extends MoveableObject {
   }
 
   clearMovementIntervals() {
-    clearInterval(this.isSwimLeft);
-    clearInterval(this.isSwimRight);
-    clearInterval(this.isSwimUp);
-    clearInterval(this.isSwimDown);
+    clearInterval(this.isSwimLeft), clearInterval(this.isSwimRight), clearInterval(this.isSwimUp), clearInterval(this.isSwimDown);
   }
 
   checkSwimmingForStopSound() {
