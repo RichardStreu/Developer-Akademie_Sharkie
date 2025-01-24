@@ -26,16 +26,13 @@ export let enemyStartX = 200;
 export let enemyStartDistX = 2400;
 export let enemyStartY = 0;
 export let enemyEndY = 460;
-
-let canvas;
-let world;
-
 export let keyboard = new Keyboard();
 export let imgCachesObject = {};
 export let areImgCachesReady = false;
 export let loadedCachsArray = [];
-
 let isControlScreenVisible = false;
+let canvas;
+let world;
 
 export function showHideControlScreen() {
   removeButtonPulse();
