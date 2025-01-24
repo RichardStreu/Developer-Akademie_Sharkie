@@ -23,8 +23,6 @@ export function letSharkySleep() {
 
 export function moveSharkyLeft() {
   if (!this.world.keyboard.LEFT) {
-    
-    
     playSwimSound();
     if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.LEFT = true;
@@ -80,9 +78,7 @@ export function moveSharkyDown() {
     this.world.keyboard.DOWN = true;
     if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.sharkySwimAnimation();
     this.isSwimDown = setInterval(() => {
-      if (this.y < canvasHeight - 220 && this.lifeEnergy > 0) {
-        this.y += 4;
-      }
+      if (this.y < canvasHeight - 220 && this.lifeEnergy > 0) this.y += 4;
     }, 10);
   }
 }
