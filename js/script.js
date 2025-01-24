@@ -140,8 +140,7 @@ export function startGame() {
   setTimeout(() => {
     document.getElementById("startScreen").classList.add("d_none");
     document.getElementById("canvas").classList.remove("d_none");
-    world.startDrawing();
-    world.sharky.setSharkyMobileEventListeners();
+    startGameActions();
     letSharkySleep.call(world.sharky);
     playSfxSound("backgroundRetroArcade", 500, true);
   }, 500);
@@ -187,7 +186,6 @@ export function goToStartScreen(para) {
           if (para == "winLose") setTimeout(() => screen.classList.remove("d_none"), 500);
         }
       }),
-      init(),
       (document.getElementById("innerLifeBar").style.width = `100%`),
       document.getElementById("endBossLifeBar").classList.add("d_none"),
       isControlScreenVisible ? setTimeout(() => showHideControlScreen(), 500) : null);

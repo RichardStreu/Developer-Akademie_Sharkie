@@ -139,10 +139,10 @@ export class Sharky extends MoveableObject {
   }
 
   setSharkyWindowEventListeners() {
-    window.addEventListener("keydown", (event) => {
+    this.keyDownHandler = window.addEventListener("keydown", (event) => {
       this.handleKeyDown(event);
     });
-    window.addEventListener("keyup", (event) => {
+    this.keyUpHandler = window.addEventListener("keyup", (event) => {
       this.handleKeyUp(event);
     });
   }
