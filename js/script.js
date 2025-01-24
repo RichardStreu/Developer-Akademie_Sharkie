@@ -77,7 +77,7 @@ export function showHideImprint() {
   if (isImprintSliding) return;
   !isImprintVisible && !isImprintSliding ? showImprint() : hideImprint();
   isImprintVisible = !isImprintVisible;
-  setTimeout(() => isImprintSliding = false, 610);
+  setTimeout(() => (isImprintSliding = false), 610);
 }
 window.showHideImprint = showHideImprint;
 
@@ -169,10 +169,7 @@ export function restartGame(para) {
     setTimeout(() => {
       world.sharky.x = 0;
       world.sharky.lifeEnergy = 0;
-      setTimeout(() => {
-        init();
-        startGameActions();
-      }, 10);
+      setTimeout(() => (init(), startGameActions()), 10);
     }, 50);
   }, 500);
 }
