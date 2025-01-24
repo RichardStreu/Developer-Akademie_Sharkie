@@ -103,6 +103,7 @@ function init() {
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
   world = new World(canvas, keyboard);
+  window.world = world;
   world.sharky.setSharkyWindowEventListeners();
   if (!areImgCachesReady && world) {
     let cacheStatus = setInterval(() => {
@@ -112,7 +113,7 @@ function init() {
   }
 }
 window.init = init;
-init();
+// init();
 
 export function clearGlobalGame() {
   world.level1.enemies[17].clearAllEndBossIntervals();
@@ -149,6 +150,7 @@ export function switchScreens() {
 window.switchScreens = switchScreens;
 
 export function startGame() {
+  init();
   removeButtonPulse();
   switchScreens();
   setTimeout(() => {
@@ -197,6 +199,7 @@ export function goToStartScreen(para) {
     showHideControlScreen();
     return;
   } else {
+
     Array.from(document.getElementById("display").querySelectorAll("[data-group='screens']")).forEach((screen) => {
       if (screen.id !== "startScreen" && screen.id !== "controlScreen") {
         if (para == "homeBtn") screen.classList.add("d_none");
@@ -205,7 +208,6 @@ export function goToStartScreen(para) {
             screen.classList.add("d_none");
           }, 500);
       } else {
-        // debugger;
         if (para == "homeBtn") screen.classList.remove("d_none");
         if (para == "winLose")
           setTimeout(() => {
@@ -213,7 +215,9 @@ export function goToStartScreen(para) {
           }, 500);
       }
     });
+
     init();
+
     document.getElementById("innerLifeBar").style.width = `100%`;
     document.getElementById("endBossLifeBar").classList.add("d_none");
     if (isControlScreenVisible)

@@ -23,6 +23,8 @@ export function letSharkySleep() {
 
 export function moveSharkyLeft() {
   if (!this.world.keyboard.LEFT) {
+    
+    
     playSwimSound();
     if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.LEFT = true;
