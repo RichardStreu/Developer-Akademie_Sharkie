@@ -174,6 +174,23 @@ export class Sharky extends MoveableObject {
     this.clearIntervalsAnimationMove(), this.letSharkySleep(), this.sharkyStandAnimation();
   }
 
+  clearMovementIntervals() {
+    clearInterval(this.isSwimLeft), clearInterval(this.isSwimRight), clearInterval(this.isSwimUp), clearInterval(this.isSwimDown);
+  }
+
+  checkSwimmingForStopSound() {
+    if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.UP && !this.world.keyboard.DOWN) {
+      stopSwimSound();
+    }
+  }
+
+  areMobileButtonsAvailable() {
+    let buttons = document.getElementById("mobileBtnMoveBox");
+    let buttonsAvaiable;
+    window.getComputedStyle(buttons).display === "none" ? (buttonsAvaiable = false) : (buttonsAvaiable = true);
+    return buttonsAvaiable;
+  }
+
   handleKeyDown(event) {
     if (
       this.lifeEnergy > 0 &&
@@ -191,6 +208,15 @@ export class Sharky extends MoveableObject {
     }
   }
 
+  setAllKeyDownsToFalse() {
+    this.world.keyboard.LEFT = false;
+    this.world.keyboard.RIGHT = false;
+    this.world.keyboard.UP = false;
+    this.world.keyboard.DOWN = false;
+    this.world.keyboard.SPACE = false;
+    this.world.keyboard.DKey = false;
+  } 
+
   handleKeyUp(event) {
     if (this.lifeEnergy > 0) {
       if (event.key == "ArrowLeft") this.keyArrowLeftUp();
@@ -201,32 +227,6 @@ export class Sharky extends MoveableObject {
       if (event.key == "d") this.keyDUp();
       if (Object.values(this.world.keyboard).every((value) => value === false)) this.allKeysUp();
     }
-  }
-
-  setAllKeyDownsToFalse() {
-    this.world.keyboard.LEFT = false;
-    this.world.keyboard.RIGHT = false;
-    this.world.keyboard.UP = false;
-    this.world.keyboard.DOWN = false;
-    this.world.keyboard.SPACE = false;
-    this.world.keyboard.DKey = false;
-  }
-
-  clearMovementIntervals() {
-    clearInterval(this.isSwimLeft), clearInterval(this.isSwimRight), clearInterval(this.isSwimUp), clearInterval(this.isSwimDown);
-  }
-
-  checkSwimmingForStopSound() {
-    if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT && !this.world.keyboard.UP && !this.world.keyboard.DOWN) {
-      stopSwimSound();
-    }
-  }
-
-  areMobileButtonsAvailable() {
-    let buttons = document.getElementById("mobileBtnMoveBox");
-    let buttonsAvaiable;
-    window.getComputedStyle(buttons).display === "none" ? (buttonsAvaiable = false) : (buttonsAvaiable = true);
-    return buttonsAvaiable;
   }
 
   keyArrowLeftUp() {
