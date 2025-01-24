@@ -24,7 +24,6 @@ export class Coin extends MoveableObject {
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {
         this.doImageAnimation(this.imagesCoin, this.img, 300);
-        
         clearInterval(this.firstInterval);
       }
     }, 100);

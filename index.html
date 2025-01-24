@@ -2,18 +2,57 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="./scss/style.css" />
     <link rel="icon" href="./assets/icon/icons8-shark-94.png" />
     <title>Sharky</title>
     <script type="module" src="./js/script.js" defer></script>
   </head>
   <body>
+    <!-- mobile rotate overlay -->
+    <div class="rotateOverlay">
+      <div>
+        <p>Please rotate</p>
+        <img src="./assets/img/icons8-rotate-screen-96.png" alt="" />
+        <p>your mobile Device</p>
+      </div>
+    </div>
+    <!-- main section -->
     <main id="main" class="main">
       <!-- Display Field of the game -->
       <div id="display" class="display">
+        <!-- mobileButtons Movement -->
+        <div id="mobileBtnMoveBox" class="mobileBtnMoveBox">
+          <div class="moveBoxUpper">
+            <div id="moveUpBtn" class="moveUpBtn btnBox">
+              <img class="img" oncontextmenu="return false;" src="./assets/img/purple_arrow.png" alt="" />
+            </div>
+          </div>
+          <div class="moveBoxMiddle">
+            <div id="moveLeftBtn" class="moveLeftBtn btnBox">
+              <img class="img" oncontextmenu="return false;" src="./assets/img/purple_arrow.png" alt="" />
+            </div>
+            <div id="moveRightBtn" class="moveRightBtn btnBox">
+              <img class="img" oncontextmenu="return false;" src="./assets/img/purple_arrow.png" alt="" />
+            </div>
+          </div>
+          <div class="moveBoxLower">
+            <div id="moveDownBtn" class="moveDownBtn btnBox">
+              <img class="img" oncontextmenu="return false;" src="./assets/img/purple_arrow.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <!-- mobileButtuns Attack -->
+        <div class="mobileBtnAttackBox">
+          <div id="attackFinSlapBtn" class="attackFinSlapBtn btnBox">
+            <img class="img" src="./assets/img/purple_hit.png" alt="" />
+          </div>
+          <div id="attackBubbleBtn" class="attackBubbleBtn btnBox">
+            <img class="img" src="./assets/img/purple_shoot.png" alt="" />
+          </div>
+        </div>
         <!-- control button -->
-        <button onclick="showHideControlScreen(); initFirstSound(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="controlButton" class="controlButton">
+        <button onclick="showHideControlScreen(); initFirstSound(); playSfxSound('click')" onmouseenter="playSfxSound('hover')" id="controlButton" class="controlButton buttonPulse">
           <img id="controlButtonImg" src="./assets/img/menu.png" alt="" />
         </button>
         <!-- control screen transformControlScreen -->
@@ -41,30 +80,29 @@
           <div class="controlContentContainer">
             <!-- info box -->
             <div data-group="0" id="infoBox" class="infoBox">
-                <div class="textBar">
+              <div class="textBar">
                 In Sharky the Brave, you play as Sharky, a heroic little shark fighting to free the ocean from evil pufferfish, jellyfish, and the deadly final boss, the killer whale.
-                </div>
-                <div class="textBar">
-                Collect coins to restore health and gather poison bottles to shoot powerful toxic bubbles. Use Sharky's tail slap to push enemies away or normal bubbles to attack. 
-                Save the reef!
-                </div>
-                <div class="textBar">
+              </div>
+              <div class="textBar">
+                Collect coins to restore health and gather poison bottles to shoot powerful toxic bubbles. Use Sharky's tail slap to push enemies away or normal bubbles to attack. Save the reef!
+              </div>
+              <div class="textBar">
                 Watch out for electric jellyfish, as they are immune to bubbles and can only be moved using Sharky’s tail slap. Navigate carefully to avoid their shocking traps!
-                </div>
+              </div>
             </div>
             <!-- controls box -->
             <div data-group="1" id="controlsBox" class="controlsBox d_none">
-              <div class="controlsBoxUpper">
-                <div class="controlBar">
+              <div class="controlsBoxUpper controlBarBG">
+                <div class="controlBarUpper">
                   <img src="./assets/img/6.Botones/Key/arrow keys.png" alt="" />
                   <p>MOVEMENT</p>
                 </div>
-                <div class="controlBar">
+                <div class="controlBarUpper">
                   <img src="./assets/img/6.Botones/Key/D key.png" alt="" />
                   <p>FIN SLAP</p>
                 </div>
               </div>
-              <div class="controlBar">
+              <div class="controlBar controlBarBG">
                 <img src="./assets/img/6.Botones/Key/Space Bar key.png" alt="" />
                 <p>BUBBLE ATTACK</p>
               </div>
@@ -93,7 +131,7 @@
               </div>
               <!-- master volume -->
               <div class="settingsBar">
-                <div>
+                <div class="volumeInputBox">
                   <input
                     type="range"
                     id="masterVolume"
@@ -114,7 +152,7 @@
               </div>
               <!-- music volume -->
               <div class="settingsBar">
-                <div>
+                <div class="volumeInputBox">
                   <input
                     type="range"
                     id="musicVolume"
@@ -222,7 +260,12 @@
         <!-- start screen -->
         <div data-group="screens" id="startScreen" class="startScreen d_none">
           <p>SHARKY THE BRAVE</p>
-          <button onclick="startGame(); initFirstSound(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true);" onmouseenter="playSfxSound('hover')" id="startButton" class="startButton">
+          <button
+            onclick="startGame(); initFirstSound(); playSfxSound('click'); playSfxSound('backgroundRetroArcade', 500, true);"
+            onmouseenter="playSfxSound('hover')"
+            id="startButton"
+            class="startButton"
+          >
             <img src="./assets/img/6.Botones/Start/2.png" alt="" />
           </button>
         </div>
@@ -242,6 +285,11 @@
           <button class="homeBtn" onclick="goToStartScreen('winLose'); stopAllLoopSounds(); playSfxSound('click')" onmouseenter="playSfxSound('hover')">
             <img src="./assets/img/homeImg.svg" alt="" />
           </button>
+        </div>
+        <!-- endBoss lifeBar -->
+        <div id="endBossLifeBar" class="endBossLifeBar d_none">
+          <div id="innerLifeBar" class="innerLifeBar"></div>
+          <img src="./assets/img/2.Enemy/3 Final Enemy/Attack/3.png" alt="" />
         </div>
         <!-- win screen -->
         <div data-group="screens" id="winScreen" class="winScreen d_none opacity_zero">

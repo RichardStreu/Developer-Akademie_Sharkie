@@ -1,12 +1,13 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { moveObjRatio, youWin } from "../script.js";
-import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead, imagesBossHurt } from "./endboss.class.images.js";
+import { moveObjRatio, youWinOrLose } from "../script.js";
+import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead } from "./endboss.class.images.js";
 import { playSfxSound, stopSound } from "../sound.js";
 
 export class EndBoss extends MoveableObject {
   currentAnimationIntervall;
   currentSharkyPositionInterval;
   countSecondsInterval;
+  endBossLifeBarInterval;
   currentMovement;
   currentlyMoveUp = true;
   floating;
@@ -15,7 +16,6 @@ export class EndBoss extends MoveableObject {
   bossIsVisible = false;
   bossIsDead = false;
   moveBossForward;
-  sprintForwardTime = this.getRandomCooldown();
   sprintForwardInterval;
   currentPlaytime = 0;
   sharkyX;
@@ -34,6 +34,13 @@ export class EndBoss extends MoveableObject {
     this.countSeconds();
   }
 
+  async loadAllImagesEndboss() {
+    await this.loadImageCache(imagesBossIntroduce, this.constructor.name);
+    await this.loadImageCache(imagesBossSwim, this.constructor.name);
+    await this.loadImageCache(imagesBossAttack, this.constructor.name);
+    await this.loadImageCache(imagesBossDead, this.constructor.name);
+  }
+
   clearAllEndBossIntervals() {
     clearInterval(this.bossUpDown);
     clearInterval(this.moveBossForward);
@@ -41,7 +48,23 @@ export class EndBoss extends MoveableObject {
     clearInterval(this.currentAnimationIntervall);
     clearInterval(this.currentSharkyPositionInterval);
     clearInterval(this.countSecondsInterval);
+    clearInterval(this.endBossLifeBarInterval);
     this.clearIntervalsAnimationMove();
+  }
+
+  setLifeBarInterval() {
+    this.endBossLifeBarInterval = setInterval(() => {
+      if (this.world.enemies[17].lifeEnergy <= 0) {
+        clearInterval(this.endBossLifeBarInterval);
+      }
+      if (this.world.enemies[17].lifeEnergy > 0) {
+        document.getElementById("innerLifeBar").style.width = `${this.world.enemies[17].lifeEnergy}%`;
+      }
+      if (this.world.enemies[17].isEnemyDead) {
+        document.getElementById("innerLifeBar").style.width = `0%`;
+        clearInterval(this.endBossLifeBarInterval);
+      }
+    }, 100);
   }
 
   countSeconds() {
@@ -54,26 +77,38 @@ export class EndBoss extends MoveableObject {
     this.currentSharkyPositionInterval = setInterval(() => {
       this.sharkyX = this.world.sharky.x;
       this.sharkyY = this.world.sharky.y;
-      if (this.sharkyX >= 2300 && !this.bossIsVisible) this.doBossIntroduce();
+      if (this.sharkyX >= 2300 && !this.bossIsVisible) this.doBossIntroduce(), clearInterval(this.currentSharkyPositionInterval);
     }, 100);
+  }
+
+  bossIntroduce() {
+    this.clearIntervalsAnimationMove();
+    this.doImageAnimation(imagesBossIntroduce, this.img, 150);
+    setTimeout(() => {
+      document.getElementById("endBossLifeBar").classList.remove("d_none");
+      this.setLifeBarInterval();
+    }, 1000);
+  }
+
+  playBossIntroduceSounds() {
+    playSfxSound("bossSplash");
+    stopSound("backgroundRetroArcade");
+    playSfxSound("backgroundMetal");
+  }
+
+  setBossMovementIntervals() {
+    this.moveBossUpDown();
+    this.moveBossForBackwards();
+    this.sprintBossForwards();
   }
 
   doBossIntroduce() {
     this.bossIsVisible = true;
     this.y = -50;
     this.bossIntroduce();
-    setTimeout(() => {
-      playSfxSound("bossSplash");
-      stopSound("backgroundRetroArcade");
-      playSfxSound("backgroundMetal");
-    }, 500);
-    setTimeout(() => {
-      this.clearIntervalsAnimationMove();
-      this.bossSwim();
-    }, 1500);
-    this.moveBossUpDown();
-    this.moveBossForBackwards();
-    this.sprintBossForwards();
+    this.setBossMovementIntervals();
+    setTimeout(() => this.playBossIntroduceSounds(), 500);
+    setTimeout(() => (this.clearIntervalsAnimationMove(), this.bossSwim()), 1500);
   }
 
   moveBossUpDown() {
@@ -89,8 +124,10 @@ export class EndBoss extends MoveableObject {
 
   moveBossForBackwards() {
     this.moveBossForward = setInterval(() => {
-      if (this.world.sharky.x <= 2300) {
+      if (this.world.sharky.x <= 2800 && this.lifeEnergy > 0) {
         this.x = this.world.sharky.x + 300;
+      } else {
+        this.x = 3100;
       }
     }, 10);
   }
@@ -98,65 +135,41 @@ export class EndBoss extends MoveableObject {
   sprintBossForwards() {
     this.sprintForwardInterval = setInterval(() => {
       if (this.world.sharky.lifeEnergy > 0) {
-        clearInterval(this.moveBossForward);
-        clearInterval(this.currentAnimationIntervall);
-        this.bossAttack();
+        this.sprintBossBossAttackFunctions();
         let direction = "left";
         let xRange = 0;
         let interval = setInterval(() => {
-          if (xRange < 300 && direction == "left") {
-            this.x -= 5;
-            xRange += 5;
+          if (xRange < 360 && direction == "left") {
+            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : (this.x = 3100 - xRange), setTimeout(() => (xRange += 5), 2);
           }
-          if (xRange >= 300 && direction == "left") {
-            direction = "right";
-          }
+          if (xRange >= 360 && direction == "left") direction = "right";
           if (xRange > 0 && direction == "right") {
-            this.x += 5;
-            xRange -= 5;
+            this.world.sharky.x <= 2800 ? (this.x = this.world.sharky.x + (300 - xRange)) : (this.x = 3100 - xRange), setTimeout(() => (xRange -= 5), 2);
           }
           if (xRange <= 0 && direction == "right") {
-            direction = "left";
-            xRange = 0;
-            this.clearIntervalsAnimationMove();
-            this.moveBossForBackwards();
-            this.bossSwim();
+            (direction = "left"), (xRange = 0), (this.x = this.world.sharky.x + 300);
+            this.sprintBossBossSwimFunctions();
             clearInterval(interval);
           }
         }, 10);
       }
-    }, 4500);
+    }, 4000);
   }
 
-  getRandomCooldown() {
-    return Math.floor(Math.random() * 4500) + 4500;
+  sprintBossBossAttackFunctions() {
+    clearInterval(this.moveBossForward);
+    clearInterval(this.currentAnimationIntervall);
+    this.bossAttack();
   }
 
-  async loadAllImagesEndboss() {
-    await this.loadImageCache(imagesBossIntroduce, this.constructor.name);
-    await this.loadImageCache(imagesBossSwim, this.constructor.name);
-    await this.loadImageCache(imagesBossAttack, this.constructor.name);
-    await this.loadImageCache(imagesBossDead, this.constructor.name);
-    await this.loadImageCache(imagesBossHurt, this.constructor.name);
-  }
-
-  doCurrentBossAnimation() {
-    if (this.currentAnimation == "introduce") this.bossIntroduce();
-    if (this.currentAnimation == "swim") this.bossSwim();
-    if (this.currentAnimation == "attack") this.bossAttack();
-    if (this.currentAnimation == "dead") this.bossDead();
-    if (this.currentAnimation == "hurt") this.bossHurt();
-    if (this.currentAnimation == "stop") this.bossStop();
+  sprintBossBossSwimFunctions() {
+    this.bossSwim();
+    this.moveBossForBackwards();
   }
 
   clearIntervalsAnimationMove() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
-  }
-
-  bossIntroduce() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesBossIntroduce, this.img, 150);
   }
 
   bossSwim() {
@@ -175,15 +188,6 @@ export class EndBoss extends MoveableObject {
     this.doImageAnimation(imagesBossDead, this.img, 150);
   }
 
-  bossHurt() {
-    this.clearIntervalsAnimationMove();
-    this.doImageAnimation(imagesBossHurt, this.img, 180);
-  }
-
-  bossStop() {
-    this.clearIntervalsAnimationMove();
-  }
-
   enemyIsDead() {
     if (!this.bossIsDead) {
       clearInterval(this.moveBossForward);
@@ -191,24 +195,32 @@ export class EndBoss extends MoveableObject {
       this.bossIsDead = true;
       this.isEnemyDead = true;
       this.bossDead();
-      setTimeout(() => {
-        this.clearIntervalsAnimationMove();
-        clearInterval(this.bossUpDown);
-        this.loadImage("../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png");
-      }, 600);
-      setTimeout(() => {
-        this.floatToSurface();
-        playSfxSound("backgroundWin");
-        stopSound("backgroundMetal");
-        const floatingInterval = setInterval(() => {
-          if (this.y <= -430) {
-            clearInterval(this.currentMovement);
-            clearInterval(this.currentAnimationIntervall);
-            youWin();
-            clearInterval(floatingInterval);
-          }
-        }, 10);
-      }, 1500);
+      this.endBossDeathAnimation();
+      this.triggerEndBossDefeatSequence();
     }
+  }
+
+  endBossDeathAnimation() {
+    setTimeout(() => {
+      this.clearIntervalsAnimationMove();
+      clearInterval(this.bossUpDown);
+      this.loadImage("../../assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png");
+    }, 600);
+  }
+
+  triggerEndBossDefeatSequence() {
+    setTimeout(() => {
+      this.floatToSurface();
+      stopSound("backgroundMetal");
+      playSfxSound("backgroundWin");
+      const floatingInterval = setInterval(() => {
+        if (this.y <= -430) {
+          clearInterval(this.currentMovement);
+          clearInterval(this.currentAnimationIntervall);
+          youWinOrLose('winScreen');
+          clearInterval(floatingInterval);
+        }
+      }, 10);
+    }, 1500);
   }
 }

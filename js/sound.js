@@ -1,17 +1,10 @@
 let firstSoundInit = false;
-
 let basicVolume = 0.5;
-
 let isSoundMuted = false;
-
 let musicVolume = 0.8;
-
 let sfxVolume = 1;
-
 let currentSwimSound;
-
 let isCurrentSwimSoundPlaying = false;
-
 let isCurrentHurtSoundPlaying = false;
 
 export let sounds = {
@@ -149,16 +142,15 @@ export function initFirstSound() {
 }
 
 export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
-  if (sound === 'hover' && !firstSoundInit) return;
+  if ((sound === "hover" && !firstSoundInit) || !sound) return;
   sounds[sound].type === "music" ? (sounds[sound].audio.volume = sounds[sound].volume * musicVolume * basicVolume) : (sounds[sound].audio.volume = sounds[sound].volume * sfxVolume * basicVolume);
   sounds[sound].audio.loop = loop;
   sounds[sound].audio.currentTime = currentTime;
-  setTimeout(() => {
-    sounds[sound].audio.play();
-  }, delay);
+  setTimeout(() => sounds[sound].audio.play(), delay);
 }
 
 export function playSwimSound() {
+  stopSwimSound("snore");
   if (!isCurrentSwimSoundPlaying) {
     currentSwimSound = sounds.swim.audio;
     currentSwimSound.volume = sounds.swim.volume * sfxVolume * basicVolume;
@@ -180,10 +172,7 @@ export function stopSwimSound() {
         if (currentSwimSound.volume > reduction) currentSwimSound.volume -= reduction;
       }, i * interval);
     }
-    setTimeout(() => {
-      currentSwimSound.pause();
-      isCurrentSwimSoundPlaying = false;
-    }, duration);
+    setTimeout(() => (currentSwimSound.pause(), (isCurrentSwimSoundPlaying = false)), duration);
   }
 }
 window.stopSwimSound = stopSwimSound;
@@ -192,9 +181,7 @@ export function playHurtSound(sound) {
   if (!isCurrentHurtSoundPlaying) {
     isCurrentHurtSoundPlaying = true;
     playSfxSound(sound);
-    sounds[sound].audio.addEventListener("ended", () => {
-      isCurrentHurtSoundPlaying = false;
-    });
+    sounds[sound].audio.addEventListener("ended", () => (isCurrentHurtSoundPlaying = false));
   }
 }
 
@@ -204,30 +191,36 @@ export function stopSound(sound) {
 
 export function stopAllLoopSounds() {
   for (let sound in sounds) {
-    if (sounds[sound].loop) {
-      sounds[sound].audio.pause();
-    }
+    if (sounds[sound].loop) sounds[sound].audio.pause();
   }
+}
+
+function muteSound() {
+  document.getElementById("muteButtonDiv").classList.add("settingsImgBoxPushed");
+  if (currentSwimSound) currentSwimSound.muted = true;
+  sounds.backgroundRetroArcade.audio.muted = true;
+  sounds.backgroundLose.audio.muted = true;
+  sounds.backgroundWin.audio.muted = true;
+  sounds.snore.audio.muted = true;
+  basicVolume = 0;
+}
+
+function unmuteSound() {
+  document.getElementById("muteButtonDiv").classList.remove("settingsImgBoxPushed");
+  if (currentSwimSound) currentSwimSound.muted = false;
+  sounds.backgroundRetroArcade.audio.muted = false;
+  basicVolume = document.getElementById("masterVolume").value / 100;
+  sounds.backgroundMetal.audio.volume = basicVolume * musicVolume;
+  sounds.backgroundLose.audio.muted = false;
+  sounds.backgroundWin.audio.muted = false;
+  sounds.snore.audio.muted = false;
 }
 
 export function muteUnmuteSound() {
   if (!isSoundMuted) {
-    document.getElementById("muteButtonDiv").classList.add("settingsImgBoxPushed");
-    if (currentSwimSound) currentSwimSound.muted = true;
-    sounds.backgroundRetroArcade.audio.muted = true;
-    sounds.backgroundLose.audio.muted = true;
-    sounds.backgroundWin.audio.muted = true;
-    sounds.snore.audio.muted = true;
-    basicVolume = 0;
+    muteSound();
   } else {
-    document.getElementById("muteButtonDiv").classList.remove("settingsImgBoxPushed");
-    if (currentSwimSound) currentSwimSound.muted = false;
-    sounds.backgroundRetroArcade.audio.muted = false;
-    basicVolume = document.getElementById("masterVolume").value / 100;
-    sounds.backgroundMetal.audio.volume = basicVolume * musicVolume;
-    sounds.backgroundLose.audio.muted = false;
-    sounds.backgroundWin.audio.muted = false;
-    sounds.snore.audio.muted = false;
+    unmuteSound();
   }
   isSoundMuted = !isSoundMuted;
 }
@@ -235,17 +228,14 @@ export function muteUnmuteSound() {
 export function changeMusicVolume(category, value) {
   let newVolume = value / 100;
   document.getElementById(`${category == "music" ? "musicVolume" : "masterVolume"}`).style.background = `linear-gradient(to right, rgb(127, 255, 224) ${value}%, rgb(58, 124, 108) ${value}%)`;
-  if (category === "music") categoryMusicVolumeChange(newVolume);
-  if (category === "master") categoryMasterVolumeChange(newVolume);
+  category === "music" ? categoryMusicVolumeChange(newVolume) : categoryMasterVolumeChange(newVolume);
 }
 window.changeMusicVolume = changeMusicVolume;
 
 function categoryMusicVolumeChange(newVolume) {
   musicVolume = newVolume;
   Object.entries(sounds).forEach((sound) => {
-    if (sound[1].type === "music") {
-      sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume;
-    }
+    if (sound[1].type === "music") sound[1].audio.volume = sound[1].volume * basicVolume * musicVolume;
   });
 }
 

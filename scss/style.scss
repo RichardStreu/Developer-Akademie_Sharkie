@@ -1,9 +1,9 @@
-@import "./fonts.scss";
-@import "./var.scss";
 @import "./blackScreen.scss";
 @import "./loadingScreen.scss";
 @import "./startScreen.scss";
 @import "./canvas.scss";
+@import "./endBossStyles.scss";
+@import "./mobileButtons.scss";
 @import "./looseScreen.scss";
 @import "./winScreen.scss";
 @import "./controlScreen";
@@ -16,9 +16,49 @@
   font-style: normal;
 }
 
+* {
+  touch-action: manipulation;
+}
+
 body {
   font-family: "LuckyGuy";
   color: white;
+}
+
+.rotateOverlay {
+  display: none;
+  position: absolute;
+  z-index: 20000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../assets/img/3. Background/Legacy/Dark/1.png");
+  background-size: cover;
+
+  @media (max-width: 950px) and (orientation: portrait) {
+    display: block;
+  }
+
+  div {
+    background-color: rgba(0, 0, 0, 0.78);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+
+    img {
+      width: 96px;
+      height: 96px;
+    }
+
+    p {
+      font-size: 2rem;
+    }
+  }
 }
 
 main {
@@ -29,10 +69,8 @@ main {
   background-position: center;
   background-repeat: no-repeat;
 
-  @media (max-width: 1000px) and (orientation: landscape) {
-    width: 100vw;
-    height: 100vh;
-    font-weight: bold;
+  @media (max-width: 950px) and (orientation: portrait) {
+    display: none;
   }
 
   h1 {
@@ -46,17 +84,17 @@ main {
     width: 853px;
     height: 480px;
     position: absolute;
-    top: 20%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     border-radius: 1rem;
-    box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.5);
     overflow: hidden;
 
-    @media (max-width: 1000px) and (orientation: landscape) {
+    @media (max-width: 948px) and (orientation: landscape) {
       width: 100vw;
-      height: 100vh;
-      top: 0;
+      height: 100dvh;
+      border-radius: 0;
     }
 
     .controlButton {
@@ -85,6 +123,34 @@ main {
 
         &:hover {
           transform: scale(1.05);
+        }
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.5);
+        filter: drop-shadow(0 0 1.3rem rgba(255, 255, 255, 1));
+        animation-timing-function: ease-out;
+      }
+      100% {
+        transform: scale(1);
+        animation-timing-function: ease-in;
+      }
+    }
+
+    .buttonPulse {
+      animation: pulse 1s infinite;
+
+      &:hover {
+        background-color: transparent;
+        filter: none;
+
+        img {
+          transform: none;
         }
       }
     }

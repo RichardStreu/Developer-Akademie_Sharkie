@@ -1,0 +1,81 @@
+.mobileBtnMoveBox {
+  position: absolute;
+  bottom: 2rem;
+  left: 1rem;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  user-select: none;
+
+  @media (hover: hover) {
+    display: none;
+  }
+
+  .moveBoxUpper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    .moveUpBtn {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .moveBoxMiddle {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    .moveLeftBtn {
+      transform: rotate(180deg);
+    }
+    
+  }
+  .moveBoxLower {
+    display: flex;
+    justify-content: center;
+
+    .moveDownBtn {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.mobileBtnAttackBox {
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  user-select: none;
+
+  @media (hover: hover) {
+    display: none;
+  }
+}
+
+.btnBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 100vh;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background-color: rgba(127, 255, 224, 0.7);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.img {
+  width: 36px;
+  height: 36px;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; 
+  user-select: none;
+  touch-action: none;
+  -webkit-user-select: none;
+}

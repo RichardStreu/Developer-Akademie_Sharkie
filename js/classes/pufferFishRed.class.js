@@ -1,5 +1,5 @@
 import { PufferFish } from "./pufferFish.class.js";
-import { moveObjRatio, enemyStartX, enemyStartDistX, enemyStartY, enemyEndY } from "../script.js";
+import { moveObjRatio } from "../script.js";
 
 export class PufferFishRed extends PufferFish {
   imagesSwim = [
@@ -29,10 +29,10 @@ export class PufferFishRed extends PufferFish {
   imagesDie = [
     "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.2.png",
     "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.3.png",
-    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png"
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png",
   ];
 
-  currentAnimation = "swim"; // "swim" "transition" "bubbleSwim" "stop"
+  currentAnimation = "swim";
 
   currentAnimationIntervall;
 
@@ -54,7 +54,6 @@ export class PufferFishRed extends PufferFish {
     }, 100);
   }
 
-  // doImageAnimation(imageArray, imgRef, intervall)
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       this.clearIntervalsAnimationMove();
@@ -69,8 +68,6 @@ export class PufferFishRed extends PufferFish {
       this.clearIntervalsAnimationMove();
       this.doImageAnimation(this.imagesBubbleSwim, this.img, 200);
     }
-    if (this.currentAnimation == "stop") {
-      this.clearIntervalsAnimationMove();
-    }
+    if (this.currentAnimation == "stop") this.clearIntervalsAnimationMove();
   }
 }

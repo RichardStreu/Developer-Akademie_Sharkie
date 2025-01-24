@@ -8,10 +8,15 @@ export function letSharkySleep() {
   let timeOfUnmoved = 0;
   this.currentMovement = setInterval(() => {
     timeOfUnmoved++;
-    if (timeOfUnmoved > 5) {
+    if (
+      timeOfUnmoved > 5 &&
+      document.getElementById("startScreen").classList.contains("d_none") &&
+      document.getElementById("winScreen").classList.contains("d_none") &&
+      document.getElementById("looseScreen").classList.contains("d_none")
+    ) {
       this.clearIntervalsAnimationMove();
       this.sharkySleepAnimation();
-      playSfxSound('snore', 0, true);
+      playSfxSound("snore", 0, true);
     }
   }, 1000);
 }
@@ -19,19 +24,17 @@ export function letSharkySleep() {
 export function moveSharkyLeft() {
   if (!this.world.keyboard.LEFT) {
     playSwimSound();
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.LEFT = true;
     this.otherDirection = true;
-    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.sharkySwimAnimation();
     this.isSwimLeft = setInterval(() => {
       if (this.x > -30 && this.lifeEnergy > 0) {
         this.x -= 4;
         const sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
         if (this.x > sharkyMidPoint && this.x > 0 && this.x < canvasWidth * 3.5 - this.width) {
           this.world.camera_x = sharkyMidPoint - this.x;
-        } else if (this.x <= 0) {
-          this.world.camera_x = 0;
-        }
+        } else if (this.x <= 0) this.world.camera_x = 0;
       }
     }, 10);
   }
@@ -40,10 +43,10 @@ export function moveSharkyLeft() {
 export function moveSharkyRight() {
   if (!this.world.keyboard.RIGHT) {
     playSwimSound();
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.RIGHT = true;
     this.otherDirection = false;
-    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.sharkySwimAnimation();
     this.isSwimRight = setInterval(() => {
       if (this.x < canvasWidth * 4 - this.width && this.lifeEnergy > 0) {
         this.x += 4;
@@ -57,9 +60,9 @@ export function moveSharkyRight() {
 export function moveSharkyUp() {
   if (!this.world.keyboard.UP) {
     playSwimSound();
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.UP = true;
-    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.sharkySwimAnimation();
     this.isSwimUp = setInterval(() => {
       if (this.y > -95 && this.lifeEnergy > 0) this.y -= 4;
     }, 10);
@@ -69,35 +72,29 @@ export function moveSharkyUp() {
 export function moveSharkyDown() {
   if (!this.world.keyboard.DOWN) {
     playSwimSound();
-    if (!this.isCurrentlyHurtAnimation) this.clearIntervalsAnimationMove();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.clearIntervalsAnimationMove();
     this.world.keyboard.DOWN = true;
-    if (!this.isCurrentlyHurtAnimation) this.sharkySwimAnimation();
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.sharkySwimAnimation();
     this.isSwimDown = setInterval(() => {
-      if (this.y < canvasHeight - 220 && this.lifeEnergy > 0) {
-        this.y += 4;
-      }
+      if (this.y < canvasHeight - 220 && this.lifeEnergy > 0) this.y += 4;
     }, 10);
   }
 }
 
 export function sharkyAttackSpace() {
-  if (!this.world.keyboard.SPACE) {
-    this.world.keyboard.SPACE = true;
-    if (!this.isCurrentlyHurtAnimation) {
-      this.clearIntervalsAnimationMove();
-      if (!this.isEnoughPoison) this.sharkyBubbleRegularAnimation();
-      if (this.isEnoughPoison) this.sharkyBubblePoisonAnimation();
-      this.isCurrentlyAttackAnimation = true;
-      setTimeout(() => {
-        if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
-        this.world.keyboard.SPACE = false;
-        this.shootBubble();
-        playSfxSound("blub");
-        this.clearIntervalsAnimationMove();
-        this.sharkyStandAnimation();
-      }, 600);
-    }
-  }
+  if (this.isCurrentlyBubbleAttack || this.isCurrentlyHurtAnimation) return;
+  this.isCurrentlyBubbleAttack = true;
+  this.clearIntervalsAnimationMove();
+  stopSound("snore");
+  if (!this.isEnoughPoison) this.sharkyBubbleRegularAnimation();
+  if (this.isEnoughPoison) this.sharkyBubblePoisonAnimation();
+  setTimeout(() => {
+    this.shootBubble();
+    playSfxSound("blub");
+    this.clearIntervalsAnimationMove();
+    this.isCurrentlyBubbleAttack = false;
+    this.sharkyStandAnimation();
+  }, 600);
 }
 
 export function shootBubble() {
@@ -106,29 +103,21 @@ export function shootBubble() {
 }
 
 export function sharkyAttackDKey() {
-  if (!this.world.keyboard.DKey && !this.isCurrentlyFinSlap) {
-    this.world.keyboard.DKey = true;
-    if (!this.isCurrentlyHurtAnimation) {
-      this.isCurrentlyFinSlap = true;
-      this.clearIntervalsAnimationMove();
-      this.doFinSlap();
-      this.sharkyFinSlapAnimation();
-      playSfxSound("slap1", 300);
-      this.isCurrentlyAttackAnimation = true;
-      setTimeout(() => {
-        this.isCurrentlyFinSlap = false;
-        this.currentFinSlap = "none";
-        this.isCurrentlyAttackAnimation = false;
-        this.world.keyboard.DKey = false;
-        this.clearIntervalsAnimationMove();
-        this.sharkyStandAnimation();
-        this.isCurrentlyFinSlap = false;
-      }, 600);
-    }
-  }
+  if (this.isCurrentlyFinSlap || this.isCurrentlyHurtAnimation) return;
+  this.clearIntervalsAnimationMove();
+  stopSound("snore");
+  this.doFinSlap();
+  this.isCurrentlyFinSlap = true;
+  setTimeout(() => {
+    this.clearIntervalsAnimationMove();
+    this.currentFinSlap = "none";
+    this.isCurrentlyFinSlap = false;
+    this.sharkyStandAnimation();
+  }, 600);
 }
 
 export function doFinSlap() {
-  this.isCurrentlyFinSlap = true;
-  this.otherDirection ? this.currentFinSlap = "left" : this.currentFinSlap = "right";
+  this.otherDirection ? (this.currentFinSlap = "left") : (this.currentFinSlap = "right");
+  this.sharkyFinSlapAnimation();
+  playSfxSound("slap1", 300);
 }

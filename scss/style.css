@@ -67,6 +67,122 @@
   height: 100%;
 }
 
+.endBossLifeBar {
+  position: absolute;
+  z-index: 800;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-35%);
+  width: 180px;
+  height: 14px;
+  background: rgb(191, 210, 240);
+  background: linear-gradient(0deg, rgb(191, 210, 240) 55%, rgb(255, 255, 255) 100%);
+  border-radius: 100vh;
+  border: 1.5px solid white;
+}
+.endBossLifeBar img {
+  transform: scaleX(-1) rotateZ(-3deg);
+  height: 85px;
+  position: absolute;
+  filter: drop-shadow(0 0 1.2rem rgb(255, 255, 255));
+  left: -59px;
+  bottom: -20px;
+}
+.endBossLifeBar .innerLifeBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgb(255, 0, 0);
+  background: linear-gradient(0deg, rgb(255, 0, 0) 50%, rgb(255, 162, 162) 100%);
+  transition: all 0.25s ease;
+  transform-origin: left;
+  width: 100%;
+  border-radius: 100vh;
+  height: 11.25px;
+}
+
+.mobileBtnMoveBox {
+  position: absolute;
+  bottom: 2rem;
+  left: 1rem;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -moz-user-select: none;
+       user-select: none;
+}
+@media (hover: hover) {
+  .mobileBtnMoveBox {
+    display: none;
+  }
+}
+.mobileBtnMoveBox .moveBoxUpper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.mobileBtnMoveBox .moveBoxUpper .moveUpBtn {
+  transform: rotate(-90deg);
+}
+.mobileBtnMoveBox .moveBoxMiddle {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.mobileBtnMoveBox .moveBoxMiddle .moveLeftBtn {
+  transform: rotate(180deg);
+}
+.mobileBtnMoveBox .moveBoxLower {
+  display: flex;
+  justify-content: center;
+}
+.mobileBtnMoveBox .moveBoxLower .moveDownBtn {
+  transform: rotate(90deg);
+}
+
+.mobileBtnAttackBox {
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -moz-user-select: none;
+       user-select: none;
+}
+@media (hover: hover) {
+  .mobileBtnAttackBox {
+    display: none;
+  }
+}
+
+.btnBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 100vh;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background-color: rgba(127, 255, 224, 0.7);
+  touch-action: manipulation;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+}
+
+.img {
+  width: 36px;
+  height: 36px;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+       user-select: none;
+  touch-action: none;
+  -webkit-user-select: none;
+}
+
 .looseScreen {
   top: 0;
   left: 0;
@@ -181,17 +297,25 @@
 }
 
 .controlScreen {
-  width: 100%;
+  width: calc(100% + 1px);
   height: 100%;
   background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   position: absolute;
   top: 0;
-  left: 0;
+  left: -1px;
   z-index: 9000;
   border-radius: 1rem;
   transition: all 0.6s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 950px) and (orientation: landscape) {
+  .controlScreen {
+    border-radius: 0;
+  }
 }
 .controlScreen nav {
   display: flex;
@@ -216,7 +340,7 @@
 .controlScreen nav .btnActive {
   transform: scale(1.05);
   color: white;
-  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.7));
+  filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.5));
 }
 .controlScreen .divider {
   width: calc(100% - 8rem);
@@ -232,7 +356,12 @@
   width: calc(100% - 8rem);
   margin-left: auto;
   margin-right: auto;
-  min-height: 320px;
+}
+@media (max-width: 950px) and (orientation: landscape) {
+  .controlScreen .controlContentContainer {
+    overflow: auto;
+    padding-bottom: 2rem;
+  }
 }
 .controlScreen .controlContentContainer .textBar {
   background-color: rgba(255, 255, 255, 0.08);
@@ -249,20 +378,24 @@
   gap: 1rem;
 }
 .controlScreen .controlContentContainer .controlsBox {
-  width: 100%;
-  min-height: 320px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
   font-family: "LuckyGuy";
   font-size: 1.5rem;
   flex-wrap: wrap;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 4rem;
+  gap: 1rem;
+}
+.controlScreen .controlContentContainer .controlsBox .controlBarBG {
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  border-radius: 1rem;
 }
 .controlScreen .controlContentContainer .controlsBox .controlsBoxUpper {
   display: flex;
-  justify-content: center;
-  gap: 4rem;
+  justify-content: space-between;
 }
 .controlScreen .controlContentContainer .controlsBox .controlBar {
   display: flex;
@@ -270,6 +403,16 @@
   align-items: center;
 }
 .controlScreen .controlContentContainer .controlsBox .controlBar img {
+  padding-top: 1rem;
+  height: 70px;
+  width: auto;
+}
+.controlScreen .controlContentContainer .controlsBox .controlBarUpper {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.controlScreen .controlContentContainer .controlsBox .controlBarUpper img {
   padding-top: 1rem;
   height: 70px;
   width: auto;
@@ -349,11 +492,11 @@
 .controlScreen .imprintBtnBox {
   position: absolute;
   z-index: 10000;
-  left: -1rem;
-  bottom: 3rem;
+  left: -2.8rem;
+  bottom: 4.65rem;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 10px;
   cursor: pointer;
   padding: 2px 4px;
   border-radius: 2rem;
@@ -368,7 +511,7 @@
   filter: drop-shadow(0 0 3px rgb(255, 255, 255));
 }
 .controlScreen .imprintBtnBox p {
-  font-size: 0.75rem;
+  font-size: 1.5rem;
 }
 .controlScreen .imprintBtnBox img {
   width: 1.13rem;
@@ -436,6 +579,10 @@
   top: -100%;
 }
 
+.volumeInputBox {
+  padding: 0 1rem;
+}
+
 .musicVolume {
   width: 100%;
   height: 0.75rem;
@@ -500,9 +647,47 @@
   font-weight: normal;
   font-style: normal;
 }
+* {
+  touch-action: manipulation;
+}
+
 body {
   font-family: "LuckyGuy";
   color: white;
+}
+
+.rotateOverlay {
+  display: none;
+  position: absolute;
+  z-index: 20000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../assets/img/3. Background/Legacy/Dark/1.png");
+  background-size: cover;
+}
+@media (max-width: 950px) and (orientation: portrait) {
+  .rotateOverlay {
+    display: block;
+  }
+}
+.rotateOverlay div {
+  background-color: rgba(0, 0, 0, 0.78);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+.rotateOverlay div img {
+  width: 96px;
+  height: 96px;
+}
+.rotateOverlay div p {
+  font-size: 2rem;
 }
 
 main {
@@ -513,11 +698,9 @@ main {
   background-position: center;
   background-repeat: no-repeat;
 }
-@media (max-width: 1000px) and (orientation: landscape) {
+@media (max-width: 950px) and (orientation: portrait) {
   main {
-    width: 100vw;
-    height: 100vh;
-    font-weight: bold;
+    display: none;
   }
 }
 main h1 {
@@ -530,18 +713,18 @@ main .display {
   width: 853px;
   height: 480px;
   position: absolute;
-  top: 20%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   border-radius: 1rem;
-  box-shadow: 6px 6px 12px rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.5);
   overflow: hidden;
 }
-@media (max-width: 1000px) and (orientation: landscape) {
+@media (max-width: 948px) and (orientation: landscape) {
   main .display {
     width: 100vw;
-    height: 100vh;
-    top: 0;
+    height: 100dvh;
+    border-radius: 0;
   }
 }
 main .display .controlButton {
@@ -569,4 +752,28 @@ main .display .controlButton img {
 }
 main .display .controlButton img:hover {
   transform: scale(1.05);
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+    filter: drop-shadow(0 0 1.3rem rgb(255, 255, 255));
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: scale(1);
+    animation-timing-function: ease-in;
+  }
+}
+main .display .buttonPulse {
+  animation: pulse 1s infinite;
+}
+main .display .buttonPulse:hover {
+  background-color: transparent;
+  filter: none;
+}
+main .display .buttonPulse:hover img {
+  transform: none;
 }/*# sourceMappingURL=style.css.map */

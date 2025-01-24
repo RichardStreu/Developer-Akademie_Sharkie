@@ -16,7 +16,7 @@ export class JellyFishGreenSD extends JellyFish {
     "../../assets/img/2.Enemy/2 Jelly fish/Dead/green/g4.png",
   ];
 
-  currentAnimation = "swim"; //"swim" "dead" // "stop"
+  currentAnimation = "swim"; 
 
   currentAnimationIntervall;
 
@@ -38,7 +38,6 @@ export class JellyFishGreenSD extends JellyFish {
     }, 100);
   }
 
-  // doImageAnimation(imageArray, imgRef, intervall)
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") this.jellySwim();
     if (this.currentAnimation == "dead") this.jellyDead();
@@ -55,7 +54,6 @@ export class JellyFishGreenSD extends JellyFish {
   jellyDead() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
-    // this.upDownJellyFish(this.minY, this.maxY, this.upDownSpeed);
     this.doImageAnimation(this.imagesDead, this.img, 250);
   }
 
