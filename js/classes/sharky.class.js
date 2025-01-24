@@ -1,4 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
+
 import { moveObjRatio } from "../script.js";
 
 import { stopSwimSound, stopSound, stopAllLoopSounds } from "../sound.js";
@@ -157,10 +158,7 @@ export class Sharky extends MoveableObject {
   }
 
   checkCurrentSharkyPositions() {
-    this.currentPositionInterval = setInterval(() => {
-      sharkyXPosition = this.x;
-      sharkyYPosition = this.y;
-    }, 50);
+    this.currentPositionInterval = setInterval(() => ((sharkyXPosition = this.x), (sharkyYPosition = this.y)), 50);
   }
 
   clearAllSharkyIntervals() {
