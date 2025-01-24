@@ -138,12 +138,8 @@ export class Sharky extends MoveableObject {
   }
 
   setSharkyWindowEventListeners() {
-    this.keyDownHandler = window.addEventListener("keydown", (event) => {
-      this.handleKeyDown(event);
-    });
-    this.keyUpHandler = window.addEventListener("keyup", (event) => {
-      this.handleKeyUp(event);
-    });
+    this.keyDownHandler = window.addEventListener("keydown", (event) => this.handleKeyDown(event));
+    this.keyUpHandler = window.addEventListener("keyup", (event) => this.handleKeyUp(event));
   }
 
   removeSharkyWindowEventListeners() {
@@ -365,4 +361,3 @@ Sharky.prototype.hurtedByJellyFishSD = hurtedByJellyFishSD;
 Sharky.prototype.hurtedByEndBoss = hurtedByEndBoss;
 Sharky.prototype.isSharkyDead = isSharkyDead;
 Sharky.prototype.sharkyDead = sharkyDead;
-
