@@ -31,6 +31,9 @@ export let imgCachesObject = {};
 export let areImgCachesReady = false;
 export let loadedCachsArray = [];
 let isControlScreenVisible = false;
+let isControlFirstShown = false;
+let isImprintVisible = false;
+let isImprintSliding = false;
 let canvas;
 let world;
 
@@ -50,14 +53,9 @@ export function showHideControlScreen() {
 }
 window.showHideControlScreen = showHideControlScreen;
 
-let isControlFirstShown = false;
-
 function removeButtonPulse() {
   if (!isControlFirstShown) document.getElementById("controlButton").classList.remove("buttonPulse"), (isControlFirstShown = true);
 }
-
-let isImprintVisible = false;
-let isImprintSliding = false;
 
 function showImprint() {
   isImprintSliding = true;
@@ -110,7 +108,6 @@ function init() {
   }
 }
 window.init = init;
-// init();
 
 export function clearGlobalGame() {
   world.level1.enemies[17].clearAllEndBossIntervals();
