@@ -151,8 +151,8 @@ window.startGame = startGame;
 function resetGameUI() {
   document.getElementById("winScreen").classList.add("d_none");
   document.getElementById("looseScreen").classList.add("d_none");
-  document.getElementById("innerLifeBar").style.width = `100%`;
   document.getElementById("endBossLifeBar").classList.add("d_none");
+  document.getElementById("innerLifeBar").style.width = `100%`;
 }
 
 function startGameActions() {
