@@ -160,7 +160,7 @@ export function playSfxSound(sound, delay = 0, loop = false, currentTime = 0) {
 }
 
 export function playSwimSound() {
-  stopSwimSound("snore");  
+  stopSwimSound("snore");
   if (!isCurrentSwimSoundPlaying) {
     currentSwimSound = sounds.swim.audio;
     currentSwimSound.volume = sounds.swim.volume * sfxVolume * basicVolume;
@@ -212,24 +212,32 @@ export function stopAllLoopSounds() {
   }
 }
 
+function muteSound() {
+  document.getElementById("muteButtonDiv").classList.add("settingsImgBoxPushed");
+  if (currentSwimSound) currentSwimSound.muted = true;
+  sounds.backgroundRetroArcade.audio.muted = true;
+  sounds.backgroundLose.audio.muted = true;
+  sounds.backgroundWin.audio.muted = true;
+  sounds.snore.audio.muted = true;
+  basicVolume = 0;
+}
+
+function unmuteSound() {
+  document.getElementById("muteButtonDiv").classList.remove("settingsImgBoxPushed");
+  if (currentSwimSound) currentSwimSound.muted = false;
+  sounds.backgroundRetroArcade.audio.muted = false;
+  basicVolume = document.getElementById("masterVolume").value / 100;
+  sounds.backgroundMetal.audio.volume = basicVolume * musicVolume;
+  sounds.backgroundLose.audio.muted = false;
+  sounds.backgroundWin.audio.muted = false;
+  sounds.snore.audio.muted = false;
+}
+
 export function muteUnmuteSound() {
   if (!isSoundMuted) {
-    document.getElementById("muteButtonDiv").classList.add("settingsImgBoxPushed");
-    if (currentSwimSound) currentSwimSound.muted = true;
-    sounds.backgroundRetroArcade.audio.muted = true;
-    sounds.backgroundLose.audio.muted = true;
-    sounds.backgroundWin.audio.muted = true;
-    sounds.snore.audio.muted = true;
-    basicVolume = 0;
+    muteSound();
   } else {
-    document.getElementById("muteButtonDiv").classList.remove("settingsImgBoxPushed");
-    if (currentSwimSound) currentSwimSound.muted = false;
-    sounds.backgroundRetroArcade.audio.muted = false;
-    basicVolume = document.getElementById("masterVolume").value / 100;
-    sounds.backgroundMetal.audio.volume = basicVolume * musicVolume;
-    sounds.backgroundLose.audio.muted = false;
-    sounds.backgroundWin.audio.muted = false;
-    sounds.snore.audio.muted = false;
+    unmuteSound();
   }
   isSoundMuted = !isSoundMuted;
 }
