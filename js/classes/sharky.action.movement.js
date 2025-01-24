@@ -34,9 +34,7 @@ export function moveSharkyLeft() {
         const sharkyMidPoint = canvasWidth / 2 - this.width / 2 - 50;
         if (this.x > sharkyMidPoint && this.x > 0 && this.x < canvasWidth * 3.5 - this.width) {
           this.world.camera_x = sharkyMidPoint - this.x;
-        } else if (this.x <= 0) {
-          this.world.camera_x = 0;
-        }
+        } else if (this.x <= 0) this.world.camera_x = 0;
       }
     }, 10);
   }
