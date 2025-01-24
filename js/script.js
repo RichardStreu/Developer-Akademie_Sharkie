@@ -70,9 +70,7 @@ function hideImprint() {
   document.getElementById("imprint").classList.remove("transformImprint");
   document.getElementById("arrowUp").classList.add("opacity_zero");
   document.getElementById("arrowDown").classList.remove("opacity_zero");
-  setTimeout(() => {
-    document.getElementById("imprint").classList.add("d_none");
-  }, 610);
+  setTimeout(() => document.getElementById("imprint").classList.add("d_none"), 610);
 }
 
 export function showHideImprint() {
