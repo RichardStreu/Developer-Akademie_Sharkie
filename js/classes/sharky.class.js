@@ -150,10 +150,7 @@ export class Sharky extends MoveableObject {
 
   firstSharkyAnimationAfterCacheLoading() {
     this.firstInterval = setInterval(() => {
-      if (this.isImageCacheLoaded) {
-        this.sharkyStandAnimation();
-        clearInterval(this.firstInterval);
-      }
+      if (this.isImageCacheLoaded) this.sharkyStandAnimation(), clearInterval(this.firstInterval);
     }, 100);
   }
 
