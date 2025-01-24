@@ -235,9 +235,7 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimLeft);
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
-      if (!this.isCurrentlyFinSlap) {
-        this.resetSharkyState();
-      }
+      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
     }
   }
 
@@ -247,9 +245,7 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimRight);
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
-      if (!this.isCurrentlyFinSlap) {
-        this.resetSharkyState();
-      }
+      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
     }
   }
 
@@ -259,9 +255,7 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimUp);
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
-      if (!this.isCurrentlyFinSlap) {
-        this.resetSharkyState();
-      }
+      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
     }
   }
 
@@ -271,9 +265,7 @@ export class Sharky extends MoveableObject {
     clearInterval(this.isSwimDown);
     if (this.areMobileButtonsAvailable && !this.isCurrentlyHurtAnimation) {
       stopSound("snore");
-      if (!this.isCurrentlyFinSlap) {
-        this.resetSharkyState();
-      }
+      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
     }
   }
 
@@ -292,16 +284,12 @@ export class Sharky extends MoveableObject {
         this.resetSharkyState();
       }, 600);
     }
-    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyAttackAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) {
-      this.resetSharkyState();
-    }
+    if (!this.isCurrentlyHurtAnimation && !this.isCurrentlyAttackAnimation && !this.isCurrentlyBubbleAttack && !this.isCurrentlyFinSlap) this.resetSharkyState();
   }
 
   hurtSharky(enemy) {
     if (this.lifeEnergy > 0) {
-      if (enemy == "Coin") {
-        this.getCoins(enemy);
-      }
+      if (enemy == "Coin") this.getCoins(enemy);
       if (enemy == "Poison") this.getPoison(enemy);
       if (enemy == "PufferFishGreen" || enemy == "PufferFishOrange" || enemy == "PufferFishRed") this.hurtedByPufferFish();
       if (enemy == "JellyFishLilaRD" || enemy == "JellyFishYellowRD") this.hurtedByJellyFishRD();
