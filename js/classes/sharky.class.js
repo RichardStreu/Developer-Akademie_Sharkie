@@ -159,9 +159,7 @@ export class Sharky extends MoveableObject {
   }
 
   clearAllSharkyIntervals() {
-    this.clearMovementIntervals();
-    this.clearCurrentPositionInterval();
-    this.clearIntervalsAnimationMove();
+    this.clearMovementIntervals(), this.clearCurrentPositionInterval(), this.clearIntervalsAnimationMove();
   }
 
   clearCurrentPositionInterval() {
@@ -169,14 +167,11 @@ export class Sharky extends MoveableObject {
   }
 
   clearIntervalsAnimationMove() {
-    clearInterval(this.currentMovement);
-    clearInterval(this.currentAnimationIntervall);
+    clearInterval(this.currentMovement), clearInterval(this.currentAnimationIntervall);
   }
 
   resetSharkyState() {
-    this.clearIntervalsAnimationMove();
-    this.letSharkySleep();
-    this.sharkyStandAnimation();
+    this.clearIntervalsAnimationMove(), this.letSharkySleep(), this.sharkyStandAnimation();
   }
 
   handleKeyDown(event) {
