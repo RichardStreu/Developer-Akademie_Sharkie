@@ -75,15 +75,9 @@ function hideImprint() {
 
 export function showHideImprint() {
   if (isImprintSliding) return;
-  if (!isImprintVisible && !isImprintSliding) {
-    showImprint();
-  } else if (!isImprintSliding) {
-    hideImprint();
-  }
+  !isImprintVisible && !isImprintSliding ? showImprint() : hideImprint();
   isImprintVisible = !isImprintVisible;
-  setTimeout(() => {
-    isImprintSliding = false;
-  }, 610);
+  setTimeout(() => isImprintSliding = false, 610);
 }
 window.showHideImprint = showHideImprint;
 
