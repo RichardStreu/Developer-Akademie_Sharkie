@@ -183,27 +183,16 @@ export function goToStartScreen(para) {
     Array.from(document.getElementById("display").querySelectorAll("[data-group='screens']")).forEach((screen) => {
       if (screen.id !== "startScreen" && screen.id !== "controlScreen") {
         if (para == "homeBtn") screen.classList.add("d_none");
-        if (para == "winLose")
-          setTimeout(() => {
-            screen.classList.add("d_none");
-          }, 500);
+        if (para == "winLose") setTimeout(() => screen.classList.add("d_none"), 500);
       } else {
         if (para == "homeBtn") screen.classList.remove("d_none");
-        if (para == "winLose")
-          setTimeout(() => {
-            screen.classList.remove("d_none");
-          }, 500);
+        if (para == "winLose") setTimeout(() => screen.classList.remove("d_none"), 500);
       }
     });
-
     init();
-
     document.getElementById("innerLifeBar").style.width = `100%`;
     document.getElementById("endBossLifeBar").classList.add("d_none");
-    if (isControlScreenVisible)
-      setTimeout(() => {
-        showHideControlScreen();
-      }, 500);
+    if (isControlScreenVisible) setTimeout(() => showHideControlScreen(), 500);
   }
 }
 window.goToStartScreen = goToStartScreen;
@@ -215,4 +204,3 @@ export function youWinOrLose(para) {
     document.getElementById(para).classList.remove("opacity_zero");
   }, 20);
 }
-
