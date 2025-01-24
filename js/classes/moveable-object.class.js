@@ -1,4 +1,4 @@
-import { imgCachesObject, areImgCachesReady, loadedCachsArray, canvasHeight, youLoose } from "../script.js";
+import { imgCachesObject, areImgCachesReady, loadedCachsArray, canvasHeight, youWinOrLose } from "../script.js";
 
 import { DrawableObject } from "./drawable-object.class.js";
 
@@ -92,7 +92,7 @@ export class MoveableObject extends DrawableObject {
       } else {
         if (item == "Sharky") {
           this.world.sharky.checkCurrentSharkyPositions();
-          youLoose();
+          youWinOrLose('looseScreen');
         }
         clearInterval(this.currentMovement);
       }
@@ -107,7 +107,7 @@ export class MoveableObject extends DrawableObject {
         if (item == "Sharky") {
           setTimeout(() => {
             this.world.sharky.checkCurrentSharkyPositions();
-            youLoose();
+            youWinOrLose('looseScreen');
           }, 1500);
         }
         clearInterval(this.currentMovement);

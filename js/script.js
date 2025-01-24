@@ -208,18 +208,11 @@ export function goToStartScreen(para) {
 }
 window.goToStartScreen = goToStartScreen;
 
-export function youWin() {
-  document.getElementById("winScreen").classList.remove("d_none");
+export function youWinOrLose(para) {
+  document.getElementById(para).classList.remove("d_none");
   setTimeout(() => {
     if (isFullscreen) toggleFullscreen();
-    document.getElementById("winScreen").classList.remove("opacity_zero");
+    document.getElementById(para).classList.remove("opacity_zero");
   }, 20);
 }
 
-export function youLoose() {
-  document.getElementById("looseScreen").classList.remove("d_none");
-  setTimeout(() => {
-    if (isFullscreen) toggleFullscreen();
-    document.getElementById("looseScreen").classList.remove("opacity_zero");
-  }, 20);
-}

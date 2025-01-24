@@ -1,5 +1,5 @@
 import { MoveableObject } from "./moveable-object.class.js";
-import { moveObjRatio, youWin } from "../script.js";
+import { moveObjRatio, youWinOrLose } from "../script.js";
 import { imagesBossIntroduce, imagesBossSwim, imagesBossAttack, imagesBossDead } from "./endboss.class.images.js";
 import { playSfxSound, stopSound } from "../sound.js";
 
@@ -217,7 +217,7 @@ export class EndBoss extends MoveableObject {
         if (this.y <= -430) {
           clearInterval(this.currentMovement);
           clearInterval(this.currentAnimationIntervall);
-          youWin();
+          youWinOrLose('winScreen');
           clearInterval(floatingInterval);
         }
       }, 10);
