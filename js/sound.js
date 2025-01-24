@@ -1,7 +1,6 @@
 let firstSoundInit = false;
 
 let basicVolume = 0.5;
-// basic must be 0.5 by default
 
 let isSoundMuted = false;
 
@@ -189,9 +188,7 @@ export function playHurtSound(sound) {
   if (!isCurrentHurtSoundPlaying) {
     isCurrentHurtSoundPlaying = true;
     playSfxSound(sound);
-    sounds[sound].audio.addEventListener("ended", () => {
-      isCurrentHurtSoundPlaying = false;
-    });
+    sounds[sound].audio.addEventListener("ended", () => (isCurrentHurtSoundPlaying = false));
   }
 }
 
