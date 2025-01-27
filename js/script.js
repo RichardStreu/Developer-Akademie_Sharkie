@@ -1,3 +1,7 @@
+/**
+ * @module "script.js"
+ */
+
 import { World } from "./classes/world.class.js";
 
 import { Keyboard } from "./classes/keyboard.class.js";
