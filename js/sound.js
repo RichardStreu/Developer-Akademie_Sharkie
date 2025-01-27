@@ -137,6 +137,11 @@ export let sounds = {
 };
 window.sounds = sounds;
 
+
+/**
+ * Initializes the first sound by setting a flag to true.
+ * Ensures that sound playback only starts after the first interaction.
+ */
 export function initFirstSound() {
   if (!firstSoundInit) firstSoundInit = true;
 }
