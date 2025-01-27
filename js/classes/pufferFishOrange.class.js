@@ -1,3 +1,7 @@
+/**
+ * @module "pufferFishOrange.class.js"
+ */
+
 import { PufferFish } from "./pufferFish.class.js";
 import { moveObjRatio } from "../script.js";
 
@@ -39,6 +43,25 @@ export class PufferFishOrange extends PufferFish {
   currentMovement;
   isEnemyDead = false;
 
+  /**
+   * Creates an instance of the PufferFishOrange class.
+   * 
+   * @constructor
+   * @param {number} index - The index of the enemy.
+   * 
+   * @extends SomeSuperClass
+   * 
+   * @property {number} enemieIndex - The index of the enemy.
+   * @property {number} width - The width of the puffer fish, adjusted by moveObjRatio.
+   * @property {number} height - The height of the puffer fish, adjusted by moveObjRatio.
+   * @property {boolean} isImageCacheLoaded - Indicates if the image cache is loaded.
+   * @property {number} firstInterval - The interval ID for checking image cache loading.
+   * 
+   * @method loadImage - Loads the initial image for the puffer fish.
+   * @method loadAllImagesCachePuffer - Loads all images for the puffer fish into cache.
+   * @method checkImagesCacheLoaded - Checks if all images are loaded into cache.
+   * @method doCurrentAnimationAndMovement - Executes the current animation and movement for the puffer fish.
+   */
   constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png");
     this.enemieIndex = index;
@@ -54,6 +77,14 @@ export class PufferFishOrange extends PufferFish {
     }, 100);
   }
 
+  /**
+   * Executes the current animation and movement for the puffer fish based on the value of `this.currentAnimation`.
+   * 
+   * - If `this.currentAnimation` is "swim", it clears any existing intervals, moves the puffer fish back and forth, and performs the swim image animation.
+   * - If `this.currentAnimation` is "transition", it clears any existing intervals and performs the transition image animation.
+   * - If `this.currentAnimation` is "bubbleSwim", it clears any existing intervals and performs the bubble swim image animation.
+   * - If `this.currentAnimation` is "stop", it clears any existing intervals.
+   */
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       this.clearIntervalsAnimationMove();

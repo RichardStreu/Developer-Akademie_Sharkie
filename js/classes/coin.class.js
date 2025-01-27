@@ -1,3 +1,7 @@
+/**
+ * @module "coin.class.js"
+ */
+
 import { MoveableObject } from "./moveable-object.class.js";
 
 export class Coin extends MoveableObject {
@@ -8,6 +12,12 @@ export class Coin extends MoveableObject {
     "../../assets/img/4. Marcadores/1. Coins/4.png",
   ];
 
+  /**
+   * Creates an instance of Coin.
+   * @param {number} x - The x-coordinate of the coin.
+   * @param {number} y - The y-coordinate of the coin.
+   * @param {number} index - The index of the coin.
+   */
   constructor(x, y, index) {
     super().loadImage("../../assets/img/4. Marcadores/1. Coins/1.png");
     this.loadImageCache(this.imagesCoin, this.constructor.name);
@@ -20,6 +30,10 @@ export class Coin extends MoveableObject {
     this.coinAnimationAfterCacheLoading();
   }
 
+  /**
+   * Starts the coin animation after the image cache is loaded.
+   * @private
+   */
   coinAnimationAfterCacheLoading() {
     this.firstInterval = setInterval(() => {
       if (this.isImageCacheLoaded) {

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/pufferFish.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/pufferFish.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module "pufferFish.class.js"
+ */
+
+import { MoveableObject } from "./moveable-object.class.js";
+import { enemyStartX, enemyStartDistX, enemyStartY, enemyEndY } from "../script.js";
+
+export class PufferFish extends MoveableObject {
+  minX;
+  maxX;
+  moveForBackFactor = 0;
+  forBackSpeed = 0;
+  isImageCacheLoaded = false;
+
+  currentAnimationIntervall;
+
+  /**
+   * Creates an instance of the PufferFish class.
+   * Initializes the position and movement parameters of the puffer fish.
+   */
+  constructor() {
+    super();
+    this.x = enemyStartX + Math.random() * enemyStartDistX;
+    this.y = enemyStartY + Math.random() * (enemyEndY - this.height);
+    this.calculateMoveForBackFactor();
+    this.calculateForBackSpeed();
+    this.calculateMinMaxX();
+  }
+
+  /**
+   * Asynchronously loads all image caches for the PufferFish class.
+   * This method loads image caches for different states of the PufferFish,
+   * including die, swim, transition, and bubble swim images.
+   *
+   * @async
+   * @function
+   * @returns {Promise&lt;void>} A promise that resolves when all image caches are loaded.
+   */
+  async loadAllImagesCachePuffer() {
+    await this.loadImageCache(this.imagesDie, this.constructor.name);
+    await this.loadImageCache(this.imagesSwim, this.constructor.name);
+    await this.loadImageCache(this.imagesTransition, this.constructor.name);
+    await this.loadImageCache(this.imagesBubbleSwim, this.constructor.name);
+  }
+
+  /**
+   * Calculates and sets the moveForBackFactor property.
+   * The factor is a random number between 0 and 1.
+   * If the factor is less than 0.2, moveForBackFactor is set to 0.2.
+   * Otherwise, moveForBackFactor is set to the random factor.
+   */
+  calculateMoveForBackFactor() {
+    let factor = Math.random();
+    if (factor &lt; 0.2) {
+      this.moveForBackFactor = 0.2;
+    } else {
+      this.moveForBackFactor = factor;
+    }
+  }
+
+  /**
+   * Calculates and sets the forward and backward speed for the puffer fish.
+   * The speed is a random value between 1 and 4.
+   */
+  calculateForBackSpeed() {
+    let speed = 1 + Math.random() * 3;
+    this.forBackSpeed = speed;
+  }
+
+  /**
+   * Calculates and sets the minimum and maximum X coordinates for the puffer fish.
+   * 
+   * The minimum X coordinate is determined by subtracting 400 times the moveForBackFactor from the current X coordinate.
+   * If the calculated minimum X is less than the enemy's starting X coordinate, it is set to the enemy's starting X coordinate.
+   * 
+   * The maximum X coordinate is determined by adding 400 times the moveForBackFactor to the current X coordinate.
+   * If the calculated maximum X is greater than the enemy's starting X coordinate plus the enemy's starting distance and the width of the puffer fish, 
+   * it is set to the enemy's starting X coordinate plus the enemy's starting distance minus the width of the puffer fish.
+   */
+  calculateMinMaxX() {
+    this.minX = this.x - 400 * this.moveForBackFactor;
+    if (this.minX &lt; enemyStartX) this.minX = enemyStartX;
+    this.maxX = this.x + 400 * this.moveForBackFactor;
+    if (this.maxX > enemyStartX + enemyStartDistX + this.width) this.maxX = enemyStartX + enemyStartDistX - this.width;
+  }
+
+  /**
+   * Moves the puffer fish back and forth between the specified minimum and maximum X coordinates.
+   *
+   * @param {number} minX - The minimum X coordinate the puffer fish can move to.
+   * @param {number} maxX - The maximum X coordinate the puffer fish can move to.
+   * @param {number} speed - The speed at which the puffer fish moves.
+   */
+  forBackMovePufferFish(minX, maxX, speed) {
+    this.moveFor = true;
+    this.currentMovement = setInterval(() => {
+      if (this.moveFor &amp;&amp; this.x > minX) this.x -= speed;
+      if (this.moveFor &amp;&amp; this.x &lt; minX) {
+        this.moveFor = false;
+        this.otherDirection = true;
+      }
+      if (!this.moveFor &amp;&amp; this.x &lt; maxX) this.x += speed;
+      if (!this.moveFor &amp;&amp; this.x > maxX) {
+        this.moveFor = true;
+        this.otherDirection = false;
+      }
+    }, 100);
+  }
+
+  /**
+   * Clears the intervals for the current movement and animation.
+   * 
+   * This method stops the ongoing movement and animation by clearing their respective intervals.
+   * It is useful to halt the puffer fish's actions when necessary.
+   */
+  clearIntervalsAnimationMove() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+  }
+
+  /**
+   * Handles the logic for when the enemy is dead.
+   * - Stops the current movement and animation intervals.
+   * - Updates the enemy's image to the dying state.
+   * - Sets the enemy's dead status to true.
+   * - Initiates the floating to surface behavior.
+   * - Periodically checks if the enemy has floated off-screen and stops intervals if so.
+   */
+  enemyIsDead() {
+    clearInterval(this.currentMovement);
+    clearInterval(this.currentAnimationIntervall);
+    this.img = this.imageCache[this.imagesDie[2]];
+    this.isEnemyDead = true;
+    this.floatToSurface();
+    setInterval(() => {
+      if (this.y &lt; -1500) {
+        clearInterval(this.currentMovement);
+        clearInterval(this.currentAnimationIntervall);
+      }
+    }, 200);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-_coin.class.js_.html">"coin.class.js"</a></li><li><a href="module-_drawable-object.class.js_.html">"drawable-object.class.js"</a></li><li><a href="module-_endboss.class.js_.html">"endboss.class.js"</a></li><li><a href="module-_jellyFish.class.js_.html">"jellyFish.class.js"</a></li><li><a href="module-_jellyFishGreenSD.class.js_.html">"jellyFishGreenSD.class.js"</a></li><li><a href="module-_jellyFishLilaRD.class.js_.html">"jellyFishLilaRD.class.js"</a></li><li><a href="module-_jellyFishPinkSD.class.js_.html">"jellyFishPinkSD.class.js"</a></li><li><a href="module-_jellyFishYellowRD.class.js_.html">"jellyFishYellowRD.class.js"</a></li><li><a href="module-_keyboard.class.js_.html">"keyboard.class.js"</a></li><li><a href="module-_moveable-object.class.js_.html">"moveable-object.class.js"</a></li><li><a href="module-_poison.class.js_.html">"poison.class.js"</a></li><li><a href="module-_pufferFish.class.js_.html">"pufferFish.class.js"</a></li><li><a href="module-_pufferFishGreen.class.js_.html">"pufferFishGreen.class.js"</a></li><li><a href="module-_pufferFishOrange.class.js_.html">"pufferFishOrange.class.js"</a></li><li><a href="module-_pufferFishRed.class.js_.html">"pufferFishRed.class.js"</a></li><li><a href="module-_script.js_.html">"script.js"</a></li><li><a href="module-_settings.js_.html">"settings.js"</a></li><li><a href="module-_sharky.action.animations.js_.html">"sharky.action.animations.js"</a></li><li><a href="module-_sharky.action.hurt.js_.html">"sharky.action.hurt.js"</a></li><li><a href="module-_sharky.action.movement.js_.html">"sharky.action.movement.js"</a></li><li><a href="module-_sharky.bubble.class.js_.html">"sharky.bubble.class.js"</a></li><li><a href="module-_sharky.class.handleKeys.js_.html">"sharky.class.handleKeys.js"</a></li><li><a href="module-_sharky.class.js_.html">"sharky.class.js"</a></li><li><a href="module-_sound.js_.html">"sound.js"</a></li><li><a href="module-_staticFloor.class.js_.html">"staticFloor.class.js"</a></li><li><a href="module-_staticFondo1.class.js_.html">"staticFondo1.class.js"</a></li><li><a href="module-_staticFondo2.class.js_.html">"staticFondo2.class.js"</a></li><li><a href="module-_staticLight.class.js_.html">"staticLight.class.js"</a></li><li><a href="module-_staticWater.class.js_.html">"staticWater.class.js"</a></li><li><a href="module-_statusBar-coin.class.js_.html">"statusBar-coin.class.js"</a></li><li><a href="module-_statusBar-life.class.js_.html">"statusBar-life.class.js"</a></li><li><a href="module-_statusBar-poison.class.js_.html">"statusBar-poison.class.js"</a></li><li><a href="module-_statusBar.class.js_.html">"statusBar.class.js"</a></li><li><a href="module-_world.class.js_.html">"world.class.js"</a></li></ul><h3>Classes</h3><ul><li><a href="module-_coin.class.js_.Coin.html">Coin</a></li><li><a href="module-_drawable-object.class.js_.DrawableObject.html">DrawableObject</a></li><li><a href="module-_jellyFish.class.js_.JellyFish.html">JellyFish</a></li><li><a href="module-_keyboard.class.js_.Keyboard.html">Keyboard</a></li><li><a href="module-_poison.class.js_.Poison.html">Poison</a></li><li><a href="module-_pufferFish.class.js_.PufferFish.html">PufferFish</a></li><li><a href="module-_sharky.bubble.class.js_.SharkyBubble.html">SharkyBubble</a></li><li><a href="module-_staticFloor.class.js_.Floor.html">Floor</a></li><li><a href="module-_staticFondo1.class.js_.Fondo1.html">Fondo1</a></li><li><a href="module-_staticFondo2.class.js_.Fondo2.html">Fondo2</a></li><li><a href="module-_staticLight.class.js_.Light.html">Light</a></li><li><a href="module-_staticWater.class.js_.Water.html">Water</a></li><li><a href="module-_statusBar-coin.class.js_.StatusBarCoin.html">StatusBarCoin</a></li><li><a href="module-_statusBar-life.class.js_.StatusBarLife.html">StatusBarLife</a></li><li><a href="module-_statusBar-poison.class.js_.StatusBarPoison.html">StatusBarPoison</a></li><li><a href="module-_statusBar.class.js_.StatusBar.html">StatusBar</a></li><li><a href="module-_world.class.js_.World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#hideImprint-Functiontohidetheimprint.">hideImprint - Function to hide the imprint.</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#showHideControlScreen">showHideControlScreen</a></li><li><a href="global.html#stopSwimSound">stopSwimSound</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jan 27 2025 14:07:06 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

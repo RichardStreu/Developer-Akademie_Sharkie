@@ -1,3 +1,7 @@
+/**
+ * @module "statusBar-coin.class.js"
+ */
+
 import { StatusBar } from "./statusBar.class.js";
 
 export class StatusBarCoin extends StatusBar {
@@ -10,6 +14,13 @@ export class StatusBarCoin extends StatusBar {
     "../../assets/img/4. Marcadores/green/Coin/100_ copia 4.png",
   ];
 
+  /**
+   * Creates an instance of the status bar for coins.
+   * 
+   * @constructor
+   * @param {number} x - The x-coordinate of the status bar.
+   * @param {number} y - The y-coordinate of the status bar.
+   */
   constructor(x, y) {
     super();
     this.loadImgArrayStatBar();

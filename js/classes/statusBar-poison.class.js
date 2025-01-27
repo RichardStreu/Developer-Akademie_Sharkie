@@ -1,3 +1,7 @@
+/**
+ * @module "statusBar-poison.class.js"
+ */
+
 import { StatusBar } from "./statusBar.class.js";
 
 export class StatusBarPoison extends StatusBar {
@@ -10,6 +14,13 @@ export class StatusBarPoison extends StatusBar {
     "../../assets/img/4. Marcadores/green/poisoned bubbles/100_ copia 3.png",
   ];
 
+  /**
+   * Creates an instance of the status bar for poison effect.
+   * 
+   * @constructor
+   * @param {number} x - The x-coordinate of the status bar.
+   * @param {number} y - The y-coordinate of the status bar.
+   */
   constructor(x, y) {
     super();
     this.loadImgArrayStatBar();

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/drawable-object.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/drawable-object.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module "drawable-object.class.js"
+ */
+
+import { imgCachesObject, areImgCachesReady } from "../script.js";
+
+/**
+ * Represents a drawable object with properties for image, position, size, and image caching.
+ */
+export class DrawableObject {
+  img;
+  x = 100;
+  y = 100;
+  width = 100;
+  height = 100;
+  imageCache = {};
+
+  /**
+   * Loads an image from the specified path and assigns it to the `img` property.
+   * 
+   * @param {string} path - The path to the image file.
+   */
+  loadImage(path) {
+    this.img = new Image();
+    this.img.src = path;
+  }
+
+  /**
+   * Asynchronously loads images from the provided array of paths and caches them.
+   * 
+   * @param {string[]} pathArray - An array of image paths to be loaded and cached.
+   * @returns {Promise&lt;void>} A promise that resolves when all images are loaded and cached.
+   */
+  async getImages(pathArray) {
+    pathArray.forEach((path) => {
+      let img = new Image();
+      img.src = path;
+      this.imageCache[path] = img;
+    });
+  }
+
+  /**
+   * Draws the image of the object onto the provided canvas context.
+   *
+   * @param {CanvasRenderingContext2D} ctx - The canvas rendering context where the image will be drawn.
+   */
+  draw(ctx) {
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+
+  drawFrame(ctx) {
+    // if (this.constructor.name == "Sharky") this.drawSharkyFrame(ctx);
+    // if (this.constructor.name == "PufferFishGreen") this.drawPufferGreenFrame(ctx);
+    // if (this.constructor.name == "PufferFishOrange") this.drawPufferOrangeFrame(ctx);
+    // if (this.constructor.name == "PufferFishRed") this.drawPufferRedFrame(ctx);
+    // if (this.constructor.name == "JellyFishGreenSD") this.drawJellyGreen(ctx);
+    // if (this.constructor.name == "JellyFishPinkSD") this.drawJellyPink(ctx);
+    // if (this.constructor.name == "JellyFishLilaRD") this.drawJellyPink(ctx);
+    // if (this.constructor.name == "JellyFishYellowRD") this.drawJellyYellow(ctx);
+    // if (this.constructor.name == "EndBoss") this.drawEndbossFrame(ctx);
+  }
+
+  /**
+   * Changes the cache status of the specified class to false.
+   *
+   * @param {string} className - The name of the class whose cache status is to be changed.
+   */
+  changeCacheStatusToFalse(className) {
+    imgCachesObject[className] = false;
+  }
+
+  /**
+   * Changes the cache status of the specified class to true.
+   * 
+   * @param {string} className - The name of the class whose cache status is to be changed.
+   */
+  changeCachStatusToTrue(className) {
+    imgCachesObject[className] = true;
+  }
+
+  /**
+   * Asynchronously loads a cache of images.
+   *
+   * @param {Array} arr - An array of image URLs to be loaded.
+   * @param {string} className - The class name associated with the cache.
+   * @returns {Promise&lt;void>} A promise that resolves when the images are loaded.
+   */
+  async loadImageCache(arr, className) {
+    this.changeCacheStatusToFalse(className);
+    await this.getImages(arr);
+    this.changeCachStatusToTrue(className);
+  }
+
+  /**
+   * Periodically checks if the image caches are ready and sets the 
+   * `isImageCacheLoaded` property to true once they are. The check 
+   * is performed every 100 milliseconds until the caches are ready.
+   * 
+   * @function checkImagesCacheLoaded
+   * @memberof DrawableObject
+   */
+  checkImagesCacheLoaded() {
+    let checkInterval = setInterval(() => {
+      if (areImgCachesReady) {
+        this.isImageCacheLoaded = true;
+        clearInterval(checkInterval);
+      }
+    }, 100);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-_coin.class.js_.html">"coin.class.js"</a></li><li><a href="module-_drawable-object.class.js_.html">"drawable-object.class.js"</a></li><li><a href="module-_endboss.class.js_.html">"endboss.class.js"</a></li><li><a href="module-_jellyFish.class.js_.html">"jellyFish.class.js"</a></li><li><a href="module-_jellyFishGreenSD.class.js_.html">"jellyFishGreenSD.class.js"</a></li><li><a href="module-_jellyFishLilaRD.class.js_.html">"jellyFishLilaRD.class.js"</a></li><li><a href="module-_jellyFishPinkSD.class.js_.html">"jellyFishPinkSD.class.js"</a></li><li><a href="module-_jellyFishYellowRD.class.js_.html">"jellyFishYellowRD.class.js"</a></li><li><a href="module-_keyboard.class.js_.html">"keyboard.class.js"</a></li><li><a href="module-_moveable-object.class.js_.html">"moveable-object.class.js"</a></li><li><a href="module-_poison.class.js_.html">"poison.class.js"</a></li><li><a href="module-_pufferFish.class.js_.html">"pufferFish.class.js"</a></li><li><a href="module-_pufferFishGreen.class.js_.html">"pufferFishGreen.class.js"</a></li><li><a href="module-_pufferFishOrange.class.js_.html">"pufferFishOrange.class.js"</a></li><li><a href="module-_pufferFishRed.class.js_.html">"pufferFishRed.class.js"</a></li><li><a href="module-_script.js_.html">"script.js"</a></li><li><a href="module-_settings.js_.html">"settings.js"</a></li><li><a href="module-_sharky.action.animations.js_.html">"sharky.action.animations.js"</a></li><li><a href="module-_sharky.action.hurt.js_.html">"sharky.action.hurt.js"</a></li><li><a href="module-_sharky.action.movement.js_.html">"sharky.action.movement.js"</a></li><li><a href="module-_sharky.bubble.class.js_.html">"sharky.bubble.class.js"</a></li><li><a href="module-_sharky.class.handleKeys.js_.html">"sharky.class.handleKeys.js"</a></li><li><a href="module-_sharky.class.js_.html">"sharky.class.js"</a></li><li><a href="module-_sound.js_.html">"sound.js"</a></li><li><a href="module-_staticFloor.class.js_.html">"staticFloor.class.js"</a></li><li><a href="module-_staticFondo1.class.js_.html">"staticFondo1.class.js"</a></li><li><a href="module-_staticFondo2.class.js_.html">"staticFondo2.class.js"</a></li><li><a href="module-_staticLight.class.js_.html">"staticLight.class.js"</a></li><li><a href="module-_staticWater.class.js_.html">"staticWater.class.js"</a></li><li><a href="module-_statusBar-coin.class.js_.html">"statusBar-coin.class.js"</a></li><li><a href="module-_statusBar-life.class.js_.html">"statusBar-life.class.js"</a></li><li><a href="module-_statusBar-poison.class.js_.html">"statusBar-poison.class.js"</a></li><li><a href="module-_statusBar.class.js_.html">"statusBar.class.js"</a></li><li><a href="module-_world.class.js_.html">"world.class.js"</a></li></ul><h3>Classes</h3><ul><li><a href="module-_coin.class.js_.Coin.html">Coin</a></li><li><a href="module-_drawable-object.class.js_.DrawableObject.html">DrawableObject</a></li><li><a href="module-_jellyFish.class.js_.JellyFish.html">JellyFish</a></li><li><a href="module-_keyboard.class.js_.Keyboard.html">Keyboard</a></li><li><a href="module-_poison.class.js_.Poison.html">Poison</a></li><li><a href="module-_pufferFish.class.js_.PufferFish.html">PufferFish</a></li><li><a href="module-_sharky.bubble.class.js_.SharkyBubble.html">SharkyBubble</a></li><li><a href="module-_staticFloor.class.js_.Floor.html">Floor</a></li><li><a href="module-_staticFondo1.class.js_.Fondo1.html">Fondo1</a></li><li><a href="module-_staticFondo2.class.js_.Fondo2.html">Fondo2</a></li><li><a href="module-_staticLight.class.js_.Light.html">Light</a></li><li><a href="module-_staticWater.class.js_.Water.html">Water</a></li><li><a href="module-_statusBar-coin.class.js_.StatusBarCoin.html">StatusBarCoin</a></li><li><a href="module-_statusBar-life.class.js_.StatusBarLife.html">StatusBarLife</a></li><li><a href="module-_statusBar-poison.class.js_.StatusBarPoison.html">StatusBarPoison</a></li><li><a href="module-_statusBar.class.js_.StatusBar.html">StatusBar</a></li><li><a href="module-_world.class.js_.World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#hideImprint-Functiontohidetheimprint.">hideImprint - Function to hide the imprint.</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#showHideControlScreen">showHideControlScreen</a></li><li><a href="global.html#stopSwimSound">stopSwimSound</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jan 27 2025 14:07:06 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
