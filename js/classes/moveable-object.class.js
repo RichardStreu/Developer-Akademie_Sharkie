@@ -2,8 +2,7 @@
  * @module "moveable-object.class.js"
  */
 
-import { imgCachesObject, areImgCachesReady, loadedCachsArray, canvasHeight, youWinOrLose } from "../script.js";
-
+import { canvasHeight, youWinOrLose } from "../script.js";
 import { DrawableObject } from "./drawable-object.class.js";
 
 export class MoveableObject extends DrawableObject {
