@@ -3,7 +3,7 @@
  */
 
 import { JellyFish } from "./jellyFish.class.js";
-import { moveObjRatio, imgCachesObject } from "../script.js";
+import { moveObjRatio } from "../script.js";
 
 export class JellyFishGreenSD extends JellyFish {
   imagesSwim = [
@@ -21,9 +21,7 @@ export class JellyFishGreenSD extends JellyFish {
   ];
 
   currentAnimation = "swim"; 
-
   currentAnimationIntervall;
-
   currentMovement;
   isEnemyDead = false;
 
@@ -32,13 +30,11 @@ export class JellyFishGreenSD extends JellyFish {
    * 
    * @constructor
    * @param {number} index - The index of the enemy.
-   * 
    * @property {number} enemieIndex - The index of the enemy.
    * @property {number} width - The width of the jellyfish, scaled by moveObjRatio.
    * @property {number} height - The height of the jellyfish, scaled by moveObjRatio.
    * @property {boolean} isImageCacheLoaded - Indicates if the image cache is loaded.
    * @property {number} firstInterval - The interval ID for checking image cache loading.
-   * 
    * @method loadImage - Loads the image for the jellyfish.
    * @method loadAllImagesCacheJellyFish - Loads all images for the jellyfish into the cache.
    * @method checkImagesCacheLoaded - Checks if the images are loaded into the cache.
