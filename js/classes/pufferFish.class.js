@@ -11,7 +11,6 @@ export class PufferFish extends MoveableObject {
   moveForBackFactor = 0;
   forBackSpeed = 0;
   isImageCacheLoaded = false;
-
   currentAnimationIntervall;
 
   /**

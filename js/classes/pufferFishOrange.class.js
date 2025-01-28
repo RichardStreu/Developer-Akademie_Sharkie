@@ -37,9 +37,7 @@ export class PufferFishOrange extends PufferFish {
   ];
 
   currentAnimation = "swim";
-
   currentAnimationIntervall;
-
   currentMovement;
   isEnemyDead = false;
 
@@ -48,15 +46,12 @@ export class PufferFishOrange extends PufferFish {
    * 
    * @constructor
    * @param {number} index - The index of the enemy.
-   * 
    * @extends SomeSuperClass
-   * 
    * @property {number} enemieIndex - The index of the enemy.
    * @property {number} width - The width of the puffer fish, adjusted by moveObjRatio.
    * @property {number} height - The height of the puffer fish, adjusted by moveObjRatio.
    * @property {boolean} isImageCacheLoaded - Indicates if the image cache is loaded.
    * @property {number} firstInterval - The interval ID for checking image cache loading.
-   * 
    * @method loadImage - Loads the initial image for the puffer fish.
    * @method loadAllImagesCachePuffer - Loads all images for the puffer fish into cache.
    * @method checkImagesCacheLoaded - Checks if all images are loaded into cache.
