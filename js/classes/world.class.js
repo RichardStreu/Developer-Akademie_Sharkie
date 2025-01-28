@@ -16,7 +16,6 @@ export class World {
    * @constructor
    * @param {HTMLCanvasElement} canvas - The canvas element where the world will be drawn.
    * @param {Object} keyboard - The keyboard input handler.
-   * 
    * @property {Sharky} sharky - The main character of the game.
    * @property {Level1} level1 - The first level of the game.
    * @property {Array} landscape - The landscape elements of the level.

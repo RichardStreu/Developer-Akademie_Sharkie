@@ -3,7 +3,6 @@
  */
 
 import { DrawableObject } from "./drawable-object.class.js";
-
 import { staticObjRatio } from "../script.js";
 
 export class StatusBar extends DrawableObject {
