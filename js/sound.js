@@ -134,7 +134,7 @@ export let sounds = {
   snore: {
     audio: new Audio("./assets/audio/snorker.mp3"),
     link: "./assets/audio/snorker.mp3",
-    volume: 0.2,
+    volume: 0.1,
     loop: true,
     type: "sfx",
   },
