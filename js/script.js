@@ -3,18 +3,13 @@
  */
 
 import { World } from "./classes/world.class.js";
-
 import { Keyboard } from "./classes/keyboard.class.js";
-
+import { letSharkySleep } from "./classes/sharky.action.movement.js";
 import { shootBubble } from "./classes/sharky.action.movement.js";
 window.shootBubble = shootBubble;
-
-import { letSharkySleep } from "./classes/sharky.action.movement.js";
-
 import { showSubMenu, toggleFullscreen, isFullscreen } from "./settings.js";
 window.showSubMenu = showSubMenu;
 window.toggleFullscreen = toggleFullscreen;
-
 import { playSfxSound, initFirstSound, muteUnmuteSound, stopSound, stopAllLoopSounds } from "./sound.js";
 window.playSfxSound = playSfxSound;
 window.initFirstSound = initFirstSound;
