@@ -3,7 +3,7 @@
  */
 
 import { MoveableObject } from "./moveable-object.class.js";
-import { enemyStartX, enemyStartDistX, enemyStartY, enemyEndY, areImgCachesReady, loadedCachsArray } from "../script.js";
+import { enemyStartX, enemyStartDistX, enemyStartY, enemyEndY } from "../script.js";
 
 export class JellyFish extends MoveableObject {
   minY;
