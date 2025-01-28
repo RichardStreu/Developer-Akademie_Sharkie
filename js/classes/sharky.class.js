@@ -106,7 +106,7 @@ export class Sharky extends MoveableObject {
    * Asynchronously loads and caches all images for the Sharky character.
    * This method sequentially loads images for various states and actions of Sharky,
    * including standing, sleeping, swimming, attacking, getting hurt, and dying.
-   * 
+   *
    * @async
    * @function loadAllImagesCacheSharky
    * @returns {Promise<void>} A promise that resolves when all images are loaded and cached.
@@ -126,9 +126,9 @@ export class Sharky extends MoveableObject {
 
   /**
    * Sets up mobile event listeners for Sharky controls.
-   * 
+   *
    * This method adds touch event listeners to various buttons for controlling Sharky's actions and movements.
-   * 
+   *
    * Event listeners added:
    * - "touchend" on "attackBubbleBtn" to handle bubble attack.
    * - "touchend" on "attackFinSlapBtn" to handle fin slap attack.
@@ -150,6 +150,8 @@ export class Sharky extends MoveableObject {
     document.getElementById("moveDownBtn").addEventListener("touchend", this.moveDownEndHandler);
   }
 
+ 
+
   /**
    * Removes all mobile event listeners for the Sharky character.
    * This includes touchstart and touchend event listeners for attack and movement buttons.
@@ -169,11 +171,11 @@ export class Sharky extends MoveableObject {
 
   /**
    * Sets event listeners for keydown and keyup events on the window.
-   * 
+   *
    * This method attaches event listeners to the window object to handle
    * keydown and keyup events. The handlers for these events are defined
    * in the `handleKeyDown` and `handleKeyUp` methods of the class.
-   * 
+   *
    * @method setSharkyWindowEventListeners
    */
   setSharkyWindowEventListeners() {
@@ -204,7 +206,7 @@ export class Sharky extends MoveableObject {
   /**
    * Continuously updates the current X and Y positions of the sharky object at regular intervals.
    * The positions are updated every 50 milliseconds.
-   * 
+   *
    * @method checkCurrentSharkyPositions
    * @memberof Sharky
    */
@@ -230,9 +232,9 @@ export class Sharky extends MoveableObject {
 
   /**
    * Clears the intervals for the current movement and animation.
-   * 
+   *
    * This method stops the intervals that control the movement and animation
-   * of the object by calling `clearInterval` on `this.currentMovement` and 
+   * of the object by calling `clearInterval` on `this.currentMovement` and
    * `this.currentAnimationIntervall`.
    */
   clearIntervalsAnimationMove() {
@@ -260,7 +262,7 @@ export class Sharky extends MoveableObject {
 
   /**
    * Checks if the shark is not swimming in any direction and stops the swimming sound if true.
-   * 
+   *
    * This method checks the state of the keyboard inputs for the directions LEFT, RIGHT, UP, and DOWN.
    * If none of these keys are pressed, it calls the stopSwimSound() function to stop the swimming sound.
    */
@@ -290,10 +292,10 @@ export class Sharky extends MoveableObject {
    * Handles the interaction between the shark and various enemies.
    * Depending on the type of enemy, it triggers different actions.
    *
-   * @param {string} enemy - The type of enemy the shark interacts with. 
-   *                         Possible values are "Coin", "Poison", "PufferFishGreen", 
-   *                         "PufferFishOrange", "PufferFishRed", "JellyFishLilaRD", 
-   *                         "JellyFishYellowRD", "JellyFishGreenSD", "JellyFishPinkSD", 
+   * @param {string} enemy - The type of enemy the shark interacts with.
+   *                         Possible values are "Coin", "Poison", "PufferFishGreen",
+   *                         "PufferFishOrange", "PufferFishRed", "JellyFishLilaRD",
+   *                         "JellyFishYellowRD", "JellyFishGreenSD", "JellyFishPinkSD",
    *                         and "EndBoss".
    */
   hurtSharky(enemy) {
