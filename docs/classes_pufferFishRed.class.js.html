@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/pufferFishRed.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/pufferFishRed.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module "pufferFishRed.class.js"
+ */
+
+import { PufferFish } from "./pufferFish.class.js";
+import { moveObjRatio } from "../script.js";
+
+export class PufferFishRed extends PufferFish {
+  imagesSwim = [
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim2.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim3.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim4.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim5.png",
+  ];
+
+  imagesTransition = [
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition1.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition2.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition3.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition4.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition5.png",
+  ];
+
+  imagesBubbleSwim = [
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim1.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim2.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim3.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim4.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim5.png",
+  ];
+
+  imagesDie = [
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.2.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.3.png",
+    "../../assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png",
+  ];
+
+  currentAnimation = "swim";
+
+  currentAnimationIntervall;
+
+  currentMovement;
+  isEnemyDead = false;
+
+  /**
+   * Creates an instance of the PufferFishRed class.
+   * 
+   * @constructor
+   * @param {number} index - The index of the enemy.
+   * 
+   * @property {number} enemieIndex - The index of the enemy.
+   * @property {number} width - The width of the puffer fish, scaled by moveObjRatio.
+   * @property {number} height - The height of the puffer fish, scaled by moveObjRatio.
+   * @property {boolean} isImageCacheLoaded - Indicates whether the image cache is loaded.
+   * @property {number} firstInterval - The interval ID for checking if the image cache is loaded.
+   * 
+   * @method loadImage - Loads the initial image of the puffer fish.
+   * @method loadAllImagesCachePuffer - Loads all images of the puffer fish into the cache.
+   * @method checkImagesCacheLoaded - Checks if all images are loaded into the cache.
+   * @method doCurrentAnimationAndMovement - Executes the current animation and movement of the puffer fish.
+   */
+  constructor(index) {
+    super().loadImage("../../assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png");
+    this.enemieIndex = index;
+    this.width = 120 * moveObjRatio;
+    this.height = 96 * moveObjRatio;
+    this.loadAllImagesCachePuffer();
+    this.checkImagesCacheLoaded();
+    this.firstInterval = setInterval(() => {
+      if (this.isImageCacheLoaded) {
+        this.doCurrentAnimationAndMovement();
+        clearInterval(this.firstInterval);
+      }
+    }, 100);
+  }
+
+  /**
+   * Handles the current animation and movement of the puffer fish based on its current state.
+   * 
+   * - If the current animation is "swim", it clears any existing intervals, moves the puffer fish
+   *   back and forth between minX and maxX at the specified speed, and performs the swim image animation.
+   * - If the current animation is "transition", it clears any existing intervals and performs the transition image animation.
+   * - If the current animation is "bubbleSwim", it clears any existing intervals and performs the bubble swim image animation.
+   * - If the current animation is "stop", it clears any existing intervals.
+   */
+  doCurrentAnimationAndMovement() {
+    if (this.currentAnimation == "swim") {
+      this.clearIntervalsAnimationMove();
+      this.forBackMovePufferFish(this.minX, this.maxX, this.forBackSpeed);
+      this.doImageAnimation(this.imagesSwim, this.img, 220);
+    }
+    if (this.currentAnimation == "transition") {
+      this.clearIntervalsAnimationMove();
+      this.doImageAnimation(this.imagesTransition, this.img, 200);
+    }
+    if (this.currentAnimation == "bubbleSwim") {
+      this.clearIntervalsAnimationMove();
+      this.doImageAnimation(this.imagesBubbleSwim, this.img, 200);
+    }
+    if (this.currentAnimation == "stop") this.clearIntervalsAnimationMove();
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-_coin.class.js_.html">"coin.class.js"</a></li><li><a href="module-_drawable-object.class.js_.html">"drawable-object.class.js"</a></li><li><a href="module-_endboss.class.js_.html">"endboss.class.js"</a></li><li><a href="module-_jellyFish.class.js_.html">"jellyFish.class.js"</a></li><li><a href="module-_jellyFishGreenSD.class.js_.html">"jellyFishGreenSD.class.js"</a></li><li><a href="module-_jellyFishLilaRD.class.js_.html">"jellyFishLilaRD.class.js"</a></li><li><a href="module-_jellyFishPinkSD.class.js_.html">"jellyFishPinkSD.class.js"</a></li><li><a href="module-_jellyFishYellowRD.class.js_.html">"jellyFishYellowRD.class.js"</a></li><li><a href="module-_keyboard.class.js_.html">"keyboard.class.js"</a></li><li><a href="module-_moveable-object.class.js_.html">"moveable-object.class.js"</a></li><li><a href="module-_poison.class.js_.html">"poison.class.js"</a></li><li><a href="module-_pufferFish.class.js_.html">"pufferFish.class.js"</a></li><li><a href="module-_pufferFishGreen.class.js_.html">"pufferFishGreen.class.js"</a></li><li><a href="module-_pufferFishOrange.class.js_.html">"pufferFishOrange.class.js"</a></li><li><a href="module-_pufferFishRed.class.js_.html">"pufferFishRed.class.js"</a></li><li><a href="module-_script.js_.html">"script.js"</a></li><li><a href="module-_settings.js_.html">"settings.js"</a></li><li><a href="module-_sharky.action.animations.js_.html">"sharky.action.animations.js"</a></li><li><a href="module-_sharky.action.hurt.js_.html">"sharky.action.hurt.js"</a></li><li><a href="module-_sharky.action.movement.js_.html">"sharky.action.movement.js"</a></li><li><a href="module-_sharky.bubble.class.js_.html">"sharky.bubble.class.js"</a></li><li><a href="module-_sharky.class.handleKeys.js_.html">"sharky.class.handleKeys.js"</a></li><li><a href="module-_sharky.class.js_.html">"sharky.class.js"</a></li><li><a href="module-_sound.js_.html">"sound.js"</a></li><li><a href="module-_staticFloor.class.js_.html">"staticFloor.class.js"</a></li><li><a href="module-_staticFondo1.class.js_.html">"staticFondo1.class.js"</a></li><li><a href="module-_staticFondo2.class.js_.html">"staticFondo2.class.js"</a></li><li><a href="module-_staticLight.class.js_.html">"staticLight.class.js"</a></li><li><a href="module-_staticWater.class.js_.html">"staticWater.class.js"</a></li><li><a href="module-_statusBar-coin.class.js_.html">"statusBar-coin.class.js"</a></li><li><a href="module-_statusBar-life.class.js_.html">"statusBar-life.class.js"</a></li><li><a href="module-_statusBar-poison.class.js_.html">"statusBar-poison.class.js"</a></li><li><a href="module-_statusBar.class.js_.html">"statusBar.class.js"</a></li><li><a href="module-_world.class.js_.html">"world.class.js"</a></li></ul><h3>Classes</h3><ul><li><a href="module-_coin.class.js_.Coin.html">Coin</a></li><li><a href="module-_drawable-object.class.js_.DrawableObject.html">DrawableObject</a></li><li><a href="module-_jellyFish.class.js_.JellyFish.html">JellyFish</a></li><li><a href="module-_keyboard.class.js_.Keyboard.html">Keyboard</a></li><li><a href="module-_poison.class.js_.Poison.html">Poison</a></li><li><a href="module-_pufferFish.class.js_.PufferFish.html">PufferFish</a></li><li><a href="module-_sharky.bubble.class.js_.SharkyBubble.html">SharkyBubble</a></li><li><a href="module-_staticFloor.class.js_.Floor.html">Floor</a></li><li><a href="module-_staticFondo1.class.js_.Fondo1.html">Fondo1</a></li><li><a href="module-_staticFondo2.class.js_.Fondo2.html">Fondo2</a></li><li><a href="module-_staticLight.class.js_.Light.html">Light</a></li><li><a href="module-_staticWater.class.js_.Water.html">Water</a></li><li><a href="module-_statusBar-coin.class.js_.StatusBarCoin.html">StatusBarCoin</a></li><li><a href="module-_statusBar-life.class.js_.StatusBarLife.html">StatusBarLife</a></li><li><a href="module-_statusBar-poison.class.js_.StatusBarPoison.html">StatusBarPoison</a></li><li><a href="module-_statusBar.class.js_.StatusBar.html">StatusBar</a></li><li><a href="module-_world.class.js_.World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#hideImprint-Functiontohidetheimprint.">hideImprint - Function to hide the imprint.</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#showHideControlScreen">showHideControlScreen</a></li><li><a href="global.html#stopSwimSound">stopSwimSound</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jan 27 2025 14:07:06 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -106,7 +106,7 @@
   bottom: 2rem;
   left: 1rem;
   -webkit-user-select: none;
-  touch-action: manipulation;
+  touch-action: none;
   -moz-user-select: none;
        user-select: none;
 }
@@ -147,7 +147,7 @@
   flex-direction: column;
   gap: 60px;
   -webkit-user-select: none;
-  touch-action: manipulation;
+  touch-action: none;
   -moz-user-select: none;
        user-select: none;
 }
@@ -166,7 +166,7 @@
   border-radius: 100vh;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background-color: rgba(127, 255, 224, 0.7);
-  touch-action: manipulation;
+  touch-action: none;
   -moz-user-select: none;
        user-select: none;
   -webkit-user-select: none;
@@ -647,10 +647,6 @@
   font-weight: normal;
   font-style: normal;
 }
-* {
-  touch-action: manipulation;
-}
-
 body {
   font-family: "LuckyGuy";
   color: white;

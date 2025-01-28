@@ -1,5 +1,8 @@
-import { imgCachesObject, areImgCachesReady, loadedCachsArray, canvasHeight, youWinOrLose } from "../script.js";
+/**
+ * @module "moveable-object.class.js"
+ */
 
+import { canvasHeight, youWinOrLose } from "../script.js";
 import { DrawableObject } from "./drawable-object.class.js";
 
 export class MoveableObject extends DrawableObject {
@@ -13,6 +16,11 @@ export class MoveableObject extends DrawableObject {
     this.lifeEnergy = 100;
   }
 
+  /**
+   * Draws a rectangular frame around the sharky object.
+   *
+   * @param {CanvasRenderingContext2D} ctx - The rendering context to use for drawing the frame.
+   */
   drawSharkyFrame(ctx) {
     ctx.beginPath();
     ctx.lineWidth = "5";
@@ -85,6 +93,13 @@ export class MoveableObject extends DrawableObject {
     ctx.stroke();
   }
 
+  /**
+   * Moves the object upwards until it reaches the surface.
+   * If the object is "Sharky" and reaches the surface, it checks the current positions of Sharky
+   * and triggers the 'looseScreen' event.
+   *
+   * @param {string} item - The name of the item to check if it is "Sharky".
+   */
   floatToSurface(item) {
     this.currentMovement = setInterval(() => {
       if (this.y > -100 - this.height) {
@@ -99,6 +114,12 @@ export class MoveableObject extends DrawableObject {
     }, 1000 / 40);
   }
 
+  /**
+   * Moves the object downwards until it reaches the ground level.
+   * If the item is "Sharky", it triggers a check on Sharky's position and displays the lose screen after a delay.
+   *
+   * @param {string} item - The name of the item to check for specific behavior.
+   */
   sinkToGround(item) {
     this.currentMovement = setInterval(() => {
       if (this.y < canvasHeight - this.height - 10) {
@@ -115,6 +136,13 @@ export class MoveableObject extends DrawableObject {
     }, 1000 / 40);
   }
 
+  /**
+   * Animates a sequence of images by cycling through an array of image paths at a specified interval.
+   *
+   * @param {string[]} imageArray - An array of image paths to be animated.
+   * @param {HTMLImageElement} imgRef - A reference to the HTML image element where the animation will be displayed.
+   * @param {number} intervall - The interval in milliseconds at which to cycle through the images.
+   */
   doImageAnimation(imageArray, imgRef, intervall) {
     let imagesArray = [];
     imageArray.forEach((imgPath) => {
@@ -127,6 +155,13 @@ export class MoveableObject extends DrawableObject {
     }, intervall);
   }
 
+  /**
+   * Checks if the current object is colliding with another object.
+   * 
+   * @param {Object} obj - The object to check for collision.
+   * @param {string} obj.constructor.name - The name of the constructor of the object.
+   * @returns {boolean} - Returns true if there is a collision, otherwise false.
+   */
   isColliding(obj) {
     let hitboxX = this.currentFinSlap === "left" ? this.x - 50 : this.currentFinSlap === "right" ? this.x + 50 : this.x;
     let currentFinSlap = this.currentFinSlap;
@@ -142,6 +177,11 @@ export class MoveableObject extends DrawableObject {
     if (obj.constructor.name == "EndBoss") return this.isCollEndBoss(obj);
   }
 
+  /**
+   * Checks if the current object collides with a coin object.
+   * If a collision is detected, the coin is removed from the world,
+   * the coin count is incremented, and the status bar is updated.
+   */
   isCollCoin(obj) {
     if (this.x + 40 + (this.width - 80) > obj.x && this.x + 40 < obj.x + obj.width && this.y + 125 + (this.height - 190) > obj.y && this.y + 125 < obj.y + obj.height) {
       let enemyIndex = this.world.enemies.findIndex((element) => element.index === obj.index);
@@ -162,6 +202,14 @@ export class MoveableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Checks for collision with a green pufferfish and handles the collision accordingly.
+   *
+   * @param {Object} obj - The object representing the green pufferfish.
+   * @param {number} hitboxX - The x-coordinate of the hitbox.
+   * @param {string} currentFinSlap - The direction of the current fin slap ("left" or "right").
+   * @returns {boolean} - Returns true if a collision is detected and handled, otherwise undefined.
+   */
   isCollPufferGreen(obj, hitboxX, currentFinSlap) {
     if (
       hitboxX + 40 + (this.width - 80) > obj.x &&
@@ -254,6 +302,15 @@ export class MoveableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Moves the given object to the right when it hits an enemy.
+   * The object will move a total distance of 60 units to the right,
+   * with an initial speed of 6 units per interval, decreasing by a factor of 0.85 each interval.
+   * The movement starts after a delay of 300 milliseconds.
+   *
+   * @param {Object} obj - The object to be moved.
+   * @param {number} obj.x - The current x-coordinate of the object.
+   */
   hitEnemyToRight(obj) {
     setTimeout(() => {
       let endX = obj.x + 60;
@@ -286,6 +343,17 @@ export class MoveableObject extends DrawableObject {
     }, 300);
   }
 
+  /**
+   * Checks if the current object collides with the end boss.
+   *
+   * @param {Object} obj - The object representing the end boss.
+   * @param {number} obj.x - The x-coordinate of the end boss.
+   * @param {number} obj.y - The y-coordinate of the end boss.
+   * @param {number} obj.width - The width of the end boss.
+   * @param {number} obj.height - The height of the end boss.
+   * @param {boolean} obj.isEnemyDead - The status indicating if the end boss is dead.
+   * @returns {boolean} - Returns true if there is a collision with the end boss, otherwise false.
+   */
   isCollEndBoss(obj) {
     if (
       this.x + 40 + (this.width - 80) > obj.x + 10 &&

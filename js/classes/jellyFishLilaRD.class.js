@@ -1,5 +1,9 @@
+/**
+ * @module "jellyFishLilaRD.class.js"
+ */
+
 import { JellyFish } from "./jellyFish.class.js";
-import { moveObjRatio, imgCachesObject } from "../script.js";
+import { moveObjRatio } from "../script.js";
 
 export class JellyFishLilaRD extends JellyFish {
   imagesSwim = [
@@ -16,13 +20,26 @@ export class JellyFishLilaRD extends JellyFish {
   ];
 
   currentAnimation = "swim"; 
-
   currentAnimationIntervall;
-
   currentMovement;
-
   isEnemyDead = false;
 
+  /**
+   * Creates an instance of the JellyFishLilaRD class.
+   * 
+   * @param {number} index - The index of the enemy.
+   * @class JellyFishLilaRD
+   * @extends SomeSuperClass 
+   * @property {number} enemieIndex - The index of the enemy.
+   * @property {number} width - The width of the jellyfish, adjusted by moveObjRatio.
+   * @property {number} height - The height of the jellyfish, adjusted by moveObjRatio.
+   * @property {boolean} isImageCacheLoaded - Indicates whether the image cache is loaded.
+   * @property {number} firstInterval - The interval ID for checking image cache loading.
+   * @method loadImage - Loads the image for the jellyfish.
+   * @method loadAllImagesCacheJellyFish - Loads all images for the jellyfish and caches them.
+   * @method checkImagesCacheLoaded - Checks if the images are loaded in the cache.
+   * @method doCurrentAnimationAndMovement - Performs the current animation and movement of the jellyfish.
+   */
   constructor(index) {
     super().loadImage("../../assets/img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png");
     this.enemieIndex = index;
@@ -38,6 +55,14 @@ export class JellyFishLilaRD extends JellyFish {
     }, 100);
   }
 
+  /**
+   * Handles the current animation and movement of the jellyfish based on its state.
+   * 
+   * - If the current animation is "swim", it clears any existing movement and animation intervals,
+   *   then initiates the up and down movement and image animation for swimming.
+   * - If the current animation is "dead", no action is taken.
+   * - If the current animation is "stop", it clears any existing movement and animation intervals.
+   */
   doCurrentAnimationAndMovement() {
     if (this.currentAnimation == "swim") {
       clearInterval(this.currentMovement);
@@ -53,6 +78,10 @@ export class JellyFishLilaRD extends JellyFish {
     }
   }
 
+  /**
+   * Handles the death of the jellyfish by clearing movement and animation intervals,
+   * and starting the death image animation.
+   */
   jellyDead() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);
@@ -60,6 +89,17 @@ export class JellyFishLilaRD extends JellyFish {
   }
 
 
+  /**
+   * Handles the death of the enemy.
+   * 
+   * This function performs the following actions:
+   * - Clears the current movement and animation intervals.
+   * - Sets the enemy's dead status to true.
+   * - Calls the `jellyDead` method.
+   * - Initiates the floating to surface process.
+   * - Sets an interval to check if the enemy has floated above a certain point,
+   *   and if so, clears the movement and animation intervals again.
+   */
   enemyIsDead() {
     clearInterval(this.currentMovement);
     clearInterval(this.currentAnimationIntervall);

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/sharky.class.handleKeys.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/sharky.class.handleKeys.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module "sharky.class.handleKeys.js"
+ */
+
+/**
+ * Handles the keydown event for controlling the sharky character.
+ *
+ * @param {KeyboardEvent} event - The keyboard event object.
+ * @this {Object} The context in which the function is called, expected to have properties:
+ *   - lifeEnergy {number}: The current life energy of the sharky character.
+ *   - isCurrentlyAttackAnimation {boolean}: Indicates if the sharky character is currently in an attack animation.
+ *   - moveSharkyLeft {Function}: Function to move the sharky character to the left.
+ *   - moveSharkyRight {Function}: Function to move the sharky character to the right.
+ *   - moveSharkyUp {Function}: Function to move the sharky character up.
+ *   - moveSharkyDown {Function}: Function to move the sharky character down.
+ *   - sharkyAttackSpace {Function}: Function to make the sharky character attack using the space key.
+ *   - sharkyAttackDKey {Function}: Function to make the sharky character attack using the 'd' key.
+ */
+export function handleKeyDown(event) {
+  if (
+    this.lifeEnergy > 0 &amp;&amp;
+    !this.isCurrentlyAttackAnimation &amp;&amp;
+    document.getElementById("winScreen").classList.contains("d_none") &amp;&amp;
+    document.getElementById("looseScreen").classList.contains("d_none")
+  ) {
+    if (event.key == "ArrowLeft") this.moveSharkyLeft();
+    if (event.key == "ArrowRight") this.moveSharkyRight();
+    if (event.key == "ArrowUp") this.moveSharkyUp();
+    if (event.key == "ArrowDown") this.moveSharkyDown();
+    if (event.key == " ") this.sharkyAttackSpace();
+    if (event.key == "d") this.sharkyAttackDKey();
+    stopSound("snore");
+  }
+}
+
+/**
+ * Resets all keyboard key states to false.
+ * This function sets the state of the following keys to false:
+ * LEFT, RIGHT, UP, DOWN, SPACE, and DKey.
+ */
+export function setAllKeyDownsToFalse() {
+  this.world.keyboard.LEFT = false;
+  this.world.keyboard.RIGHT = false;
+  this.world.keyboard.UP = false;
+  this.world.keyboard.DOWN = false;
+  this.world.keyboard.SPACE = false;
+  this.world.keyboard.DKey = false;
+} 
+
+/**
+ * Handles the key up event for the game character.
+ *
+ * @param {KeyboardEvent} event - The keyboard event object.
+ * @this {Object} - The context in which the function is called, expected to have properties:
+ *   - lifeEnergy {number} - The life energy of the character.
+ *   - world {Object} - The game world object, expected to have a keyboard property.
+ *   - keyArrowLeftUp {Function} - Function to handle the ArrowLeft key up event.
+ *   - keyArrowRightUp {Function} - Function to handle the ArrowRight key up event.
+ *   - keyArrowUpUp {Function} - Function to handle the ArrowUp key up event.
+ *   - keyArrowDownUp {Function} - Function to handle the ArrowDown key up event.
+ *   - keySpaceUp {Function} - Function to handle the Space key up event.
+ *   - keyDUp {Function} - Function to handle the 'd' key up event.
+ *   - allKeysUp {Function} - Function to handle the event when all keys are released.
+ */
+export function handleKeyUp(event) {
+    if (this.lifeEnergy > 0) {
+      if (event.key == "ArrowLeft") this.keyArrowLeftUp();
+      if (event.key == "ArrowRight") this.keyArrowRightUp();
+      if (event.key == "ArrowUp") this.keyArrowUpUp();
+      if (event.key == "ArrowDown") this.keyArrowDownUp();
+      if (event.key == " ") this.keySpaceUp();
+      if (event.key == "d") this.keyDUp();
+      if (Object.values(this.world.keyboard).every((value) => value === false)) this.allKeysUp();
+    }
+  }
+
+/**
+ * Handles the event when the left arrow key is released.
+ * 
+ * This function performs the following actions:
+ * - Sets the `LEFT` property of the `keyboard` object in the `world` to `false`.
+ * - Calls `checkSwimmingForStopSound` to check if the swimming sound should be stopped.
+ * - Clears the interval for `isSwimLeft`.
+ * - If mobile buttons are available and the shark is not currently in a hurt animation:
+ *   - Stops the "snore" sound.
+ *   - If the shark is not currently performing a fin slap, resets the shark's state.
+ */
+export function keyArrowLeftUp() {
+    this.world.keyboard.LEFT = false;
+    this.checkSwimmingForStopSound();
+    clearInterval(this.isSwimLeft);
+    if (this.areMobileButtonsAvailable &amp;&amp; !this.isCurrentlyHurtAnimation) {
+      stopSound("snore");
+      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
+    }
+  }
+
+/**
+ * Handles the event when the right arrow key is released.
+ * 
+ * This function performs the following actions:
+ * - Sets the `RIGHT` property of the `keyboard` object in the `world` to `false`.
+ * - Calls `checkSwimmingForStopSound` to determine if the swimming sound should stop.
+ * - Clears the interval for `isSwimRight`.
+ * - If mobile buttons are available and the shark is not currently in a hurt animation:
+ *   - Stops the "snore" sound.
+ *   - If the shark is not currently performing a fin slap, resets the shark's state.
+ */
+export function keyArrowRightUp() {
+    this.world.keyboard.RIGHT = false;
+    this.checkSwimmingForStopSound();
+    clearInterval(this.isSwimRight);
+    if (this.areMobileButtonsAvailable &amp;&amp; !this.isCurrentlyHurtAnimation) {
+      stopSound("snore");
+      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
+    }
+  }
+
+/**
+ * Handles the event when the "Arrow Up" key is released.
+ * 
+ * This function performs the following actions:
+ * - Sets the `UP` property of the `keyboard` object in the `world` to `false`.
+ * - Calls `checkSwimmingForStopSound` to check if the swimming sound should be stopped.
+ * - Clears the interval for `isSwimUp`.
+ * - If mobile buttons are available and the shark is not currently in a hurt animation:
+ *   - Stops the "snore" sound.
+ *   - If the shark is not currently performing a fin slap, resets the shark's state.
+ */
+export function keyArrowUpUp() {
+    this.world.keyboard.UP = false;
+    this.checkSwimmingForStopSound();
+    clearInterval(this.isSwimUp);
+    if (this.areMobileButtonsAvailable &amp;&amp; !this.isCurrentlyHurtAnimation) {
+      stopSound("snore");
+      if (!this.isCurrentlyFinSlap) this.resetSharkyState();
+    }
+  }
+
+/**
+ * Handles the event when the down arrow key is released.
+ * 
+ * This function performs the following actions:
+ * - Sets the `DOWN` property of the `keyboard` object in the `world` to `false`.
+ * - Calls the `checkSwimmingForStopSound` method.
+ * - Clears the interval set for `isSwimDown`.
+ * - If mobile buttons are available and the shark is not currently hurt:
+ *   - Stops the "snore" sound.
+ *   - If the shark is not currently performing a fin slap, resets the shark's state.
+ */
+export function keyArrowDownUp() {
+  this.world.keyboard.DOWN = false;
+  this.checkSwimmingForStopSound();
+  clearInterval(this.isSwimDown);
+  if (this.areMobileButtonsAvailable &amp;&amp; !this.isCurrentlyHurtAnimation) {
+    stopSound("snore");
+    if (!this.isCurrentlyFinSlap) this.resetSharkyState();
+  }
+}
+
+/**
+ * Handles the key up event for the space key.
+ * Sets the SPACE property of the keyboard object in the world to false.
+ *
+ * @function keySpaceUp
+ */
+export function keySpaceUp() {
+  this.world.keyboard.SPACE = false;
+}
+
+/**
+ * Handles the 'D' key release event by setting the corresponding
+ * keyboard property to false in the world object.
+ *
+ * @function keyDUp
+ */
+export function keyDUp() {
+  this.world.keyboard.DKey = false;
+}
+
+/**
+ * Handles the state of all keys being released.
+ * 
+ * If the shark is currently in an attack animation, it sets a timeout to reset the attack animation state after 600 milliseconds.
+ * If the shark is not in any special animation state (hurt, attack, bubble attack, or fin slap), it resets the shark's state immediately.
+ * 
+ * @function allKeysUp
+ */
+export function allKeysUp() {
+  if (this.isCurrentlyAttackAnimation) {
+    setTimeout(() => {
+      if (this.isCurrentlyAttackAnimation) this.isCurrentlyAttackAnimation = false;
+      this.resetSharkyState();
+    }, 600);
+  }
+  if (!this.isCurrentlyHurtAnimation &amp;&amp; !this.isCurrentlyAttackAnimation &amp;&amp; !this.isCurrentlyBubbleAttack &amp;&amp; !this.isCurrentlyFinSlap) this.resetSharkyState();
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-_coin.class.js_.html">"coin.class.js"</a></li><li><a href="module-_drawable-object.class.js_.html">"drawable-object.class.js"</a></li><li><a href="module-_endboss.class.js_.html">"endboss.class.js"</a></li><li><a href="module-_jellyFish.class.js_.html">"jellyFish.class.js"</a></li><li><a href="module-_jellyFishGreenSD.class.js_.html">"jellyFishGreenSD.class.js"</a></li><li><a href="module-_jellyFishLilaRD.class.js_.html">"jellyFishLilaRD.class.js"</a></li><li><a href="module-_jellyFishPinkSD.class.js_.html">"jellyFishPinkSD.class.js"</a></li><li><a href="module-_jellyFishYellowRD.class.js_.html">"jellyFishYellowRD.class.js"</a></li><li><a href="module-_keyboard.class.js_.html">"keyboard.class.js"</a></li><li><a href="module-_moveable-object.class.js_.html">"moveable-object.class.js"</a></li><li><a href="module-_poison.class.js_.html">"poison.class.js"</a></li><li><a href="module-_pufferFish.class.js_.html">"pufferFish.class.js"</a></li><li><a href="module-_pufferFishGreen.class.js_.html">"pufferFishGreen.class.js"</a></li><li><a href="module-_pufferFishOrange.class.js_.html">"pufferFishOrange.class.js"</a></li><li><a href="module-_pufferFishRed.class.js_.html">"pufferFishRed.class.js"</a></li><li><a href="module-_script.js_.html">"script.js"</a></li><li><a href="module-_settings.js_.html">"settings.js"</a></li><li><a href="module-_sharky.action.animations.js_.html">"sharky.action.animations.js"</a></li><li><a href="module-_sharky.action.hurt.js_.html">"sharky.action.hurt.js"</a></li><li><a href="module-_sharky.action.movement.js_.html">"sharky.action.movement.js"</a></li><li><a href="module-_sharky.bubble.class.js_.html">"sharky.bubble.class.js"</a></li><li><a href="module-_sharky.class.handleKeys.js_.html">"sharky.class.handleKeys.js"</a></li><li><a href="module-_sharky.class.js_.html">"sharky.class.js"</a></li><li><a href="module-_sound.js_.html">"sound.js"</a></li><li><a href="module-_staticFloor.class.js_.html">"staticFloor.class.js"</a></li><li><a href="module-_staticFondo1.class.js_.html">"staticFondo1.class.js"</a></li><li><a href="module-_staticFondo2.class.js_.html">"staticFondo2.class.js"</a></li><li><a href="module-_staticLight.class.js_.html">"staticLight.class.js"</a></li><li><a href="module-_staticWater.class.js_.html">"staticWater.class.js"</a></li><li><a href="module-_statusBar-coin.class.js_.html">"statusBar-coin.class.js"</a></li><li><a href="module-_statusBar-life.class.js_.html">"statusBar-life.class.js"</a></li><li><a href="module-_statusBar-poison.class.js_.html">"statusBar-poison.class.js"</a></li><li><a href="module-_statusBar.class.js_.html">"statusBar.class.js"</a></li><li><a href="module-_world.class.js_.html">"world.class.js"</a></li></ul><h3>Classes</h3><ul><li><a href="module-_coin.class.js_.Coin.html">Coin</a></li><li><a href="module-_drawable-object.class.js_.DrawableObject.html">DrawableObject</a></li><li><a href="module-_jellyFish.class.js_.JellyFish.html">JellyFish</a></li><li><a href="module-_keyboard.class.js_.Keyboard.html">Keyboard</a></li><li><a href="module-_poison.class.js_.Poison.html">Poison</a></li><li><a href="module-_pufferFish.class.js_.PufferFish.html">PufferFish</a></li><li><a href="module-_sharky.bubble.class.js_.SharkyBubble.html">SharkyBubble</a></li><li><a href="module-_staticFloor.class.js_.Floor.html">Floor</a></li><li><a href="module-_staticFondo1.class.js_.Fondo1.html">Fondo1</a></li><li><a href="module-_staticFondo2.class.js_.Fondo2.html">Fondo2</a></li><li><a href="module-_staticLight.class.js_.Light.html">Light</a></li><li><a href="module-_staticWater.class.js_.Water.html">Water</a></li><li><a href="module-_statusBar-coin.class.js_.StatusBarCoin.html">StatusBarCoin</a></li><li><a href="module-_statusBar-life.class.js_.StatusBarLife.html">StatusBarLife</a></li><li><a href="module-_statusBar-poison.class.js_.StatusBarPoison.html">StatusBarPoison</a></li><li><a href="module-_statusBar.class.js_.StatusBar.html">StatusBar</a></li><li><a href="module-_world.class.js_.World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#hideImprint-Functiontohidetheimprint.">hideImprint - Function to hide the imprint.</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#showHideControlScreen">showHideControlScreen</a></li><li><a href="global.html#stopSwimSound">stopSwimSound</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jan 27 2025 14:07:06 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

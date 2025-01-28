@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/sharky.action.hurt.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/sharky.action.hurt.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module "sharky.action.hurt.js"
+ */
+
+import { playHurtSound, stopSwimSound, playSfxSound, stopAllLoopSounds } from "../sound.js";
+
+/**
+ * Increases the coin count for the player and plays a sound effect.
+ * If the coin count reaches 20, the player's life energy is restored to 100 and the coin count is reset to 0.
+ *
+ * @param {Object} enemy - The enemy object (not used in the function).
+ */
+export function getCoins(enemy) {
+  this.coin += 1;
+  playSfxSound("coin", 0, false, 0.3);
+  if (this.coin >= 20) {
+    this.lifeEnergy = 100;
+    this.coin = 0;
+  }
+}
+
+/**
+ * Increases the poison count for the current object and plays a sound effect.
+ * If the poison count reaches 10 or more, sets the `isEnoughPoison` flag to true.
+ *
+ * @param {Object} enemy - The enemy object (not used in the function).
+ */
+export function getPoison(enemy) {
+  this.poison += 1;
+  playSfxSound("bottle", 0, false, 0.2);
+  if (this.poison >= 10) this.isEnoughPoison = true;
+}
+
+/**
+ * Handles the hurt animation for the sharky character.
+ * 
+ * This function clears any existing movement animation intervals,
+ * sets the hurt animation flag to true, and ensures the attack animation
+ * flag is set to false.
+ * 
+ * @function handleHurtAnimation
+ */
+export function handleHurtAnimation() {
+  this.clearIntervalsAnimationMove();
+  this.isCurrentlyHurtAnimation = true;
+  this.isCurrentlyAttackAnimation = false;
+}
+
+/**
+ * Resets the hurt animation for the sharky character.
+ * 
+ * This function clears any ongoing animation intervals, sets the sharky character
+ * to its standing animation, and marks the character as not currently hurt.
+ * 
+ * @function resetHurtAnimation
+ * @memberof Sharky
+ */
+export function resetHurtAnimation() {
+  this.clearIntervalsAnimationMove();
+  this.sharkyStandAnimation();
+  this.isCurrentlyHurtAnimation = false;
+}
+
+/**
+ * Handles the event when the sharky character is hurt by a puffer fish.
+ * Reduces the life energy of the character and updates the corresponding status bar.
+ * If the hurt animation is not currently playing, it triggers the hurt animation and plays a hurt sound.
+ * After a delay, it resets the hurt animation and checks if the character is dead.
+ *
+ * @function hurtedByPufferFish
+ */
+export function hurtedByPufferFish() {
+  if (!this.isCurrentlyFinSlap) {
+    let demageFactor = -4;
+    this.lifeEnergy += demageFactor;
+    this.world.statBars[1].updatePercentageStatBar(demageFactor);
+    if (!this.isCurrentlyHurtAnimation) {
+      this.handleHurtAnimation();
+      this.sharkyHurtRegularAnimation();
+      playHurtSound("hurt1");
+      setTimeout(() => (this.resetHurtAnimation(), this.isSharkyDead("regular")), 600);
+    }
+  }
+}
+
+/**
+ * Handles the event when the shark is hurt by a jellyfish.
+ * Reduces the shark's life energy and updates the corresponding status bar.
+ * Triggers hurt animations and sound effects if not already in a hurt state.
+ * 
+ * @function hurtedByJellyFishRD
+ * @memberof Sharky
+ * @this Sharky
+ */
+export function hurtedByJellyFishRD() {
+  if (!this.isCurrentlyFinSlap) {
+    let demageFactor = -6;
+    this.lifeEnergy += demageFactor;
+    this.world.statBars[1].updatePercentageStatBar(demageFactor);
+    if (!this.isCurrentlyHurtAnimation) {
+      this.handleHurtAnimation();
+      this.sharkyHurtRegularAnimation();
+      playHurtSound("hurt2");
+      setTimeout(() => (this.resetHurtAnimation(), this.isSharkyDead("regular")), 600);
+    }
+  }
+}
+
+/**
+ * Handles the event when the sharky character is hurt by a jellyfish.
+ * Reduces the life energy of the character and updates the corresponding stat bar.
+ * Triggers hurt animations and sound effects if not already in a hurt state.
+ * 
+ * @function hurtedByJellyFishSD
+ * @memberof Sharky
+ * @this Sharky
+ */
+export function hurtedByJellyFishSD() {
+  if (!this.isCurrentlyFinSlap) {
+    let demageFactor = -10;
+    this.lifeEnergy += demageFactor;
+    this.world.statBars[1].updatePercentageStatBar(demageFactor);
+    if (!this.isCurrentlyHurtAnimation) {
+      this.handleHurtAnimation();
+      this.sharkyHurtShockAnimation();
+      playHurtSound("electroShock");
+      setTimeout(() => (this.resetHurtAnimation(), this.isSharkyDead("electric")), 600);
+    }
+  }
+}
+
+/**
+ * Handles the event when Sharky is hurt by the End Boss.
+ * Reduces Sharky's life energy and updates the corresponding status bar.
+ * Triggers hurt animations and sound effects if not already playing.
+ * 
+ * @function hurtedByEndBoss
+ * @memberof Sharky
+ */
+export function hurtedByEndBoss() {
+  let demageFactor = -20;
+  this.lifeEnergy += demageFactor;
+  this.world.statBars[1].updatePercentageStatBar(demageFactor);
+  if (!this.isCurrentlyHurtAnimation) {
+    this.handleHurtAnimation();
+    this.sharkyHurtRegularAnimation();
+    playHurtSound("hurt4");
+    setTimeout(() => (this.resetHurtAnimation(), this.isSharkyDead("regular")), 600);
+  }
+}
+
+/**
+ * Checks if Sharky is dead based on its life energy.
+ * If Sharky's life energy is less than or equal to 0, it stops the swim sound,
+ * removes mobile listeners, and triggers the sharkyDead function.
+ *
+ * @param {string} kindOfDead - The type or reason for Sharky's death.
+ */
+export function isSharkyDead(kindOfDead) {
+  if (this.lifeEnergy &lt;= 0) {
+    stopSwimSound();
+    this.removeSharkyMobileListeners();
+    this.sharkyDead(kindOfDead);
+  }
+}
+
+/**
+ * Handles the death animation and behavior for Sharky.
+ *
+ * @param {string} kindOfDead - The type of death animation to play. 
+ *                              Can be "regular" or "shock".
+ */
+export function sharkyDead(kindOfDead) {
+  stopAllLoopSounds();
+  playSfxSound("backgroundLose");
+  this.clearIntervalsAnimationMove();
+  kindOfDead == "regular" ? this.sharkyDeadRegularAnimation() : this.sharkyDeadShockAnimation();
+  setTimeout(() => {
+    this.clearIntervalsAnimationMove();
+    kindOfDead == "regular" ? this.floatToSurface("Sharky") : this.sinkToGround("Sharky");
+  }, 1560);
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-_coin.class.js_.html">"coin.class.js"</a></li><li><a href="module-_drawable-object.class.js_.html">"drawable-object.class.js"</a></li><li><a href="module-_endboss.class.js_.html">"endboss.class.js"</a></li><li><a href="module-_jellyFish.class.js_.html">"jellyFish.class.js"</a></li><li><a href="module-_jellyFishGreenSD.class.js_.html">"jellyFishGreenSD.class.js"</a></li><li><a href="module-_jellyFishLilaRD.class.js_.html">"jellyFishLilaRD.class.js"</a></li><li><a href="module-_jellyFishPinkSD.class.js_.html">"jellyFishPinkSD.class.js"</a></li><li><a href="module-_jellyFishYellowRD.class.js_.html">"jellyFishYellowRD.class.js"</a></li><li><a href="module-_keyboard.class.js_.html">"keyboard.class.js"</a></li><li><a href="module-_moveable-object.class.js_.html">"moveable-object.class.js"</a></li><li><a href="module-_poison.class.js_.html">"poison.class.js"</a></li><li><a href="module-_pufferFish.class.js_.html">"pufferFish.class.js"</a></li><li><a href="module-_pufferFishGreen.class.js_.html">"pufferFishGreen.class.js"</a></li><li><a href="module-_pufferFishOrange.class.js_.html">"pufferFishOrange.class.js"</a></li><li><a href="module-_pufferFishRed.class.js_.html">"pufferFishRed.class.js"</a></li><li><a href="module-_script.js_.html">"script.js"</a></li><li><a href="module-_settings.js_.html">"settings.js"</a></li><li><a href="module-_sharky.action.animations.js_.html">"sharky.action.animations.js"</a></li><li><a href="module-_sharky.action.hurt.js_.html">"sharky.action.hurt.js"</a></li><li><a href="module-_sharky.action.movement.js_.html">"sharky.action.movement.js"</a></li><li><a href="module-_sharky.bubble.class.js_.html">"sharky.bubble.class.js"</a></li><li><a href="module-_sharky.class.handleKeys.js_.html">"sharky.class.handleKeys.js"</a></li><li><a href="module-_sharky.class.js_.html">"sharky.class.js"</a></li><li><a href="module-_sound.js_.html">"sound.js"</a></li><li><a href="module-_staticFloor.class.js_.html">"staticFloor.class.js"</a></li><li><a href="module-_staticFondo1.class.js_.html">"staticFondo1.class.js"</a></li><li><a href="module-_staticFondo2.class.js_.html">"staticFondo2.class.js"</a></li><li><a href="module-_staticLight.class.js_.html">"staticLight.class.js"</a></li><li><a href="module-_staticWater.class.js_.html">"staticWater.class.js"</a></li><li><a href="module-_statusBar-coin.class.js_.html">"statusBar-coin.class.js"</a></li><li><a href="module-_statusBar-life.class.js_.html">"statusBar-life.class.js"</a></li><li><a href="module-_statusBar-poison.class.js_.html">"statusBar-poison.class.js"</a></li><li><a href="module-_statusBar.class.js_.html">"statusBar.class.js"</a></li><li><a href="module-_world.class.js_.html">"world.class.js"</a></li></ul><h3>Classes</h3><ul><li><a href="module-_coin.class.js_.Coin.html">Coin</a></li><li><a href="module-_drawable-object.class.js_.DrawableObject.html">DrawableObject</a></li><li><a href="module-_jellyFish.class.js_.JellyFish.html">JellyFish</a></li><li><a href="module-_keyboard.class.js_.Keyboard.html">Keyboard</a></li><li><a href="module-_poison.class.js_.Poison.html">Poison</a></li><li><a href="module-_pufferFish.class.js_.PufferFish.html">PufferFish</a></li><li><a href="module-_sharky.bubble.class.js_.SharkyBubble.html">SharkyBubble</a></li><li><a href="module-_staticFloor.class.js_.Floor.html">Floor</a></li><li><a href="module-_staticFondo1.class.js_.Fondo1.html">Fondo1</a></li><li><a href="module-_staticFondo2.class.js_.Fondo2.html">Fondo2</a></li><li><a href="module-_staticLight.class.js_.Light.html">Light</a></li><li><a href="module-_staticWater.class.js_.Water.html">Water</a></li><li><a href="module-_statusBar-coin.class.js_.StatusBarCoin.html">StatusBarCoin</a></li><li><a href="module-_statusBar-life.class.js_.StatusBarLife.html">StatusBarLife</a></li><li><a href="module-_statusBar-poison.class.js_.StatusBarPoison.html">StatusBarPoison</a></li><li><a href="module-_statusBar.class.js_.StatusBar.html">StatusBar</a></li><li><a href="module-_world.class.js_.World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#hideImprint-Functiontohidetheimprint.">hideImprint - Function to hide the imprint.</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#showHideControlScreen">showHideControlScreen</a></li><li><a href="global.html#stopSwimSound">stopSwimSound</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jan 27 2025 14:07:06 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

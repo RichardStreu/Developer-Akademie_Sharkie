@@ -6,13 +6,11 @@ import { JellyFishYellowRD } from "./jellyFishYellowRD.class.js";
 import { JellyFishGreenSD } from "./jellyFishGreenSD.class.js";
 import { JellyFishPinkSD } from "./jellyFishPinkSD.class.js";
 import { EndBoss } from "./endboss.class.js";
-
 import { Water } from "./staticWater.class.js";
 import { Fondo1 } from "./staticFondo1.class.js";
 import { Fondo2 } from "./staticFondo2.class.js";
 import { Floor } from "./staticFloor.class.js";
 import { Light } from "./staticLight.class.js";
-
 import { canvasWidth } from "../script.js";
 import { Coin } from "./coin.class.js";
 import { Poison } from "./poison.class.js";

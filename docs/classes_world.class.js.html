@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/world.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/world.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module "world.class.js"
+ */
+
+import { Sharky } from "./sharky.class.js";
+import { EndBoss } from "./endboss.class.js";
+import { Level1 } from "./level1.class.js";
+import { StatusBarLife } from "./statusBar-life.class.js";
+import { StatusBarCoin } from "./statusBar-coin.class.js";
+import { StatusBarPoison } from "./statusBar-poison.class.js";
+
+export class World {
+  /**
+   * Creates an instance of the World class.
+   * 
+   * @constructor
+   * @param {HTMLCanvasElement} canvas - The canvas element where the world will be drawn.
+   * @param {Object} keyboard - The keyboard input handler.
+   * 
+   * @property {Sharky} sharky - The main character of the game.
+   * @property {Level1} level1 - The first level of the game.
+   * @property {Array} landscape - The landscape elements of the level.
+   * @property {Array} enemies - The enemies present in the level.
+   * @property {Array} statBars - The status bars for coins, life, and poison.
+   * @property {Array} bubbles - The bubbles in the game.
+   * @property {HTMLCanvasElement} canvas - The canvas element.
+   * @property {CanvasRenderingContext2D} ctx - The 2D rendering context for the canvas.
+   * @property {number} camera_x - The x-coordinate of the camera.
+   * @property {number} checkCollisionsInterval - The interval for checking collisions.
+   * @property {boolean} isDrawing - Indicates whether the world is currently being drawn.
+   */
+  constructor(canvas, keyboard) {
+    this.sharky = new Sharky();
+    this.level1 = new Level1();
+    this.landscape = this.level1.landscape;
+    this.enemies = this.level1.enemies;
+    this.statBars = [new StatusBarCoin(10, 0), new StatusBarLife(10, 40), new StatusBarPoison(10, 80)];
+    this.bubbles = [];
+    this.canvas;
+    this.ctx;
+    this.camera_x = 0;
+    this.checkCollisionsInterval;
+    this.isDrawing;
+    this.ctx = canvas.getContext("2d");
+    this.canvas = canvas;
+    this.keyboard = keyboard;
+    this.isDrawing = false;
+    this.setWorld();
+    this.checkCollisions();
+  }
+
+  /**
+   * Sets the world context for various game elements.
+   * 
+   * This method assigns the current world instance to the `sharky` object,
+   * specific landscape elements, enemies in level 1, and status bars.
+   * 
+   * - Assigns the world to `sharky`.
+   * - Assigns the world to landscape elements at indices 2, 3, 4, and 5.
+   * - Assigns the world to each enemy in `level1.enemies` if the enemy is an instance of `EndBoss`.
+   * - Assigns the world to each status bar in `statBars` if the status bar is an instance of `StatusBarLife`.
+   */
+  setWorld() {
+    this.sharky.world = this;
+    this.landscape[2].world = this;
+    this.landscape[3].world = this;
+    this.landscape[4].world = this;
+    this.landscape[5].world = this;
+    this.level1.enemies.forEach((enemy) => {
+      if (enemy instanceof EndBoss) enemy.world = this;
+    });
+    this.statBars.forEach((statBar) => {
+      if (statBar instanceof StatusBarLife) statBar.world = this;
+    });
+  }
+
+  /**
+   * Clears the game world by removing all enemies, bubbles, landscape elements, and status bars.
+   * Also clears the canvas.
+   * 
+   * @method clearWorld
+   */
+  clearWorld() {
+    this.enemies.forEach((enemy) => {
+      if (enemy.clearIntervalsAnimationMove) enemy.clearIntervalsAnimationMove();
+    });
+    this.bubbles = [];
+    this.enemies = [];
+    this.landscape = [];
+    this.statBars = [];
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  /**
+   * Clears the interval that checks for collisions.
+   * This method stops the periodic execution of the collision check function.
+   */
+  clearCheckCollisionsInterval() {
+    clearInterval(this.checkCollisionsInterval);
+  }
+
+  /**
+   * Checks for collisions between the sharky character and enemies in the level.
+   * This method sets up an interval that repeatedly checks if the sharky character
+   * is colliding with any enemies. If a collision is detected, it triggers the 
+   * hurtSharky method on the sharky character and sets the isCurrentlyHurt flag.
+   * 
+   * @method
+   */
+  checkCollisions() {
+    this.checkCollisionsInterval = setInterval(() => {
+      for (let index = 0; index &lt; this.level1.enemies.length; index++) {
+        const enemy = this.level1.enemies[index];
+        if (this.sharky.isColliding(enemy)) {
+          this.sharky.hurtSharky(enemy.constructor.name, enemy);
+          if (!this.sharky.isCurrentlyHurt) this.sharky.isCurrentlyHurt = true;
+          break;
+        } else {
+          this.sharky.isCurrentlyHurt = false;
+        }
+      }
+    }, 100);
+  }
+
+  /**
+   * Starts the drawing process by setting the isDrawing flag to true
+   * and initiating the draw method.
+   */
+  startDrawing() {
+    this.isDrawing = true;
+    this.draw();
+  }
+
+  /**
+   * Stops the drawing process by setting the isDrawing flag to false.
+   */
+  stopDrawing() {
+    this.isDrawing = false;
+  }
+
+  /**
+   * Draws the game world on the canvas.
+   * Clears the canvas, translates the context based on the camera position,
+   * and adds various objects (landscape, sharky, enemies, bubbles, stat bars) to the map.
+   * Continuously calls itself using requestAnimationFrame for smooth animation.
+   * 
+   * @method
+   * @memberof World
+   * @returns {void}
+   */
+  draw() {
+    if (!this.isDrawing) return;
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.translate(this.camera_x, 0);
+    this.addObjectsToMap(this.landscape);
+    if (this.sharky) this.addToMap(this.sharky);
+    this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.bubbles);
+    this.ctx.translate(-this.camera_x, 0);
+    this.addObjectsToMap(this.statBars);
+    this.checkBubblePosition();
+    requestAnimationFrame(() => this.draw());
+  }
+
+  /**
+   * Checks the position of each bubble in the `bubbles` array.
+   * If a bubble's `y` coordinate is less than -40, it removes the bubble from the array.
+   */
+  checkBubblePosition() {
+    this.bubbles.forEach((bubble, index) => {
+      if (bubble.y &lt; -40) this.bubbles.splice(index, 1);
+    });
+  }
+
+  /**
+   * Adds an object to the map by drawing it on the canvas context.
+   * If the object has the `otherDirection` property set to true, 
+   * it flips the image before drawing and flips it back after drawing.
+   *
+   * @param {Object} object - The object to be added to the map.
+   * @param {boolean} object.otherDirection - Indicates if the object should be flipped.
+   * @param {function} object.draw - Function to draw the object on the canvas context.
+   * @param {function} object.drawFrame - Function to draw the object's frame on the canvas context.
+   * @param {CanvasRenderingContext2D} this.ctx - The canvas rendering context where the object will be drawn.
+   */
+  addToMap(object) {
+    if (object.otherDirection) this.flipImage(object);
+    object.draw(this.ctx);
+    object.drawFrame(this.ctx);
+    if (object.otherDirection) this.flipImageBack(object);
+  }
+
+  /**
+   * Flips the given object's image horizontally.
+   *
+   * This method saves the current state of the canvas context, translates the context to the width of the object,
+   * scales the context horizontally by -1 to flip the image, and then adjusts the object's x-coordinate.
+   *
+   * @param {Object} object - The object whose image is to be flipped.
+   * @param {number} object.width - The width of the object.
+   * @param {number} object.x - The x-coordinate of the object, which will be adjusted.
+   */
+  flipImage(object) {
+    this.ctx.save();
+    this.ctx.translate(object.width, 0);
+    this.ctx.scale(-1, 1);
+    object.x = object.x * -1;
+  }
+
+  /**
+   * Flips the image of the given object back to its original orientation.
+   * 
+   * @param {Object} object - The object whose image is to be flipped back.
+   * @param {number} object.x - The x-coordinate of the object.
+   */
+  flipImageBack(object) {
+    object.x = object.x * -1;
+    this.ctx.restore();
+  }
+
+  /**
+   * Adds an array of objects to the map.
+   * 
+   * @param {Array} arry - The array of objects to be added to the map.
+   */
+  addObjectsToMap(arry) {
+    arry.forEach((element) => {
+      this.addToMap(element);
+    });
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-_coin.class.js_.html">"coin.class.js"</a></li><li><a href="module-_drawable-object.class.js_.html">"drawable-object.class.js"</a></li><li><a href="module-_endboss.class.js_.html">"endboss.class.js"</a></li><li><a href="module-_jellyFish.class.js_.html">"jellyFish.class.js"</a></li><li><a href="module-_jellyFishGreenSD.class.js_.html">"jellyFishGreenSD.class.js"</a></li><li><a href="module-_jellyFishLilaRD.class.js_.html">"jellyFishLilaRD.class.js"</a></li><li><a href="module-_jellyFishPinkSD.class.js_.html">"jellyFishPinkSD.class.js"</a></li><li><a href="module-_jellyFishYellowRD.class.js_.html">"jellyFishYellowRD.class.js"</a></li><li><a href="module-_keyboard.class.js_.html">"keyboard.class.js"</a></li><li><a href="module-_moveable-object.class.js_.html">"moveable-object.class.js"</a></li><li><a href="module-_poison.class.js_.html">"poison.class.js"</a></li><li><a href="module-_pufferFish.class.js_.html">"pufferFish.class.js"</a></li><li><a href="module-_pufferFishGreen.class.js_.html">"pufferFishGreen.class.js"</a></li><li><a href="module-_pufferFishOrange.class.js_.html">"pufferFishOrange.class.js"</a></li><li><a href="module-_pufferFishRed.class.js_.html">"pufferFishRed.class.js"</a></li><li><a href="module-_script.js_.html">"script.js"</a></li><li><a href="module-_settings.js_.html">"settings.js"</a></li><li><a href="module-_sharky.action.animations.js_.html">"sharky.action.animations.js"</a></li><li><a href="module-_sharky.action.hurt.js_.html">"sharky.action.hurt.js"</a></li><li><a href="module-_sharky.action.movement.js_.html">"sharky.action.movement.js"</a></li><li><a href="module-_sharky.bubble.class.js_.html">"sharky.bubble.class.js"</a></li><li><a href="module-_sharky.class.handleKeys.js_.html">"sharky.class.handleKeys.js"</a></li><li><a href="module-_sharky.class.js_.html">"sharky.class.js"</a></li><li><a href="module-_sound.js_.html">"sound.js"</a></li><li><a href="module-_staticFloor.class.js_.html">"staticFloor.class.js"</a></li><li><a href="module-_staticFondo1.class.js_.html">"staticFondo1.class.js"</a></li><li><a href="module-_staticFondo2.class.js_.html">"staticFondo2.class.js"</a></li><li><a href="module-_staticLight.class.js_.html">"staticLight.class.js"</a></li><li><a href="module-_staticWater.class.js_.html">"staticWater.class.js"</a></li><li><a href="module-_statusBar-coin.class.js_.html">"statusBar-coin.class.js"</a></li><li><a href="module-_statusBar-life.class.js_.html">"statusBar-life.class.js"</a></li><li><a href="module-_statusBar-poison.class.js_.html">"statusBar-poison.class.js"</a></li><li><a href="module-_statusBar.class.js_.html">"statusBar.class.js"</a></li><li><a href="module-_world.class.js_.html">"world.class.js"</a></li></ul><h3>Classes</h3><ul><li><a href="module-_coin.class.js_.Coin.html">Coin</a></li><li><a href="module-_drawable-object.class.js_.DrawableObject.html">DrawableObject</a></li><li><a href="module-_jellyFish.class.js_.JellyFish.html">JellyFish</a></li><li><a href="module-_keyboard.class.js_.Keyboard.html">Keyboard</a></li><li><a href="module-_poison.class.js_.Poison.html">Poison</a></li><li><a href="module-_pufferFish.class.js_.PufferFish.html">PufferFish</a></li><li><a href="module-_sharky.bubble.class.js_.SharkyBubble.html">SharkyBubble</a></li><li><a href="module-_staticFloor.class.js_.Floor.html">Floor</a></li><li><a href="module-_staticFondo1.class.js_.Fondo1.html">Fondo1</a></li><li><a href="module-_staticFondo2.class.js_.Fondo2.html">Fondo2</a></li><li><a href="module-_staticLight.class.js_.Light.html">Light</a></li><li><a href="module-_staticWater.class.js_.Water.html">Water</a></li><li><a href="module-_statusBar-coin.class.js_.StatusBarCoin.html">StatusBarCoin</a></li><li><a href="module-_statusBar-life.class.js_.StatusBarLife.html">StatusBarLife</a></li><li><a href="module-_statusBar-poison.class.js_.StatusBarPoison.html">StatusBarPoison</a></li><li><a href="module-_statusBar.class.js_.StatusBar.html">StatusBar</a></li><li><a href="module-_world.class.js_.World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#hideImprint-Functiontohidetheimprint.">hideImprint - Function to hide the imprint.</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#showHideControlScreen">showHideControlScreen</a></li><li><a href="global.html#stopSwimSound">stopSwimSound</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jan 27 2025 14:07:06 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
