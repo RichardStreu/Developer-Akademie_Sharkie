@@ -3,10 +3,8 @@
  */
 
 import { MoveableObject } from "./moveable-object.class.js";
-
 import { moveObjRatio } from "../script.js";
-
-import { stopSwimSound, stopSound, stopAllLoopSounds } from "../sound.js";
+import { stopSwimSound } from "../sound.js";
 
 import {
   imagesStand,
@@ -33,7 +31,6 @@ import {
   sharkyDeadRegularAnimation,
   sharkyDeadShockAnimation,
 } from "./sharky.action.animations.js";
-
 import { letSharkySleep, moveSharkyLeft, moveSharkyRight, moveSharkyUp, moveSharkyDown, sharkyAttackSpace, shootBubble, sharkyAttackDKey, doFinSlap } from "./sharky.action.movement.js";
 
 import {

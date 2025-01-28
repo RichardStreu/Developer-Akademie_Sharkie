@@ -44,7 +44,6 @@ export function letSharkySleep() {
  * @function moveSharkyLeft
  * @memberof Sharky
  * @instance
- * 
  * @example
  * // Call this function to move Sharky to the left
  * moveSharkyLeft();
